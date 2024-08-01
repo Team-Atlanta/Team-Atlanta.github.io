@@ -19,6 +19,10 @@ social:
   - name: linkedin
     icon: fa-brands fa-linkedin
     link: https://www.linkedin.com/in/tsgatesv/
+
+  - name: email
+    icon: fa-solid fa-envelope
+    link: mailto:taesoo@gatech.edu
 ---
 
 lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.
