@@ -4,6 +4,10 @@ email: taesoo@gatech.edu
 image: "/images/taesoo-kim.png"
 description: this is meta description
 social:
+  - name: www
+    icon: fa-solid fa-house
+    link: https://taesoo.kim/
+
   - name: github
     icon: fa-brands fa-github
     link: https://github.com/tsgates
