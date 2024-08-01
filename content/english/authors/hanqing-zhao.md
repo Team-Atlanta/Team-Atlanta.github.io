@@ -6,7 +6,7 @@ description: this is meta description
 social:
   - name: www
     icon: fa-solid fa-house
-    link: http://45.23.27.64
+    link: https://www.cc.gatech.edu/~hzhao336/
 
   - name: github
     icon: fa-brands fa-github
