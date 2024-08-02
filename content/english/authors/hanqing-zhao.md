@@ -1,7 +1,7 @@
 ---
 title: Hanqing Zhao
 email: hanqing@gatech.edu
-image: "/images/avatar.png"
+image: "/images/hanqing-zhao.png"
 description: this is meta description
 social:
   - name: www
