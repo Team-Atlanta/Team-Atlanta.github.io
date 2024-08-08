@@ -33,7 +33,7 @@ url = "blog/"
 
 [[main]]
 #parent = "Pages"
-name = "Members"
+name = "AIxCC Team"
 url = "authors/"
 weight = 2
 
