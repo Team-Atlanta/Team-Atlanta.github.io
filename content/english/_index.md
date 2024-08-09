@@ -20,6 +20,7 @@ features:
       - "**End-to-End Automation**: Manages the entire bug finding and fixing process."
       - "**Multi-Language**: Compatible with complex languages such as C/C++, Java, etc."
       - "**Kernel Support**: Supports complex systems like the Linux kernel."
+      - "**Smart Patching**: Fixing bugs automatically with human-like reasoning." 
       - "**Self-Improving**: Employs LLM-powered techniques that enhance over time."
       - "**Autonomous Knowledge Inference**: Applies domain-specific knowledge without human intervention."
     button:
