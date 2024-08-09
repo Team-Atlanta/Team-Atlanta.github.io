@@ -2,6 +2,7 @@
 title: Soyeon Park
 email: s.park5@samsung.com
 image: "/images/soyeon_194.png"
+weight: 3
 description: this is meta description
 social:
   - name: www

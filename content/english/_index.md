@@ -13,7 +13,7 @@ banner:
 # Features
 features:
   - title: "Atlantis, a next-generation automated bug finding & fixing system"
-    image: "/images/service-1.png"
+    image: "/images/team-icon.jpg"
     content: "Intelligent beyond what you'd expect from a machine."
     bulletpoints:
       - "**AI-Driven**: Large Language Models (LLMs) powered bug detection and fixing for real-world softwares."

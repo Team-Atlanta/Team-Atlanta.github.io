@@ -3,6 +3,7 @@ title: Taesoo Kim
 email: taesoo@gatech.edu
 image: "/images/taesoo-kim.png"
 description: this is meta description
+weight: 1
 social:
   - name: www
     icon: fa-solid fa-house

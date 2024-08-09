@@ -2,6 +2,7 @@
 title: HyungSeok Han
 email: hyungseok.h@samsung.com
 image: "/images/hyungseok-han.png"
+weight: 2
 description: this is meta description
 social:
   - name: www
@@ -20,3 +21,5 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:hyungseok.h@samsung.com
 ---
+
+Samsung Research Team Lead
