@@ -4,7 +4,7 @@ banner:
   title: "ATLANTIS:</br> **A**I-driven **T**hreat **L**ocalization **AN**d **T**riage **I**ntelligent **S**ystem"
   content: "**Team Atlanta** is an award-winning group, with accolades from Pwn2Own, DEFCON CTF, and numerous academic conferences. Our team comprises experts from Georgia Tech, Samsung Research, KAIST, and POSTECH. We are dedicated to advancing next-generation security research using Large Language Models (LLMs) to pioneer Security-AGI for the future. In DARPA’s AI Cyber Challenge, we aim to revolutionize security paradigms by leveraging AI and LLMs in our cyber reasoning system **Atlantis**."
 
-  image: "/images/banner.png"
+  image: "/images/group-asc.jpg"
   button:
     enable: true
     label: "Check our AIxCC Team"
