@@ -28,4 +28,5 @@ social:
 
 Principal Software Engineer,
 Samsung Research America
+
 Java Team Lead
