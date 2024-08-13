@@ -2,7 +2,7 @@
 title: Dohyeok Kim
 email: do_hyeok.kim@samsung.com
 image: "/images/dohyeok-kim.png"
-description: this is meta description
+description: Security Software Engineer at Samsung Research
 social:
   - name: linkedin
     icon: fa-brands fa-linkedin
@@ -13,4 +13,4 @@ social:
     link: mailto:do_hyeok.kim@samsung.com
 ---
 
-Security Software Engineer at Samsung Research
+Linux Kernel

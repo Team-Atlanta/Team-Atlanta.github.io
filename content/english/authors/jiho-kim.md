@@ -2,7 +2,7 @@
 title: Jiho Kim
 email: jkim4050@gatech.edu
 image: "/images/jiho-kim.png"
-description: Master’s student in Computer Science at Georgia Tech
+description: MS at Georgia Tech
 social:
   - name: github
     icon: fa-brands fa-github
@@ -16,3 +16,5 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:jkim4050@gatech.edu
 ---
+
+Linux Kernel

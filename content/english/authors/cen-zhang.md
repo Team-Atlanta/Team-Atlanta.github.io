@@ -2,7 +2,7 @@
 title: Cen Zhang
 email: blbllhy@gmail.com
 image: "/images/avatar.png"
-description: this is meta description
+description: Postdoc at Georgia Tech
 social:
   - name: www
     icon: fa-solid fa-house
@@ -17,3 +17,4 @@ social:
     link: mailto:blbllhy@gmail.com
 ---
 
+Java CRS

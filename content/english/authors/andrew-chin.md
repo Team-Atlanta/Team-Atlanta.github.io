@@ -2,7 +2,7 @@
 title: Andrew Chin
 email: achin34@gatech.edu
 image: "/images/andrew-chin-194.png"
-description: this is meta description
+description: PhD at Georgia Tech
 social:
   - name: www
     icon: fa-solid fa-house
@@ -21,4 +21,4 @@ social:
     link: mailto:achin34@gatech.edu
 ---
 
-
+LLM Lead

@@ -2,7 +2,7 @@
 title: Minjae Gwon
 email: minjae.gwon@postech.ac.kr
 image: "/images/minjae-gwon.png"
-description: M.S. Student at POSTECH ML Lab and CompSec Lab
+description: MS at POSTECH ML Lab and CompSec Lab
 social:
   - name: www
     icon: fa-solid fa-house
@@ -24,3 +24,5 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:minjae.gwon@postech.ac.kr
 ---
+
+Patching

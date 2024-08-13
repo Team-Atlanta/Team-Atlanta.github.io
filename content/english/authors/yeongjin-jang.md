@@ -26,7 +26,4 @@ social:
     link: mailto:dr.yeongjin.jang@gmail.com
 ---
 
-Principal Software Engineer,
-Samsung Research America
-
 Java Team Lead

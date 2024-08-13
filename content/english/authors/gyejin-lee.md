@@ -2,7 +2,7 @@
 title: Gyejin Lee
 email: gyejinlee@gatech.edu
 image: "/images/gyejin-lee.png"
-description: this is meta description
+description: PhD at Georgia Tech
 social:
   - name: github
     icon: fa-brands fa-github
@@ -17,3 +17,4 @@ social:
     link: https://www.linkedin.com/in/gyejinlee/
 ---
 
+Userspace CRS

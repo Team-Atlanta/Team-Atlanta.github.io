@@ -2,7 +2,7 @@
 title: Taesoo Kim
 email: taesoo@gatech.edu
 image: "/images/taesoo-kim.png"
-description: this is meta description
+description: Professor at GT and VP at Samsung
 weight: 1
 social:
   - name: www
