@@ -15,13 +15,10 @@ $ npm install
 ; run a server: http://localhost:1313/
 $ npm run dev
 
-; build for release (/public)
-$ npm run build
+; build and prepare docs/ for release
+$ ./publish.sh
 
-; replace /docs with /public
-$ rm -rf docs
-$ cp -rf public docs
-
+; add docs/ and publish
 $ git add docs
 $ git commit -a -m "release: note"
 $ git push
