@@ -1,7 +1,7 @@
 ---
 title: Dae R. Jeong
 email: dae.r.jeong@gatech.edu
-image: "/images/avatar.png"
+image: "/images/dae.png"
 description: this is meta description
 social:
   - name: www
