@@ -1,7 +1,7 @@
 ---
 title: Cen Zhang
 email: blbllhy@gmail.com
-image: "/images/avatar.png"
+image: "/images/cen.png"
 description: Postdoc at Georgia Tech
 social:
   - name: www
