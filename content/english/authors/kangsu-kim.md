@@ -1,7 +1,7 @@
 ---
 title: Kangsu Kim
 email: kaleb.kim@samsung.com
-image: "/images/avatar.png"
+image: "/images/kangsu-kim.jpg"
 description: Security Software Engineer at Samsung Research
 social:
   - name: github
