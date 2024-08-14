@@ -12,6 +12,10 @@ social:
     icon: fa-brands fa-github
     link: https://github.com/occia
 
+  - name: twitter
+    icon: fa-brands fa-twitter
+    link: https://x.com/zhclhy
+
   - name: email
     icon: fa-solid fa-envelope
     link: mailto:blbllhy@gmail.com
