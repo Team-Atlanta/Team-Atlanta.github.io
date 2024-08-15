@@ -1,7 +1,7 @@
 ---
 title: Eunsoo Kim
 email: euns.kim@samsung.com
-image: "/images/avatar.png"
+image: "/images/eunsoo.png"
 description: Samsung Research
 social:
   - name: www
