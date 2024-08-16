@@ -117,27 +117,26 @@ Unfortunately, Georgia Tech and Samsung were not eligible for this award.
 
 ## Kick-off with Surprises!
 
-{{< image src="images/blog/blog1-timeline.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
+{{< image src="images/blog/blog1-timeline.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
 
-In the kick-off event on March 29th,
-AIxCC announced the first challenge project, the Linux kernel,
-with an example vulnerability:
-[CVE-2021-43267](https://nvd.nist.gov/vuln/detail/CVE-2021-43267).
-In fact, this bug is [well described](https://www.sentinelone.com/labs/tipc-remote-linux-kernel-heap-overflow-allows-arbitrary-code-execution/)
-and its PoC exploit is [publicly available](https://github.com/zzhacked/CVE-2021-43267),
-which is a great example bug to work on.
-More importantly, it has an intriguing story behind;
-a security researcher audits the Linux kernel source code
-by using [CodeQL](https://codeql.github.com/).
-In particular,
-the researcher was seeking the code that 16-bit `size` parameters are passed to the `kmalloc()` function
-for memory allocation
-by using a dataflow-based CodeQL query.
-The intuition behind is that it might be easy to overflow the 16-bit `size` parameter
-when accessing the allocated object.
-The discovered bug, however, is not related to the integer overflow
-but is an out-of-bound heap overflow
-due to missing sanity check.
+At the kick-off event on March 29th, AIxCC unveiled the first challenge project:
+the Linux kernel, along with an example vulnerability,
+[CVE-2021-43267](https://nvd.nist.gov/vuln/detail/CVE-2021-43267). 
+This bug is [well documented](https://www.sentinelone.com/labs/tipc-remote-linux-kernel-heap-overflow-allows-arbitrary-code-execution/),
+and its PoC exploit is [publicly available](https://github.com/zzhacked/CVE-2021-43267), 
+making it an excellent example to work on.
+
+What makes this bug even more intriguing is the story behind it. 
+A security researcher audited the Linux kernel source code using
+[CodeQL](https://codeql.github.com/). 
+Specifically, the researcher was searching
+for instances where 16-bit `size` parameters are passed to the `kmalloc()`
+function for memory allocation, 
+using a dataflow-based CodeQL query. 
+The intuition was that a 16-bit `size` parameter
+could easily lead to an *integer overflow* when accessing the allocated object.
+However, the discovered bug was not caused by an integer overflow,
+but an out-of-bound heap overflow due to a missing sanity check on the `size` and related inputs.
 
 ```c
 static bool tipc_crypto_key_rcv(struct tipc_crypto *rx, struct tipc_msg *hdr)
@@ -164,10 +163,13 @@ static bool tipc_crypto_key_rcv(struct tipc_crypto *rx, struct tipc_msg *hdr)
 	       skey->keylen);
 ```
 
-The `skey` was allocated with `size` from the user-provided `hdr`
-but `skey->key` was copied upto `skey->keylen` (also user-provided),
-which alas can be inconsistent with `size`.
-The kernel did not perform a sanity check on these two parameters.
+The `skey` was allocated with a `size` based on the user-provided `hdr`, 
+but `skey->key` was copied up to `skey->keylen`, 
+which was also user-controlled and could therefore be inconsistent with `size`.
+Unfortunately, the kernel did not
+perform a sanity check on these two parameters,
+causing an out-of-boundary access.
+
 
 ```diff
 commit fa40d9734a57bcbfa79a280189799f76c88f7bb0
@@ -209,57 +211,103 @@ index c9391d38de85..dc60c32bb70d 100644
  
 ```
 
-Two checks are added to fix this bug; verifying if `size` is bigger than the minimum key size,
-and verifying if `keylen` is consistent with `size`,
-preventing it from accessing beyond the allocated object.
+Two checks were added to fix this bug: 
+verifying that `size` is greater than the
+minimum key size, and ensuring that `keylen` is consistent with `size`, 
+thereby preventing access beyond the allocated object.
 
 
 ## Misunderstanding 1. PoV
 
-Given a humongous Linux repo (yep, 20m LoC), where should we first look at?
-The LLM approach, it turns out, is all about asking the right question,
-so called prompting engineering.
-We adopted many techniques like Chain-of-Thought (CoT) and Tree-of-Thoughts (ToT),
+## Misunderstanding 1: PoV
+
+Given a massive Linux repository (yes, 20 million lines of code),
+where should we start?
+The LLM approach is all about asking the right questions,
+also known as prompt engineering.
+We utilized various techniques like Chain-of-Thought (CoT)
+and Tree-of-Thoughts (ToT),
 and were exploring Retrieval Augmented Generation (RAG)
-to quickly look up the known bugs.
-At that time,
-the context size was limited;
-the most advanced model, `gpt-3.5 turbo` (yep, there exists pre-`gpt-4o` era) from OpenAI,
-supports 16k tokens,
-so it is essential to ask a right question!
-We first tried spotting the potentially vulnerable code snippets
-via all sorts of static analysis tools,
-including CodeQL and various tools from the academic publication,
-and started filtering out the results by using LLMs.
-We discussed the possibility of diffing the upstream Linux kernel to the provided repo,
-and asked LLMs to spot the bug from each of modified functions one by one.
-Still, we had no doubt that, to promote the use of the AI tools,
-the AIxCC organizer will design the competition in this way, 
-so that a single CRS code base can explore any code repository using 10+ programming languages 
-and their combinations.
+to quickly identify known 1-day bugs.
 
-However, PoV turns out a *bug-triggering input* or a crashing input.
-To show the existence of a bug,
-each CRS should formulate the input
-so the referee can quickly check and score them;
-it's easy and perhaps objective for the game but significantly depromote the adoptions of LLMs.
-Our team quickly recognized that
-we have to adopt dynamic approaches like fuzzing
+At that time, context size was limited; 
+the most advanced model, `gpt-3.5 turbo`
+(yes, pre-`gpt-4` era) from OpenAI, supported 16k tokens,
+making it crucial to ask the right question!
+We initially tried identifying potentially vulnerable
+code snippets using a range of static analysis tools, 
+including CodeQL, Semgrep and various tools from academic publications, 
+and then filtered the results with LLMs.
+We even considered diffing the upstream Linux kernel
+against the provided repository,
+so that our CRS can look at the modified part of the code first.
+
+We were confident our decision; to promote the use of AI tools,
+the AIxCC organizers
+would design the competition in a way that allows a single CRS codebase to
+explore any code repository using 10+ programming languages and their
+combinations.
+
+Ah, around that time, 
+Google had just announced `gemini-pro` 
+with an impressive 128k context and the potential to support 1 million tokens! 
+Meanwhile, `gpt-4`
+introduced a game-changing feature called function calling, 
+which allows the LLM to select which callback to use and integrate the results back into the prompt
+at runtime. We felt that everything was evolving favorably for our CRS to adopt
+these cutting-edge techniques.
+
+However, PoV turned out to mean *bug-triggering input*
+or a crashing input.
+To demonstrate the existence of a bug,
+each CRS needed to formulate an input
+that the referee could quickly verify.
+While this approach is
+straightforward and objective for the competition,
+it significantly discourages the adoption of LLMs in finding bugs.
+Our team quickly realized
+that we needed to pivot to the dynamic approaches like fuzzing
 for the competition.
-Formulating the bug-triggering input, including its reachability,
-is a much difficult job
-than spotting the buggy code in the repo.
-The strength of the fuzzing -- a dumb tool and the opposite of the fancy LLM,
-is that once a bug is found, we will have a bug-triggering input, almost 100%.
 
-Ah, around that time, Google recently announced `gemini-pro` with a sensational 128k context
-and possibility of 1 million tokens!
-`gpt-4` was announced with a gaming changing feature
-called function calling,
-which lets LLM to choose which callback to make
-and incorporates its results back to the prompt at runtime.
+```c
+void tipc_trigger(uint8_t *smashbuf, uint32_t smashlen, int seqno) {
+    uint8_t pkt[0x1000];
+    uint32_t w0, w1, w2, w3, w4, w5;
 
-We are confused, and always felt behind; the entire world evolves too quickly than our code base.
+    w0 = hdr_version(TIPC_VERSION);
+    w0 |= hdr_size(6);
+    w0 |= hdr_user(MSG_CRYPTO);
+    w0 |= hdr_msg_size(24 + 36 + KEY_SIZE);
+    w1 = 0;
+    w2 = seqno;
+    w3 = NODE_ID;
+    w4 = 0;
+    w5 = 0;
+
+    memset(pkt, 0, sizeof(pkt));
+    gen_tipc_hdr(pkt, w0, w1, w2, w3, w4, w5);
+
+    memcpy(pkt+24, "HAXX", 4);
+    *(uint32_t*)(pkt+24+32) = be32(KEY_SIZE + SMASH_SIZE + smashlen); // <- (1)
+    memset(pkt+24+36, 'C', KEY_SIZE);
+    memset(pkt+24+36+KEY_SIZE, 'D', SMASH_SIZE);
+    memcpy(pkt+24+36+KEY_SIZE + SMASH_SIZE, smashbuf, smashlen);
+    tipc_send(pkt, sizeof(pkt));
+}
+```
+
+Formulating a bug-triggering input, including ensuring its reachability, 
+is a far more challenging task than simply spotting buggy code in the repository. 
+The strength of fuzzing, perhaps the opposite of a sophisticated LLM, 
+is that once a bug is found,
+you almost always have a bug-triggering input.
+
+In CVE-2021-43267, using CodeQL and auditing, 
+one could identify this bug, but triggering it is an entirely different challenge, 
+not to mention [exploiting it](https://github.com/zzhacked/CVE-2021-43267/blob/main/poc.py). 
+For example,
+TIPC must be properly set up first, and the `keylen` needs to be precisely
+crafted in (1) to trigger the bug.
 
 ## Misunderstanding 2. Harnesses
 
