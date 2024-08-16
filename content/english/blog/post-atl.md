@@ -322,7 +322,7 @@ We initially assumed that harnesses and test cases would be provided to indicate
 which parts of the Linux kernel should be checked for bugs. 
 To tackle this, 
 we implemented and adopted various versions of Linux kernel fuzzers, 
-including a custom [`libafl`](https://github.com/AFLplusplus/LibAFL)-based one with `kcov` and `kcmp`, 
+including a custom kernel syscall fuzzer with `kcov` and `kcmp`,
 and also utilized the most popular Linux fuzzer, [Syzkaller](https://github.com/google/syzkaller).
 However, our focus remained on determining which sequences of system calls
 to test, using syscall traces and static analysis of the provided program,
