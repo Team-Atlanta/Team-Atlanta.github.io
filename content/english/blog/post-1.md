@@ -10,21 +10,88 @@ tags: ["team"]
 draft: true
 ---
 
-Hello world! We are *Team Atlanta*, and are developing Atlantis to complete in [DARPA AIxCC](https://aicyberchallenge.com/).
+Hello, world! We are *Team Atlanta*, the minds behind Atlantis, our innovative
+AI-driven cybersecurity solution competing in the prestigious
+[DARPA AIxCC](https://aicyberchallenge.com/).
 
-[Our team](/authors/) consists of six different organizations:
+[Our team](/authors/) is a collaborative powerhouse made up of six leading institutions:
 [Georgia Tech](https://www.gatech.edu/),
 [GTRI](https://www.gtri.gatech.edu/),
 [Samsung Research](https://research.samsung.com/),
 [Samsung Research America](https://sra.samsung.com/),
-[KAIST](https://www.kaist.ac.kr/en/)
-and [POSTECH](https://www.postech.ac.kr/),
-and the leads of each institution are the alumni of Georgia Tech.
-We as a team have been tirelessly preparing for this competition
-last several months,
-and finally, competed in the AIxCC Semifinal last week!
+[KAIST](https://www.kaist.ac.kr/en/), and
+[POSTECH](https://www.postech.ac.kr/).
+Each of these organizations is led by Georgia Tech alumni,
+and includes past winners of prestigious hacking competitions 
+such as DEF CON CTF, Pwn2Own and kernelCTF.
 
-## Journey Begins
+For the past several months, we have been diligently preparing for this competition,
+combining our expertise in AI, cybersecurity,
+and software engineering.
+Last week, we proudly competed in the AIxCC Semifinals,
+showcasing our hard work and dedication
+to advancing cybersecurity through artificial intelligence.
+
+## The Journey Begins
+
+When AIxCC was announced [last year](https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/), 
+we quickly assembled a team of friends,
+including [Zellic](https://www.zellic.io/) 
+and [SSLab](https://gts3.org/).
+At that time,
+much as uncertain;
+details about the game format,
+scoring rubric,
+proof-of-vulnerability (PoV),
+sanitizers, harnesses, supported programming languages,
+and proof-of-understanding (PoU) were all unclear.
+Our team, however, started preparing for the competition from last October.
+
+Many of our team members previously participated in the
+[DARPA Cyber Grand Challenge (CGC)](https://www.darpa.mil/program/cyber-grand-challenge)
+as part of [Crspy](https://en.wikipedia.org/wiki/2016_Cyber_Grand_Challenge), 
+where we were responsible for bug finding and exploitation generation.
+DARPA CGC was an ambitious endeavor
+that sparked numerous innovative research directions afterward.
+However, the competition was not without its challenges,
+particularly due to the *gamification* of the event; 
+the scoring metrics and rules significantly influenced [the outcomes](https://free.eol.cn/edu_net/edudown/spkt/zhangchao.pdf#page=34).
+In the end, the competing Cyber Reasoning Systems (CRS) that focused on operating reactively--prioritizing the availability score over fixing bugs--
+tended to score higher, as exploitation proved to be far more difficult than patching.
+
+Aware of [the gamification issues](https://aicyberchallenge.com/rules/) from CGC, 
+we anticipated that to excel in AIxCC 
+our CRS should leverage AI, particularly LLMs, aggressively in various depths and levels
+of the CRS pipelines.
+With this in mind, we strategically chose to focus our efforts on two key directions:
+
+1. **Static Analysis.** To encourage the use of LLMs and set AIxCC apart from CGC, 
+we anticipated that
+AIxCC would strongly advocate for the adoption of *static analysis* while
+steering away from the dominant use of *fuzzing*[^1].
+It's important to note
+that finding bugs is quite different from finding crash- or bug-triggering
+inputs. The latter offers a clear advantage in objectively and autonomously
+verifying the discovered bug,
+but it has a much narrower scope compared to the former.
+In practice, the *triggering* aspect, also known as the reachability problem, is
+a significantly more challenging and crucial issue to address,
+where *dynamic tools* like fuzzing have a clear edge.
+
+2. **Fine-tuning LLMs for code analysis.** Specialization is always an advantage
+   when possible, and we expected to support over 10 programming languages
+   during the competition.
+   XXX.
+
+[^1]: I think it’s one of the worst names ever chosen by a security researcher; non-security folks often think it's a really *dumb* technique. But if you dig into the details, it's actually an impressive AI tool. It operates entirely autonomously, adapting to unknown code, self-learning from past executions, using feedback loops similar to backpropagation, and employing cost functions like coverage maps, and more! Most importantly, like deep learning, it works incredibly well in practice!
+
+
+We quickly realized that to pursue these directions effectively, we needed a dataset—a benchmark. Our team divided tasks into three areas: 1) static analysis using LLM prompts/agents, 2) developing a C benchmark from sources like CGC and OSS-Fuzz, and 3) creating a commit pack pairing CVEs with patches and PoCs for open-source projects to fine-tune our in-house code model at Samsung or to leverage open-source LLMs.
+
+Remarkably, within 4-5 months, we accomplished all three goals, and our LLM-based Cyber Reasoning System (CRS), dubbed Skynet, performed surprisingly well on our benchmark, leading to discussions about further fine-tuning our in-house model.
+
+Time flew by. The cold winter of 2023 ended, and we found ourselves in the new year of 2024. I vividly remember that around this time, our dear friends from Zellic left our team to pursue the Small Business Innovation Research (SBIR) track, which DARPA supports with $1 million for the competition. Unfortunately, Georgia Tech and Samsung were not eligible for this award.
+
 
 When AIxCC announced [last year](https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/), 
 we quickly formed a team with a group of friends,
@@ -335,7 +402,7 @@ In the semi-final, there was one patch submission by our CRS -- so it at least p
 passes the public test, but rejected by the private functionality tests.
 We'd love to know about the bug and patch more!
 
-## Misunderstanding 4. Memory-safe language (Java and Web!)
+## Misunderstanding 4. Sanitizer
 
 The notion of sanitizers
 was not clear to our team
@@ -397,40 +464,49 @@ and love to know more about what has happened during the competition.
 Tika is a popular file format parser
 and has lots of unique features like recursively parsing an embedded object, etc.
 
-## Preparing for the AIxCC Final 🎉
+## Looking at the AIxCC Final 🎉
 
 {{< image src="images/blog/blog1-finalists.png" caption="AIxCC Finalists" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
 
-We are so excited that our team can compete in the final! 
+We are so excited that our team proceed to the AIxCC final!
 There are several things we can make the competition more interesting.
 
-- Longer execution time for the Linux kernel -- 20m LoC in the Linux Kernel
-  requires non-trivial amount of time for building, boostraping, and bisecting.
+- **Different execution time based on its complexity.**
+  The Linux kernel consists of 6000 files with 20m LoC,
+  and requires non-trivial amount of time for preparation
+  like building, boostraping and bisecting.
   Compared with other smaller programs (e.g., 200k in Tika), it would be a good idea
   to give more time to CRS to navigate the code of the Linux kernel.
-- More programming languages or their combination. Rust XXX
+- **More programming languages or their combination.**
+Top three candidates would be Python, Rust and Javascript/HTML,
+and their combinations like JNI(C) on Java or Rust device drivers on the Linux kernel
+sound like a perfect way to evaluate CRS.
+- **Fixed execution environments.**
+The compiler (e.g., `clang-18`), runtime (e.g., JVM version) and base Docker image
+can be fixed ahead,
+helping each team to explore more risky techniques in a controlled environment
+like instrumenting via LLM.
+- **Better visualization during the competition.**
+The AIxCC village is impressively prepared from its appearance
+but competing teams or participants barely
+can understand how the competition was progressing
+nor how each CRS was functioning.
+To gain more attention from general DEF CON audience,
+perhaps, we should find a way to expose more technical information during the competition:
+e.g., showing current prompts of each CRS in turn
+or their CPU usages or stdout from CRSs (for fun),
+along with explanation of the progress.
+
+As we have a baseline system working,
+it's time for our team to explore
+possibility of adopting LLMs or ML techniques
+for our CRS workflow.
+If anyone who are passionate about AIxCC and fully committed to the competition like us,
+feel free to [contact us](mailto:aixcc-atl@googlegroups.com)!
+We have been funded by a few generous sponsors
+like GT/GTRI, Samsung, and KAIST/NYU.
+If your companies are interested in sponsoring our team,
+we are happy to discuss more! 
 
 {{< youtube FkJimGWJYgw >}}
 
-<hr>
-
-### Gallery
-
-{{< gallery dir="images/gallery" class="" height="400" width="400" webp="true" command="Fit" option="" zoomable="true" >}}
-
-<hr>
-
-### Slider
-
-{{< slider dir="images/gallery" class="max-w-[600px] ml-0" height="400" width="400" webp="true" command="Fit" option="" zoomable="true" >}}
-
-<hr>
-
-### Youtube video
-
-
-Nam ut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.
-
-> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo vel ad consectetur ut aperiam. Itaque eligendi natus aperiam? Excepturi repellendus consequatur quibusdam optio expedita praesentium est adipisci dolorem ut eius!
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo vel ad consectetur ut aperiam. Itaque eligendi natus aperiam? Excepturi repellendus consequatur quibusdam optio expedita praesentium est adipisci dolorem ut eius!
