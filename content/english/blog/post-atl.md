@@ -3,7 +3,7 @@ title: "Announcing Team Atlanta!"
 meta_title: ""
 description: "Beginning"
 date: 2024-08-13T05:00:00Z
-image: "/images/blog/blog1-team.png"
+image: "/images/blog/atl/team.png"
 categories: ["Announcement"]
 author: "Taesoo Kim"
 tags: ["team"]
@@ -117,7 +117,7 @@ Unfortunately, Georgia Tech and Samsung were not eligible for this award.
 
 ## Kick-off with Surprises!
 
-{{< image src="images/blog/blog1-timeline.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
+{{< image src="images/blog/atl/timeline.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
 
 At the kick-off event on March 29th, AIxCC unveiled the first challenge project:
 the Linux kernel, along with an example vulnerability,
@@ -501,12 +501,12 @@ none of the CRSes functioned properly for the Linux Kernel.
 We loved to know more about how our Linux CRS functioned 
 during the competition.
 
-{{< image src="images/blog/blog1-dashboard.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
+{{< image src="images/blog/atl/dashboard.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
 
 In summary, our CRS earned a total of six achievement badges: five for
 discovering bugs (i.e., first bloods) and one for a patch.
 
-{{< image src="images/blog/blog1-achievements.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
+{{< image src="images/blog/atl/achievements.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
 
 Our CRS found several unique bugs, which we will describe in a later blog post!
 
@@ -523,7 +523,7 @@ which may have contributed to the challenges we faced.
 
 ## Looking Ahead to the AIxCC Final 🎉
 
-{{< image src="images/blog/blog1-finalists.png" caption="AIxCC Finalists" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
+{{< image src="images/blog/atl/finalists.png" caption="AIxCC Finalists" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
 
 We are thrilled that our team has advanced to the AIxCC finals! We have several ideas that could make the competition even more exciting:
 
