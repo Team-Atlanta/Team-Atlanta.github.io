@@ -7,7 +7,7 @@ image: "/images/blog/blog1-team.png"
 categories: ["Announcement"]
 author: "Taesoo Kim"
 tags: ["team"]
-draft: true
+draft: false
 ---
 
 Hello, world! We are *Team Atlanta*, the minds behind Atlantis, our innovative
@@ -78,57 +78,42 @@ In practice, the *triggering* aspect, also known as the reachability problem, is
 a significantly more challenging and crucial issue to address,
 where *dynamic tools* like fuzzing have a clear edge.
 
-2. **Fine-tuning LLMs for code analysis.** Specialization is always an advantage
-   when possible, and we expected to support over 10 programming languages
-   during the competition.
-   XXX.
+2. **Fine-tuning LLMs for Source Code.** Specialization is always an advantage
+   when possible. Given that each CRS will likely need to support more than 10
+   programming languages during the competition, we decided to fine-tune both
+   in-house and open-source models for analyzing code. 
+   This approach is conceptually similar to
+   [commitPack](https://paperswithcode.com/dataset/commitpack), 
+   but focuses on
+   commits related to bugs like their fixes, bug-introducing commits, descriptions,
+   and public exploits, if available.
+   Our expectation was that training with this data would enable
+   the fine-tuned LLM to reason about security bugs,
+   their fixes, and likely input corpus,
+   more effectively than the
+   foundational model.
 
 [^1]: I think it’s one of the worst names ever chosen by a security researcher; non-security folks often think it's a really *dumb* technique. But if you dig into the details, it's actually an impressive AI tool. It operates entirely autonomously, adapting to unknown code, self-learning from past executions, using feedback loops similar to backpropagation, and employing cost functions like coverage maps, and more! Most importantly, like deep learning, it works incredibly well in practice!
 
+We quickly realized that to pursue these directions effectively, 
+we first needed a dataset: a benchmark.
+Our team divided tasks into three areas: 1) static analysis
+using LLM prompts/agents, 2) developing a C benchmark from sources like CGC and
+OSS-Fuzz, and 3) collecting a training dataset pairing CVEs with patches and PoCs for
+open-source projects to fine-tune our in-house code model at Samsung or to
+leverage open-source LLMs.
 
-We quickly realized that to pursue these directions effectively, we needed a dataset—a benchmark. Our team divided tasks into three areas: 1) static analysis using LLM prompts/agents, 2) developing a C benchmark from sources like CGC and OSS-Fuzz, and 3) creating a commit pack pairing CVEs with patches and PoCs for open-source projects to fine-tune our in-house code model at Samsung or to leverage open-source LLMs.
+Remarkably, within 4-5 months, we accomplished all three goals,
+and our LLM-based Cyber Reasoning System (CRS), dubbed Skynet,
+performed surprisingly well on our benchmark,
+and fine-tuning on a smaller dataset shows some promises like in python.
 
-Remarkably, within 4-5 months, we accomplished all three goals, and our LLM-based Cyber Reasoning System (CRS), dubbed Skynet, performed surprisingly well on our benchmark, leading to discussions about further fine-tuning our in-house model.
-
-Time flew by. The cold winter of 2023 ended, and we found ourselves in the new year of 2024. I vividly remember that around this time, our dear friends from Zellic left our team to pursue the Small Business Innovation Research (SBIR) track, which DARPA supports with $1 million for the competition. Unfortunately, Georgia Tech and Samsung were not eligible for this award.
-
-
-When AIxCC announced [last year](https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/), 
-we quickly formed a team with a group of friends,
-including [Zellic](https://www.zellic.io/).
-At that time,
-everything was unclear;
-knowing not much of the game format or scoring,
-proof-of-vulnerability,
-sanitizers,
-harnesses,
-the number of programming language supports,
-and proof-of-understanding.
-As the organizers and participants are well of [what has happened](https://free.eol.cn/edu_net/edudown/spkt/zhangchao.pdf#page=34) at DARPA CGC,
-we expected that AIxCC strives to avoid the *gamification* of the competition
-and to promote the use of AI, say LLM, to win the competition.
-It was a logical decision
-for us
-to focus on two directions:
-1) leveraging LLMs to identify bugs -- it means *statically* and it's very different from finding bug-triggering inputs;
-and
-2) fine-tuning LLMs for code analysis -- *specialization* is always a win if possible
-and we expect to support 10+ programming languages during the competition.
-We quickly realized that, to enable either one of these directions, we need a dataset, yes benchmark.
-We decided our team for three tasks: 1) static analysis by using LLM prompts/agents, 
-2) C benchmark -- CGC, OSS-Fuzz, etc,
-and 3) the commitpack for a pair of CVE-patch-PoC for open source projects for fine-tuning of the in-house code model at Samsung
-or leveraging open source LLMs.
-In fact, we achieved all of 1), 2) and 3) in 4-5 months
-and our LLM-based CRS, called Skynet, seems
-reasonably and surprisingly working well on our benchmark,
-discussing possibility of fine-tuning our in-house model.
-
-The time flied. The cold, 2023 winter is over and it's already a new year of 2024.
-I remember that the dear friends from Zellic left our team around that time
-for the Small Business Track (SBIR),
-which DARPA supplements $1m for the competition,
-as Georgia Tech and Samsung are not eligible for the award.
+Time flew by. The cold winter of 2023 ended, and we found ourselves in the new
+year of 2024. 
+I vividly remember that around this time, our dear friends from
+Zellic left our team to pursue the Small Business Innovation Research (SBIR) track,
+which DARPA supports with $1 million for the competition.
+Unfortunately, Georgia Tech and Samsung were not eligible for this award.
 
 ## Kick-off with Surprises!
 
