@@ -217,8 +217,6 @@ minimum key size, and ensuring that `keylen` is consistent with `size`,
 thereby preventing access beyond the allocated object.
 
 
-## Misunderstanding 1. PoV
-
 ## Misunderstanding 1: PoV
 
 Given a massive Linux repository (yes, 20 million lines of code),
@@ -311,235 +309,264 @@ crafted in (1) to trigger the bug.
 
 ## Misunderstanding 2. Harnesses
 
-Sorry, what's the input to trigger CVE-2021-43267? by using a fuzzer? 
-To fuzz the Linux *kernel*,
-we needed a user program calling a sequence of system calls
-with various arguments.
-Given a Linux kernel,
-there are over [400 system calls](https://filippo.io/linux-syscall-table/)
-to explore -- not ideal for the competition.
-We thought, therefore, the harness and test cases 
-are provided to indicate which parts of the Linux kernel 
-to check for bugs.
-We implemented various versions of the Linux Kernel fuzzers
-like a custom [`libafl`](https://github.com/AFLplusplus/LibAFL) based one with `kcov` and `kcmp`,
-and adopted [Syzkaller](https://github.com/google/syzkaller)
-that we were familiar with.
-However, still then, our focus is to feature out what sequences of system calls
-to test, by using syscall traces and static analysis of the given program,
-and then to correctly formulate an end-to-end userspace program
-to trigger the bug.
+Sorry, what's the input needed to trigger CVE-2021-43267? even with a fuzzer?  
+To fuzz the Linux *kernel*, 
+we needed a *user* program 
+that calls a sequence of system calls
+with various arguments. 
+Considering the Linux kernel has over [400 system calls](https://filippo.io/linux-syscall-table/)
+to explore, this was far
+from ideal for a competition setting.
+
+We initially assumed that harnesses and test cases would be provided to indicate
+which parts of the Linux kernel should be checked for bugs. 
+To tackle this, 
+we implemented and adopted various versions of Linux kernel fuzzers, 
+including a custom [`libafl`](https://github.com/AFLplusplus/LibAFL)-based one with `kcov` and `kcmp`, 
+and also utilized the most popular Linux fuzzer, [Syzkaller](https://github.com/google/syzkaller).
+However, our focus remained on determining which sequences of system calls
+to test, using syscall traces and static analysis of the provided program,
+and then correctly formulating an end-to-end userspace program to trigger the bug.
+
+```c
+/***
+ * Blob begins with a 4 byte command count
+ * [4-bytes command count]
+ * Currently there are two commands:
+ *  0 - send a packet blob
+ *      [4-bytes size][4-bytes send flags][size-bytes packet data]
+ *  1 - send a netlink packet
+ *      [4-bytes Message Type][4-bytes Message Flags][4-bytes Netlink Protocol][4-bytes size][size bytes data]
+ * blob_size MUST be a trusted value
+ */
+int harness( uint8_t *blob, uint32_t blob_size)
+{ ... }
+```
 
 [The Linux Kernel CP](https://github.com/aixcc-public/challenge-001-exemplar/)
-was announced on April, 
-and comes with a harness, [linux_test_harness.c](https://github.com/aixcc-public/challenge-001-exemplar-source/blob/main/test_harnesses/linux_test_harness.c).
-That was full of surprises;
-the structure of the program is given, which alas we mostly focused on,
+was announced in April and came with a harness,
+[linux_test_harness.c](https://github.com/aixcc-public/challenge-001-exemplar-source/blob/main/test_harnesses/linux_test_harness.c).
+This announcement was full of surprises; 
+the program's structure was provided by the harness,
+which is alas what we primarily focused on,
 and the [`blob`](https://github.com/aixcc-public/challenge-001-exemplar/blob/main/exemplar_only/blobs/sample_solve.bin)
-should be provided to the harness
-in a way to trigger the bug.
-The kinds of system calls we interact are limited by the harness,
-and our job is to find the data input
-that the harness ultimately invokes necessary sequences of system calls
-with the right parameters.
+needed to be fed to the harness in a way that triggers the bug.
+The types of system calls we could interact with
+were limited by the harness,
+and our task was to find the right data input 
+that would *lead the harness*
+to invoke the necessary sequence of system calls with the correct parameters.
+In other words, we needed to understand the harness first
+before dealing with the Linux kernel bugs.
 
-In other words, we had to discard what we have been working on,
-and pivoted to analyze the harness logics and `blob` format
-in fuzzing.
+Later, the Jenkins harness was announced, and more surprisingly, 
+it was a fuzz driver (often called a *fuzzing harness*), 
+a standalone program designed to
+invoke APIs for fuzz testing. 
+In May, a new CP, called `mock-cp` (a userspace program), 
+was introduced along with a new harness format, which was simply a
+shell script executing a CP binary with the provided input.
+Such diverse formats got us thinking that
+our CRS should adopt LLM to figure out the structure of the programs
+and CPs first; like how to compile, how to correctly run, etc.
 
-The Jenkins harness, however, was a fuzz driver (or often called harness)
-that is a stand alone program invoking APIs for fuzz testing.
-In May, a new CP, called `mock-cp` (a userspace program),
-was announced along with a new harness format,
-which is a shell script executing a CP binary
-with the provided input.
-In June,
-the format of the harness was officially determined:
-[libfuzzer](https://llvm.org/docs/LibFuzzer.html)
-for userspace programs (`mock-cp` and Nginx),
-[jazzer](https://github.com/CodeIntelligenceTesting/jazzer)
-for Java programs (Jenkins),
-while keeping the `blob`-based harness for the Linux kernel.
-We constantly updated our CRS to handle these changes,
-yet many of these decisions
-made our LLM-based components unnecessary.
+By June, the harness format was officially established - 
+surprisingly, yet not entirely unexpected: 
+[libfuzzer](https://llvm.org/docs/LibFuzzer.html) for
+userspace programs (`mock-cp` and Nginx),
+[jazzer](https://github.com/CodeIntelligenceTesting/jazzer) for Java programs
+(Jenkins), while retaining the `blob`-based harness for the Linux kernel.
+We continually updated our CRS to adapt to these changes,
+but many of these decisions rendered our LLM-based components unnecessary. 
+This decision, however,
+greatly helped all the participating teams
+by reducing the engineering time needed for game operation.
+Unfortunately, we were too proactive in reacting to these changes and ended up
+wasting some engineering time as a result 😊.
 
+A harness's role is crucial in the AIxCC competition; it sets the context for
+the CRS to trigger the bug and serves as a key factor in adjusting the
+difficulty of bug discovery. Therefore, it's important to strike a balance:
+it should provide enough detail to relieve the CRS from unnecessary burdens,
+allowing it to focus on bug finding, but without revealing too much information
+about the bugs.
 
-## Misunderstanding 2. Proof-of-understanding
+## Misunderstanding 3. Proof-of-understanding
 
-Unlike CGC treating PoV (PoC exploit) as proof of discovery of a bug,
-AIxCC required an additional information,
-namely the type of the bug ([CWE](https://cwe.mitre.org/top25/archive/2023/2023_kev_list.html)),
-to be provided along with PoV.
-This sounds like an interesting decision
-as AIxCC CRS should find a bug from the source code
-while CGC CRS should discover a bug from the binary.
+Unlike CGC, which treated the PoV (a proof-of-concept exploit) 
+as sufficient proof of bug discovery,
+AIxCC required additional information—specifically, the bug type as classified by
+[CWE](https://cwe.mitre.org/top25/archive/2023/2023_kev_list.html),
+to be provided along with the PoV.
+This was an interesting decision, as AIxCC required
+CRS to find bugs in the source code,
+whereas CGC focused on discovering bugs in binaries.
 
-Our team brainstormed a lot about how to recognize CWE,
-for sure, by using LLM prompts
-that leverage crashing input, sanitizer reports,
-related code snippets, outputs from static analyzers, etc.
-However, the notion of CWEs are ambiguous to be used as a score for the game.
-For example, CVE-2021-43267 should be
-(1) CWE-122 (Heap-based Buffer Overflow),
-(2) CWE-787 (Out-of-bounds Write),
-or (3) CWE-20 (Improper Input Validation)?
-First two are indeed the symptoms cased by the bug,
-and (3) is a root cause
-as the patch added input validations to fix this bug.
+Our team spent a lot of time brainstorming 
+how to accurately identify CWE categories, 
+primarily by using LLM prompts that leverage crashing inputs,
+sanitizer reports, related code snippets, outputs from static analyzers, and more. 
+However, the notion of CWEs can be ambiguous when used as a scoring
+mechanism for the competition. 
+For instance, should CVE-2021-43267 be classified
+as (1) CWE-122 (Heap-based Buffer Overflow), (2) CWE-787 (Out-of-bounds Write),
+or (3) CWE-20 (Improper Input Validation)? 
+The first two describe the symptoms
+caused by the bug, while the third identifies the root cause, as the patch for
+this bug involved adding input validations.
 
-At the end, in AIxCC,
-PoU was changed to find a bug-introducing commit (BIC),
-the hash or the commit id of the git repo.
-Combining with the fuzzing harness and PoU,
-the CRS job is to run the fuzzing harness
-and performs a [`git-bisect`](https://git-scm.com/docs/git-bisect)
-to recognize the BIC from the repository.
-I believe, the key differentiator of most CRS, if not all, is
-to generate effective input corpus (by using LLM, etc)
-for fuzzing,
-or ambitious enough like us, is to replace the `libfuzzer`
-with a custom hybrid fuzzer.
+In the end, AIxCC shifted the focus from PoV to identifying the bug-introducing
+commit (BIC) - the specific hash or commit ID in the git repository. 
+Combined with
+the fuzzing harness and PoV, the CRS's task was to run the fuzzing harness and
+perform a [`git-bisect`](https://git-scm.com/docs/git-bisect) to pinpoint 
+the BIC in the repository.
+We did a simple bisecting in the semifinal but lots of improvement
+required to be functional for the final event.
 
+## Misunderstanding 4. Semantic patching
 
-## Misunderstanding 3. Semantic patching
+Patching is one of the most intriguing aspects of AIxCC. In CGC, the PoV was
+typically a simple exploit (like arbitrary read/write/execute),
+so mitigation strategies (e.g., adding a stack canary) could effectively thwart the PoV.
+In fact, patches could be applied *without even knowing* the specific bug; 
+for example,
+adding a stack canary to all functions in a binary 
+can prevent buffer overflow exploits 
+that might exist in some places.
 
-Patching is the most interesting part of AIxCC.
-In CGC, PoV is a simple exploit (arbitrary read/write/execute, etc)
-so mitigation schemes (e.g., adding a stack canary)
-can thwart the PoV.
-In fact, not just the targeted PoV,
-the patching can be applied *without knowing* the bug itself;
-e.g., adding a stack canary to all functions
-can prevent the exploit of buffer overflows that might exist some places.
-The challenge there was to treat the challenge *binary*
-and the CGC organizer placed a rule like the minimum number of bytes changes
-and adding the performance overheads to the score rubric
-(i.e., instrumenting all memory accesses to prevent out-of-boundary bugs).
-These rules enforced CRS to evaluate the pros and cons
-of universal patching:
-losing points from exploitation v.s., losing points from patching/availability.
+The challenge in CGC was that the focus was on the binary, and the organizers
+introduced rules such as a minimum number of bytes changed and performance
+overheads added to the scoring rubric (e.g., instrumenting all memory accesses
+to prevent out-of-bound errors). These rules were designed to encourage
+competitors to generate correct patches. Ultimately, this forced CRS to weigh
+the pros and cons of universal patching, as both exploiting and patching were
+extremely difficult during the CGC era, 
+resulting in a trade-off between losing
+points from exploitation versus losing points from patching and availability.
 
-In AIxCC, CRS has to generate a semantically correct patch
-not only to fix the found PoV
-but to respect functional correctness of the CP.
-This is a bit tricky business as the *correctness*
-cannot be formally defined for CRS--
-some functional changes are acceptable or some are not,
-mostly determined by the owner of the code.
-One way to address such an ambiguity is to provide
-the test code to see if the patch can successfully pass the provided, so called public test.
-However, CRS should still consider some private tests by the organizer.
+In AIxCC, the CRS must generate a semantically correct patch that not only fixes
+the identified PoV but also maintains the functional correctness of the CP. This
+is a tricky task, as *correctness* cannot be formally defined for CRS - some
+functional changes may be acceptable, while others may not, depending on the
+code owner's criteria. 
+One approach to addressing this ambiguity is to provide
+test code to see if the patch passes the provided, so-called public tests.
+However, CRS must still account for private tests set by the organizers.
 
-In the semi-final, there was one patch submission by our CRS -- so it at least prevents the crash and
-passes the public test, but rejected by the private functionality tests.
-We'd love to know about the bug and patch more!
+In the semifinals, our CRS submitted a patch that successfully prevented the
+crash and passed the public tests given to us during the competition,
+but was ultimately rejected in the private
+functionality tests. 
+We're eager to learn more about the bug and the patch!
 
-## Misunderstanding 4. Sanitizer
+## Misunderstanding 5: Sanitizers
 
-The notion of sanitizers
-was not clear to our team
-until we see the concrete construction of the sanitizers
-for memory-safe languages like Java,
-or more importantly Jenkins --
-the web application written in Java!
-The role of the sanitizer, in fact a bug oracle,
-is to recognize if the bug is correctly triggered or not.
-In memory-unsafe languages like C,
-standard tools like ASAN, UBSAN, etc
-can perform as a sanitizer to catch the memory-safety issues
-with low or no false positive (i.e., out-of-bound accesses should never happen).
-For memory-safe languages,
-everything is tricky;
-executing a command is legitimate feature by a user in the CI tools like Jenkins
-or it should be treated as a command line injection (CWE-78)?
-In other words,
-the sanitizers become
-the CP-specific rather than being specific to the programming language;
-each CP should provide some custom sanitizers
+The concept of sanitizers was unclear to our team until we encountered
+their concrete implementation
+for memory-safe languages like Java, and more
+specifically, for Jenkins, a web application written in Java! 
+The role of a sanitizer, essentially a bug oracle, is to determine whether a bug has been
+correctly triggered.
+
+In memory-unsafe languages like C, standard tools like ASAN and UBSAN can serve
+as sanitizers to catch memory-safety issues with low or no false positives
+(e.g., out-of-bound accesses should never occur). 
+However, in memory-safe languages, 
+things get trickier. 
+For example, is executing a command a legitimate
+feature in CI tools like Jenkins, 
+or should it be treated as a command injection (CWE-78)?
+
+In other words, sanitizers are more CP-specific 
+rather than programming language-specific; 
+each CP needs to provide custom sanitizers 
 (e.g., [path traversal sanitizers](https://www.code-intelligence.com/blog/java-fuzzing-with-jazzer)).
 
-Our team spent some time
-working on finding web-related bugs
-like XSS or CSRF --
-in fact, we think LLM might work great for these targets.
-However, once AIxCC announced that
-the sanitizers for Java
-are the [jazzer](https://github.com/CodeIntelligenceTesting/jazzer) sanitizers,
-our team decided to focus more on the standard jazzer-based fuzzing.
+Our team initially spent time working on finding web-related bugs like XSS or
+CSRF in Jenkins - areas where we believed LLMs could excel in seed generation.
+However, once AIxCC announced
+that the sanitizers for Java would be
+[jazzer](https://github.com/CodeIntelligenceTesting/jazzer) sanitizers,
+we decided to shift our focus more towards standard jazzer-based fuzzing.
 
 ## Semifinal
 
-Our team spent the most engineering time to build a CRS for the Linux Kernel.
-And we are proud that
-our CRS can find and correctly generate a patch for CVE-2021-43267
-at the end.
-However, in the semifinal,
-it appears to us that
-there was only *one* harness provided, similar to the provided exemplar,
-and none of CRSes works properly for the Linux Kernel.
+Our team dedicated most of our engineering effort to building a CRS for the
+Linux Kernel, and we're proud that our CRS was able to find and correctly
+generate a patch for CVE-2021-43267 in the end. 
+However, during the semifinal,
+it appeared that only *one* harness was provided, similar to the exemplar, and
+none of the CRSes functioned properly for the Linux Kernel.
+We loved to know more about how our Linux CRS functioned 
+during the competition.
 
 {{< image src="images/blog/blog1-dashboard.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
 
-In summary, our CRS got in total of six achievement badges:
-five bugs (i.e., first bloods) and one patch.
+In summary, our CRS earned a total of six achievement badges: five for
+discovering bugs (i.e., first bloods) and one for a patch.
 
-{{< image src="images/blog/blog1-achievements.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
+{{< image src="images/blog/blog1-achievements.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
 
-There are several unique bugs only our CRS found and
-we will describe it in the later blog post.
+Our CRS found several unique bugs, which we will describe in a later blog post!
 
-Other than known Linux (C), Jenkins (Java) and Nginx (C),
-there were new CPs, namely Tika (Java) and Sqlite3 (C).
-Our CRS performs relatively better on Sqlite3,
-but sadly, our Java CRS couldn't properly handle Tika
-and love to know more about what has happened during the competition.
-Tika is a popular file format parser
-and has lots of unique features like recursively parsing an embedded object, etc.
+Aside from the known CPs—Linux (C), Jenkins (Java), and Nginx (C) - there were new
+CPs introduced, namely Tika (Java) and sqlite3 (C). 
+Our CRS performed relatively
+well on sqlite3, but unfortunately,
+our Java CRS struggled with Tika. 
+We would love to learn more about what happened during the competition. 
+Tika, a popular file format parser, 
+has many unique features, such as recursively parsing
+embedded objects, 
+which may have contributed to the challenges we faced.
 
-## Looking at the AIxCC Final 🎉
+## Looking Ahead to the AIxCC Final 🎉
 
-{{< image src="images/blog/blog1-finalists.png" caption="AIxCC Finalists" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
+{{< image src="images/blog/blog1-finalists.png" caption="AIxCC Finalists" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
 
-We are so excited that our team proceed to the AIxCC final!
-There are several things we can make the competition more interesting.
+We are thrilled that our team has advanced to the AIxCC finals! We have several ideas that could make the competition even more exciting:
 
-- **Different execution time based on its complexity.**
-  The Linux kernel consists of 6000 files with 20m LoC,
-  and requires non-trivial amount of time for preparation
-  like building, boostraping and bisecting.
-  Compared with other smaller programs (e.g., 200k in Tika), it would be a good idea
-  to give more time to CRS to navigate the code of the Linux kernel.
-- **More programming languages or their combination.**
-Top three candidates would be Python, Rust and Javascript/HTML,
-and their combinations like JNI(C) on Java or Rust device drivers on the Linux kernel
-sound like a perfect way to evaluate CRS.
-- **Fixed execution environments.**
-The compiler (e.g., `clang-18`), runtime (e.g., JVM version) and base Docker image
-can be fixed ahead,
-helping each team to explore more risky techniques in a controlled environment
-like instrumenting via LLM.
-- **Better visualization during the competition.**
-The AIxCC village is impressively prepared from its appearance
-but competing teams or participants barely
-can understand how the competition was progressing
-nor how each CRS was functioning.
-To gain more attention from general DEF CON audience,
-perhaps, we should find a way to expose more technical information during the competition:
-e.g., showing current prompts of each CRS in turn
-or their CPU usages or stdout from CRSs (for fun),
-along with explanation of the progress.
+- **Different execution times based on code complexity.**  
+  The Linux kernel, with its 6,000 files and 20 million lines of code, requires
+  substantial time for bookkeeping like building, bootstrapping, and bisecting.
+  Compared to smaller programs (e.g., 200k in Tika), it would be beneficial to
+  allocate more time for CRSes to navigate such complex codebases.
 
-As we have a baseline system working,
-it's time for our team to explore
-possibility of adopting LLMs or ML techniques
-for our CRS workflow.
-If anyone who are passionate about AIxCC and fully committed to the competition like us,
+- **More programming languages and their combinations.**  
+  Top candidates include Python, Rust, and JavaScript/HTML, along with
+  combinations like JNI (C) in Java or Rust device drivers in the Linux kernel.
+  These would offer a more comprehensive evaluation of CRS capabilities in
+  diverse and challenging settings where CRS is most needed.
+
+- **Standardized execution environments.**  
+  Standardizing the compiler (e.g., `clang-18`), runtime (e.g., JVM version),
+  and base Docker image ahead of time would help teams explore more advanced
+  techniques, such as LLM-based instrumentation, in a controlled environment.
+
+- **Improved visualization during the competition.**  
+  While the AIxCC village was impressively set up, competing teams and
+  participants had limited visibility into the competition's progress and how
+  each CRS was functioning. To capture more attention from [the DEF CON audience](https://www.reddit.com/r/Defcon/comments/1eta3tj/was_the_aixcc_village_disappointing_to_anyone_else/),
+  it would be beneficial to expose more technical information during the
+  competition - such as showing current prompts of each CRS in turn, their CPU
+  usage, or even stdout from CRSes (for fun), along with explanations of the
+  progress.
+
+With our baseline system up and running, it’s time for our team to explore the
+possibility of incorporating LLMs or ML techniques into our CRS workflow. If
+you’re passionate about AIxCC and as committed to the competition as we are,
 feel free to [contact us](mailto:aixcc-atl@googlegroups.com)!
-We have been funded by a few generous sponsors
-like GT/GTRI, Samsung, and KAIST/NYU.
-If your companies are interested in sponsoring our team,
-we are happy to discuss more! 
 
+We are fortunate to have support from generous sponsors like GT/GTRI, Samsung,
+and KAIST/NYU. If your company is interested in sponsoring our team, we would be
+happy to discuss further!
+
+Last but not least, we want to extend our heartfelt thanks to the AIxCC
+organizers for launching the competition we've been craving. Hackers thrive on
+competition-driven innovation, and this has been an exciting opportunity for all
+of us.
+
+<div style="width:640px; margin: 0 auto;">
 {{< youtube FkJimGWJYgw >}}
-
+</div>
