@@ -56,10 +56,9 @@ show_categories = true
 # seo meta data for OpenGraph / Twitter Card
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
-keywords = ["Boilerplate", "Hugo"]
-description = "Hugo & Tailwindcss Starter"
-author = "zeon.studio"
-image = "images/og-image.png"
+keywords = ["DARPA AIxCC", "cybersecurity", "fuzzing", "LLM", "AIxCC"]
+description = "We are Team Atlanta, finalists in DARPA AIxCC."
+image = "images/logo.jpg"
 
 
 # site verifications
