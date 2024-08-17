@@ -39,7 +39,7 @@ we quickly assembled a team of friends,
 including [Zellic](https://www.zellic.io/) 
 and [SSLab](https://gts3.org/).
 At that time,
-much as uncertain;
+much was uncertain;
 details about the game format,
 scoring rubric,
 proof-of-vulnerability (PoV),
