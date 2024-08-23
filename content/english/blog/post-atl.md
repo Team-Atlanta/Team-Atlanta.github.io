@@ -159,8 +159,7 @@ static bool tipc_crypto_key_rcv(struct tipc_crypto *rx, struct tipc_msg *hdr)
 	/* Copy key from msg data */
 	skey->keylen = ntohl(*((__be32 *)(data + TIPC_AEAD_ALG_NAME)));
 	memcpy(skey->alg_name, data, TIPC_AEAD_ALG_NAME);
-	memcpy(skey->key, data + TIPC_AEAD_ALG_NAME + sizeof(__be32),
-	       skey->keylen);
+	memcpy(skey->key, data + TIPC_AEAD_ALG_NAME + sizeof(__be32), skey->keylen);
 ```
 
 The `skey` was allocated with a `size` based on the user-provided `hdr`, 
