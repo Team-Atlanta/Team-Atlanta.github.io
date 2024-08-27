@@ -1,66 +1,69 @@
 ---
-title: "Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based Cyber Reasoning System"
+title: "Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System"
 meta_title: ""
 description: "SQLite3 in ASC"
 date: 2024-08-27T12:00:00Z
-image: "/images/blog/atl/team.png"
+image: "/images/blog/asc-sqlite/sqlite.webp"
 categories: ["Vulnerability Analysis"]
 author: "Hanqing Zhao"
 tags: ["Atlantis CRS"]
 draft: true
 ---
 
-**Without prior knowledge that the challenge project involved SQLite3**, 
-our team, [Team Atlanta](/authors), 
-deployed our Cyber Reasoning System (CRS) named Atlantis in the AI cyber challenge 
-organized by ARPA-H, DARPA, and the White House. 
+Without knowing beforehand that the challenge project involved SQLite3, 
+our team, [Team Atlanta](/authors), entered our Cyber Reasoning System (CRS), 
+named Atlantis, 
+into the [AI Cyber Challenge](https://aicyberchallenge.com/) 
+organized by ARPA-H, DARPA, and the 
+[White House](https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/).
 
-Notably, Atlantis autonomously discovered and fixed a previously hidden vulnerability[^1], 
-securing us a $2 million cash award and a spot in the grand finals of AIxCC. 
-More details can be found in our [team's announcement blog](/blog/post-atl).
+Remarkably, 
+Atlantis autonomously identified and patched a previously undiscovered vulnerability[^1], 
+earning us a $2 million prize and a place in the grand finals of AIxCC. 
+For more information, check out our [team's announcement blog](/blog/post-atl).
 
-In this blog, we want to introduce our high-level directions apply LLM to
-bug finding and vulnerability remediation, analysis on the fixed SQLite3
-vulnerability, and challenges to fix it using our LLM agents. 
+In this blog, 
+we will outline our very high-level approach to using LLMs for bug detection and 
+vulnerability remediation, 
+provide an analysis of the fixed SQLite3 vulnerability, 
+and discuss the challenges of using our LLM agents for such fixes.
 
-Please follow our twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24))
-if you are interested in AI or security. 
+Follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
+if you're interested in AI or security.
 
-[^1]: Uncovering previous unknown bugs are not counted as valid scores in
-competition, and Team Atlanta secured the finalist slot by submitting intended 
-bugs and patches in AIxCC.
+[^1]: Discovering previously unknown bugs does not count as a valid score in the competition. 
+Team Atlanta secured a finalist spot by submitting the intended bugs and patches in AIxCC.
+
 
 ## The Atlantis Cyber Reasoning System
 
-Atlantis is an end-to-end, 
-large language model (LLM)-based bug-finding and fixing system designed to operate 
-without any human intervention. 
+Atlantis is a end-to-end, 
+large language model (LLM)-based bug-finding and 
+fixing system designed to function entirely without human intervention.
 
-It supports complex systems, such as the Linux kernel, 
-and modern programming languages, including C/C++, Java, and more.
+It is capable of handling complex systems like the Linux kernel and
+supports a range of modern programming languages, including C/C++, Java, and others.
 
-Our design philosophy is straightforward: 
-to replicate the mindset of seasoned security researchers and hackers using 
-LLM agents reinforced with advanced program analysis techniques.
+Our design philosophy is simple: 
+to emulate the mindset of experienced security researchers and 
+hackers through LLM agents, 
+enhanced with advanced program analysis techniques.
 
-Atlantis is built to mimic human researchers' behavior, 
-particularly in auditing the Git repositories of open-source software (OSS). 
+Atlantis is specifically designed to replicate the behavior of human researchers, 
+particularly in auditing the Git repositories of open-source software (OSS).
 
-To leverage the power of LLMs and overcome the limitation when solving
-complex problems, we applied traditional program analysis techniques
-(dynamic/static) to aid LLMs when making decisions. 
+To harness the full potential of LLMs and address their limitations in tackling complex problems, 
+we incorporate traditional program analysis techniques (both dynamic and static) to assist LLMs in decision-making.
 
-Notably, we have an interesting "baby-security-AGI" system that 
-is capable of replicating the code auditing process based on 
-the habits of the security experts within our team. 
-Nothing magic, we summarize all of the our experiences and common approaches
-when manually audit/reverse engineering the programs teach the system 
-through structured prompts, which significantly increases the smartness of
-our system. 
+One of the interesting features of Atlantis is 
+our "baby-security-AGI" system, 
+which can emulate the code auditing process based on 
+the habits of the security experts on our team. 
+It's not magic; we've distilled our collective experience and common practices in
+manual auditing and reverse engineering into structured prompts, 
+significantly enhancing the system's capabilities.
 
-Importantly, all source code will be open-sourced following 
-the rules of AIxCC competition.
-
+All source code will be open-sourced in accordance with the AIxCC competition rules.
 
 ## The SQLite3 Vulnerability
 
@@ -73,7 +76,14 @@ which treats each contiguous sequence of three characters as a token,
 allowing FTS5 to support more general substring matching.
 
 When creating a virtual table, users can specify options in the `trigram`
-field. (e.g., `case_sensitive 1`). 
+field. (e.g., `case_sensitive 1`). However, when users fail to give
+key-value pairs, SQLite does not have enough checks and assume the value
+must be there, resulting in off-by-one access. Because SQLite3 allocates
+enough heap buffer in this case, the off-by-one access can only reach the
+spaces within an allocated heap chunk. 
+Also, Because of the good coding
+practices, SQLites uses `MallocZero` to make sure there is no uninitialized
+variables. In this way, it results in a zero pointer dereference.  
 
 <details>
   <summary>Click me to show the vulnerable function in SQLite3 </summary>
@@ -95,9 +105,9 @@ static int fts5TriCreate(
     pNew->bFold = 1;
     pNew->iFoldParam = 0;
     for(i=0; rc==SQLITE_OK && i<nArg; i+=2){
-      const char *zArg = azArg[i+1];
+      const char *zArg = azArg[i+1]; <---- off-by-one
       if( 0==sqlite3_stricmp(azArg[i], "case_sensitive") ){
-        if( (zArg[0]!='0' && zArg[0]!='1') || zArg[1] ){
+        if( (zArg[0]!='0' && zArg[0]!='1') || zArg[1] ){ <----null dereference 
           rc = SQLITE_ERROR;
         }else{
           pNew->bFold = (zArg[0]=='0');
