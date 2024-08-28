@@ -390,7 +390,7 @@ This check ensures that all arguments were processed. If `i` is less than
 `nArg` after the loop, it means there was an odd numbers of arguments, 
 which is considered an error because the arguments should always come in pairs. 
 
-Interestingly, the maintainer patched `fts5TriCreate()` and `fts5AsciiCreate()` as well
+Interestingly, the maintainer patched `fts5UnicodeCreate()` and `fts5AsciiCreate()` as well
 because similar code patterns existing there. It actually shows the 
 strength of human-write patches because developers remember potential
 buggy paths in their code base. However, the additional checks are actually

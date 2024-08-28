@@ -287,7 +287,7 @@ out-of-bounds access.
 After the loop, there&rsquo;s an additional check:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>if</span>( i<span style=color:#f92672>&lt;</span>nArg ) rc <span style=color:#f92672>=</span> SQLITE_ERROR; 
 </span></span></code></pre></div><p>This check ensures that all arguments were processed. If <code>i</code> is less than
 <code>nArg</code> after the loop, it means there was an odd numbers of arguments,
-which is considered an error because the arguments should always come in pairs.</p><p>Interestingly, the maintainer patched <code>fts5TriCreate()</code> and <code>fts5AsciiCreate()</code> as well
+which is considered an error because the arguments should always come in pairs.</p><p>Interestingly, the maintainer patched <code>fts5UnicodeCreate()</code> and <code>fts5AsciiCreate()</code> as well
 because similar code patterns existing there. It actually shows the
 strength of human-write patches because developers remember potential
 buggy paths in their code base. However, the additional checks are actually
