@@ -157,7 +157,7 @@ to discover a real bug—even without knowing that the challenge project was SQL
 ## Human-Write patch vs Auto-Generated Patch
 
 Automatically patching the aforementioned bug is challenging 
-because a perfect patch1 requires the human or AI patcher to understand that 
+because a perfect patch[^2] requires the human or AI patcher to understand that 
 the arguments are paired and that the null pointer dereference results from
 an off-by-one heap access within a glibc-allocated heap chunk.
 
@@ -326,7 +326,6 @@ By leveraging generative AI models (GenAI) as "high-level" static analysis tools
 we can significantly enhance automated bug finding. 
 For instance, while inferring indirect calls can be challenging for a compiler, 
 GenAI offers new possibilities for making these inferences using retrieve-augmented generation (RAG).
-
 GenAI also opens new avenues in 
 automatic exploit generation and 
 vulnerability remediation, given its proficiency in code writing.
@@ -340,4 +339,7 @@ AIxCC has provided our team with a fantastic opportunity to put into practice
 the insights gained from decades of security research in both academia and industry. 
 If you're interested in learning more about our team 
 and the work done by our [team members](/authors), please feel free to 
-[contact us](mailto:aixcc-atl@googlegroups.com)!
+[contact us](mailto:aixcc-atl@googlegroups.com)! 
+
+Follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
+if you're interested in AI or security.
