@@ -2,12 +2,12 @@
 title: "Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System"
 meta_title: ""
 description: "SQLite3 in ASC"
-date: 2024-08-27T12:00:00Z
+date: 2024-08-28T12:15:00Z
 image: "/images/blog/asc-sqlite/sqlite.webp"
 categories: ["Vulnerability Analysis"]
 author: "Hanqing Zhao"
 tags: ["Atlantis CRS"]
-draft: true
+draft: false
 ---
 
 Without knowing beforehand that the challenge project involved SQLite3, 
@@ -18,8 +18,8 @@ organized by ARPA-H, DARPA, and the
 [White House](https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/).
 
 Remarkably, 
-Atlantis was the first team to discover five intended vulnerabilities and 
-autonomously identify and patch a previously unknown vulnerability[^1], 
+Atlantis secured six first-bloods and
+autonomously identified and patched a real bug in SQLite3[^1], 
 earning us a $2 million prize and a place in the grand finals of AIxCC. 
 For more details, check out our [team's announcement blog](/blog/post-atl).
 
@@ -278,8 +278,10 @@ index f12056170..552f14be9 100644
          }else{
 ```
 
+The auto-generated patch successfully checks 
+the bounds and provides additional protection against null pointer dereference. 
 In this case,
-Atlantis spent ~20 minutes for the entire building, patch generation, 
+Atlantis spent ~15 minutes for the entire building, patch generation, 
 iteration, and correctness-validation process, 
 demonstrating its promising potential for application to real-world software.
 
