@@ -403,12 +403,14 @@ and `fts5UnicodeCreate()`.
 ## The Author's Random Thoughts
 By leveraging generative AI models (GenAI) as "high-level" static analysis tools, 
 we can significantly enhance automated bug finding,
-given its proficiency in code explanation. 
-For instance, while inferring indirect calls can be challenging for a compiler, 
-GenAI offers new possibilities for making these inferences using retrieve-augmented generation (RAG).
-GenAI also opens new avenues in 
-automatic exploit generation and 
-vulnerability remediation, given its proficiency in code writing.
+thanks to their proficiency in code explanation. 
+For example, 
+complex program analysis tasks such as points-to analysis and inter-procedural analysis, 
+which are challenging for traditional compilers, 
+can be approached differently using GenAI through retrieve-augmented generation (RAG).
+Additionally, 
+GenAI opens new possibilities for automatic exploit generation and 
+vulnerability remediation due to its strong capabilities in code writing.
 
 However, GenAI is not a cure-all and is far from perfect. 
 That's why our hybrid system is designed to improve GenAI's performance 
