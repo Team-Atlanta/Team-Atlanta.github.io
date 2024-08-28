@@ -18,9 +18,10 @@ organized by ARPA-H, DARPA, and the
 [White House](https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/).
 
 Remarkably, 
-Atlantis autonomously identified and patched a previously undiscovered vulnerability[^1], 
+Atlantis was the first team to discover five intended vulnerabilities and 
+autonomously identify and patch a previously unknown vulnerability[^1], 
 earning us a $2 million prize and a place in the grand finals of AIxCC. 
-For more information, check out our [team's announcement blog](/blog/post-atl).
+For more details, check out our [team's announcement blog](/blog/post-atl).
 
 In this blog, 
 we will outline our very high-level approach to using LLMs for bug detection and 
