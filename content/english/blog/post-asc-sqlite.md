@@ -412,7 +412,7 @@ vulnerability remediation, given its proficiency in code writing.
 However, GenAI is not a cure-all and is far from perfect. 
 That's why our hybrid system is designed to improve GenAI's performance 
 in security research by addressing common issues such as LLM hallucinations, 
-performance, and domain-specific challenges for particular software.
+scalability, and domain-specific challenges for particular software.
 
 AIxCC has provided our team with a fantastic opportunity to put into practice 
 the insights gained from decades of security research in both academia and industry. 
