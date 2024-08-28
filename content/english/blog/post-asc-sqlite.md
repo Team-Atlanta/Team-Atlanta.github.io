@@ -267,8 +267,8 @@ iteration, and correctness-validation process,
 demonstrating its promising potential for application to real-world software.
 
 Admittedly, 
-our patching techniques are still in their early stages, 
-as we require more time to prototype and evaluate the many new ideas we have. 
+our patching techniques are still in their prototype stages, 
+as we require more time to apply and evaluate the many new ideas we have. 
 However, 
 the patch above illustrates that 
 LLM-based automated vulnerability remediation is a very feasible direction.
