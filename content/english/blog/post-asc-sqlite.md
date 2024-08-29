@@ -3,7 +3,7 @@ title: "Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 wit
 meta_title: ""
 description: "SQLite3 in ASC"
 date: 2024-08-28T12:15:00Z
-image: "/images/blog/asc-sqlite/sqlite.webp"
+image: "/images/blog/asc-sqlite/sqlite-bug-finding.png"
 categories: ["Vulnerability Analysis"]
 author: "Hanqing Zhao"
 tags: ["Atlantis CRS"]
