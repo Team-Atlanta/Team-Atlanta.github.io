@@ -32,6 +32,17 @@ and discuss the challenges of using our LLM agents for such fixes.
 Follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
 if you're interested in AI or security.
 
+The Atlantis TKCTF milestone is contributed by our great teams members 
+[Andrew Chin](/authors/andrew-chin),
+[Jiho Kim](//authors/seunggi-min/),
+[Gyejin Lee](/authors/seunggi-min/),
+[Seunggi Min](/authors/seunggi-min/),
+[Kevin Stevens](/authors/seunggi-min/),
+[Woosun Song](/authors/seunggi-min/),
+[Hanqing Zhao](/authors/seunggi-min/),
+
+
+
 [^1]: Discovering previously unknown bugs does not count as a valid score in the competition. 
 Team Atlanta secured a finalist spot by submitting the intended bugs and patches for AIxCC.
 
