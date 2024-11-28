@@ -3,7 +3,7 @@ title: "AI vs Human Hacker: Perspective xx"
 meta_title: ""
 description: "Atlantis in CTF competitions"
 date: 2024-08-28T12:15:00Z
-image: "/images/blog/asc-sqlite/sqlite-bug-finding.png"
+image: "/images/blog/tkctf2024/ai-vs-human.png"
 categories: ["Vulnerability Analysis"]
 author: "Hanqing Zhao"
 tags: ["Atlantis CRS"]
