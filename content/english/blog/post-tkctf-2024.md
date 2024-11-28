@@ -1,7 +1,7 @@
 ---
-title: "Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System"
+title: "AI vs Human Hacker: Perspective xx"
 meta_title: ""
-description: "SQLite3 in ASC"
+description: "Atlantis in CTF competitions"
 date: 2024-08-28T12:15:00Z
 image: "/images/blog/asc-sqlite/sqlite-bug-finding.png"
 categories: ["Vulnerability Analysis"]
