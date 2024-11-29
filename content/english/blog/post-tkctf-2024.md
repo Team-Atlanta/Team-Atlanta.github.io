@@ -1,5 +1,5 @@
 ---
-title: "AI vs Human Hacker: Perspective xx"
+title: "(Lemme think about better title) AI vs Human Hacker: Perspective xx"
 meta_title: ""
 description: "Atlantis in CTF competitions"
 date: 2024-08-28T12:15:00Z
@@ -10,29 +10,26 @@ tags: ["Atlantis CRS"]
 draft: Yes
 ---
 
-Without knowing beforehand that the challenge project involved SQLite3, 
-our team, [Team Atlanta](/authors), entered our Cyber Reasoning System (CRS), 
-named Atlantis, 
-into the [AI Cyber Challenge](https://aicyberchallenge.com/) 
-organized by ARPA-H, DARPA, and the 
-[White House](https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/).
+For the first time, 
+we deployed our hybrid system powered by LLM agents, [Atlantis](/blog/post-atl), 
+to participate in Georgia Tech’s flagship CTF competition, [TKCTF 2024](https://tc.gts3.org/cs6265/2024-fall/ctf.html).
 
-Remarkably, 
-Atlantis secured six first-bloods and
-autonomously identified and patched a real bug in SQLite3[^1], 
-earning us a $2 million prize and a place in the grand finals of AIxCC. 
-For more details, check out our [team's announcement blog](/blog/post-atl).
+During the competition, 
+Atlantis focused on two key areas: 
+vulnerability analysis and automatic vulnerability remediation. 
+Impressively, our system identified 10 vulnerabilities and 
+generated 7 flawless patches, 
+demonstrating the effectiveness of our approach in a real-world challenge.
 
 In this blog, 
-we will outline our very high-level approach to using LLMs for bug detection and 
-vulnerability remediation, 
-provide an analysis of the fixed SQLite3 vulnerability, 
-and discuss the challenges of using our LLM agents for such fixes.
+I’ll share some interesting observations and key lessons we learned during the CTF. 
+Notably, following the AIxCC competition, 
+we plan to open-source all the details of our system, 
+in line with AIxCC competition rules.
 
-Follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
-if you're interested in AI or security.
-
-The Atlantis TKCTF milestone is contributed by our great teams members 
+While this might seem like just another step forward for CTF competitions, 
+it represents a significant milestone in our journey toward advancing LLM-based security research. 
+The achievements of Atlantis at TKCTF would not have been possible without the dedication and expertise of our incredible team:
 [Andrew Chin](/authors/andrew-chin),
 [Jiho Kim](//authors/seunggi-min/),
 [Gyejin Lee](/authors/seunggi-min/),
@@ -41,11 +38,11 @@ The Atlantis TKCTF milestone is contributed by our great teams members
 [Woosun Song](/authors/seunggi-min/),
 [Hanqing Zhao](/authors/seunggi-min/),
 
+We invite you to follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
+to stay updated on our work at the intersection of AI and security.
 
-
-[^1]: Discovering previously unknown bugs does not count as a valid score in the competition. 
-Team Atlanta secured a finalist spot by submitting the intended bugs and patches for AIxCC.
-
+[^1]: Fully sound patches  not only address the actual root causes
+but also keep the correct behaviors.
 
 ## The Atlantis Cyber Reasoning System
 
