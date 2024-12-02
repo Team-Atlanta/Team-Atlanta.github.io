@@ -33,12 +33,12 @@ it represents a significant milestone in our journey toward advancing LLM-based 
 The achievements of Atlantis at TKCTF would not have been possible without 
 the dedication and expertise of our incredible team:
 [Andrew Chin](/authors/andrew-chin),
-[Jiho Kim](//authors/seunggi-min/),
-[Gyejin Lee](/authors/seunggi-min/),
+[Jiho Kim](/authors/jiho-kim/),
+[Gyejin Lee](/authors/gyejin-lee/),
 [Seunggi Min](/authors/seunggi-min/),
-[Kevin Stevens](/authors/seunggi-min/),
-[Woosun Song](/authors/seunggi-min/), and
-[Hanqing Zhao](/authors/seunggi-min/),
+[Kevin Stevens](/authors/kevin-stevens/),
+[Woosun Song](/authors/woosun-song/), and
+[Hanqing Zhao](/authors/hanqing-zhao/),
 
 We invite you to follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
 to stay updated on our work at the intersection of AI and security.
@@ -82,6 +82,9 @@ As an
 
 Apart from the intended vulnerabilities,
 Atlantis also discovered two unintended vulnerabilities.
+
+### Undiscovered vulnerabilities due to logic flaws
+
 
 <details>
   <summary>Click me to show the maze puzzle </summary>
