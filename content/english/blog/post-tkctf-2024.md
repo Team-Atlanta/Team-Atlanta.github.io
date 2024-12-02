@@ -4,17 +4,16 @@ meta_title: ""
 description: "Atlantis in CTF competitions"
 date: 2024-12-01T12:15:00Z
 image: "/images/blog/tkctf2024/ai-vs-human.png"
-categories: ["CTF", "Analysis"]
+categories: ["Milestone"]
 author: "Hanqing Zhao"
 tags: ["Atlantis CRS"]
-draft: Yes
+draft: True
 ---
 
 For the first time, 
 we deployed our hybrid system powered by LLM agents, [Atlantis](/blog/post-atl), 
 to participate in Georgia Tech’s flagship CTF competition, 
 [TKCTF 2024](https://tc.gts3.org/cs6265/2024-fall/ctf.html).
-
 During the competition, 
 Atlantis focused on two key areas: 
 vulnerability analysis and automatic vulnerability remediation. 
@@ -48,23 +47,93 @@ but also keep the correct behaviors.
 
 ## AIxCC, Atlantis CRS, and CTF
 
+AI Cyber Challenge (AIxCC) is a two year competition that 
+aims to advance the state of the art in AI-based security research.
+We, Team Atlanta, are one of the 7 final teams, proposing a new cyber reasoning system, 
+[Atlantis CRS](/blog/post-atl).
 
+The core idea of our system is simple:
+to emulate the mindset of experienced security researchers and 
+hackers through LLM agents, 
+enhanced with advanced program analysis techniques.
+
+As decade-long veterans of CTF competitions, 
+we inherently want to bring AI and LLMs to CTF competitions.
+This time, we directly run our system along with human players, focusing on
+analyzing the source code repos and patching vulnerabilities.
 
 ## Interesting Challenges Solved by Atlantis
 
+As an 
+
 ### Maze Puzzles
+
 
 
 <details>
   <summary>Click me to show the maze puzzle </summary>
 
-```c
+```shell
+./target 
+                                               
+                                               
+                                               
+   #########################################   
+   #P*       *       * *       *         * #   
+   # *** ***** * *** * *** *** * ******* * #   
+   #   *       *   * * * * *     *     *   #   
+   #** ***** ***** * * * * *********** *** #   
+   #   *   * *     * * * *   * *         * #   
+   # *** * *** ***** *** *** * * * ******* #   
+   # *   *   * *   *   *   * *   *         #   
+   # *** *** * * * *** *** * * ************#   
+   #     * * *   *   * * * * *         *   #   
+   #****** * ******* *** *** ********* * * #   
+   #       *   *     * *   * *       * * * #   
+   # * ******* * ***** *** * * ******* *** #   
+   # *           *     *     *            G#   
+   #########################################   
+                                               
+                                               
+                                               
+Steps: 0
+=========
+
+
+# another run
+
+./target
+                                               
+                                               
+                                               
+   #########################################   
+   #P  *   *     *   * *       *         * #   
+   #** * * * *** * *** ***** * * ***** * * #   
+   #   * * * *   * *   *   * * * * *   *   #   
+   # *** * * * *** * *** * * * * * * ***** #   
+   #     * * *     * * * *   * * * *   *   #   
+   #****** * ******* * * ******* * *** * **#   
+   #     * * *         * *     *   * * *   #   
+   # * *** * * ********* * *** *** * * *** #   
+   # *     *       *   * * * *       * *   #   
+   # ******* ***** * * * * * ******* * *** #   
+   # *     * *   * * * *     *     * *   * #   
+   # * *** *** * *** * ******* *** ***** * #   
+   #   *       *     * *       *         *G#   
+   #########################################   
+                                               
+                                               
+                                               
+Steps: 0
+=========
 
 ```
 </details>
 
 
 ## Case Studies: How Atlantis Patches Vulnerabilities
+
+One of the key features of Atlantis is its ability to generate patches for vulnerabilities.
 
 ## Team Atlanta's Next Steps
 Frankly,
@@ -83,6 +152,10 @@ which is far from a real exploit.
 We're working on customizing LLM models for better security analysis purpose,
 which can, ideally, reduce the requirements of sophisticated prompts and
 reduce the complexity of our system, and thus make it faster and more accessible.
+
+In summary,
+we are working on the direction to create a seamless autonomous pwner for 
+exisiting CTF competitions.
 
 ## The Author's Random Thoughts
 By leveraging generative AI models (GenAI) as "high-level" static analysis tools, 
