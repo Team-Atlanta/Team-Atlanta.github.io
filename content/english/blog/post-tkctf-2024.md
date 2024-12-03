@@ -11,7 +11,7 @@ draft: false
 ---
 
 For the first time, we deployed our hybrid system, 
-powered by LLM agents—[Atlantis](/blog/post-atl)—to compete in Georgia Tech’s flagship CTF event, 
+powered by LLM agents—[Atlantis](/blog/post-atl)—to compete in [Georgia Tech’s](https://www.gatech.edu/) flagship CTF event, 
 [TKCTF 2024](https://tc.gts3.org/cs6265/2024-fall/ctf.html). 
 During the competition, Atlantis concentrated on two pivotal areas: 
 vulnerability analysis and automatic vulnerability remediation. 
@@ -61,8 +61,6 @@ Georgia Tech’s CTF competition, TKCTF, offered the perfect setting to put our 
 The challenges were designed by students and staff from Georgia Tech’s CS6265 Fall 2024 class. 
 In addition to Georgia Tech participants, teams from across the University System of Georgia (USG) joined the competition. 
 The winning team received a $1,000 prize.
-
-
 
 
 ## Recap of Atlantis's Performance
