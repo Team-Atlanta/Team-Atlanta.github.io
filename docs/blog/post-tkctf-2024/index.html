@@ -1,0 +1,321 @@
+<!doctype html><html itemscope lang=en-us itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=5"><meta name=theme-name content="hugoplate"><link rel="shortcut icon" href=/images/team-icon_huf9440efed39ba7d24ba35d33aee39304_52547_96x0_resize_lanczos.png type=image/x-icon><link rel=icon href=/images/team-icon_huf9440efed39ba7d24ba35d33aee39304_52547_96x0_resize_lanczos.png type=image/x-icon><link rel=icon type=image/png sizes=48x48 href=/images/team-icon_huf9440efed39ba7d24ba35d33aee39304_52547_48x0_resize_lanczos.png><link rel=icon type=image/png sizes=96x96 href=/images/team-icon_huf9440efed39ba7d24ba35d33aee39304_52547_96x0_resize_lanczos.png><link rel=apple-touch-icon sizes=144x144 href=/images/team-icon_huf9440efed39ba7d24ba35d33aee39304_52547_144x0_resize_lanczos.png><link rel=manifest href=/manifest.webmanifest><meta name=msapplication-TileColor content="#ddd"><meta name=theme-color content="#ffffff"><base href=https://team-atlanta.github.io/blog/post-tkctf-2024/><title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title>
+<meta name=keywords content="DARPA AIxCC,cybersecurity,fuzzing,LLM,AIxCC"><meta name=description content="Atlantis in CTF competitions"><meta property="og:image" content="https://team-atlanta.github.io/images/blog/tkctf2024/ai-vs-human.png"><meta name=twitter:image content="https://team-atlanta.github.io/images/blog/tkctf2024/ai-vs-human.png"><meta name=twitter:card content="summary
+            _large_image
+          "><meta property="og:image:width" content="1024"><meta property="og:image:height" content="768"><meta property="og:image:type" content="image/
+        .png
+      "><meta property="og:title" content="Hacking Redefined: How LLM Agents Took on University Hacking Competition"><meta property="og:description" content="Atlantis in CTF competitions"><meta property="og:type" content="website"><meta property="og:url" content="https://team-atlanta.github.io/blog/post-tkctf-2024/"><meta name=twitter:title content="Hacking Redefined: How LLM Agents Took on University Hacking Competition"><meta name=twitter:description content="Atlantis in CTF competitions"><script>let indexURL="https://team-atlanta.github.io/searchindex.json",includeSectionsInSearch=["blog"],no_results_for="No results for",empty_search_results_placeholder="Type something to search.."</script><meta http-equiv=x-dns-prefetch-control content="on"><link rel=preconnect href=https://use.fontawesome.com crossorigin><link rel=preconnect href=//cdnjs.cloudflare.com><link rel=preconnect href=//www.googletagmanager.com><link rel=preconnect href=//www.google-analytics.com><link rel=dns-prefetch href=https://use.fontawesome.com><link rel=dns-prefetch href=//ajax.googleapis.com><link rel=dns-prefetch href=//cdnjs.cloudflare.com><link rel=dns-prefetch href=//www.googletagmanager.com><link rel=dns-prefetch href=//www.google-analytics.com><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//connect.facebook.net><link rel=dns-prefetch href=//platform.linkedin.com><link rel=dns-prefetch href=//platform.twitter.com><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600&family=Signika:wght@500;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><link href="/css/style.min.4a14c4b6b79bd71391881198f230b970def9a45c9e338cc6d6e5ed838f7154d3.css" integrity="sha256-ShTEtreb1xORiBGY8jC5cN75pFyeM4zG1uXtg49xVNM=" rel=stylesheet><link defer async rel=stylesheet href="/css/style-lazy.min.1a9d1009e7f8ece0fee6bf42b15ba299b3f17268c302b871323434f820c6b503.css" integrity="sha256-Gp0QCef47OD+5r9CsVuimbPxcmjDArhxMjQ0+CDGtQM=" media=print onload='this.media="all",this.onload=null'></head><body><header class="header sticky top-0 z-30"><nav class="navbar container"><div class=order-0><a class="navbar-brand block" href=/>Team Atlanta</a></div><input id=nav-toggle type=checkbox class=hidden>
+<label for=nav-toggle class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1"><svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20"><title>Menu Open</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"/></svg><svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20"><title>Menu Close</title><polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"/></svg></label><ul id=nav-menu class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"><li class=nav-item><a class=nav-link href=/>Home</a></li><li class=nav-item><a class=nav-link href=/authors/>AIxCC Team</a></li><li class=nav-item><a class=nav-link href=/about/>About</a></li><li class=nav-item><a class=nav-link href=/blog/>Blog</a></li></ul><div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0"><button aria-label=search class="border-border text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary" data-target=search-modal>
+<i class="fa-solid fa-search"></i></button><div class="theme-switcher mr-5"><input id=theme-switcher data-theme-switcher type=checkbox>
+<label for=theme-switcher><span class=sr-only>theme switcher</span>
+<span><svg class="absolute left-[4px] top-[4px] z-10 opacity-100 dark:opacity-0" viewBox="0 0 56 56" fill="#fff" height="16" width="16"><path d="M30 4.6c0-1-.9-2-2-2a2 2 0 00-2 2v5c0 1 .9 2 2 2s2-1 2-2zm9.6 9a2 2 0 000 2.8c.8.8 2 .8 2.9.0L46 13a2 2 0 000-2.9 2 2 0 00-3 0zm-26 2.8c.7.8 2 .8 2.8.0.8-.7.8-2 0-2.9L13 10c-.7-.7-2-.8-2.9.0-.7.8-.7 2.1.0 3zM28 16A12 12 0 0016 28a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0028 16zm23.3 14c1.1.0 2-.9 2-2s-.9-2-2-2h-4.9a2 2 0 00-2 2c0 1.1 1 2 2 2zM4.7 26a2 2 0 00-2 2c0 1.1.9 2 2 2h4.9c1 0 2-.9 2-2s-1-2-2-2zm37.8 13.6a2 2 0 00-3 0 2 2 0 000 2.9l3.6 3.5a2 2 0 002.9.0c.8-.8.8-2.1.0-3zM10 43.1a2 2 0 000 2.9c.8.7 2.1.8 3 0l3.4-3.5c.8-.8.8-2.1.0-2.9s-2-.8-2.9.0zm20 3.4c0-1.1-.9-2-2-2a2 2 0 00-2 2v4.9c0 1 .9 2 2 2s2-1 2-2z"/></svg><svg class="absolute left-[4px] top-[4px] z-10 opacity-0 dark:opacity-100" viewBox="0 0 24 24" fill="none" height="16" width="16"><path fill="#000" fill-rule="evenodd" clip-rule="evenodd" d="M8.2 2.2c1-.4 2 .6 1.6 1.5-1 3-.4 6.4 1.8 8.7a8.4 8.4.0 008.7 1.8c1-.3 2 .5 1.5 1.5v.1A10.3 10.3.0 0112.4 22 10.3 10.3.0 013.2 6.7c1-2 2.9-3.5 4.9-4.4z"/></svg></span></label></div><script>var darkMode=!1,themeSwitch;window.matchMedia("(prefers-color-scheme: dark)").matches&&(darkMode=!0),localStorage.getItem("theme")==="dark"?darkMode=!0:localStorage.getItem("theme")==="light"&&(darkMode=!1),darkMode&&document.documentElement.classList.toggle("dark"),themeSwitch=document.querySelectorAll("[data-theme-switcher]"),document.addEventListener("DOMContentLoaded",()=>{[].forEach.call(themeSwitch,function(e){e.checked=!!darkMode,e.addEventListener("click",()=>{document.documentElement.classList.toggle("dark"),localStorage.setItem("theme",document.documentElement.classList.contains("dark")?"dark":"light")})})})</script></div></nav></header><div class=search-modal aria-hidden=true style=--color-primary:#121212><div data-target=close-search-modal class=search-modal-overlay></div><div class=search-wrapper data-image=true data-description=true data-tags=true data-categories=true><div class=search-wrapper-header><label for=search-modal-input style=margin-top:-1px><span class=sr-only>search icon</span>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="18" width="18" class="search-icon" data-type="search"><path fill="currentcolor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8.0 45.3s-32.8 12.5-45.3.0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9.0 208S93.1.0 208 0 416 93.1 416 208zM208 352a144 144 0 100-288 144 144 0 100 288z"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="18" width="18" class="search-reset" data-type="reset"><path fill="currentcolor" d="M256 512A256 256 0 10256 0a256 256 0 100 512zM175 175c9.4-9.4 24.6-9.4 33.9.0l47 47 47-47c9.4-9.4 24.6-9.4 33.9.0s9.4 24.6.0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6.0 33.9s-24.6 9.4-33.9.0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9.0s-9.4-24.6.0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6.0-33.9z"/></svg></label><input id=search-modal-input type=text data-search-input autocomplete=off aria-label=Search placeholder="Search Post ..."></div><div class=search-wrapper-body><div class=search-result data-search-result></div><span class=search-result-empty>Type something to search..</span></div><div class=search-wrapper-footer><span><kbd><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentcolor" viewBox="0 0 16 16"><path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 011.506.0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 01-.753-1.659z"/></svg></kbd><kbd><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentcolor" style="margin-top:1px" viewBox="0 0 16 16"><path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 001.506.0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 00-.753 1.659z"/></svg></kbd>to navigate
+</span><span><kbd><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentcolor" style="display:inline-block" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M14.5 1.5a.5.5.0 01.5.5v4.8a2.5 2.5.0 01-2.5 2.5H2.707l3.347 3.346a.5.5.0 01-.708.708l-4.2-4.2a.5.5.0 010-.708l4-4a.5.5.0 11.708.708L2.707 8.3H12.5A1.5 1.5.0 0014 6.8V2a.5.5.0 01.5-.5z"/></svg></kbd>to select
+</span><span class=search-result-info></span>
+<span data-target=close-search-modal><kbd>ESC</kbd> to close</span></div></div></div><main><section class="section pt-7"><div class=container><div class="row justify-center"><article class=lg:col-10><div class=mb-10><picture><source srcset=/images/blog/tkctf2024/ai-vs-human_huc3a6c22971e7c169e27cf9be07d57cad_1521184_545x0_resize_q90_h2_lanczos_3.webp media="(max-width: 575px)"><source srcset=/images/blog/tkctf2024/ai-vs-human_huc3a6c22971e7c169e27cf9be07d57cad_1521184_600x0_resize_q90_h2_lanczos_3.webp media="(max-width: 767px)"><source srcset=/images/blog/tkctf2024/ai-vs-human_huc3a6c22971e7c169e27cf9be07d57cad_1521184_700x0_resize_q90_h2_lanczos_3.webp media="(max-width: 991px)"><source srcset=/images/blog/tkctf2024/ai-vs-human_huc3a6c22971e7c169e27cf9be07d57cad_1521184_1110x0_resize_q90_h2_lanczos_3.webp><img loading=lazy decoding=async src=/images/blog/tkctf2024/ai-vs-human_huc3a6c22971e7c169e27cf9be07d57cad_1521184_1110x0_resize_lanczos_3.png class="w-full rounded img" alt="Hacking Redefined: How LLM Agents Took on University Hacking Competition" width=1024 height=768></picture></div><h1 class="h2 mb-4">Hacking Redefined: How LLM Agents Took on University Hacking Competition</h1><ul class=mb-4><li class="mr-4 inline-block"><a href=/authors/hanqing-zhao/><i class="fa-regular fa-circle-user mr-2"></i>Hanqing Zhao</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-folder mr-2"></i>
+<a href=/categories/milestone/ class=ms-1>Milestone</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-clock mr-2"></i>
+December 3, 2024</li></ul><div class="content mb-10"><p>For the first time, we deployed our hybrid system,
+powered by LLM agents—<a href=/blog/post-atl>Atlantis</a>
+—to compete in <a href=https://www.gatech.edu/ target=_blank>Georgia Tech’s</a>
+flagship CTF event,
+<a href=https://tc.gts3.org/cs6265/2024-fall/ctf.html target=_blank>TKCTF 2024</a>
+.
+During the competition, Atlantis concentrated on two pivotal areas:
+vulnerability analysis and automatic vulnerability remediation.
+Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>,
+showcasing the practicality and promise of our approach in a real-world hacking competition.</p><p>In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
+As we prepare to open-source the full details of our system following AIxCC competition rules,
+this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.</p><p>What might appear as another incremental step in CTF competitions actually marks a significant leap in our journey.
+The success of Atlantis at TKCTF was a testament to the dedication and expertise of our exceptional team:
+<a href=/authors/andrew-chin>Andrew Chin</a>
+,
+<a href=/authors/jiho-kim/>Jiho Kim</a>
+,
+<a href=/authors/gyejin-lee/>Gyejin Lee</a>
+,
+<a href=/authors/seunggi-min/>Seunggi Min</a>
+,
+<a href=/authors/kevin-stevens/>Kevin Stevens</a>
+,
+<a href=/authors/woosun-song/>Woosun Song</a>
+, and
+<a href=/authors/hanqing-zhao/>Hanqing Zhao</a>
+,</p><p>We invite you to follow us on Twitter/X (<a href=https://x.com/TeamAtlanta24 target=_blank>@TeamAtlanta24</a>
+)
+to stay updated on our work at the intersection of AI and security.</p><h2 id=aixcc-atlantis-crs-and-ctf>AIxCC, Atlantis CRS, and CTF</h2><div style=display:flex;justify-content:center;gap:10px><figure class=img-center role=group aria-describedby="caption-AIxCC Finalists"><img title="AIxCC Finalists" loading=lazy decoding=async class="img img-fluid" width=600 height=345 src=/images/blog/tkctf2024/aixcc-finalists_hu16ef8e96efa4b7d1964519e91f019219_428361_600x0_resize_q100_lanczos_3.png alt="AIxCC Finalists" onerror='this.onerror="null",this.src="/images/blog/tkctf2024/aixcc-finalists_hu16ef8e96efa4b7d1964519e91f019219_428361_600x0_resize_q100_lanczos_3.png"'><figcaption id="caption-AIxCC Finalists" class=caption-AIxCC-Finalists>AIxCC Finalists</figcaption></figure><script>window.addEventListener("load",e=>{const t=GLightbox()})</script><img title="TKCTF Poster" loading=lazy decoding=async class="img img-fluid img-center" width=400 height=400 src=/images/blog/tkctf2024/poster_hueb49048f3b56584c8b45b7f35b723bad_194110_400x0_resize_q100_lanczos.jpeg alt="TKCTF Poster" onerror='this.onerror="null",this.src="/images/blog/tkctf2024/poster_hueb49048f3b56584c8b45b7f35b723bad_194110_400x0_resize_q100_lanczos.jpeg"'></div><p><a href=https://aicyberchallenge.com/ target=_blank>AI Cyber Challenge (AIxCC)</a>
+is
+a two-year competition designed to advance the state of the art in AI-based security research.
+We, Team Atlanta, are proud to be one of the 7 finalist teams, presenting a novel cyber reasoning system,
+<a href=/blog/post-atl>Atlantis CRS</a>
+.</p><p>The concept behind our system is straightforward:
+emulate the mindset of skilled security researchers and hackers using LLM agents,
+augmented by advanced program analysis techniques.</p><p>As seasoned veterans of CTF competitions, we’ve always aspired to bring AI and LLMs into the CTF arena.
+This time, we deployed our system alongside human players, concentrating on analyzing source code repositories and patching identified vulnerabilities.
+Georgia Tech’s CTF competition, TKCTF, offered the perfect setting to put our system to the test.</p><p>The challenges were designed by students and staff from Georgia Tech’s CS6265 Fall 2024 class.
+In addition to Georgia Tech participants, teams from across the University System of Georgia (USG) joined the competition.
+The winning team received a $1,000 prize.</p><h2 id=recap-of-atlantiss-performance>Recap of Atlantis&rsquo;s Performance</h2><figure class=img-center role=group aria-describedby="caption-Atlantis Dashboard"><img title="Atlantis Dashboard" loading=lazy decoding=async class="img img-fluid" width=600 height=310 src=/images/blog/tkctf2024/dashboard_hu1f6acf4d54dc056d9d897cff9e0bcdcc_176978_600x0_resize_q100_lanczos_3.png alt="Atlantis Dashboard" onerror='this.onerror="null",this.src="/images/blog/tkctf2024/dashboard_hu1f6acf4d54dc056d9d897cff9e0bcdcc_176978_600x0_resize_q100_lanczos_3.png"'><figcaption id="caption-Atlantis Dashboard" class=caption-Atlantis-Dashboard>Atlantis Dashboard</figcaption></figure><p>Over the course of the competition, we ran Atlantis CRS on 12 different CTF challenges,
+each with a time limit of approximately 4 hours.
+By the end, our system successfully identified 10 vulnerabilities and generated 7 robust patches.</p><p>While the overall difficulty of the challenges was moderate,
+Atlantis successfully identified most of the intended memory safety vulnerabilities
+and even uncovered two unintended vulnerabilities.
+The competition also provided several interesting cases and valuable lessons,
+which I’ll share below.</p><h3 id=maze-puzzles>Maze Puzzles</h3><p>One of the challenges was a maze puzzle.
+It generated a random maze where the intended solution required
+players to write an algorithm to parse the map and find the path through the maze.</p><details><summary>Click to view an example of the maze puzzle</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>./target 
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#########################################   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#P*       *       * *       *         * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># *** ***** * *** * *** *** * ******* * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#   *       *   * * * * *     *     *   #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#** ***** ***** * * * * *********** *** #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#   *   * *     * * * *   * *         * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># *** * *** ***** *** *** * * * ******* #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># *   *   * *   *   *   * *   *         #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># *** *** * * * *** *** * * ************#   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#     * * *   *   * * * * *         *   #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#****** * ******* *** *** ********* * * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#       *   *     * *   * *       * * * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># * ******* * ***** *** * * ******* *** #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># *           *     *     *            G#   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#########################################   </span>
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>Steps: 0
+</span></span><span style=display:flex><span><span style=color:#f92672>=========</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># another run</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>./target
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#########################################   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#P  *   *     *   * *       *         * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#** * * * *** * *** ***** * * ***** * * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#   * * * *   * *   *   * * * * *   *   #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># *** * * * *** * *** * * * * * * ***** #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#     * * *     * * * *   * * * *   *   #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#****** * ******* * * ******* * *** * **#   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#     * * *         * *     *   * * *   #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># * *** * * ********* * *** *** * * *** #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># *     *       *   * * * *       * *   #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># ******* ***** * * * * * ******* * *** #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># *     * *   * * * *     *     * *   * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e># * *** *** * *** * ******* *** ***** * #   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#   *       *     * *       *         *G#   </span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>#########################################   </span>
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>                                               
+</span></span><span style=display:flex><span>Steps: 0
+</span></span><span style=display:flex><span><span style=color:#f92672>=========</span>
+</span></span></code></pre></div></details><p>Interestingly,
+Atlantis correctly navigated the maze through several runs of trial and error.
+This demonstrated the ability of LLM agents to enhance program analysis
+by “understanding” the high-level intent of a program.</p><h3 id=discovering-unintended-vulnerabilities>Discovering Unintended Vulnerabilities</h3><p>Beyond the intended vulnerabilities, Atlantis also discovered two unintended ones:</p><ul><li>Floating Point Exception (FPE): A vulnerability causing stack underflow.</li><li>Insufficient Input Validation: An unchecked empty input led to a stack buffer overflow.</li></ul><p>Although the challenges were not overly complex, this highlights Atlantis’s potential in automated testing and vulnerability discovery.</p><h3 id=undiscovered-vulnerabilities-due-to-logic-flaws>Undiscovered Vulnerabilities Due to Logic Flaws</h3><p>Atlantis struggled with challenges involving logical flaws. For example, in the two-sum challenge:</p><ul><li>Challenge Details:
+The task didn’t involve memory safety issues but
+required exploiting unordered_map hash collisions to manipulate the control flow in the twoSum function.</li><li>Missed Opportunity: Since Atlantis was tuned to prioritize memory safety issues,
+it overlooked this logic-based vulnerability.</li></ul><p>This underscored the need to enhance Atlantis’s capabilities in analyzing logical vulnerabilities, an area we plan to focus on in future improvements.</p><h2 id=case-studies-how-atlantis-patches-vulnerabilities>Case Studies: How Atlantis Patches Vulnerabilities</h2><p>A standout feature of Atlantis is its capability to generate patches for discovered vulnerabilities.
+In this CTF, Atlantis produced 7 fully sound patches,
+showcasing both the system’s confidence and its ease in handling the challenges, which were relatively straightforward.</p><p>In this section, I’ll provide a summary of key cases and the patching decisions made by Atlantis’s agent system.</p><details><summary>Unsafe functions replaced by safer ones</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/double_trouble.c b/double_trouble.c
+</span></span><span style=display:flex><span>index 83a693b..e8f0737 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/double_trouble.c
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/double_trouble.c
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -5,8 +5,9 @@
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> 
+</span></span><span style=display:flex><span> void foo(char *msg) {
+</span></span><span style=display:flex><span>     char buf[80];
+</span></span><span style=display:flex><span><span style=color:#f92672>-    strcpy(buf, msg); // Vulnerable: No bounds checking
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-    strcpy(msg, buf); // Vulnerable: No bounds checking
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+    strncpy(buf, msg, sizeof(buf) - 1); // Use strncpy for bounds checking
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    buf[sizeof(buf) - 1] = &#39;\0&#39;; // Ensure null termination
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    strncpy(msg, buf, strlen(msg)); // Use strncpy for bounds checking
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span> }
+</span></span></code></pre></div></details><p>One of the principles guiding Atlantis is avoiding the use of unsafe functions.
+For instance, in one case,
+Atlantis replaced <code>strcpy</code> with <code>strncpy</code> and added a null termination check to ensure the safety of string operations.
+Given that the C language inherently includes many unsafe functions,
+Atlantis takes a conservative approach by systematically replacing these functions with their safer counterparts wherever possible.</p><details><summary>Bounds checking and termination handling</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/target.c b/target.c
+</span></span><span style=display:flex><span>index f512754..7f7bfef 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/target.c
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/target.c
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -23,9 +23,16 @@ func run_at_end = dont_print_key;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> uint32_t read_int(void) {
+</span></span><span style=display:flex><span>     char buf[10];
+</span></span><span style=display:flex><span>     ssize_t size = read(0, buf, sizeof(buf) - 1);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>+    if (size &lt;= 0) {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        if (size == 0) {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+            printf(&#34;Error: End of input stream\n&#34;);
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        } else {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+            perror(&#34;Error: Read failed&#34;);
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        }
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        return 0; // or handle error as needed
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    }
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>     buf[size] = &#39;\0&#39;;
+</span></span><span style=display:flex><span>     uint32_t res = atoi(buf);
+</span></span><span style=display:flex><span><span style=color:#f92672>-    return res;
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span> }
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/ymca.c b/ymca.c
+</span></span><span style=display:flex><span>index 5bf7de7..ca10ea1 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/ymca.c
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/ymca.c
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -87,7 +87,10 @@ bool is_in_array(int step, int arr[], int size) {
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> void vulnerable() {
+</span></span><span style=display:flex><span>     char buffer[64];
+</span></span><span style=display:flex><span>     printf(&#34;Enter your Steps of the YMCA Song:\n&#34;);
+</span></span><span style=display:flex><span><span style=color:#f92672>-    read(STDIN_FILENO, buffer, 1000); 
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+    ssize_t bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer) - 1);
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    if (bytes_read &gt; 0) {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        buffer[bytes_read] = &#39;\0&#39;; // Null-terminate the buffer
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    }
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/rop.c b/rop.c
+</span></span><span style=display:flex><span>index 5df7c9c..c858436 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/rop.c
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/rop.c
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>     fgets(buf, sizeof(buf), stdin);
+</span></span><span style=display:flex><span>     // make newline null terminator
+</span></span><span style=display:flex><span>     int input_len = strlen(buf);
+</span></span><span style=display:flex><span><span style=color:#f92672>-    if (buf[input_len - 1] == &#39;\n&#39;) {
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+    if (input_len &gt; 0 &amp;&amp; buf[input_len - 1] == &#39;\n&#39;) {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>         buf[input_len - 1] = &#39;\0&#39;;
+</span></span><span style=display:flex><span>     }
+</span></span></code></pre></div></details><p>Out-of-bounds vulnerabilities are among the most common issues in software.
+Atlantis addresses this by employing dedicated optimizations to thoroughly check array and memory bounds,
+ensuring that user inputs are constrained within a safe range.
+This proactive approach minimizes the risk of unintended memory access and enhances overall software reliability.</p><details><summary>Safe rewrite of the entire function</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/target.c b/target.c
+</span></span><span style=display:flex><span>index c364280..712ac08 100755
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/target.c
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/target.c
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -14,25 +14,27 @@ int null_pos = -1;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> int newline_pos = -1;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> void copy_buffer(unsigned char* buf) {
+</span></span><span style=display:flex><span><span style=color:#f92672>-	null_pos = -1;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-	newline_pos = -1;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-	int i = 0;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-	while (i &lt; BUF_SIZE) {
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-		if (newline_pos &lt; 0 &amp;&amp; gbuf[i] == 0xa) {
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-			newline_pos = i;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-		}
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-		if (null_pos &lt; 0 &amp;&amp; gbuf[i] == 0x0) {
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-			null_pos = i;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-		}
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-		gbuf[i] = (gbuf[i] ^ key[i]) &amp; 0xff;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-		i++;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-	}
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-	int j = 0;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-	while (j &lt; min(null_pos, newline_pos)) {
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-		buf[j] = gbuf[j];
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-		j++;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-	}
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-	printf(&#34;Copied %d of %d bytes!\n&#34;, min(null_pos, newline_pos), strlen(gbuf));
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+    null_pos = BUF_SIZE;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    newline_pos = BUF_SIZE;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    int i = 0;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    while (i &lt; BUF_SIZE) {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        if (newline_pos == BUF_SIZE &amp;&amp; gbuf[i] == 0xa) {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+            newline_pos = i;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        }
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        if (null_pos == BUF_SIZE &amp;&amp; gbuf[i] == 0x0) {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+            null_pos = i;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        }
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        gbuf[i] = (gbuf[i] ^ key[i]) &amp; 0xff;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        i++;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    }
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    int j = 0;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    int copy_len = min(null_pos, newline_pos);
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    copy_len = min(copy_len, 20); // Ensure we don&#39;t exceed buf size
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    while (j &lt; copy_len) {
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        buf[j] = gbuf[j];
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        j++;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    }
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    printf(&#34;Copied %d of %d bytes!\n&#34;, copy_len, BUF_SIZE);
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span> }
+</span></span></code></pre></div></details><p>Atlantis typically aims to keep patches minimal,
+modifying the fewest possible lines to reduce the risk of altering intended code behavior or introducing unsoundness.
+However, after several iterations, if Atlantis cannot produce an optimal minimal patch,
+it will optionally rewrite the entire function to comprehensively address the vulnerability.
+This approach balances precision with robustness, ensuring both safety and functionality.</p><details><summary>Error handling correction</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/stackmachine.c b/stackmachine.c
+</span></span><span style=display:flex><span>index 7b95b62..d00d75f 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/stackmachine.c
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/stackmachine.c
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -88,11 +88,11 @@ void push(int *values, int *idx, int elt) {
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> int pop(const int *values, int *idx) {
+</span></span><span style=display:flex><span>     if (*idx &lt;= START) {
+</span></span><span style=display:flex><span>         myerrno = -1;
+</span></span><span style=display:flex><span><span style=color:#f92672>-        return 0;
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+        return INT_MIN; // Return a special error code
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>     }
+</span></span><span style=display:flex><span>     (*idx)--;
+</span></span><span style=display:flex><span><span style=color:#f92672>-    int ret = values[*idx];
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-    return ret;
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+    return values[*idx];
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+}
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span> }
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> void main_loop();
+</span></span><span style=display:flex><span><span style=color:#75715e>@@ -144,9 +144,13 @@ void print_utf8(wchar_t *wcs) {
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  */
+</span></span><span style=display:flex><span> void ret(int *values, int *idx) {
+</span></span><span style=display:flex><span>     r1 = pop(values, idx);
+</span></span><span style=display:flex><span><span style=color:#f92672>-    if (myerrno != 0) { return; }
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+    if (myerrno != 0 || r1 == INT_MIN) { 
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        puts(&#34;Error: Attempted to pop from an empty stack.&#34;);
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        return; 
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    }
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>     printf(&#34;%d\n&#34;, r1);
+</span></span><span style=display:flex><span> }
+</span></span><span style=display:flex><span><span style=color:#a6e22e>+}
+</span></span></span></code></pre></div></details><p>For bugs involving inter-procedural logic,
+Atlantis analyzes cross-procedural data flow and incorporates error handling into its patches.
+For instance, when addressing a vulnerability in <code>stackmachine.c</code>,
+Atlantis correctly handled the error case by introducing logic to return a special error code, ensuring robust and predictable behavior.</p><p>That said, the patches produced during this competition don’t fully showcase Atlantis’s potential,
+as the challenges lacked sophistication.
+For a more advanced example, check out our work on the <a href=/blog/post-asc-sqlite>SQLite3 zero-day vulnerability</a>
+.
+Since then, Atlantis has undergone multiple rounds of improvement,
+and we remain committed to open-sourcing the full details of our system after the AIxCC competition.</p><h3 id=unsound-patches>Unsound Patches</h3><p>Atlantis was unable to patch three of the challenges due to unsound patches.
+Two of these failures stemmed from the puzzle-like nature of the challenges:</p><ul><li><strong>Maze Challenge:</strong> This challenge required finding the path through a maze.
+A patch that fixes the vulnerability inadvertently altered the intended behavior, conflicting with the challenge&rsquo;s goals.</li><li><strong>Shellcode-Golf Challenge:</strong> This challenge demanded crafting a specific shellcode to pass a verification check.
+A patch that addressed the vulnerability ended up modifying the check logic, effectively changing the intended behavior.</li></ul><p>The third unsound patch occurred due to the complexity of inter-procedural logic,
+which presented challenges for Atlantis in accurately resolving the issue without disrupting the intended program flow.</p><details><summary>Click me to show the pseudo code</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>uint32_t</span> <span style=color:#a6e22e>foo</span>(<span style=color:#66d9ef>void</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>char</span> buf[<span style=color:#ae81ff>10</span>];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>ssize_t</span> size <span style=color:#f92672>=</span> <span style=color:#a6e22e>read</span>(<span style=color:#ae81ff>0</span>, buf, <span style=color:#66d9ef>sizeof</span>(buf) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>    buf[size] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;\0&#39;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>uint32_t</span> res <span style=color:#f92672>=</span> <span style=color:#a6e22e>atoi</span>(buf);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> res;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main_loop</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>) 
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>foo</span>();
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><p>When a <code>read</code> operation fails due to empty input, the <code>size</code> variable becomes <code>-1</code>,
+leading to a stack underflow and subsequent crash.
+While Atlantis’s patch system successfully addresses the root cause and prevents an ASAN crash,
+it inadvertently introduces an infinite loop due to the lack of handling for empty input within the main loop.
+As a result, this patch is deemed unsound because it fails to fully resolve the issue in a functional and robust manner.</p><h2 id=team-atlantas-next-steps>Team Atlanta&rsquo;s Next Steps</h2><p>Frankly, Atlantis still has a long way to go before becoming a seamless autonomous CTF competitor for pwnable challenges,
+which remains one of our team’s long-term goals.</p><p>To move closer to this vision, we are focusing on the following improvements to create a fully autonomous CTF pwner agent:</p><ul><li><p><strong>Challenge Understanding:</strong><br>While we concentrate on pwnable challenges,
+modern pwnables often come in diverse formats, such as kernel drivers and patched browsers.
+Atlantis needs to identify the challenge format and generate appropriate analysis code to handle these variations,
+aiming for more general-purpose functionality.</p></li><li><p><strong>Binary Analysis Support:</strong><br>Currently, Atlantis supports only source code repositories.
+Since many CTF challenges are distributed as binaries,
+we plan to integrate our own decompilation framework to enable binary analysis.
+This approach will offer a tailored experience, moving beyond existing tools like IDA Pro to provide more comprehensive support.</p></li><li><p><strong>Automatic Exploit Generation:</strong><br>At present, Atlantis can only generate Proof-of-Concept (PoC) code to trigger vulnerabilities.
+Our goal is to enable the generation of more powerful exploits,
+such as arbitrary read/write primitives, expanding its utility and effectiveness in real-world scenarios.</p></li><li><p><strong>Customized LLM Models:</strong><br>We are working on customizing LLM models specifically for security analysis.
+Tailored models could reduce the need for sophisticated prompts, simplify our system architecture,
+and improve both speed and accessibility, making Atlantis more efficient and user-friendly.</p></li></ul><p>By addressing these challenges, we aim to push the boundaries of AI in cybersecurity and bring Atlantis closer to becoming a fully autonomous and versatile competitor.</p><h2 id=the-ending-note>The Ending Note</h2><p>As someone from a generation that grew up learning computer science through CTF competitions,
+I can confidently say that CTFs have been instrumental in teaching us about operating systems and security.
+Looking ahead, I sincerely hope that CTFs will once again serve as a platform to teach us how to develop new language models and agents for security research.</p><p>I hope our first step in TKCTF 2024 inspires more researchers to join this vibrant and innovative community.
+If you’re passionate about AI or security, I invite you to follow us on Twitter/X (<a href=https://x.com/TeamAtlanta24 target=_blank>@TeamAtlanta24</a>
+)
+and join us on this exciting journey.</p><div style=display:flex;justify-content:center;gap:10px><img title="image title" loading=lazy decoding=async class="img img-fluid img-center" width=500 height=333 src=/images/blog/tkctf2024/1000_hubc84dd38ca380d7980933e68cb365cc8_676194_500x0_resize_q100_lanczos.JPG alt=alter-text onerror='this.onerror="null",this.src="/images/blog/tkctf2024/1000_hubc84dd38ca380d7980933e68cb365cc8_676194_500x0_resize_q100_lanczos.JPG"'>
+<img title="image title" loading=lazy decoding=async class="img img-fluid img-center" width=500 height=333 src=/images/blog/tkctf2024/thanks_hub86d4d21206deca5ab56210b0e598c44_680739_500x0_resize_q100_lanczos.JPG alt=alter-text onerror='this.onerror="null",this.src="/images/blog/tkctf2024/thanks_hub86d4d21206deca5ab56210b0e598c44_680739_500x0_resize_q100_lanczos.JPG"'></div><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>Fully sound patches address root causes while preserving correct system behavior.&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><div class="row items-start justify-between"><div class="lg:col-5 mb-10 flex items-center lg:mb-0"><h5 class=mr-3>Tags :</h5><ul><li class=inline-block><a class="bg-theme-light hover:bg-primary dark:bg-darkmode-theme-light dark:hover:bg-darkmode-primary dark:hover:text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/atlantis-crs/>Atlantis crs</a></li></ul></div><div class="lg:col-4 flex items-center"><div class=share-icons><h5 class=share-title>Share :</h5><a class="share-link share-facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fteam-atlanta.github.io%2fblog%2fpost-tkctf-2024%2f" target=_blank rel=noopener aria-label="share facebook"><span class=share-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg></span></a><a class="share-link share-twitter" href="https://twitter.com/intent/tweet/?text=Share&amp;url=https%3a%2f%2fteam-atlanta.github.io%2fblog%2fpost-tkctf-2024%2f" target=_blank rel=noopener aria-label="share twitter"><span aria-hidden=true class=share-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5.0-4.55 2.04-4.55 4.54.0.36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3.0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35.0 12.92-6.92 12.92-12.93.0-.2.0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"/></svg></span></a><a class="share-link share-email" href="mailto:?subject=Share&amp;body=https%3a%2f%2fteam-atlanta.github.io%2fblog%2fpost-tkctf-2024%2f" target=_self rel=noopener aria-label="share email"><span aria-hidden=true class=share-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 4H2C.9 4 0 4.9.0 6v12c0 1.1.9 2 2 2h20c1.1.0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17.0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1.0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08.0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z"/></svg></span></a><a class="share-link share-reddit" href="https://reddit.com/submit/?url=https%3a%2f%2fteam-atlanta.github.io%2fblog%2fpost-tkctf-2024%2f&amp;resubmit=true&amp;title=Share" target=_blank rel=noopener aria-label="share reddit"><span aria-hidden=true class=share-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 11.5c0-1.65-1.35-3-3-3-.96.0-1.86.48-2.42 1.24-1.64-1-3.75-1.64-6.07-1.72.08-1.1.4-3.05 1.52-3.7.72-.4 1.73-.24 3 .5C17.2 6.3 18.46 7.5 20 7.5c1.65.0 3-1.35 3-3s-1.35-3-3-3c-1.38.0-2.54.94-2.88 2.22-1.43-.72-2.64-.8-3.6-.25-1.64.94-1.95 3.47-2 4.55-2.33.08-4.45.7-6.1 1.72C4.86 8.98 3.96 8.5 3 8.5c-1.65.0-3 1.35-3 3 0 1.32.84 2.44 2.05 2.84-.03.22-.05.44-.05.66.0 3.86 4.5 7 10 7s10-3.14 10-7c0-.22-.02-.44-.05-.66 1.2-.4 2.05-1.54 2.05-2.84zM2.3 13.37C1.5 13.07 1 12.35 1 11.5c0-1.1.9-2 2-2 .64.0 1.22.32 1.6.82-1.1.85-1.92 1.9-2.3 3.05zm3.7.13c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9.8 4.8c-1.08.63-2.42.96-3.8.96-1.4.0-2.74-.34-3.8-.95-.24-.13-.32-.44-.2-.68.15-.24.46-.32.7-.18 1.83 1.06 4.76 1.06 6.6.0.23-.13.53-.05.67.2.14.23.06.54-.18.67zm.2-2.8c-1.1.0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm5.7-2.13c-.38-1.16-1.2-2.2-2.3-3.05.38-.5.97-.82 1.6-.82 1.1.0 2 .9 2 2 0 .84-.53 1.57-1.3 1.87z"/></svg></span></a></div></div></div></article></div><div class="section pb-0"><h2 class="h3 mb-12">Related Posts</h2><div class=row><div class=lg:col-4><div class="bg-body dark:bg-darkmode-body"><picture><source srcset=/images/blog/asc-sqlite/sqlite-bug-finding_hu74f0b92a25ffe4a281fdd3139be11b7b_1377840_545x0_resize_q90_h2_lanczos_3.webp media="(max-width: 575px)"><source srcset=/images/blog/asc-sqlite/sqlite-bug-finding_hu74f0b92a25ffe4a281fdd3139be11b7b_1377840_600x0_resize_q90_h2_lanczos_3.webp media="(max-width: 767px)"><source srcset=/images/blog/asc-sqlite/sqlite-bug-finding_hu74f0b92a25ffe4a281fdd3139be11b7b_1377840_700x0_resize_q90_h2_lanczos_3.webp media="(max-width: 991px)"><source srcset=/images/blog/asc-sqlite/sqlite-bug-finding_hu74f0b92a25ffe4a281fdd3139be11b7b_1377840_1110x0_resize_q90_h2_lanczos_3.webp><img loading=lazy decoding=async src=/images/blog/asc-sqlite/sqlite-bug-finding_hu74f0b92a25ffe4a281fdd3139be11b7b_1377840_1110x0_resize_lanczos_3.png class="mb-6 w-full rounded img" alt="Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System" width=1024 height=768></picture><h4 class=mb-3><a href=/blog/post-asc-sqlite/>Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System</a></h4><ul class=mb-4><li class="mr-4 inline-block"><a href=/authors/hanqing-zhao/><i class="fa-regular fa-circle-user mr-2"></i>Hanqing Zhao</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-folder mr-2"></i>
+<a href=/categories/vulnerability-analysis/ class=ms-1>Vulnerability analysis</a></li></ul><p class=mb-6>Without knowing beforehand that the challenge project involved SQLite3, our team, Team Atlanta , entered our Cyber Reasoning System (CRS), named Atlantis, into the AI Cyber Challenge organized by ARPA-H, DARPA, and the White House .</p><a class="btn btn-outline-primary btn-sm" href=/blog/post-asc-sqlite/>Read More</a></div></div><div class=lg:col-4><div class="bg-body dark:bg-darkmode-body"><picture><source srcset=/images/blog/atl/team_hua298431885ad4762626086ea59b71217_2822632_545x0_resize_q90_h2_lanczos_3.webp media="(max-width: 575px)"><source srcset=/images/blog/atl/team_hua298431885ad4762626086ea59b71217_2822632_600x0_resize_q90_h2_lanczos_3.webp media="(max-width: 767px)"><source srcset=/images/blog/atl/team_hua298431885ad4762626086ea59b71217_2822632_700x0_resize_q90_h2_lanczos_3.webp media="(max-width: 991px)"><source srcset=/images/blog/atl/team_hua298431885ad4762626086ea59b71217_2822632_1110x0_resize_q90_h2_lanczos_3.webp><img loading=lazy decoding=async src=/images/blog/atl/team_hua298431885ad4762626086ea59b71217_2822632_1110x0_resize_lanczos_3.png class="mb-6 w-full rounded img" alt="Announcing Team Atlanta!" width=1821 height=1366></picture><h4 class=mb-3><a href=/blog/post-atl/>Announcing Team Atlanta!</a></h4><ul class=mb-4><li class="mr-4 inline-block"><a href=/authors/taesoo-kim/><i class="fa-regular fa-circle-user mr-2"></i>Taesoo Kim</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-folder mr-2"></i>
+<a href=/categories/announcement/ class=ms-1>Announcement</a></li></ul><p class=mb-6>Hello, world! We are Team Atlanta, the minds behind Atlantis, our innovative AI-driven cybersecurity solution competing in the prestigious DARPA AIxCC .</p><a class="btn btn-outline-primary btn-sm" href=/blog/post-atl/>Read More</a></div></div></div></div></div></section></main><footer class="bg-theme-light dark:bg-darkmode-theme-light"><div class=container><div class="row items-center py-10"><div class="lg:col-3 mb-8 text-center lg:mb-0 lg:text-left"><a class="navbar-brand inline-block" href=/>Team Atlanta</a></div><div class="lg:col-6 mb-8 text-center lg:mb-0"><ul><li class="m-3 inline-block"><a href=/about/>About</a></li></ul></div><div class="lg:col-3 mb-8 text-center lg:mb-0 lg:mt-0 lg:text-right"><ul class=social-icons><li><a target=_blank aria-label=www rel="nofollow noopener" href=https://team-atlanta.github.io/><i class="fa-solid fa-house"></i></a></li><li><a target=_blank aria-label=twitter rel="nofollow noopener" href=https://x.com/TeamAtlanta24><i class="fab fa-twitter"></i></a></li><li><a target=_blank aria-label=github rel="nofollow noopener" href=https://github.com/Team-Atlanta/><i class="fab fa-github"></i></a></li></ul></div></div></div><div class="border-border dark:border-darkmode-border border-t py-7"><div class="text-light dark:text-darkmode-light container text-center"><p>Designed & Developed by <a href=https://zeon.studio target=_blank>Zeon Studio</a></p></div></div></footer><script crossorigin=anonymous integrity="sha256-JfCl05bpANVgFfythUbUTL7SszmLQ7wWqsqrkYSOBkU=" src=/js/script.min.25f0a5d396e900d56015fcad8546d44cbed2b3398b43bc16aacaab91848e0645.js></script><script defer async crossorigin=anonymous integrity="sha256-B6xkgfh/Kvqv5KhwfzCl2bDxX83d75UmDJHTJqlOs3M=" src=/js/script-lazy.min.07ac6481f87f2afaafe4a8707f30a5d9b0f15fcdddef95260c91d326a94eb373.js></script><script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/service-worker.js")</script></body></html>

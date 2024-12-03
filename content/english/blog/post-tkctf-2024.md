@@ -2,7 +2,7 @@
 title: "Hacking Redefined: How LLM Agents Took on University Hacking Competition"
 meta_title: ""
 description: "Atlantis in CTF competitions"
-date: 2024-12-01T12:15:00Z
+date: 2024-12-03T12:15:00Z
 image: "/images/blog/tkctf2024/ai-vs-human.png"
 categories: ["Milestone"]
 author: "Hanqing Zhao"
