@@ -7,31 +7,23 @@ image: "/images/blog/tkctf2024/ai-vs-human.png"
 categories: ["Milestone"]
 author: "Hanqing Zhao"
 tags: ["Atlantis CRS"]
-draft: true
+draft: false
 ---
 
-For the first time, 
-we deployed our hybrid system powered by LLM agents, [Atlantis](/blog/post-atl), 
-to participate in Georgia Tech’s flagship CTF competition, 
-[TKCTF 2024](https://tc.gts3.org/cs6265/2024-fall/ctf.html).
-During the competition, 
-Atlantis focused on two key areas: 
+For the first time, we deployed our hybrid system, 
+powered by LLM agents—[Atlantis](/blog/post-atl)—to compete in Georgia Tech’s flagship CTF event, 
+[TKCTF 2024](https://tc.gts3.org/cs6265/2024-fall/ctf.html). 
+During the competition, Atlantis concentrated on two pivotal areas: 
 vulnerability analysis and automatic vulnerability remediation. 
-Impressively, our system identified 10 vulnerabilities and 
-generated 7 sound patches[^1], 
-demonstrating the effectiveness of our approach in a real-world 
-hacking competition.
+Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches[^1], 
+showcasing the practicality and promise of our approach in a real-world hacking competition.
 
-In this blog, 
-I’ll share some interesting observations and key lessons we learned during the CTF. 
-Notably, following the AIxCC competition, 
-we plan to open-source all the details of our system, 
-in line with AIxCC competition rules.
+In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience. 
+As we prepare to open-source the full details of our system following AIxCC competition rules, 
+this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.
 
-While this might seem like just another step forward for CTF competitions, 
-it represents a significant milestone in our journey toward advancing LLM-based security research. 
-The achievements of Atlantis at TKCTF would not have been possible without 
-the dedication and expertise of our incredible team:
+What might appear as another incremental step in CTF competitions actually marks a significant leap in our journey. 
+The success of Atlantis at TKCTF was a testament to the dedication and expertise of our exceptional team: 
 [Andrew Chin](/authors/andrew-chin),
 [Jiho Kim](/authors/jiho-kim/),
 [Gyejin Lee](/authors/gyejin-lee/),
@@ -43,51 +35,56 @@ the dedication and expertise of our incredible team:
 We invite you to follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
 to stay updated on our work at the intersection of AI and security.
 
-[^1]: Fully sound patches not only address the actual root causes
-but also keep the correct behaviors.
+[^1]: Fully sound patches address root causes while preserving correct system behavior.
+
 
 ## AIxCC, Atlantis CRS, and CTF
 
-AI Cyber Challenge (AIxCC) is a two year competition that 
-aims to advance the state of the art in AI-based security research.
-We, Team Atlanta, are one of the 7 final teams, proposing a new cyber reasoning system, 
+<div style="display: flex; justify-content: center; gap: 10px;">
+  {{< image src="images/blog/tkctf2024/aixcc-finalists.png" caption="AIxCC Finalists" alt="AIxCC Finalists" height="" width="600" position="center" option="q100" class="img-fluid" title="AIxCC Finalists" webp="false" >}}
+  {{< image src="images/blog/tkctf2024/poster.jpeg" alt="TKCTF Poster" height="" width="400" position="center" option="q100" class="img-fluid" title="TKCTF Poster" webp="false" >}}
+</div>
+
+[AI Cyber Challenge (AIxCC)](https://aicyberchallenge.com/) is 
+a two-year competition designed to advance the state of the art in AI-based security research. 
+We, Team Atlanta, are proud to be one of the 7 finalist teams, presenting a novel cyber reasoning system, 
 [Atlantis CRS](/blog/post-atl).
 
-The core idea of our system is simple:
-to emulate the mindset of experienced security researchers and 
-hackers through LLM agents, 
-enhanced with advanced program analysis techniques.
+The concept behind our system is straightforward: 
+emulate the mindset of skilled security researchers and hackers using LLM agents, 
+augmented by advanced program analysis techniques.
 
-As decade-long veterans of CTF competitions, 
-we inherently want to bring AI and LLMs to CTF competitions.
-This time, we directly run our system along with human players, focusing on
-analyzing the source code repos and patching discovered vulnerabilities.
+As seasoned veterans of CTF competitions, we’ve always aspired to bring AI and LLMs into the CTF arena.
+This time, we deployed our system alongside human players, concentrating on analyzing source code repositories and patching identified vulnerabilities. 
+Georgia Tech’s CTF competition, TKCTF, offered the perfect setting to put our system to the test.
+
+The challenges were designed by students and staff from Georgia Tech’s CS6265 Fall 2024 class. 
+In addition to Georgia Tech participants, teams from across the University System of Georgia (USG) joined the competition. 
+The winning team received a $1,000 prize.
+
+{{< image src="images/blog/tkctf2024/dashboard.png" caption="Atlantis Dashboard" alt="Atlantis Dashboard" height="" width="600" position="center" option="q100" class="img-fluid" title="Atlantis Dashboard" webp="false" >}}
+
+Over the course of the competition, we ran Atlantis CRS on 12 different CTF challenges, 
+each with a time limit of approximately 4 hours. 
+By the end, our system successfully identified 10 vulnerabilities and generated 7 robust patches.
 
 
-{{< image src="images/blog/tkctf2024/dashboard.png" caption="" alt="alter-text" height="" width="600" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
+## Recap of Atlantis's Performance
 
-Overall,
-we run the CRS on 12 different CTF challenges,
-each with ~4 hours.
-Finally, it identified 10 vulnerabilities and generated 7 sound patches.
-
-
-## Interesting Challenges Solved by Atlantis
-
-As an 
+While the overall difficulty of the challenges was moderate, 
+Atlantis successfully identified most of the intended memory safety vulnerabilities 
+and even uncovered two unintended vulnerabilities. 
+The competition also provided several interesting cases and valuable lessons, 
+which I’ll share below.
 
 ### Maze Puzzles
 
-### Discovering unintended vulnerabilities
-
-Apart from the intended vulnerabilities,
-Atlantis also discovered two unintended vulnerabilities.
-
-### Undiscovered vulnerabilities due to logic flaws
-
+One of the challenges was a maze puzzle. 
+It generated a random maze where the intended solution required 
+players to write an algorithm to parse the map and find the path through the maze.
 
 <details>
-  <summary>Click me to show the maze puzzle </summary>
+  <summary>Click to view an example of the maze puzzle</summary>
 
 ```shell
 ./target 
@@ -146,31 +143,41 @@ Steps: 0
 ```
 </details>
 
+Interestingly, 
+Atlantis correctly navigated the maze through several runs of trial and error. 
+This demonstrated the ability of LLM agents to enhance program analysis 
+by “understanding” the high-level intent of a program.
+
+### Discovering Unintended Vulnerabilities
+
+Beyond the intended vulnerabilities, Atlantis also discovered two unintended ones:
+- Floating Point Exception (FPE): A vulnerability causing stack underflow.
+- Insufficient Input Validation: An unchecked empty input led to a stack buffer overflow.
+
+Although the challenges were not overly complex, this highlights Atlantis’s potential in automated testing and vulnerability discovery.
+
+### Undiscovered Vulnerabilities Due to Logic Flaws
+
+Atlantis struggled with challenges involving logical flaws. For example, in the two-sum challenge:
+- Challenge Details: 
+The task didn’t involve memory safety issues but 
+required exploiting unordered_map hash collisions to manipulate the control flow in the twoSum function.
+- Missed Opportunity: Since Atlantis was tuned to prioritize memory safety issues, 
+it overlooked this logic-based vulnerability.
+
+This underscored the need to enhance Atlantis’s capabilities in analyzing logical vulnerabilities, an area we plan to focus on in future improvements.
 
 ## Case Studies: How Atlantis Patches Vulnerabilities
 
-One of the key features of Atlantis is its ability to generate patches for vulnerabilities.
+A standout feature of Atlantis is its capability to generate patches for discovered vulnerabilities. 
+In this CTF, Atlantis produced 7 fully sound patches, 
+showcasing both the system’s confidence and its ease in handling the challenges, which were relatively straightforward.
 
+In this section, I’ll provide a summary of key cases and the patching decisions made by Atlantis’s agent system.
 
 
 <details>
   <summary> Unsafe functions replaced by safer ones </summary>
-
-```diff
-diff --git a/bitcoin.c b/bitcoin.c
-index 514e099..d96a44a 100755
---- a/bitcoin.c
-+++ b/bitcoin.c
-@@ -46,7 +46,7 @@ void UnderConstruction() {
- void vuln(){
-    char buf[INPSIZE];
-    printf("this file is under construction\n");
--   gets(buf);
-+   fgets(buf, INPSIZE, stdin);
-    printf("%s\n",buf);
-    return;
- }
-```
 
 ```diff
 diff --git a/double_trouble.c b/double_trouble.c
@@ -191,8 +198,14 @@ index 83a693b..e8f0737 100644
 </details>
 
 
+One of the principles guiding Atlantis is avoiding the use of unsafe functions. 
+For instance, in one case, 
+Atlantis replaced `strcpy` with `strncpy` and added a null termination check to ensure the safety of string operations. 
+Given that the C language inherently includes many unsafe functions, 
+Atlantis takes a conservative approach by systematically replacing these functions with their safer counterparts wherever possible.
+
 <details>
-  <summary> Add suffcient bounds checking </summary>
+  <summary> Bounds checking and termination handling </summary>
 
 ```diff
 diff --git a/target.c b/target.c
@@ -250,6 +263,11 @@ index 5df7c9c..c858436 100644
 ```
 
 </details>
+
+Out-of-bounds vulnerabilities are among the most common issues in software. 
+Atlantis addresses this by employing dedicated optimizations to thoroughly check array and memory bounds, 
+ensuring that user inputs are constrained within a safe range. 
+This proactive approach minimizes the risk of unintended memory access and enhances overall software reliability.
 
 
 <details>
@@ -309,8 +327,15 @@ index c364280..712ac08 100755
 </details>
 
 
+Atlantis typically aims to keep patches minimal, 
+modifying the fewest possible lines to reduce the risk of altering intended code behavior or introducing unsoundness. 
+However, after several iterations, if Atlantis cannot produce an optimal minimal patch, 
+it will optionally rewrite the entire function to comprehensively address the vulnerability. 
+This approach balances precision with robustness, ensuring both safety and functionality. 
+
+
 <details>
-  <summary> Add error handling </summary>
+  <summary> Error handling correction </summary>
 
 ```diff
 diff --git a/stackmachine.c b/stackmachine.c
@@ -347,26 +372,31 @@ index 7b95b62..d00d75f 100644
 ```
 </details>
 
-Honestly, the patches are far from demonstrating the potential of Atlantis,
-as the challenges are not sophisticated enough. 
-(check our [SQLite3 zero day](/blog/post-asc-sqlite) for more sophisticated ones)
-Since then, our system has gone through multiple rounds of improvements,
-and we will open-source all the details of our system after AIxCC competition.
 
-### Unsound patches
+For bugs involving inter-procedural logic, 
+Atlantis analyzes cross-procedural data flow and incorporates error handling into its patches. 
+For instance, when addressing a vulnerability in `stackmachine.c`, 
+Atlantis correctly handled the error case by introducing logic to return a special error code, ensuring robust and predictable behavior.
 
-Atlantis failed to patch three of the challenges.
-Two of them are due to the puzzle-like nature of the challenges.
-For example, 
-the `maze` challenge only requires finding the path through the maze, 
-a patch that fixes the vulnerability changes the intended behavior.
+That said, the patches produced during this competition don’t fully showcase Atlantis’s potential, 
+as the challenges lacked sophistication. 
+For a more advanced example, check out our work on the [SQLite3 zero-day vulnerability](/blog/post-asc-sqlite). 
+Since then, Atlantis has undergone multiple rounds of improvement, 
+and we remain committed to open-sourcing the full details of our system after the AIxCC competition.
 
-Also, the `shellcode-golf` challenge requires finding 
-a special shellcode to pass the check.
-A patch that fixes the vulnerability changes the check logic,
-thus changes the intended behavior.
 
-Another one is due to the complexity of inter-procedural logics.
+### Unsound Patches
+
+Atlantis was unable to patch three of the challenges due to unsound patches. 
+Two of these failures stemmed from the puzzle-like nature of the challenges:
+
+- **Maze Challenge:** This challenge required finding the path through a maze. 
+A patch that fixes the vulnerability inadvertently altered the intended behavior, conflicting with the challenge's goals.
+- **Shellcode-Golf Challenge:** This challenge demanded crafting a specific shellcode to pass a verification check. 
+A patch that addressed the vulnerability ended up modifying the check logic, effectively changing the intended behavior.
+
+The third unsound patch occurred due to the complexity of inter-procedural logic, 
+which presented challenges for Atlantis in accurately resolving the issue without disrupting the intended program flow.
 
 <details>
   <summary> Click me to show the pseudo code </summary>
@@ -387,36 +417,55 @@ void main_loop() {
 ```
 </details>
 
-When read fails due to the empty input, 
-size becomes -1 and stack-underflow occurs. 
-Our patch system fixes this root cause and prevent from asan crash, 
-but it loops infinitely due to lack of handling empty input in main loop. 
-In this way, we consider this patch is unsound.
-
+When a `read` operation fails due to empty input, the `size` variable becomes `-1`, 
+leading to a stack underflow and subsequent crash. 
+While Atlantis’s patch system successfully addresses the root cause and prevents an ASAN crash, 
+it inadvertently introduces an infinite loop due to the lack of handling for empty input within the main loop. 
+As a result, this patch is deemed unsound because it fails to fully resolve the issue in a functional and robust manner.
 
 
 ## Team Atlanta's Next Steps
-Frankly,
-Atlantis still has a long way to go to be a seamless autonomous CTF competitor,
-which is also one of our team's goals.
 
-Specifically,
-we are working on the following improvements for creating a seamless autonomous CTF pwner agent:
-- Binary analysis for better vulnerability understanding:
-Currently, Atlantis can only support source code repos,
-which limits its capability in CTF competitions.
-- Automatic Exploit Generation; 
-At the moment, Atlantis can only generate Proof-of-Concept (PoC) code to trigger vulnerabilities,
-which is far from a real exploit.
-- Customized LLM models:
-We're working on customizing LLM models for better security analysis purpose,
-which can, ideally, reduce the requirements of sophisticated prompts and
-reduce the complexity of our system, and thus make it faster and more accessible.
+Frankly, Atlantis still has a long way to go before becoming a seamless autonomous CTF competitor for pwnable challenges, 
+which remains one of our team’s long-term goals.
 
+To move closer to this vision, we are focusing on the following improvements to create a fully autonomous CTF pwner agent:
 
+- **Challenge Understanding:**  
+  While we concentrate on pwnable challenges, 
+  modern pwnables often come in diverse formats, such as kernel drivers and patched browsers. 
+  Atlantis needs to identify the challenge format and generate appropriate analysis code to handle these variations, 
+  aiming for more general-purpose functionality.
 
-## The Author's Conclusion
+- **Binary Analysis Support:**  
+  Currently, Atlantis supports only source code repositories. 
+  Since many CTF challenges are distributed as binaries, 
+  we plan to integrate our own decompilation framework to enable binary analysis. 
+  This approach will offer a tailored experience, moving beyond existing tools like IDA Pro to provide more comprehensive support.
 
+- **Automatic Exploit Generation:**  
+  At present, Atlantis can only generate Proof-of-Concept (PoC) code to trigger vulnerabilities. 
+  Our goal is to enable the generation of more powerful exploits, 
+  such as arbitrary read/write primitives, expanding its utility and effectiveness in real-world scenarios.
 
-Follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
-if you're interested in AI or security.
+- **Customized LLM Models:**  
+  We are working on customizing LLM models specifically for security analysis. 
+  Tailored models could reduce the need for sophisticated prompts, simplify our system architecture, 
+  and improve both speed and accessibility, making Atlantis more efficient and user-friendly.
+
+By addressing these challenges, we aim to push the boundaries of AI in cybersecurity and bring Atlantis closer to becoming a fully autonomous and versatile competitor.
+
+## The Ending Note
+
+As someone from a generation that grew up learning computer science through CTF competitions, 
+I can confidently say that CTFs have been instrumental in teaching us about operating systems and security. 
+Looking ahead, I sincerely hope that CTFs will once again serve as a platform to teach us how to develop new language models and agents for security research.
+
+I hope our first step in TKCTF 2024 inspires more researchers to join this vibrant and innovative community. 
+If you’re passionate about AI or security, I invite you to follow us on Twitter/X ([@TeamAtlanta24](https://x.com/TeamAtlanta24)) 
+and join us on this exciting journey.
+
+<div style="display: flex; justify-content: center; gap: 10px;">
+  {{< image src="images/blog/tkctf2024/1000.JPG" caption="" alt="alter-text" height="" width="500" position="center" option="q100" class="img-fluid" title="image title"  webp="false" >}}
+  {{< image src="images/blog/tkctf2024/thanks.JPG" alt="alter-text" height="" width="500" position="center" option="q100" class="img-fluid" title="image title" webp="false" >}}
+</div>
