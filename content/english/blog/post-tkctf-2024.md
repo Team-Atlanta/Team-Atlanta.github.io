@@ -62,14 +62,16 @@ The challenges were designed by students and staff from Georgia Tech’s CS6265 
 In addition to Georgia Tech participants, teams from across the University System of Georgia (USG) joined the competition. 
 The winning team received a $1,000 prize.
 
+
+
+
+## Recap of Atlantis's Performance
+
 {{< image src="images/blog/tkctf2024/dashboard.png" caption="Atlantis Dashboard" alt="Atlantis Dashboard" height="" width="600" position="center" option="q100" class="img-fluid" title="Atlantis Dashboard" webp="false" >}}
 
 Over the course of the competition, we ran Atlantis CRS on 12 different CTF challenges, 
 each with a time limit of approximately 4 hours. 
 By the end, our system successfully identified 10 vulnerabilities and generated 7 robust patches.
-
-
-## Recap of Atlantis's Performance
 
 While the overall difficulty of the challenges was moderate, 
 Atlantis successfully identified most of the intended memory safety vulnerabilities 
