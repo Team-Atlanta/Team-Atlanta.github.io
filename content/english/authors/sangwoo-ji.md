@@ -17,4 +17,4 @@ social:
     link: mailto:sangwoo_.ji@samsung.com
 ---
 
-AI agent for bug discovery & exploitation
+AI Agents for Bug Discovery & Exploitation

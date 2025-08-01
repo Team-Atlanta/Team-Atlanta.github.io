@@ -25,4 +25,4 @@ social:
     link: mailto:jwang3453@gatech.edu
 ---
 
-AI agent for bug discovery & exploitation
+AI Agents for Bug Discovery & Exploitation

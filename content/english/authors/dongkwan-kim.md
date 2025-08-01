@@ -25,4 +25,4 @@ social:
     link: mailto:0xdkay@gmail.com
 ---
 
-AI agent for bug discovery & exploitation
+AI Agents for Bug Discovery & Exploitation

@@ -22,4 +22,4 @@ social:
     link: mailto:s.park5@samsung.com
 ---
 
-AI agent for bug discovery & exploitation
+AI Agents for Bug Discovery & Exploitation
