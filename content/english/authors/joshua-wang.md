@@ -25,4 +25,4 @@ social:
     link: mailto:jwang3453@gatech.edu
 ---
 
-Linux Kernel
+AI agent for bug discovery & exploitation

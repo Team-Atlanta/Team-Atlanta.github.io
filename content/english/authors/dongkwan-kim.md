@@ -25,4 +25,4 @@ social:
     link: mailto:0xdkay@gmail.com
 ---
 
-LLM Exploit Agent
+AI agent for bug discovery & exploitation

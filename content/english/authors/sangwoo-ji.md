@@ -17,4 +17,4 @@ social:
     link: mailto:sangwoo_.ji@samsung.com
 ---
 
-Linux Kernel
+AI agent for bug discovery & exploitation

@@ -13,10 +13,6 @@ social:
     icon: fa-brands fa-github
     link: https://github.com/thdusdl1219
 
-  - name: twitter
-    icon: fa-brands fa-twitter
-    link: https://x.com/_runiel
-
   - name: linkedin
     icon: fa-brands fa-linkedin
     link: https://www.linkedin.com/in/soyeon-park-71415b118/
@@ -26,4 +22,4 @@ social:
     link: mailto:s.park5@samsung.com
 ---
 
-Integration Lead
+AI agent for bug discovery & exploitation
