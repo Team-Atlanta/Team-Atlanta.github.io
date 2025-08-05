@@ -21,4 +21,4 @@ social:
     link: mailto:achin34@gatech.edu
 ---
 
-LLM Lead
+C CRS
