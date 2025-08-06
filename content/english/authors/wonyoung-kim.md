@@ -1,7 +1,7 @@
 ---
 title: Wonyoung Kim
 email: won10.kim@gmail.com
-image: "/images/wonyoung-kim.jpg"
+image: "/images/wonyoung-kim.png"
 description: Master Student at KAIST
 social:
   - name: github
