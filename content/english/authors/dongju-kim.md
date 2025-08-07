@@ -1,0 +1,24 @@
+---
+title: Dongju Kim
+email: molgryn@gmail.com
+image: "/images/dongju-kim.jpg"
+description: 
+social:
+  - name: www
+    icon: fa-solid fa-house
+    link: https://molgryn.me/
+
+  - name: linkedin
+    icon: fa-brands fa-linkedin
+    link: https://www.linkedin.com/in/molgryn
+
+  - name: github
+    icon: fa-brands fa-github
+    link: https://github.com/molgryn
+
+  - name: email
+    icon: fa-solid fa-envelope
+    link: mailto:molgryn@gmail.com
+---
+
+JAVA
