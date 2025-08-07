@@ -21,4 +21,4 @@ social:
     link: mailto:molgryn@gmail.com
 ---
 
-JAVA
+Java
