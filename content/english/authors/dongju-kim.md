@@ -8,13 +8,13 @@ social:
     icon: fa-solid fa-house
     link: https://molgryn.me/
 
-  - name: linkedin
-    icon: fa-brands fa-linkedin
-    link: https://www.linkedin.com/in/molgryn
-
   - name: github
     icon: fa-brands fa-github
     link: https://github.com/molgryn
+
+  - name: linkedin
+    icon: fa-brands fa-linkedin
+    link: https://www.linkedin.com/in/molgryn
 
   - name: email
     icon: fa-solid fa-envelope
