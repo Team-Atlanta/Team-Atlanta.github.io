@@ -1,7 +1,7 @@
 ---
 title: Yeonghyeon Cha
 email: phink608@gmail.com
-image: "/images/yeonghyeon.png"
+image: "/images/yeonghyeon.jpg"
 description: 
 social:
   - name: linkedin
