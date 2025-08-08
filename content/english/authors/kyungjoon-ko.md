@@ -2,7 +2,6 @@
 title: Kyungjoon Ko
 email: kj2648.ko@samsung.com
 image: "/images/kyungjoon-ko.jpg"
-weight: 3
 description: Samsung Research
 social:
   - name: github
