@@ -13,4 +13,4 @@ social:
     link: mailto:kaleb.kim@samsung.com
 ---
 
-Linux Kernel
+Multilang CRS
