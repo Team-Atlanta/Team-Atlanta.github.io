@@ -17,4 +17,4 @@ social:
     link: mailto:jkim4050@gatech.edu
 ---
 
-Linux Kernel
+Multilang CRS
