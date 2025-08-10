@@ -13,4 +13,4 @@ social:
     link: mailto:do_hyeok.kim@samsung.com
 ---
 
-Linux Kernel
+Multilang CRS
