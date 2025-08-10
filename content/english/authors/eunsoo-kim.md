@@ -17,4 +17,4 @@ social:
     link: mailto:euns.kim@samsung.com
 ---
 
-Linux Kernel
+Multilang CRS
