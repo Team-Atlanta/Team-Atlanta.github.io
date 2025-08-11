@@ -1,26 +1,29 @@
-<div class="bg-body dark:bg-darkmode-body">
+<div class="modern-card p-6 group">
   {{ $image:= .Params.image }}
   {{ if $image }}
-    {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mb-6 w-full rounded") }}
+    <div class="relative mb-6 overflow-hidden rounded-xl">
+      {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "w-full group-hover:scale-105 transition-transform duration-300") }}
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </div>
   {{ end }}
-  <h4 class="mb-3">
-    <a href="{{ .RelPermalink }}">
+  <h4 class="mb-3 group-hover:text-primary transition-colors duration-300">
+    <a href="{{ .RelPermalink }}" class="text-gradient hover:opacity-80">
       {{ .Title }}
     </a>
   </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/">
-        <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
+  <ul class="mb-4 flex flex-wrap gap-4 text-sm text-muted dark:text-darkmode-muted">
+    <li class="flex items-center">
+      <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/" class="hover:text-primary transition-colors duration-300">
+        <i class="fa-regular fa-circle-user mr-2 text-primary"></i>{{ .Params.author }}
       </a>
     </li>
-    <li class="mr-4 inline-block">
-      <i class="fa-regular fa-folder mr-2"></i>
+    <li class="flex items-center">
+      <i class="fa-regular fa-folder mr-2 text-secondary"></i>
       {{ $categories:= .Params.categories }}
       {{ range $i,$p:= $categories }}
         <a
           href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"
-          class="ms-1"
+          class="hover:text-primary transition-colors duration-300"
           >{{ . | humanize }}{{ if ne $i (sub (len $categories) 1) }}
             {{ ", " }}
           {{ end }}
@@ -28,8 +31,9 @@
       {{ end }}
     </li>
   </ul>
-  <p class="mb-6">{{ .Summary }}</p>
-  <a class="btn btn-outline-primary btn-sm" href="{{ .RelPermalink }}">
+  <p class="mb-6 text-muted dark:text-darkmode-muted leading-relaxed">{{ .Summary }}</p>
+  <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center" href="{{ .RelPermalink }}">
     {{ i18n "read_more" }}
+    <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
   </a>
 </div>

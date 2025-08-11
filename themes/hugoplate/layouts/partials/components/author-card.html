@@ -1,28 +1,35 @@
 <div
-  class="bg-theme-light dark:bg-darkmode-theme-light rounded p-8 text-center">
+  class="modern-card p-8 text-center group hover:scale-105 transition-all duration-300">
   {{ $image:= .Params.image }}
   {{ if $image }}
-    {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mx-auto mb-6 rounded" "size" "120x120") }}
+    <div class="relative mb-6 inline-block">
+      {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mx-auto rounded-full ring-4 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300" "size" "120x120") }}
+      <div class="absolute inset-0 rounded-full bg-gradient-modern opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+    </div>
   {{ else if .Params.Email }}
-    <img
-      class="mx-auto mb-6 rounded"
-      alt="{{ .Title }}"
-      height="120"
-      width="120"
-      src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=128&pg&d=identicon" />
+    <div class="relative mb-6 inline-block">
+      <img
+        class="mx-auto rounded-full ring-4 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300"
+        alt="{{ .Title }}"
+        height="120"
+        width="120"
+        src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=128&pg&d=identicon" />
+      <div class="absolute inset-0 rounded-full bg-gradient-modern opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+    </div>
   {{ end }}
-  <h4 class="mb-3">
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  <h4 class="mb-3 text-gradient">
+    <a href="{{ .RelPermalink }}" class="hover:text-primary transition-colors duration-300">{{ .Title }}</a>
   </h4>
-  <p class="mb-4">
+  <p class="mb-6 text-muted dark:text-darkmode-muted leading-relaxed">
     {{ .Summary }}
   </p>
-  <ul class="social-icons">
+  <ul class="social-icons flex justify-center gap-3">
     {{ range .Params.social }}
       <li>
-        <a href="{{ .link | safeURL }}" target="_blank" rel="noopener nofollow">
+        <a href="{{ .link | safeURL }}" target="_blank" rel="noopener nofollow" 
+           class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-modern text-white hover:scale-110 transition-transform duration-300 shadow-lg hover:shadow-xl">
           <span class="sr-only">{{ .title }}</span>
-          <i class="{{ .icon }}"></i>
+          <i class="{{ .icon }} text-sm"></i>
         </a>
       </li>
     {{ end }}

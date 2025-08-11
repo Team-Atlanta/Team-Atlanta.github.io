@@ -12,7 +12,7 @@
       {{ $teamMembers := dict }}
       {{ $totalMembers := 0 }}
       {{ $allMembers := slice }}
-      
+
       <!-- Group authors by team -->
       {{ range .RegularPages }}
         {{ $totalMembers = add $totalMembers 1 }}
@@ -66,16 +66,16 @@
               </div>
             </div>
           </div>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {{ range $leader }}
-              <div class="member-card leader-card bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 text-center border border-amber-100 dark:border-amber-800 relative overflow-hidden group transform hover:scale-105" 
-                   data-name="{{ .Title | lower }}" 
-                   data-description="{{ .Params.description | lower }}" 
+              <div class="member-card leader-card bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 text-center border border-amber-100 dark:border-amber-800 relative overflow-hidden group transform hover:scale-105"
+                   data-name="{{ .Title | lower }}"
+                   data-description="{{ .Params.description | lower }}"
                    tabindex="0">
-                
+
                 <div class="absolute -top-20 -right-20 w-40 h-40 bg-amber-100/30 dark:bg-amber-800/20 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                
+
                 <div class="absolute top-6 right-6 z-10">
                   <div class="bg-amber-100 dark:bg-amber-800/50 text-amber-700 dark:text-amber-300 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                     LEADER
@@ -99,12 +99,12 @@
                   <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
                     {{ .Params.affiliation | default .Params.description }}
                   </p>
-                  
+
                   <div class="flex justify-center space-x-3">
                     {{ range .Params.social }}
-                      <a href="{{ .link | safeURL }}" 
-                         target="_blank" 
-                         rel="noopener nofollow" 
+                      <a href="{{ .link | safeURL }}"
+                         target="_blank"
+                         rel="noopener nofollow"
                          class="w-10 h-10 bg-gray-100 dark:bg-gray-700 hover:bg-amber-500 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
                          aria-label="{{ .name }}">
                         <i class="{{ .icon }} text-sm"></i>
@@ -126,17 +126,17 @@
           {{ $description := index $teamDescriptions $team }}
           {{ $icon := index $teamIcons $team }}
           {{ $color := index $teamColors $team }}
-          
+
           <div id="team-{{ $team }}" class="team-section mb-12" data-team="{{ $team }}" data-expanded="false">
             <!-- Team Overview Card (Collapsed State) -->
             <div class="team-overview-card bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-pointer group"
-                 onclick="toggleTeamSection('{{ $team }}')" 
-                 role="button" 
+                 onclick="toggleTeamSection('{{ $team }}')"
+                 role="button"
                  tabindex="0"
                  onkeydown="handleKeyPress(event, '{{ $team }}')"
                  aria-expanded="false"
                  aria-controls="team-{{ $team }}-content">
-              
+
               <div class="p-8">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center space-x-6">
@@ -164,13 +164,13 @@
             <div id="team-{{ $team }}-content" class="team-content hidden mt-8" aria-labelledby="team-{{ $team }}">
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {{ range $i, $member := $members }}
-                  <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2" 
-                       data-name="{{ $member.Title | lower }}" 
+                  <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2"
+                       data-name="{{ $member.Title | lower }}"
                        data-description="{{ $member.Params.description | lower }}"
                        data-institution="{{ $member.Params.description | lower }}"
                        tabindex="0"
                        style="animation-delay: {{ mul $i 100 }}ms;">
-                    
+
                     <div class="absolute top-3 right-3 z-10">
                       <div class="bg-{{ $color }}-100 dark:bg-{{ $color }}-900/30 text-{{ $color }}-600 dark:text-{{ $color }}-400 px-3 py-1 rounded-full text-xs font-bold">
                         {{ upper $team }}
@@ -195,12 +195,12 @@
                     <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
                       {{ $member.Params.affiliation | default $member.Params.description }}
                     </p>
-                    
+
                     <div class="flex justify-center space-x-3">
                       {{ range $member.Params.social }}
-                        <a href="{{ .link | safeURL }}" 
-                           target="_blank" 
-                           rel="noopener nofollow" 
+                        <a href="{{ .link | safeURL }}"
+                           target="_blank"
+                           rel="noopener nofollow"
                            class="w-9 h-9 bg-gray-100 dark:bg-gray-700 hover:bg-{{ $color }}-500 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-{{ $color }}-500"
                            aria-label="{{ .name }}">
                           <i class="{{ .icon }} text-sm"></i>
@@ -231,8 +231,8 @@
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {{ range $noTeam }}
-              <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2" 
-                   data-name="{{ .Title | lower }}" 
+              <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2"
+                   data-name="{{ .Title | lower }}"
                    data-description="{{ .Params.description | lower }}"
                    tabindex="0">
                 {{ $image := .Params.image }}
@@ -254,9 +254,9 @@
                 </p>
                 <div class="flex justify-center space-x-3">
                   {{ range .Params.social }}
-                    <a href="{{ .link | safeURL }}" 
-                       target="_blank" 
-                       rel="noopener nofollow" 
+                    <a href="{{ .link | safeURL }}"
+                       target="_blank"
+                       rel="noopener nofollow"
                        class="w-9 h-9 bg-gray-100 dark:bg-gray-700 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary"
                        aria-label="{{ .name }}">
                       <i class="{{ .icon }} text-sm"></i>
@@ -297,9 +297,9 @@
       const content = document.getElementById(`team-${teamId}-content`);
       const card = section.querySelector('.team-overview-card');
       const icon = section.querySelector('.expand-icon');
-      
+
       const isExpanded = section.dataset.expanded === 'true';
-      
+
       if (isExpanded) {
         // Collapse
         content.style.maxHeight = content.scrollHeight + 'px';
@@ -307,11 +307,11 @@
         content.style.maxHeight = '0px';
         content.style.opacity = '0';
         content.style.paddingTop = '0px';
-        
+
         setTimeout(() => {
           content.classList.add('hidden');
         }, 300);
-        
+
         section.dataset.expanded = 'false';
         card.setAttribute('aria-expanded', 'false');
         icon.style.transform = 'rotate(0deg)';
@@ -321,16 +321,16 @@
         content.style.maxHeight = '0px';
         content.style.opacity = '0';
         content.style.paddingTop = '0px';
-        
+
         content.offsetHeight; // Force reflow
         content.style.maxHeight = content.scrollHeight + 'px';
         content.style.opacity = '1';
         content.style.paddingTop = '2rem';
-        
+
         section.dataset.expanded = 'true';
         card.setAttribute('aria-expanded', 'true');
         icon.style.transform = 'rotate(180deg)';
-        
+
         // Animate member cards
         const memberCards = content.querySelectorAll('.member-card');
         memberCards.forEach((card, index) => {
@@ -350,7 +350,7 @@
 
     function initializeScrollEffects() {
       const backToTop = document.getElementById('back-to-top');
-      
+
       window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
           backToTop.classList.remove('hidden');
