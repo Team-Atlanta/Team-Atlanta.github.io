@@ -21,7 +21,10 @@
             {{ end }}
           </div>
           <div class="col-12">
-            {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" ) }}
+            {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px] mb-6" ) }}
+            {{ if .image2 }}
+              {{ partial "image" (dict "Src" .image2 "Alt" "Banner image 2" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" ) }}
+            {{ end }}
           </div>
         </div>
       </div>
