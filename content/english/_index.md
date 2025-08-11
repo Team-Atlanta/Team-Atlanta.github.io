@@ -4,7 +4,7 @@ banner:
   title: "ATLANTIS:</br> **A**I-driven **T**hreat **L**ocalization **AN**d **T**riage **I**ntelligent **S**ystem"
   content: "**Team Atlanta** is an award-winning group, with accolades from Pwn2Own, DEFCON CTF, and numerous academic conferences. Our team comprises experts from Georgia Tech, Samsung Research, KAIST, and POSTECH. We are dedicated to advancing next-generation security research using Large Language Models (LLMs) to pioneer Security-AGI for the future. In DARPA’s AI Cyber Challenge, we aim to revolutionize security paradigms by leveraging AI and LLMs in our cyber reasoning system **Atlantis**."
 
-  image: "/images/group-asc.jpg"
+  image: "/images/group-afc-main.jpg"
   button:
     enable: true
     label: "Check our AIxCC Team"
@@ -18,7 +18,7 @@ features:
     bulletpoints:
       - "**AI-Driven**: Large Language Models (LLMs) powered bug detection and fixing for real-world software."
       - "**End-to-End Automation**: Manages the entire bug-finding and fixing process."
-      - "**Smart Patching**: Fixing bugs automatically with human-like reasoning." 
+      - "**Smart Patching**: Fixing bugs automatically with human-like reasoning."
       - "**Multi-Lang Support**: Compatible with complex languages such as C/C++, Java, etc."
       - "**Kernel Support**: Supports complex systems like the Linux kernel."
       - "**Self-Improving**: Employs LLM-powered techniques that enhance over time."
