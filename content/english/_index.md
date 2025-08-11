@@ -26,7 +26,7 @@ features:
     button:
       enable: true
       label: "More about Atlantis"
-      link: "/About"
+      link: "/about"
 
   # - title: "Discover the Key Features Of Hugo"
   #   image: "/images/service-2.png"
