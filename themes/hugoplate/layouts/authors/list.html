@@ -1,16 +1,78 @@
 {{ define "main" }}
   {{ partial "page-header" . }}
 
-
   <section class="section">
     <div class="container">
-      <div class="row">
-        {{ range .RegularPages }}
-          <div class="md:col-6 lg:col-4 mb-14">
-            {{ partial "components/author-card" . }}
+      {{ $teamOrder := slice "multilang" "c" "java" "patch" "sarif" }}
+      {{ $teamNames := dict "multilang" "Atlantis-Multilang" "c" "Atlantis-C" "java" "Atlantis-Java" "patch" "Atlantis-Patch" "sarif" "Atlantis-SARIF" }}
+      {{ $leader := slice }}
+      {{ $noTeam := slice }}
+      {{ $teamMembers := dict }}
+      
+      <!-- Group authors by team -->
+      {{ range .RegularPages }}
+        {{ if .Params.team }}
+          {{ if eq .Params.team "leader" }}
+            {{ $leader = $leader | append . }}
+          {{ else }}
+            {{ $team := .Params.team }}
+            {{ $existing := index $teamMembers $team }}
+            {{ if $existing }}
+              {{ $teamMembers = merge $teamMembers (dict $team ($existing | append .)) }}
+            {{ else }}
+              {{ $teamMembers = merge $teamMembers (dict $team (slice .)) }}
+            {{ end }}
+          {{ end }}
+        {{ else }}
+          {{ $noTeam = $noTeam | append . }}
+        {{ end }}
+      {{ end }}
+
+      <!-- Display Team Leader -->
+      {{ if $leader }}
+        <div class="mb-12">
+          <h2 class="mb-8 text-3xl font-bold text-center">Team Leader</h2>
+          <div class="row justify-center">
+            {{ range $leader }}
+              <div class="md:col-6 lg:col-4 mb-14">
+                {{ partial "components/author-card" . }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+
+      <!-- Display team members in specified order -->
+      {{ range $team := $teamOrder }}
+        {{ $members := index $teamMembers $team }}
+        {{ if $members }}
+          {{ $displayName := index $teamNames $team }}
+          <div class="mb-12">
+            <h2 class="mb-8 text-2xl font-bold">{{ $displayName }}</h2>
+            <div class="row">
+              {{ range $members }}
+                <div class="md:col-6 lg:col-4 mb-14">
+                  {{ partial "components/author-card" . }}
+                </div>
+              {{ end }}
+            </div>
           </div>
         {{ end }}
-      </div>
+      {{ end }}
+
+      <!-- Display members without team assignment -->
+      {{ if $noTeam }}
+        <div class="mb-12">
+          <h2 class="mb-8 text-2xl font-bold">Team Members</h2>
+          <div class="row">
+            {{ range $noTeam }}
+              <div class="md:col-6 lg:col-4 mb-14">
+                {{ partial "components/author-card" . }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
     </div>
   </section>
 {{ end }}

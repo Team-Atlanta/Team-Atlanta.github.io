@@ -3,6 +3,7 @@ title: Junyoung Jang
 email: wkdwns420@gmail.com
 image: "/images/junyoung.jpg"
 description: 
+team: "sarif"
 social:
   - name: www
     icon: fa-solid fa-house

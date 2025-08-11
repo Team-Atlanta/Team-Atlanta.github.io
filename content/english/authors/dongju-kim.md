@@ -3,6 +3,7 @@ title: Dongju Kim
 email: molgryn@gmail.com
 image: "/images/dongju-kim.jpg"
 description: 
+team: "java"
 social:
   - name: www
     icon: fa-solid fa-house

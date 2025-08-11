@@ -3,6 +3,7 @@ title: Youngjoon Kim
 email: acorn421@gmail.com
 image: "/images/youngjoon.png"
 description: 
+team: "sarif"
 social:
   - name: www
     icon: fa-solid fa-house

@@ -3,6 +3,7 @@ title: Fabian Fleischer
 email: fleischer@gatech.edu
 image: "/images/fabian-fleischer.png"
 description: PhD at Georgia Tech
+team: "java"
 social:
   - name: www
     icon: fa-solid fa-house

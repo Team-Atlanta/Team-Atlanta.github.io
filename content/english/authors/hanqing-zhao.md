@@ -4,6 +4,7 @@ email: hanqing@gatech.edu
 image: "/images/hanqing-zhao.png"
 weight: 3
 description: PhD at Georgia Tech
+team: "c"
 social:
   - name: www
     icon: fa-solid fa-house

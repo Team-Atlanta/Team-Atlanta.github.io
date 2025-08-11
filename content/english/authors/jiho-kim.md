@@ -3,6 +3,7 @@ title: Jiho Kim
 email: jkim4050@gatech.edu
 image: "/images/jiho-kim.png"
 description: MS at Georgia Tech
+team: "multilang"
 social:
   - name: github
     icon: fa-brands fa-github

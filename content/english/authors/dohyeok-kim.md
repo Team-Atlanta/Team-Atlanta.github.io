@@ -3,6 +3,7 @@ title: Dohyeok Kim
 email: do_hyeok.kim@samsung.com
 image: "/images/dohyeok-kim.png"
 description: Security Software Engineer at Samsung Research
+team: "multilang"
 social:
   - name: linkedin
     icon: fa-brands fa-linkedin

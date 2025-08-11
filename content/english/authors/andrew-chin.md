@@ -3,6 +3,7 @@ title: Andrew Chin
 email: achin34@gatech.edu
 image: "/images/andrew-chin-194.png"
 description: PhD at Georgia Tech
+team: "c"
 social:
   - name: www
     icon: fa-solid fa-house

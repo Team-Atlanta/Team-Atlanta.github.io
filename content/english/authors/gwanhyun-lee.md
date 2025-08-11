@@ -3,6 +3,7 @@ title: Gwanhyun Lee
 email: gwanhyunlee@gmail.com
 image: "/images/gwanhyun.png"
 description: 
+team: "sarif"
 social:
   - name: github
     icon: fa-brands fa-github

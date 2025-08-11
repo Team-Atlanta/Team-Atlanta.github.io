@@ -3,6 +3,7 @@ title: Younggi Park
 email: grill66@korea.ac.kr
 image: "/images/younggi.jpg"
 description: 
+team: "patch"
 social:
   - name: github
     icon: fa-brands fa-github

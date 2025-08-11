@@ -3,6 +3,7 @@ title: Cen Zhang
 email: blbllhy@gmail.com
 image: "/images/cen.png"
 description: Postdoc at Georgia Tech
+team: "java"
 social:
   - name: www
     icon: fa-solid fa-house

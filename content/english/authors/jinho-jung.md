@@ -4,6 +4,7 @@ email: jinho.jung@korea.kr
 image: "/images/jinho.jpg"
 weight: 3
 description: Researcher at MND
+team: "sarif"
 social:
   - name: github
     icon: fa-brands fa-github

@@ -4,6 +4,7 @@ email: s.park5@samsung.com
 image: "/images/soyeon_194.png"
 weight: 3
 description: Samsung Research America
+team: "multilang"
 social:
   - name: www
     icon: fa-solid fa-house

@@ -3,6 +3,7 @@ title: Sangwoo Ji
 email: sangwoo_.ji@samsung.com
 image: "/images/sangwoo-ji.png"
 description: Researcher at Samsung Research
+team: "multilang"
 social:
   - name: github
     icon: fa-brands fa-github

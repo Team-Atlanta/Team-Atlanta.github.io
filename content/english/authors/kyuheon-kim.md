@@ -3,6 +3,7 @@ title: Kyuheon Kim
 email: kyuheon.kim@gmail.com
 image: "/images/kyuheon.jpg"
 description: 
+team: "sarif"
 social:
   - name: www
     icon: fa-solid fa-house

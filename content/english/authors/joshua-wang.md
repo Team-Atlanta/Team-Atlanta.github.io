@@ -3,6 +3,7 @@ title: Joshua Wang
 email: jwang3453@gatech.edu
 image: "/images/joshua-wang.jpg"
 description: B.S. Student at Georgia Tech
+team: "multilang"
 social:
   - name: www
     icon: fa-solid fa-house

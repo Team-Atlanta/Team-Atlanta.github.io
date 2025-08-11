@@ -3,6 +3,7 @@ title: Dae R. Jeong
 email: dae.r.jeong@gatech.edu
 image: "/images/dae.png"
 description: Postdoc at Georgia Tech
+team: "multilang"
 social:
   - name: www
     icon: fa-solid fa-house

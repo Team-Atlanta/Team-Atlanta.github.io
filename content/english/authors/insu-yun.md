@@ -4,6 +4,7 @@ email: insuyun@kaist.ac.kr
 image: "/images/insu-yun.jpg"
 weight: 3
 description: Assistant Professor at KAIST
+team: "patch"
 social:
   - name: www
     icon: fa-solid fa-house

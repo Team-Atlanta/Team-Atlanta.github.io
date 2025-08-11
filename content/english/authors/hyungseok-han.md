@@ -4,6 +4,7 @@ email: hyungseok.h@samsung.com
 image: "/images/hyungseok-han.png"
 weight: 2
 description: Samsung Research America
+team: "multilang"
 social:
   - name: www
     icon: fa-solid fa-house

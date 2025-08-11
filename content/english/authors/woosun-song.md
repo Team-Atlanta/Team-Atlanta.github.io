@@ -3,6 +3,7 @@ title: Woosun Song
 email: song94@gatech.edu
 image: "/images/woosun-song.jpg"
 description: PhD Student at Georgia Tech
+team: "multilang"
 social:
   - name: www
     icon: fa-solid fa-house

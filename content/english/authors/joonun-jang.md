@@ -4,6 +4,7 @@ email: joonun.jang@samsung.com
 image: "/images/joonun-jang.png"
 weight: 3
 description: Samsung Research
+team: "java"
 social:
   - name: github
     icon: fa-brands fa-github

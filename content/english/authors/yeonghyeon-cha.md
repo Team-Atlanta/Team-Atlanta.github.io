@@ -3,6 +3,7 @@ title: Yeonghyeon Cha
 email: phink608@gmail.com
 image: "/images/yeonghyeon.jpg"
 description: 
+team: "sarif"
 social:
   - name: linkedin
     icon: fa-brands fa-linkedin

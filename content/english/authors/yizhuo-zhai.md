@@ -3,6 +3,7 @@ title: Yizhuo Zhai
 email: yzhai60@gatech.edu
 image: "/images/yizhuo-zhai.png"
 description: Postdoc at Georgia Tech
+team: "c"
 social:
   - name: www
     icon: fa-solid fa-house

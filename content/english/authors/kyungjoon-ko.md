@@ -3,6 +3,7 @@ title: Kyungjoon Ko
 email: kj2648.ko@samsung.com
 image: "/images/kyungjoon-ko.jpg"
 description: Samsung Research
+team: "java"
 social:
   - name: github
     icon: fa-brands fa-github

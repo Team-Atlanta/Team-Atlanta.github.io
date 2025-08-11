@@ -3,6 +3,7 @@ title: Eunsoo Kim
 email: euns.kim@samsung.com
 image: "/images/eunsoo.png"
 description: Samsung Research
+team: "multilang"
 social:
   - name: www
     icon: fa-solid fa-house

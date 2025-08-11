@@ -3,6 +3,7 @@ title: Yonghwi Jin
 email: yonghwi@gatech.edu
 image: "/images/yonghwi-jin.jpg"
 description: 
+team: "patch"
 social:
   - name: github
     icon: fa-brands fa-github

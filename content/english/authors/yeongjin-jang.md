@@ -4,6 +4,7 @@ email: dr.yeongjin.jang@gmail.com
 image: "/images/yeongjin-jang.png"
 weight: 3
 description: Principal Engineer at Samsung Research America
+team: "java"
 social:
   - name: www
     icon: fa-solid fa-house

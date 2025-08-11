@@ -3,6 +3,7 @@ title: Dongkwan Kim
 email: 0xdkay@gmail.com
 image: "/images/dongkwan-kim.png"
 description: Postdoc at Georgia Tech
+team: "multilang"
 social:
   - name: www
     icon: fa-solid fa-house
