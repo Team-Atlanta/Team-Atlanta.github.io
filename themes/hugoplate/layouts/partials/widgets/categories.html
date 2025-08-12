@@ -8,11 +8,11 @@
           {{ range $name, $items := site.Taxonomies.categories }}
             <li>
               <a
-                class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors duration-300 {{ if (and (eq $.Page.Kind `term`) (eq $.Page.Type `categories`) (eq $.Page.Title .Page.Title)) }}
+                class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 {{ if (and (eq $.Page.Kind `term`) (eq $.Page.Type `categories`) (eq $.Page.Title .Page.Title)) }}
                   text-primary font-semibold
                 {{ end }} flex justify-between"
                 href="{{ .Page.RelPermalink }}">
-                {{ .Page.Title }} <span class="text-gray-500 dark:text-gray-400">( {{ len $items }} )</span>
+                {{ .Page.Title }} <span class="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors duration-300">( {{ len $items }} )</span>
               </a>
             </li>
           {{ end }}

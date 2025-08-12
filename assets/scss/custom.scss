@@ -30,7 +30,7 @@ body {
   color: #ffffff !important;
 }
 
-.section p:not(.text-blue-400):not(.text-green-400):not(.text-amber-400):not(.text-amber-600):not(.text-purple-400):not(.text-pink-400):not(.text-gray-600) {
+.section p:not(.text-blue-400):not(.text-green-400):not(.text-amber-400):not(.text-amber-600):not(.text-purple-400):not(.text-pink-400):not(.text-gray-600):not(.breadcrumb-nav *) {
   color: #ffffff !important;
 }
 
@@ -225,6 +225,28 @@ body {
   background: rgba(15, 23, 42, 0.9);
   border-top-color: rgba(51, 65, 85, 0.6);
   color: #f9fafb;
+}
+
+// Breadcrumb specific hover effects - high specificity to override global rules
+ul.breadcrumb-nav li a {
+  transition: color 0.2s ease !important;
+}
+
+ul.breadcrumb-nav li a:hover {
+  color: #2563eb !important;
+}
+
+.dark ul.breadcrumb-nav li a:hover {
+  color: #60a5fa !important;
+}
+
+// Additional fallback with even higher specificity
+.section ul.breadcrumb-nav li a:hover {
+  color: #2563eb !important;
+}
+
+.dark .section ul.breadcrumb-nav li a:hover {
+  color: #60a5fa !important;
 }
 
 // Text Gradients
