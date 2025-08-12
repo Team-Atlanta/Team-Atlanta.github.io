@@ -1,7 +1,7 @@
 {{ define "main" }}
 
   <section class="section py-16" id="team-page">
-    <div class="container max-w-7xl mx-auto px-4">
+    <div class="container max-w-7xl mx-auto px-8">
       {{ $teamOrder := slice "multilang" "c" "java" "patch" "sarif" }}
       {{ $teamNames := dict "multilang" "Atlantis-Multilang" "c" "Atlantis-C" "java" "Atlantis-Java" "patch" "Atlantis-Patch" "sarif" "Atlantis-SARIF" }}
       {{ $teamDescriptions := dict "multilang" "Multi-language vulnerability analysis and cross-platform security research" "c" "C/C++ program analysis, memory safety, and low-level security vulnerabilities" "java" "Java bytecode analysis, JVM security, and enterprise application vulnerabilities" "patch" "Automated patch generation and vulnerability remediation systems" "sarif" "SARIF format integration and security tool interoperability" }}
@@ -57,7 +57,7 @@
         {{ range $leader }}
           <div class="mb-16">
             <div class="flex justify-center">
-              <div class="member-card leader-card bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 text-center border border-amber-100 dark:border-amber-800 relative overflow-hidden group transform hover:scale-105 max-w-sm"
+              <div class="member-card member-card-animated leader-card bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 text-center border border-amber-100 dark:border-amber-800 relative overflow-hidden group transform hover:scale-105 max-w-sm"
                    data-name="{{ .Title | lower }}"
                    data-description="{{ .Params.description | lower }}"
                    tabindex="0">
@@ -73,9 +73,11 @@
                 {{ $image := .Params.image }}
                 {{ if $image }}
                   <div class="relative mb-6 z-10">
-                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden ring-4 ring-amber-100 dark:ring-amber-800/50 shadow-2xl group-hover:ring-amber-200 dark:group-hover:ring-amber-700 transition-all duration-300">
-                      <img src="{{ $image }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    </div>
+                    <a href="{{ .RelPermalink }}" class="block">
+                      <div class="w-32 h-32 mx-auto rounded-full overflow-hidden ring-4 ring-amber-100 dark:ring-amber-800/50 shadow-2xl group-hover:ring-amber-200 dark:group-hover:ring-amber-700 transition-all duration-300">
+                        <img src="{{ $image }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                      </div>
+                    </a>
                   </div>
                 {{ end }}
 
@@ -150,9 +152,9 @@
 
             <!-- Team Members Grid (Expanded State) -->
             <div id="team-{{ $team }}-content" class="team-content mt-8" aria-labelledby="team-{{ $team }}" style="opacity: 1; max-height: none; padding-top: 2rem;">
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8">
                 {{ range $i, $member := $members }}
-                  <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2 relative"
+                  <div class="member-card member-card-animated bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2 relative overflow-hidden"
                        data-name="{{ $member.Title | lower }}"
                        data-description="{{ $member.Params.description | lower }}"
                        data-institution="{{ $member.Params.description | lower }}"
@@ -168,14 +170,16 @@
                     {{ $image := $member.Params.image }}
                     {{ if $image }}
                       <div class="relative mb-6">
-                        <div class="w-20 h-20 mx-auto rounded-full overflow-hidden ring-3 ring-gray-100 dark:ring-gray-700 group-hover:ring-{{ $color }}-300 dark:group-hover:ring-{{ $color }}-600 transition-all duration-300 shadow-lg">
-                          <img src="{{ $image }}" alt="{{ $member.Title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
-                        </div>
+                        <a href="{{ $member.RelPermalink }}" class="block">
+                          <div class="photo-hover w-20 h-20 mx-auto rounded-full overflow-hidden ring-3 ring-gray-100 dark:ring-gray-700 transition-all duration-300 shadow-lg" data-team="{{ $color }}">
+                            <img src="{{ $image }}" alt="{{ $member.Title }}" class="w-full h-full object-cover transition-transform duration-300" loading="lazy">
+                          </div>
+                        </a>
                       </div>
                     {{ end }}
 
-                    <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-{{ $color }}-600 transition-colors">
-                      <a href="{{ $member.RelPermalink }}" class="focus:outline-none focus:text-{{ $color }}-600">{{ $member.Title }}</a>
+                    <h4 class="name-hover text-lg font-bold text-gray-900 dark:text-white mb-2 transition-colors" data-team="{{ $color }}">
+                      <a href="{{ $member.RelPermalink }}" class="focus:outline-none">{{ $member.Title }}</a>
                     </h4>
                     {{ if $member.Params.role }}
                       <p class="text-{{ $color }}-400 dark:text-{{ $color }}-300 text-sm font-semibold mb-2">{{ $member.Params.role }}</p>
@@ -217,18 +221,20 @@
               </div>
             </div>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8">
             {{ range $noTeam }}
-              <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2"
+              <div class="member-card member-card-animated bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2 relative overflow-hidden"
                    data-name="{{ .Title | lower }}"
                    data-description="{{ .Params.description | lower }}"
                    tabindex="0">
                 {{ $image := .Params.image }}
                 {{ if $image }}
                   <div class="relative mb-6">
-                    <div class="w-20 h-20 mx-auto rounded-full overflow-hidden ring-3 ring-gray-100 dark:ring-gray-700 group-hover:ring-primary transition-all duration-300">
-                      <img src="{{ $image }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
-                    </div>
+                    <a href="{{ .RelPermalink }}" class="block">
+                      <div class="w-20 h-20 mx-auto rounded-full overflow-hidden ring-3 ring-gray-100 dark:ring-gray-700 group-hover:ring-primary transition-all duration-300">
+                        <img src="{{ $image }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                      </div>
+                    </a>
                   </div>
                 {{ end }}
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">
@@ -278,6 +284,7 @@
       initializeAnimations();
       initializeAccessibility();
       initializeExpandedSections();
+      initializeNamePhotoHover();
     }
     
     function initializeExpandedSections() {
@@ -285,8 +292,12 @@
       const expandedSections = document.querySelectorAll('.team-section[data-expanded="true"]');
       expandedSections.forEach(section => {
         const icon = section.querySelector('.expand-icon');
+        const content = section.querySelector('.team-content');
         if (icon) {
           icon.style.transform = 'rotate(180deg)';
+        }
+        if (content) {
+          content.classList.add('expanded'); // Add expanded class for initial expanded sections
         }
       });
     }
@@ -302,6 +313,7 @@
 
       if (isExpanded) {
         // Collapse
+        content.classList.remove('expanded'); // Remove expanded class for overflow hidden
         const currentHeight = content.getBoundingClientRect().height;
         content.style.overflow = 'hidden';
         content.style.maxHeight = currentHeight + 'px';
@@ -320,7 +332,7 @@
       } else {
         // Expand
         content.classList.remove('hidden');
-        content.style.overflow = 'visible';
+        content.style.overflow = 'hidden'; // Keep hidden during transition
         content.style.maxHeight = '0px';
         content.style.opacity = '0';
         content.style.paddingTop = '0px';
@@ -350,10 +362,11 @@
             }, index * 100);
           });
           
-          // Final height adjustment after animations
+          // Final height adjustment after animations and set overflow visible
           setTimeout(() => {
             const finalHeight = content.getBoundingClientRect().height + 20;
             content.style.maxHeight = finalHeight + 'px';
+            content.classList.add('expanded'); // Add expanded class for overflow visible
           }, 400);
         });
       }
@@ -423,6 +436,42 @@
       });
     }
 
+    function initializeNamePhotoHover() {
+      // Handle synchronized hover effects for names and photos
+      const memberCards = document.querySelectorAll('.member-card');
+      
+      memberCards.forEach(card => {
+        const nameElement = card.querySelector('.name-hover');
+        const photoElement = card.querySelector('.photo-hover');
+        
+        if (nameElement && photoElement) {
+          const team = nameElement.getAttribute('data-team');
+          
+          // Name hover events
+          nameElement.addEventListener('mouseenter', () => {
+            nameElement.classList.add(`name-hover-${team}`);
+            photoElement.classList.add(`photo-hover-${team}`);
+          });
+          
+          nameElement.addEventListener('mouseleave', () => {
+            nameElement.classList.remove(`name-hover-${team}`);
+            photoElement.classList.remove(`photo-hover-${team}`);
+          });
+          
+          // Photo hover events
+          photoElement.addEventListener('mouseenter', () => {
+            nameElement.classList.add(`name-hover-${team}`);
+            photoElement.classList.add(`photo-hover-${team}`);
+          });
+          
+          photoElement.addEventListener('mouseleave', () => {
+            nameElement.classList.remove(`name-hover-${team}`);
+            photoElement.classList.remove(`photo-hover-${team}`);
+          });
+        }
+      });
+    }
+
   </script>
 
   <!-- Enhanced Styles -->
@@ -436,6 +485,10 @@
       /* Ensure proper rendering during animations */
       backface-visibility: hidden;
       transform: translateZ(0);
+    }
+    
+    .team-content.expanded {
+      overflow: visible;
     }
 
     .expand-icon {
@@ -539,34 +592,50 @@
       color: #fbbf24 !important;
     }
     
-    /* Team-colored rings for profile photos on hover */
-    .member-card:hover .w-20.h-20 {
+    /* Light border glow effect for member cards - only on card hover */
+    .member-card-animated {
       transition: all 0.3s ease;
     }
     
-    /* Multilang team - blue ring (matches text-blue-600) */
-    #team-multilang .member-card:hover .w-20.h-20 {
-      box-shadow: 0 0 0 3px #2563eb;
+    .member-card-animated:hover {
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 
+                  0 0 20px rgba(255, 255, 255, 0.1),
+                  0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
     
-    /* C team - green ring (matches text-green-600) */
-    #team-c .member-card:hover .w-20.h-20 {
-      box-shadow: 0 0 0 3px #16a34a;
+    /* Enhanced glow for leader card */
+    .leader-card.member-card-animated:hover {
+      box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.3), 
+                  0 0 25px rgba(251, 191, 36, 0.15),
+                  0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
     
-    /* Java team - amber ring (matches text-amber-600) */
-    #team-java .member-card:hover .w-20.h-20 {
-      box-shadow: 0 0 0 3px #d97706;
+    /* Team color classes for hover effects */
+    .name-hover-blue { color: #2563eb !important; }
+    .name-hover-green { color: #16a34a !important; }
+    .name-hover-amber { color: #d97706 !important; }
+    .name-hover-purple { color: #9333ea !important; }
+    .name-hover-pink { color: #db2777 !important; }
+    
+    .photo-hover-blue { box-shadow: 0 0 0 3px #2563eb !important; }
+    .photo-hover-green { box-shadow: 0 0 0 3px #16a34a !important; }
+    .photo-hover-amber { box-shadow: 0 0 0 3px #d97706 !important; }
+    .photo-hover-purple { box-shadow: 0 0 0 3px #9333ea !important; }
+    .photo-hover-pink { box-shadow: 0 0 0 3px #db2777 !important; }
+    
+    /* Remove any default hover styling that might create rectangles */
+    .name-hover:hover,
+    .photo-hover:hover {
+      cursor: pointer;
+      background: none !important;
+      outline: none !important;
+      border: none !important;
     }
     
-    /* Patch team - purple ring (matches text-purple-600) */
-    #team-patch .member-card:hover .w-20.h-20 {
-      box-shadow: 0 0 0 3px #9333ea;
-    }
-    
-    /* Sarif team - pink ring (matches text-pink-600) */
-    #team-sarif .member-card:hover .w-20.h-20 {
-      box-shadow: 0 0 0 3px #db2777;
+    .name-hover a:hover {
+      background: none !important;
+      outline: none !important;
+      text-decoration: none !important;
     }
     
 
