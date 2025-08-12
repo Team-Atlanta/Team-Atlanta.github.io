@@ -31,15 +31,21 @@
               {{ if $existing }}
                 {{ $found := false }}
                 {{ range $existing }}
-                  {{ if eq .author $author }}
-                    {{ $found = true }}
+                  {{ if reflect.IsMap . }}
+                    {{ if eq .author $author }}
+                      {{ $found = true }}
+                    {{ end }}
+                  {{ else }}
+                    {{ if eq . $author }}
+                      {{ $found = true }}
+                    {{ end }}
                   {{ end }}
                 {{ end }}
                 {{ if not $found }}
-                  {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" $author "weight" $membership.weight "role" $membership.role))) }}
+                  {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" $author "priority" $membership.priority "role" $membership.role))) }}
                 {{ end }}
               {{ else }}
-                {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" $author "weight" $membership.weight "role" $membership.role))) }}
+                {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" $author "priority" $membership.priority "role" $membership.role))) }}
               {{ end }}
             {{ end }}
           {{ end }}
@@ -53,11 +59,23 @@
             {{ else }}
               {{ $existing := index $teamMembers $currentTeam }}
               {{ if $existing }}
-                {{ if not (in $existing $author) }}
-                  {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append $author)) }}
+                {{ $found := false }}
+                {{ range $existing }}
+                  {{ if reflect.IsMap . }}
+                    {{ if eq .author $author }}
+                      {{ $found = true }}
+                    {{ end }}
+                  {{ else }}
+                    {{ if eq . $author }}
+                      {{ $found = true }}
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+                {{ if not $found }}
+                  {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" $author "priority" 50 "role" ($author.Params.role | default "")))) }}
                 {{ end }}
               {{ else }}
-                {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice $author)) }}
+                {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" $author "priority" 50 "role" ($author.Params.role | default "")))) }}
               {{ end }}
             {{ end }}
           {{ end }}
@@ -68,9 +86,9 @@
           {{ else }}
             {{ $existing := index $teamMembers $currentTeam }}
             {{ if $existing }}
-              {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append .)) }}
+              {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" . "priority" 50 "role" (.Params.role | default "")))) }}
             {{ else }}
-              {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice .)) }}
+              {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" . "priority" 50 "role" (.Params.role | default "")))) }}
             {{ end }}
           {{ end }}
         {{ else }}
@@ -199,18 +217,21 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8">
                 {{ $sortedMembers := $members }}
                 {{ if gt (len $members) 0 }}
-                  {{ if reflect.IsMap (index $members 0) }}
-                    {{ $sortedMembers = sort $members "weight" "desc" }}
+                  {{ $firstItem := index $members 0 }}
+                  {{ if reflect.IsMap $firstItem }}
+                    {{ if isset $firstItem "priority" }}
+                      {{ $sortedMembers = sort $members "priority" "asc" }}
+                    {{ end }}
                   {{ end }}
                 {{ end }}
                 {{ range $i, $item := $sortedMembers }}
                   {{ $member := $item }}
                   {{ $teamRole := "" }}
-                  {{ $teamWeight := 0 }}
+                  {{ $teamPriority := 0 }}
                   {{ if reflect.IsMap $item }}
                     {{ $member = $item.author }}
                     {{ $teamRole = $item.role }}
-                    {{ $teamWeight = $item.weight }}
+                    {{ $teamPriority = $item.priority }}
                   {{ end }}
                   <div class="member-card member-card-animated bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2 relative overflow-hidden"
                        data-name="{{ $member.Title | lower }}"
