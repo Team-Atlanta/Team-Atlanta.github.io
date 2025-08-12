@@ -2,7 +2,8 @@
 title: Gyejin Lee
 email: gyejinlee@gatech.edu
 image: "/images/gyejin-lee.png"
-affiliation: PhD at Georgia Tech
+affiliation: Ph.D. at Georgia Tech
+role: "Integration; Cloud Infrastructure; K8S; Microservices; Fuzzing Scheduling; Harness Scheduling; Custom Fuzzers"
 team: "c"
 social:
   - name: github

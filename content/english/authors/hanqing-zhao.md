@@ -2,8 +2,8 @@
 title: Hanqing Zhao
 email: hanqing@gatech.edu
 image: "/images/hanqing-zhao.png"
-weight: 3
-affiliation: PhD at Georgia Tech
+weight: 2
+affiliation: Ph.D. at Georgia Tech
 role: C Team Lead
 team: "c"
 social:
