@@ -49,6 +49,13 @@ input#nav-toggle:checked ~ #nav-menu {
       @apply block;
     }
   }
+  // Fix dropdown alignment to match regular nav items
+  .nav-link {
+    @apply flex items-center relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-theme-light dark:hover:bg-darkmode-theme-light;
+    svg {
+      @apply ml-1;
+    }
+  }
 }
 
 .nav-dropdown-list {

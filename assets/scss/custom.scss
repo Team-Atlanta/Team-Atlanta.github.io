@@ -1,32 +1,47 @@
-// Modern Deep Blue Theme - Custom Styles
+// Team Atlanta Navy Theme - Custom Styles
 
 // CSS Custom Properties for Dynamic Theming
 :root {
-  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #0284c7 100%);
+  --primary-gradient: linear-gradient(135deg, #3498db 0%, #34495e 50%, #2c3e50 100%);
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
-  --shadow-soft: 0 4px 6px -1px rgba(37, 99, 235, 0.1), 0 2px 4px -1px rgba(37, 99, 235, 0.06);
-  --shadow-medium: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -2px rgba(37, 99, 235, 0.05);
-  --shadow-large: 0 25px 50px -12px rgba(37, 99, 235, 0.25);
-  --shadow-primary: 0 8px 25px -8px rgba(37, 99, 235, 0.3);
+  --shadow-soft: 0 4px 6px -1px rgba(44, 62, 80, 0.1), 0 2px 4px -1px rgba(44, 62, 80, 0.06);
+  --shadow-medium: 0 10px 15px -3px rgba(44, 62, 80, 0.1), 0 4px 6px -2px rgba(44, 62, 80, 0.05);
+  --shadow-large: 0 25px 50px -12px rgba(44, 62, 80, 0.25);
+  --shadow-primary: 0 8px 25px -8px rgba(44, 62, 80, 0.3);
   --border-radius-modern: 12px;
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark:root {
-  --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #0ea5e9 100%);
-  --glass-bg: rgba(15, 23, 42, 0.8);
-  --glass-border: rgba(51, 65, 85, 0.3);
-  --shadow-soft: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06);
-  --shadow-medium: 0 10px 15px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
-  --shadow-large: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
-  --shadow-primary: 0 8px 25px -8px rgba(59, 130, 246, 0.3);
+  --primary-gradient: linear-gradient(135deg, #85c1e9 0%, #3498db 50%, #5dade2 100%);
+  --glass-bg: rgba(26, 37, 47, 0.8);
+  --glass-border: rgba(52, 73, 94, 0.3);
+  --shadow-soft: 0 4px 6px -1px rgba(93, 173, 226, 0.1), 0 2px 4px -1px rgba(93, 173, 226, 0.06);
+  --shadow-medium: 0 10px 15px -3px rgba(93, 173, 226, 0.1), 0 4px 6px -2px rgba(93, 173, 226, 0.05);
+  --shadow-large: 0 25px 50px -12px rgba(93, 173, 226, 0.25);
+  --shadow-primary: 0 8px 25px -8px rgba(93, 173, 226, 0.3);
 }
 
 // Modern Gradient Backgrounds
 .bg-gradient-modern {
   background: var(--primary-gradient);
-  color: white;
+  color: white !important;
+}
+
+// Ensure primary buttons have light cream text
+.btn-primary {
+  color: #f8f9fa !important;
+  background: var(--primary-gradient);
+  border: none;
+  
+  &:hover {
+    color: #f8f9fa !important;
+  }
+  
+  &:focus, &:active {
+    color: #f8f9fa !important;
+  }
 }
 
 .bg-gradient-subtle {
@@ -54,12 +69,13 @@
 
 // Modern Button Styles
 .btn-modern {
-  @apply relative overflow-hidden px-6 py-3 font-semibold text-white;
+  @apply relative overflow-hidden px-6 py-3 font-semibold;
   background: var(--primary-gradient);
   border-radius: var(--border-radius-modern);
   transition: var(--transition-smooth);
   box-shadow: var(--shadow-soft);
   border: none;
+  color: #f8f9fa !important;
   
   &::before {
     content: '';
@@ -87,7 +103,7 @@
   }
 
   &:focus {
-    outline: 2px solid #2563eb;
+    outline: 2px solid #2c3e50;
     outline-offset: 2px;
   }
 }
@@ -196,7 +212,7 @@ html {
 
 // Enhanced Focus States
 .focus-modern:focus {
-  outline: 2px solid theme('colors.primary');
+  outline: 2px solid #2c3e50;
   outline-offset: 2px;
   border-radius: var(--border-radius-modern);
 }

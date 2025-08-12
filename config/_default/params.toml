@@ -2,7 +2,7 @@
 # favicon module: https://github.com/gethugothemes/hugo-modules/tree/master/images#favicon-implementation
 favicon = "images/team-icon.jpg"
 # logo module: https://github.com/gethugothemes/hugo-modules/tree/master/images#logo-implementation
-# logo = "images/logo.png"
+# logo = "images/logo.jpg"
 # logo_darkmode = "images/logo-darkmode.png"
 # use `px` or `x` with logo_width, example: "100px".
 # Note: logo_width is not work with .svg file
@@ -45,7 +45,7 @@ link = "contact"
 # search module: https://github.com/gethugothemes/hugo-modules/tree/master/search
 [search]
 enable = true
-primary_color = "#121212"
+primary_color = "#4a5d7a"
 include_sections = ["blog"]
 show_image = true
 show_description = true

@@ -18,15 +18,15 @@
         {{ $totalMembers = add $totalMembers 1 }}
         {{ $allMembers = $allMembers | append . }}
         {{ if .Params.team }}
-          {{ if eq .Params.team "leader" }}
+          {{ $currentTeam := .Params.team }}
+          {{ if eq $currentTeam "leader" }}
             {{ $leader = $leader | append . }}
           {{ else }}
-            {{ $team := .Params.team }}
-            {{ $existing := index $teamMembers $team }}
+            {{ $existing := index $teamMembers $currentTeam }}
             {{ if $existing }}
-              {{ $teamMembers = merge $teamMembers (dict $team ($existing | append .)) }}
+              {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append .)) }}
             {{ else }}
-              {{ $teamMembers = merge $teamMembers (dict $team (slice .)) }}
+              {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice .)) }}
             {{ end }}
           {{ end }}
         {{ else }}

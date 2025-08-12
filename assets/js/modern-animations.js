@@ -5,6 +5,7 @@
 
 class ModernBlueAnimations {
   constructor() {
+    this.particles = [];
     this.init();
   }
 
@@ -58,10 +59,10 @@ class ModernBlueAnimations {
 
   getRandomOceanColor() {
     const colors = [
-      'rgba(34, 211, 238, ',
-      'rgba(20, 184, 166, ',
-      'rgba(0, 229, 255, ',
-      'rgba(56, 189, 248, '
+      'rgba(44, 62, 80, ',
+      'rgba(52, 73, 94, ',
+      'rgba(52, 152, 219, ',
+      'rgba(93, 173, 226, '
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   }
@@ -149,7 +150,7 @@ class ModernBlueAnimations {
     buttons.forEach(button => {
       button.addEventListener('mouseenter', () => {
         button.style.transform = 'translateY(-2px)';
-        button.style.boxShadow = '0 10px 25px rgba(30, 58, 138, 0.3)';
+        button.style.boxShadow = '0 10px 25px rgba(44, 62, 80, 0.3)';
       });
       
       button.addEventListener('mouseleave', () => {
@@ -164,7 +165,7 @@ class ModernBlueAnimations {
     cards.forEach(card => {
       card.addEventListener('mouseenter', () => {
         card.style.transform = 'translateY(-8px)';
-        card.style.boxShadow = '0 25px 50px rgba(30, 58, 138, 0.15)';
+        card.style.boxShadow = '0 25px 50px rgba(44, 62, 80, 0.15)';
       });
       
       card.addEventListener('mouseleave', () => {
@@ -207,7 +208,7 @@ class ModernBlueAnimations {
     const focusableElements = document.querySelectorAll('a, button, input, textarea, select');
     focusableElements.forEach(element => {
       element.addEventListener('focus', function() {
-        this.style.outline = '2px solid #1e3a8a';
+        this.style.outline = '2px solid #2c3e50';
         this.style.outlineOffset = '2px';
       });
       
