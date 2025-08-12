@@ -5,7 +5,7 @@ image: "/images/insu-yun.jpg"
 weight: 2
 affiliation: Assistant Professor at KAIST
 team: "patch"
-role: "Patch Leader"
+role: "Patch Team Lead"
 social:
   - name: www
     icon: fa-solid fa-house

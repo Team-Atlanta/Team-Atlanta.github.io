@@ -484,6 +484,91 @@
     .dark .text-amber-300 { color: #fcd34d !important; }
     .dark .text-purple-300 { color: #d8b4fe !important; }
     .dark .text-pink-300 { color: #f9a8d4 !important; }
+    
+    /* Ensure affiliation text is gray, not white */
+    .member-card .text-gray-600 {
+      color: #9ca3af !important;
+    }
+    
+    .dark .member-card .text-gray-400 {
+      color: #9ca3af !important;
+    }
+    
+    /* Leader card role text should be amber */
+    .leader-card .text-amber-600 {
+      color: #d97706 !important;
+    }
+    
+    .leader-card .text-amber-400 {
+      color: #fbbf24 !important;
+    }
+    
+    /* More specific targeting for leader card */
+    .leader-card p.text-amber-600 {
+      color: #d97706 !important;
+    }
+    
+    .leader-card p.text-amber-400 {
+      color: #fbbf24 !important;
+    }
+    
+    /* Override any global white text for leader role - very specific */
+    .leader-card .text-base.font-semibold {
+      color: #fbbf24 !important;
+    }
+    
+    /* Even more specific targeting */
+    .leader-card p.text-amber-600.dark\\:text-amber-400.text-base.font-semibold.mb-3,
+    .leader-card p.text-amber-600.text-base.font-semibold.mb-3 {
+      color: #fbbf24 !important;
+    }
+    
+    /* Nuclear option - target by position */
+    .leader-card > div > p:nth-child(2) {
+      color: #fbbf24 !important;
+    }
+    
+    /* Ultimate override for leader role text */
+    .leader-card p[class*="text-amber"] {
+      color: #fbbf24 !important;
+    }
+    
+    /* Force override any global body or section color rules */
+    body .leader-card p.text-amber-600,
+    html body .leader-card p.text-amber-600 {
+      color: #fbbf24 !important;
+    }
+    
+    /* Team-colored rings for profile photos on hover */
+    .member-card:hover .w-20.h-20 {
+      transition: all 0.3s ease;
+    }
+    
+    /* Multilang team - blue ring */
+    #team-multilang .member-card:hover .w-20.h-20 {
+      box-shadow: 0 0 0 3px #60a5fa;
+    }
+    
+    /* C team - green ring */
+    #team-c .member-card:hover .w-20.h-20 {
+      box-shadow: 0 0 0 3px #4ade80;
+    }
+    
+    /* Java team - amber ring */
+    #team-java .member-card:hover .w-20.h-20 {
+      box-shadow: 0 0 0 3px #fbbf24;
+    }
+    
+    /* Patch team - purple ring */
+    #team-patch .member-card:hover .w-20.h-20 {
+      box-shadow: 0 0 0 3px #c084fc;
+    }
+    
+    /* Sarif team - pink ring */
+    #team-sarif .member-card:hover .w-20.h-20 {
+      box-shadow: 0 0 0 3px #f472b6;
+    }
+    
 
     /* Loading skeleton styles */
     .skeleton {

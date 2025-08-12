@@ -26,16 +26,20 @@ body {
   color: #ffffff;
 }
 
-.section h1, .section h2, .section h3, .section p {
+.section h1, .section h2, .section h3 {
   color: #ffffff !important;
 }
 
-// Make sure dark mode text classes work on our background
-.text-dark {
+.section p:not(.text-blue-400):not(.text-green-400):not(.text-amber-400):not(.text-amber-600):not(.text-purple-400):not(.text-pink-400):not(.text-gray-600) {
   color: #ffffff !important;
 }
 
-.text-muted {
+// Make sure dark mode text classes work on our background but don't override team colors
+.text-dark:not(.member-card *) {
+  color: #ffffff !important;
+}
+
+.text-muted:not(.member-card *) {
   color: rgba(255, 255, 255, 0.8) !important;
 }
 
