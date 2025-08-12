@@ -1,11 +1,14 @@
 // Team Atlanta Navy Theme - Custom Styles
 
-// CSS Custom Properties for Dynamic Theming
+// CSS Custom Properties for Dynamic Theming - Light Mode Defaults
 :root {
   --primary-gradient: linear-gradient(135deg, #3498db 0%, #34495e 50%, #2c3e50 100%);
-  --deep-sea-bg: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #253447 100%);
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  --page-bg: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(44, 62, 80, 0.2);
+  --text-primary: #2c3e50;
+  --text-secondary: #5a6c7d;
+  --text-muted: #6c757d;
   --shadow-soft: 0 4px 6px -1px rgba(44, 62, 80, 0.1), 0 2px 4px -1px rgba(44, 62, 80, 0.06);
   --shadow-medium: 0 10px 15px -3px rgba(44, 62, 80, 0.1), 0 4px 6px -2px rgba(44, 62, 80, 0.05);
   --shadow-large: 0 25px 50px -12px rgba(44, 62, 80, 0.25);
@@ -14,43 +17,49 @@
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-// Apply deep sea Atlantis background to all pages
-body {
-  background: var(--deep-sea-bg) !important;
-  min-height: 100vh;
-  color: #ffffff;
-}
-
-// Ensure home page text is visible on dark background
-.section {
-  color: #ffffff;
-}
-
-.section h1, .section h2, .section h3 {
-  color: #ffffff !important;
-}
-
-.section p:not(.text-blue-400):not(.text-green-400):not(.text-amber-400):not(.text-amber-600):not(.text-purple-400):not(.text-pink-400):not(.text-gray-600):not(.breadcrumb-nav *) {
-  color: #ffffff !important;
-}
-
-// Make sure dark mode text classes work on our background but don't override team colors
-.text-dark:not(.member-card *) {
-  color: #ffffff !important;
-}
-
-.text-muted:not(.member-card *) {
-  color: rgba(255, 255, 255, 0.8) !important;
-}
-
+// Dark Mode Overrides
 .dark:root {
   --primary-gradient: linear-gradient(135deg, #85c1e9 0%, #3498db 50%, #5dade2 100%);
+  --page-bg: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #253447 100%);
   --glass-bg: rgba(26, 37, 47, 0.8);
   --glass-border: rgba(52, 73, 94, 0.3);
+  --text-primary: #ffffff;
+  --text-secondary: #bdc3c7;
+  --text-muted: rgba(255, 255, 255, 0.8);
   --shadow-soft: 0 4px 6px -1px rgba(93, 173, 226, 0.1), 0 2px 4px -1px rgba(93, 173, 226, 0.06);
   --shadow-medium: 0 10px 15px -3px rgba(93, 173, 226, 0.1), 0 4px 6px -2px rgba(93, 173, 226, 0.05);
   --shadow-large: 0 25px 50px -12px rgba(93, 173, 226, 0.25);
   --shadow-primary: 0 8px 25px -8px rgba(93, 173, 226, 0.3);
+}
+
+// Responsive background system that adapts to theme
+body {
+  background: var(--page-bg);
+  min-height: 100vh;
+  color: var(--text-primary);
+  transition: var(--transition-smooth);
+}
+
+// Adaptive text colors for sections
+.section {
+  color: var(--text-primary);
+}
+
+.section h1, .section h2, .section h3 {
+  color: var(--text-primary);
+}
+
+.section p:not(.text-blue-400):not(.text-green-400):not(.text-amber-400):not(.text-amber-600):not(.text-purple-400):not(.text-pink-400):not(.text-gray-600):not(.breadcrumb-nav *) {
+  color: var(--text-primary);
+}
+
+// Adaptive text classes
+.text-dark:not(.member-card *) {
+  color: var(--text-primary);
+}
+
+.text-muted:not(.member-card *) {
+  color: var(--text-muted);
 }
 
 // Modern Gradient Backgrounds
@@ -113,7 +122,7 @@ body {
 }
 
 .toc-title {
-  color: #ffffff !important;
+  color: var(--text-primary);
   border-bottom: 1px solid rgba(52, 152, 219, 0.2);
   padding-bottom: 0.75rem;
   margin-bottom: 0.75rem !important;
@@ -124,7 +133,7 @@ body {
   border: 1px solid rgba(52, 152, 219, 0.3);
   border-radius: 6px;
   padding: 0.25rem 0.5rem;
-  color: #ffffff;
+  color: var(--text-primary);
   transition: all 0.2s ease;
   
   &:hover {
@@ -169,12 +178,12 @@ body {
 
 .toc-content nav li {
   margin: 0.4rem 0;
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: var(--text-secondary);
   background: transparent !important;
 }
 
 .toc-content nav a {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.2s ease;
   display: flex;
@@ -196,7 +205,7 @@ body {
     transform: translateX(4px);
     
     &::before {
-      color: #ffffff;
+      color: var(--text-primary);
     }
   }
 }
