@@ -4,7 +4,7 @@ email: aaskar@gatech.edu
 image: "/images/ammar-askar.png"
 affiliation: PhD at Georgia Tech
 team: "java"
-role: Java Fuzzing
+role: Fuzzing
 social:
   - name: www
     icon: fa-solid fa-house
