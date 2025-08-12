@@ -19,11 +19,11 @@ social:
 
   - name: linkedin
     icon: fa-brands fa-linkedin
-    link: https://www.linkedin.com/in/yeongjin-jang-56878365/
+    link: https://www.linkedin.com/in/yeongjin-jang892/
 
   - name: email
     icon: fa-solid fa-envelope
     link: mailto:dr.yeongjin.jang@gmail.com
 ---
 
-Java Team Lead
+Java Concolic Execution Lead
