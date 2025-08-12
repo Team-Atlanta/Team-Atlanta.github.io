@@ -152,7 +152,7 @@
             <div id="team-{{ $team }}-content" class="team-content mt-8" aria-labelledby="team-{{ $team }}" style="opacity: 1; max-height: none; padding-top: 2rem;">
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {{ range $i, $member := $members }}
-                  <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2"
+                  <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2 relative"
                        data-name="{{ $member.Title | lower }}"
                        data-description="{{ $member.Params.description | lower }}"
                        data-institution="{{ $member.Params.description | lower }}"
@@ -302,7 +302,9 @@
 
       if (isExpanded) {
         // Collapse
-        content.style.maxHeight = content.scrollHeight + 'px';
+        const currentHeight = content.getBoundingClientRect().height;
+        content.style.overflow = 'hidden';
+        content.style.maxHeight = currentHeight + 'px';
         content.offsetHeight; // Force reflow
         content.style.maxHeight = '0px';
         content.style.opacity = '0';
@@ -318,25 +320,41 @@
       } else {
         // Expand
         content.classList.remove('hidden');
+        content.style.overflow = 'visible';
         content.style.maxHeight = '0px';
         content.style.opacity = '0';
         content.style.paddingTop = '0px';
 
         content.offsetHeight; // Force reflow
-        content.style.maxHeight = content.scrollHeight + 'px';
-        content.style.opacity = '1';
-        content.style.paddingTop = '2rem';
+        
+        // Use requestAnimationFrame for proper height calculation
+        requestAnimationFrame(() => {
+          // Get actual visual height including all borders and margins
+          const actualHeight = content.getBoundingClientRect().height;
+          const gridHeight = content.querySelector('.grid')?.getBoundingClientRect().height || 0;
+          const safeHeight = Math.max(actualHeight, gridHeight) + 30; // 30px safety buffer
+          
+          content.style.maxHeight = safeHeight + 'px';
+          content.style.opacity = '1';
+          content.style.paddingTop = '2rem';
 
-        section.dataset.expanded = 'true';
-        card.setAttribute('aria-expanded', 'true');
-        icon.style.transform = 'rotate(180deg)';
+          section.dataset.expanded = 'true';
+          card.setAttribute('aria-expanded', 'true');
+          icon.style.transform = 'rotate(180deg)';
 
-        // Animate member cards
-        const memberCards = content.querySelectorAll('.member-card');
-        memberCards.forEach((card, index) => {
+          // Animate member cards
+          const memberCards = content.querySelectorAll('.member-card');
+          memberCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.style.animation = `fadeInUp 0.6s ease-out forwards`;
+            }, index * 100);
+          });
+          
+          // Final height adjustment after animations
           setTimeout(() => {
-            card.style.animation = `fadeInUp 0.6s ease-out forwards`;
-          }, index * 100);
+            const finalHeight = content.getBoundingClientRect().height + 20;
+            content.style.maxHeight = finalHeight + 'px';
+          }, 400);
         });
       }
     }
@@ -415,6 +433,9 @@
       overflow: hidden;
       opacity: 0;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      /* Ensure proper rendering during animations */
+      backface-visibility: hidden;
+      transform: translateZ(0);
     }
 
     .expand-icon {
@@ -435,6 +456,20 @@
     .member-card {
       animation: fadeInUp 0.6s ease-out forwards;
       animation-fill-mode: both;
+      /* Fix border rendering issues */
+      border: 1px solid;
+      border-color: rgb(243 244 246);
+      isolation: isolate;
+      will-change: transform;
+    }
+    
+    .dark .member-card {
+      border-color: rgb(55 65 81);
+    }
+    
+    /* Ensure proper layout containment */
+    .team-content .grid {
+      contain: layout;
     }
 
     /* Loading skeleton styles */
