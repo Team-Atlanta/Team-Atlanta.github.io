@@ -4,6 +4,22 @@
       <div
         class="row border-border dark:border-darkmode-border justify-center border-b pb-14">
         <div class="lg:col-4 text-center">
+          {{ if .Params.team }}
+            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" }}
+            {{ $teamNames := dict "multilang" "MULTILANG" "c" "C" "java" "JAVA" "patch" "PATCH" "sarif" "SARIF" "leader" "LEADER" }}
+            {{ $color := index $teamColors .Params.team }}
+            {{ $teamName := index $teamNames .Params.team }}
+            <div class="mb-6">
+              <div class="bg-{{ $color }}-100 dark:bg-{{ $color }}-900/30 text-{{ $color }}-600 dark:text-{{ $color }}-400 px-3 py-1 rounded-full text-xs font-bold inline-block">
+                {{ if eq .Params.team "leader" }}
+                  <i class="fa-solid fa-crown mr-1"></i>{{ $teamName }}
+                {{ else }}
+                  {{ $teamName }}
+                {{ end }}
+              </div>
+            </div>
+          {{ end }}
+          
           {{ $image:= .Params.image }}
           {{ if $image }}
             {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mx-auto" "Size" "200x200") }}
@@ -16,6 +32,20 @@
               src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=128&pg&d=identicon" />
           {{ end }}
           <h1 class="h3 mt-10">{{ .Title }}</h1>
+          
+          {{ if .Params.role }}
+            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" }}
+            {{ $color := index $teamColors .Params.team }}
+            {{ if $color }}
+              <p class="text-{{ $color }}-400 dark:text-{{ $color }}-300 text-lg font-semibold mt-4">{{ .Params.role }}</p>
+            {{ else }}
+              <p class="text-white text-lg font-semibold mt-4">{{ .Params.role }}</p>
+            {{ end }}
+          {{ end }}
+          
+          {{ if .Params.affiliation }}
+            <p class="text-gray-600 dark:text-gray-400 text-base mt-2">{{ .Params.affiliation }}</p>
+          {{ end }}
           <div class="content mt-6">
             {{ .Content }}
           </div>
