@@ -5,8 +5,8 @@ image: /images/jiho-kim.png
 affiliation: PhD at Georgia Tech
 team_memberships:
 - team: multilang
-  weight: 50
   role: Benchmark & Infra
+  priority: 10
 social:
 - name: github
   icon: fa-brands fa-github
@@ -18,4 +18,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:jkim4050@gatech.edu
 ---
+
+
 

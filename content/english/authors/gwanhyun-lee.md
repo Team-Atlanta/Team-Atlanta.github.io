@@ -5,8 +5,8 @@ image: /images/gwanhyun.png
 affiliation: null
 team_memberships:
 - team: sarif
-  weight: 50
   role: Sarif Team Member
+  priority: 10
 social:
 - name: github
   icon: fa-brands fa-github
@@ -18,3 +18,5 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:gwanhyunlee@gmail.com
 ---
+
+

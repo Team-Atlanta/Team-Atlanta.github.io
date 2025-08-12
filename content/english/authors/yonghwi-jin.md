@@ -5,8 +5,8 @@ image: /images/yonghwi-jin.jpg
 affiliation: PhD at Georgia Tech
 team_memberships:
 - team: patch
-  weight: 50
   role: Patch Team Member
+  priority: 10
 social:
 - name: github
   icon: fa-brands fa-github
@@ -15,4 +15,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:yonghwi@gatech.edu
 ---
+
+
 

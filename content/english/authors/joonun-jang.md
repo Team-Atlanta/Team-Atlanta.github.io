@@ -5,8 +5,8 @@ image: /images/joonun-jang.png
 affiliation: Samsung Research
 team_memberships:
 - team: java
-  weight: 3
   role: AI Agent for Seed/PoV Generation
+  priority: 3
 social:
 - name: github
   icon: fa-brands fa-github
@@ -15,4 +15,5 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:joonun.jang@samsung.com
 ---
+
 

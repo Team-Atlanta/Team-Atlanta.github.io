@@ -5,8 +5,8 @@ image: /images/sangdon-park.png
 affiliation: Assistant professor at POSTECH
 team_memberships:
 - team: patch
-  weight: 50
   role: POSTECH Team Lead
+  priority: 3
 social:
 - name: www
   icon: fa-solid fa-house
@@ -24,4 +24,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:sangdon@postech.ac.kr
 ---
+
+
 

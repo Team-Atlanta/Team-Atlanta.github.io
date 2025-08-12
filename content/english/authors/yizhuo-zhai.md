@@ -5,8 +5,8 @@ image: /images/yizhuo-zhai.png
 affiliation: Postdoc at Georgia Tech
 team_memberships:
 - team: c
-  weight: 50
   role: Harness Scheduling; LLM-based Fuzzing Mutator
+  priority: 10
 social:
 - name: www
   icon: fa-solid fa-house
@@ -18,4 +18,6 @@ social:
   icon: fa-brands fa-linkedin
   link: https://www.linkedin.com/in/yizhuo-zhai/
 ---
+
+
 

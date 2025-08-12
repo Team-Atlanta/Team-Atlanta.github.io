@@ -5,8 +5,8 @@ image: /images/sangwoo-ji.png
 affiliation: Researcher at Samsung Research
 team_memberships:
 - team: multilang
-  weight: 50
   role: AI Agents for Bug Discovery & Exploitation
+  priority: 10
 social:
 - name: github
   icon: fa-brands fa-github
@@ -18,4 +18,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:sangwoo_.ji@samsung.com
 ---
+
+
 

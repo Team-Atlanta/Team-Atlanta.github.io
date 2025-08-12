@@ -5,8 +5,8 @@ image: /images/kyungjoon-ko.jpg
 affiliation: Samsung Research
 team_memberships:
 - team: java
-  weight: 50
   role: Concolic Exection
+  priority: 10
 social:
 - name: github
   icon: fa-brands fa-github
@@ -15,4 +15,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:kj2648.ko@samsung.com
 ---
+
+
 

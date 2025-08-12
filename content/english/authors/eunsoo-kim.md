@@ -5,8 +5,8 @@ image: /images/eunsoo.png
 affiliation: Samsung Research
 team_memberships:
 - team: multilang
-  weight: 50
   role: Harness Reverser & Testlang
+  priority: 10
 social:
 - name: www
   icon: fa-solid fa-house
@@ -18,4 +18,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:euns.kim@samsung.com
 ---
+
+
 

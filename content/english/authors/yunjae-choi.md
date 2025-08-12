@@ -5,8 +5,8 @@ image: /images/yunjae-choi.jpg
 affiliation: null
 team_memberships:
 - team: patch
-  weight: 50
   role: Patch Team Member
+  priority: 10
 social:
 - name: github
   icon: fa-brands fa-github
@@ -15,4 +15,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:yunjae9.choi@samsung.com
 ---
+
+
 

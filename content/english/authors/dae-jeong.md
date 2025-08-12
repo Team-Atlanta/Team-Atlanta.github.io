@@ -5,8 +5,8 @@ image: /images/dae.png
 affiliation: Assistant Professor at Seoul National University
 team_memberships:
 - team: multilang
-  weight: 50
   role: Dictionary-based Fuzzing
+  priority: 10
 social:
 - name: www
   icon: fa-solid fa-house
@@ -18,4 +18,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:dae.r.jeong@gatech.edu
 ---
+
+
 

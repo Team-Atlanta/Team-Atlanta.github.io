@@ -5,8 +5,8 @@ image: /images/insu-yun.jpg
 affiliation: Assistant Professor at KAIST
 team_memberships:
 - team: patch
-  weight: 2
   role: Patch Team Lead
+  priority: 3
 social:
 - name: www
   icon: fa-solid fa-house
@@ -21,4 +21,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:insuyun@kaist.ac.kr
 ---
+
+
 

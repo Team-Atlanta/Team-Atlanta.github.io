@@ -5,11 +5,11 @@ image: /images/kyuheon.jpg
 affiliation: null
 team_memberships:
 - team: sarif
-  weight: 50
   role: Sarif Team Member
+  priority: 10
 - team: infra
-  weight: 40
   role: Infra Team Member
+  priority: 5
 social:
 - name: www
   icon: fa-solid fa-house
@@ -21,4 +21,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:kyuheon.kr@gmail.com
 ---
+
+
 

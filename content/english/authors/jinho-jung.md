@@ -5,8 +5,8 @@ image: /images/jinho.jpg
 affiliation: Researcher at MND
 team_memberships:
 - team: sarif
-  weight: 3
   role: SARIF Team Lead
+  priority: 3
 social:
 - name: github
   icon: fa-brands fa-github
@@ -15,4 +15,5 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:jinho.jung@korea.kr
 ---
+
 

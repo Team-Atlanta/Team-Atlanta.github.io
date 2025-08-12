@@ -5,8 +5,8 @@ image: /images/dongju-kim.jpg
 affiliation: null
 team_memberships:
 - team: java
-  weight: 50
   role: Concolic Exection
+  priority: 10
 social:
 - name: www
   icon: fa-solid fa-house
@@ -21,4 +21,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:molgryn@gmail.com
 ---
+
+
 

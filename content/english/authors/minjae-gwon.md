@@ -5,8 +5,8 @@ image: /images/minjae-gwon.png
 affiliation: MS at POSTECH
 team_memberships:
 - team: patch
-  weight: 50
   role: Patch Team Member
+  priority: 10
 social:
 - name: www
   icon: fa-solid fa-house
@@ -24,4 +24,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:minjae.gwon@postech.ac.kr
 ---
+
+
 

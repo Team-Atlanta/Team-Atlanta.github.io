@@ -5,8 +5,8 @@ image: /images/junyoung.jpg
 affiliation: null
 team_memberships:
 - team: sarif
-  weight: 50
   role: Sarif Team Member
+  priority: 10
 social:
 - name: www
   icon: fa-solid fa-house
@@ -18,3 +18,5 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:wkdwns420@gmail.com
 ---
+
+

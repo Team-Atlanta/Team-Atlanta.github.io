@@ -5,8 +5,8 @@ image: /images/yeongjin-jang.png
 affiliation: Principal Engineer at Samsung Research America
 team_memberships:
 - team: java
-  weight: 3
   role: Java Concolic Execution Lead
+  priority: 3
 social:
 - name: www
   icon: fa-solid fa-house
@@ -24,4 +24,5 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:dr.yeongjin.jang@gmail.com
 ---
+
 

@@ -5,8 +5,8 @@ image: /images/yeonghyeon.jpg
 affiliation: null
 team_memberships:
 - team: sarif
-  weight: 50
   role: Sarif Team Member
+  priority: 10
 social:
 - name: linkedin
   icon: fa-brands fa-linkedin
@@ -15,3 +15,5 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:phink608@gmail.com
 ---
+
+

@@ -5,8 +5,8 @@ image: /images/jeongin-cho.jpg
 affiliation: Samsung Research
 team_memberships:
 - team: java
-  weight: 50
   role: AI Agent for Seed/PoV Generation
+  priority: 10
 social:
 - name: github
   icon: fa-brands fa-github
@@ -15,4 +15,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:jeongin.cho@samsung.com
 ---
+
+
 

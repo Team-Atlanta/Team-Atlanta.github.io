@@ -72,10 +72,10 @@
                   {{ end }}
                 {{ end }}
                 {{ if not $found }}
-                  {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" $author "priority" 50 "role" ($author.Params.role | default "")))) }}
+                  {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" $author "priority" 10 "role" ($author.Params.role | default "")))) }}
                 {{ end }}
               {{ else }}
-                {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" $author "priority" 50 "role" ($author.Params.role | default "")))) }}
+                {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" $author "priority" 10 "role" ($author.Params.role | default "")))) }}
               {{ end }}
             {{ end }}
           {{ end }}
@@ -86,9 +86,9 @@
           {{ else }}
             {{ $existing := index $teamMembers $currentTeam }}
             {{ if $existing }}
-              {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" . "priority" 50 "role" (.Params.role | default "")))) }}
+              {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" . "priority" 10 "role" (.Params.role | default "")))) }}
             {{ else }}
-              {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" . "priority" 50 "role" (.Params.role | default "")))) }}
+              {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" . "priority" 10 "role" (.Params.role | default "")))) }}
             {{ end }}
           {{ end }}
         {{ else }}

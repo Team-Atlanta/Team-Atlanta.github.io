@@ -5,8 +5,8 @@ image: /images/cen.png
 affiliation: Postdoc at Georgia Tech
 team_memberships:
 - team: java
-  weight: 3
   role: Java Team Lead
+  priority: 3
 social:
 - name: www
   icon: fa-solid fa-house
@@ -21,4 +21,5 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:blbllhy@gmail.com
 ---
+
 

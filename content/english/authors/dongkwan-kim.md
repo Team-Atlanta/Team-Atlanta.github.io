@@ -5,8 +5,8 @@ image: /images/dongkwan-kim.png
 affiliation: Postdoc at Georgia Tech
 team_memberships:
 - team: multilang
-  weight: 50
   role: AI Agents for Bug Discovery & Exploitation
+  priority: 10
 social:
 - name: www
   icon: fa-solid fa-house
@@ -24,4 +24,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:0xdkay@gmail.com
 ---
+
+
 

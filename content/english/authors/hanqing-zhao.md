@@ -5,8 +5,8 @@ image: /images/hanqing-zhao.png
 affiliation: Ph.D. at Georgia Tech
 team_memberships:
 - team: c
-  weight: 2
   role: C Team Lead
+  priority: 3
 social:
 - name: www
   icon: fa-solid fa-house
@@ -24,4 +24,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:hanqing@gatech.edu
 ---
+
+
 

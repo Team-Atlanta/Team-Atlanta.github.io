@@ -5,8 +5,8 @@ image: /images/taesoo-kim.png
 affiliation: Professor at Georgia Tech and VP at Samsung
 team_memberships:
 - team: leader
-  weight: 1
   role: Head of Team Atlanta
+  priority: 1
 social:
 - name: www
   icon: fa-solid fa-house
@@ -24,4 +24,5 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:taesoo@gatech.edu
 ---
+
 

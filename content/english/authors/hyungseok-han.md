@@ -5,11 +5,11 @@ image: /images/hyungseok-han.png
 affiliation: Samsung Research America
 team_memberships:
 - team: multilang
-  weight: 2
   role: Multilang Team Lead
+  priority: 2
 - team: infra
-  weight: -8
-  role: Multilang Team Lead
+  role: Integration Lead
+  priority: 2
 social:
 - name: www
   icon: fa-solid fa-house
@@ -24,4 +24,6 @@ social:
   icon: fa-solid fa-envelope
   link: mailto:hyungseok.h@samsung.com
 ---
+
+
 
