@@ -213,6 +213,20 @@ body {
   border-bottom-color: rgba(51, 65, 85, 0.6);
 }
 
+// Enhanced Footer Styles - matching header
+.footer-modern {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+  color: #1f2937;
+}
+
+.dark .footer-modern {
+  background: rgba(15, 23, 42, 0.9);
+  border-top-color: rgba(51, 65, 85, 0.6);
+  color: #f9fafb;
+}
+
 // Text Gradients
 .text-gradient {
   background: var(--primary-gradient);
