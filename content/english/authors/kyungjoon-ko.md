@@ -2,7 +2,7 @@
 title: Kyungjoon Ko
 email: kj2648.ko@samsung.com
 image: "/images/kyungjoon-ko.jpg"
-description: Samsung Research
+affiliation: Samsung Research
 team: "java"
 social:
   - name: github
@@ -13,5 +13,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:kj2648.ko@samsung.com
 ---
-
-Java

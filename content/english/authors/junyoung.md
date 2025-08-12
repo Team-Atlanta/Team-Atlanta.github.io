@@ -2,7 +2,7 @@
 title: Junyoung Jang
 email: wkdwns420@gmail.com
 image: "/images/junyoung.jpg"
-description: 
+affiliation: 
 team: "sarif"
 social:
   - name: www
@@ -17,5 +17,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:wkdwns420@gmail.com
 ---
-
-SARIF

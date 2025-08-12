@@ -3,7 +3,8 @@ title: Yeongjin Jang
 email: dr.yeongjin.jang@gmail.com
 image: "/images/yeongjin-jang.png"
 weight: 3
-description: Principal Engineer at Samsung Research America
+affiliation: Principal Engineer at Samsung Research America
+role: Java Concolic Execution Lead
 team: "java"
 social:
   - name: www
@@ -26,5 +27,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:dr.yeongjin.jang@gmail.com
 ---
-
-Java Concolic Execution Lead

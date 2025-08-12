@@ -2,7 +2,8 @@
 title: Jiho Kim
 email: jkim4050@gatech.edu
 image: "/images/jiho-kim.png"
-description: MS at Georgia Tech
+affiliation: PhD at Georgia Tech
+role: Benchmark & Infra
 team: "multilang"
 social:
   - name: github
@@ -17,5 +18,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:jkim4050@gatech.edu
 ---
-
-Multilang CRS

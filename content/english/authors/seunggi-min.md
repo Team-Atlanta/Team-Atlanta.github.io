@@ -2,7 +2,7 @@
 title: Seunggi Min
 email: alex8757@kaist.ac.kr
 image: "/images/seunggi-min.jpg"
-description: Master Student at KAIST
+affiliation: MS at KAIST
 team: "patch"
 social:
   - name: github
@@ -13,5 +13,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:alex8757@kaist.ac.kr
 ---
-
-Patching

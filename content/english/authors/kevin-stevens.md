@@ -2,12 +2,11 @@
 title: Kevin Stevens
 email: kevin.stevens@gatech.edu
 image: "/images/kevin-stevens.png"
-description: PhD at Georgia Tech
+affiliation: PhD at Georgia Tech
+role: Integration
 team: "c"
 social:
   - name: github
     icon: fa-brands fa-github
     link: https://github.com/stevenskevin/
 ---
-
-Integration

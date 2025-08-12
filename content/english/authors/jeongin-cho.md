@@ -2,7 +2,7 @@
 title: Jeongin Cho
 email: jeongin.cho@samsung.com
 image: "/images/jeongin-cho.jpg"
-description: 
+affiliation: Samsung Research
 team: "java"
 social:
   - name: github
@@ -13,5 +13,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:jeongin.cho@samsung.com
 ---
-
-Java

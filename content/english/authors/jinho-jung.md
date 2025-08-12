@@ -3,7 +3,8 @@ title: Jinho Jung
 email: jinho.jung@korea.kr
 image: "/images/jinho.jpg"
 weight: 3
-description: Researcher at MND
+affiliation: Researcher at MND
+role: SARIF Team Lead
 team: "sarif"
 social:
   - name: github
@@ -14,5 +15,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:jinho.jung@korea.kr
 ---
-
-SARIF

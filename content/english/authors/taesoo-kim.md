@@ -2,9 +2,10 @@
 title: Taesoo Kim
 email: taesoo@gatech.edu
 image: "/images/taesoo-kim.png"
-description: Professor at GT and VP at Samsung
+affiliation: Professor at Georgia Tech and VP at Samsung
 weight: 1
 team: "leader"
+role: "Chief Team Leader"
 social:
   - name: www
     icon: fa-solid fa-house
@@ -26,5 +27,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:taesoo@gatech.edu
 ---
-
-Chief Leader of Team Atlanta

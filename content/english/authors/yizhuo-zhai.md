@@ -2,7 +2,7 @@
 title: Yizhuo Zhai
 email: yzhai60@gatech.edu
 image: "/images/yizhuo-zhai.png"
-description: Postdoc at Georgia Tech
+affiliation: Postdoc at Georgia Tech
 team: "c"
 social:
   - name: www
@@ -17,5 +17,3 @@ social:
     icon: fa-brands fa-linkedin
     link: https://www.linkedin.com/in/yizhuo-zhai/
 ---
-
-Userspace CRS

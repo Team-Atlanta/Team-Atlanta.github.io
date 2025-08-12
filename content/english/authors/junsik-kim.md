@@ -2,7 +2,7 @@
 title: Junsik Kim
 email: junsik1.kim@samsung.com
 image: "/images/junsik-kim.jpg"
-description: Samsung Research
+affiliation: Samsung Research
 team: "java"
 social:
   - name: github
@@ -17,5 +17,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:junsik1.kim@samsung.com
 ---
-
-Java

@@ -3,7 +3,8 @@ title: Soyeon Park
 email: s.park5@samsung.com
 image: "/images/soyeon_194.png"
 weight: 3
-description: Samsung Research America
+affiliation: Samsung Research America
+role: AI Agents for Bug Discovery & Exploitation
 team: "multilang"
 social:
   - name: www
@@ -22,5 +23,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:s.park5@samsung.com
 ---
-
-AI Agents for Bug Discovery & Exploitation

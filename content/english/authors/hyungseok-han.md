@@ -3,8 +3,9 @@ title: HyungSeok Han
 email: hyungseok.h@samsung.com
 image: "/images/hyungseok-han.png"
 weight: 2
-description: Samsung Research America
-team: "multilang"
+affiliation: Samsung Research America
+team: "leader"
+role: "Bug Discovery Leader"
 social:
   - name: www
     icon: fa-solid fa-house
@@ -22,5 +23,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:hyungseok.h@samsung.com
 ---
-
-Samsung Research Team Lead

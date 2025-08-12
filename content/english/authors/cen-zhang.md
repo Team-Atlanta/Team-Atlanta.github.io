@@ -2,7 +2,7 @@
 title: Cen Zhang
 email: blbllhy@gmail.com
 image: "/images/cen.png"
-description: Postdoc at Georgia Tech
+affiliation: Postdoc at Georgia Tech
 team: "java"
 social:
   - name: www
@@ -21,5 +21,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:blbllhy@gmail.com
 ---
-
-Java CRS

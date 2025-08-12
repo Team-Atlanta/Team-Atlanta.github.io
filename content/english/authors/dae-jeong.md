@@ -2,7 +2,8 @@
 title: Dae R. Jeong
 email: dae.r.jeong@gatech.edu
 image: "/images/dae.png"
-description: Postdoc at Georgia Tech
+affiliation: Assistant Professor at Seoul National University
+role: Dictionary-based Fuzzing
 team: "multilang"
 social:
   - name: www
@@ -17,5 +18,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:dae.r.jeong@gatech.edu
 ---
-
-Linux Kernel

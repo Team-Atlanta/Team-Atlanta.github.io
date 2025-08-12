@@ -3,7 +3,8 @@ title: Hanqing Zhao
 email: hanqing@gatech.edu
 image: "/images/hanqing-zhao.png"
 weight: 3
-description: PhD at Georgia Tech
+affiliation: PhD at Georgia Tech
+role: Userspace Team Lead
 team: "c"
 social:
   - name: www
@@ -26,5 +27,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:hanqing@gatech.edu
 ---
-
-Georgia Tech Team Lead

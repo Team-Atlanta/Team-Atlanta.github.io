@@ -2,7 +2,7 @@
 title: Wonyoung Kim
 email: won10.kim@gmail.com
 image: "/images/wonyoung-kim.png"
-description: Master Student at KAIST
+affiliation: MS at KAIST
 team: "patch"
 social:
   - name: github
@@ -13,5 +13,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:won10.kim@gmail.com
 ---
-
-Patching

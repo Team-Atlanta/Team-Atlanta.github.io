@@ -2,7 +2,8 @@
 title: Dohyeok Kim
 email: do_hyeok.kim@samsung.com
 image: "/images/dohyeok-kim.png"
-description: Security Software Engineer at Samsung Research
+affiliation: Security Software Engineer at Samsung Research
+role: Harness Reverser & Testlang
 team: "multilang"
 social:
   - name: linkedin
@@ -13,5 +14,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:do_hyeok.kim@samsung.com
 ---
-
-Multilang CRS

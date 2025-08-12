@@ -2,7 +2,7 @@
 title: Hyeon Heo
 email: heohyun0703@kaist.ac.kr
 image: "/images/hyeon-heo.jpg"
-description: Master Student at KAIST
+affiliation: MS at KAIST
 team: "patch"
 social:
   - name: github
@@ -13,5 +13,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:heohyun0703@kaist.ac.kr
 ---
-
-Patching

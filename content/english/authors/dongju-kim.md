@@ -2,7 +2,7 @@
 title: Dongju Kim
 email: molgryn@gmail.com
 image: "/images/dongju-kim.jpg"
-description: 
+affiliation: 
 team: "java"
 social:
   - name: www
@@ -21,5 +21,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:molgryn@gmail.com
 ---
-
-Java

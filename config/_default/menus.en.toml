@@ -32,10 +32,46 @@ url = "blog/"
 #url = "contact/"
 
 [[main]]
-#parent = "Pages"
 name = "AIxCC Team"
 url = "authors/"
 weight = 2
+hasChildren = true
+
+[[main]]
+parent = "AIxCC Team"
+name = "Team Leader"
+url = "authors/#team-leader"
+weight = 1
+
+[[main]]
+parent = "AIxCC Team"
+name = "Atlantis-Multilang"
+url = "authors/#team-multilang"
+weight = 2
+
+[[main]]
+parent = "AIxCC Team"
+name = "Atlantis-C"
+url = "authors/#team-c"
+weight = 3
+
+[[main]]
+parent = "AIxCC Team"
+name = "Atlantis-Java"
+url = "authors/#team-java"
+weight = 4
+
+[[main]]
+parent = "AIxCC Team"
+name = "Atlantis-Patch"
+url = "authors/#team-patch"
+weight = 5
+
+[[main]]
+parent = "AIxCC Team"
+name = "Atlantis-SARIF"
+url = "authors/#team-sarif"
+weight = 6
 
 #[[main]]
 #parent = "Pages"

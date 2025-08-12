@@ -2,7 +2,7 @@
 title: Ammar Askar
 email: aaskar@gatech.edu
 image: "/images/ammar-askar.png"
-description: PhD at Georgia Tech
+affiliation: PhD at Georgia Tech
 team: "java"
 social:
   - name: www
@@ -21,5 +21,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:aaskar@gatech.edu
 ---
-
-Java Analysis

@@ -2,7 +2,8 @@
 title: Eunsoo Kim
 email: euns.kim@samsung.com
 image: "/images/eunsoo.png"
-description: Samsung Research
+affiliation: Samsung Research
+role: Harness Reverser & Testlang
 team: "multilang"
 social:
   - name: www
@@ -17,5 +18,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:euns.kim@samsung.com
 ---
-
-Multilang CRS

@@ -2,7 +2,8 @@
 title: Sangdon Park
 email: sangdon@postech.ac.kr
 image: "/images/sangdon-park.png"
-description: Assistant professor at POSTECH
+affiliation: Assistant professor at POSTECH
+role: POSTECH Team Lead
 team: "patch"
 social:
   - name: www
@@ -25,5 +26,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:sangdon@postech.ac.kr
 ---
-
-POSTECH Team Lead

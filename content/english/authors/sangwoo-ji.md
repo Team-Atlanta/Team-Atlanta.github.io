@@ -2,7 +2,8 @@
 title: Sangwoo Ji
 email: sangwoo_.ji@samsung.com
 image: "/images/sangwoo-ji.png"
-description: Researcher at Samsung Research
+affiliation: Researcher at Samsung Research
+role: AI Agents for Bug Discovery & Exploitation
 team: "multilang"
 social:
   - name: github
@@ -17,5 +18,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:sangwoo_.ji@samsung.com
 ---
-
-AI Agents for Bug Discovery & Exploitation

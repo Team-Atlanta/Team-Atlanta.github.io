@@ -2,7 +2,7 @@
 title: Kyuheon Kim
 email: kyuheon.kim@gmail.com
 image: "/images/kyuheon.jpg"
-description: 
+affiliation: 
 team: "sarif"
 social:
   - name: www
@@ -17,5 +17,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:kyuheon.kr@gmail.com
 ---
-
-SARIF

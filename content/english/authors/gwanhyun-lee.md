@@ -2,7 +2,7 @@
 title: Gwanhyun Lee
 email: gwanhyunlee@gmail.com
 image: "/images/gwanhyun.png"
-description: 
+affiliation: 
 team: "sarif"
 social:
   - name: github
@@ -17,5 +17,3 @@ social:
     icon: fa-solid fa-envelope
     link: mailto:gwanhyunlee@gmail.com
 ---
-
-SARIF
