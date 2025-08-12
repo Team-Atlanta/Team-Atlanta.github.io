@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "<span class='text-gradient font-bold text-6xl'>ATLANTIS</span>:</br> **A**I-driven **T**hreat **L**ocalization **AN**d **T**riage **I**ntelligent **S**ystem"
-  content: "**Team Atlanta** is an award-winning group, with accolades from Pwn2Own, DEFCON CTF, and numerous academic conferences. Our team comprises experts from Georgia Tech, Samsung Research, KAIST, and POSTECH. We are dedicated to advancing next-generation security research using Large Language Models (LLMs) to pioneer Security-AGI for the future. In DARPA’s AI Cyber Challenge, we aim to revolutionize security paradigms by leveraging AI and LLMs in our cyber reasoning system **Atlantis**."
+  content: "🏆 **AIxCC 1st Place Winner!** 🏆<br/><br/>**Team Atlanta** has won **1st place in DARPA's AI Cyber Challenge (AIxCC)**, demonstrating the power of our AI-driven security system. We are an award-winning group with accolades from Pwn2Own, DEFCON CTF, and numerous academic conferences. Our team comprises experts from Georgia Tech, Samsung Research, KAIST, and POSTECH. We are dedicated to advancing next-generation security research using Large Language Models (LLMs) to pioneer Security-AGI for the future. Through our cyber reasoning system **Atlantis**, we have successfully revolutionized security paradigms by leveraging AI and LLMs."
 
   image: "/images/group-afc-main.jpg"
   image2: "/images/group-afc-booth.jpg"
