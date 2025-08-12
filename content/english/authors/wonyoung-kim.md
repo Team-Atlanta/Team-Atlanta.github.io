@@ -1,15 +1,18 @@
 ---
 title: Wonyoung Kim
 email: won10.kim@gmail.com
-image: "/images/wonyoung-kim.png"
+image: /images/wonyoung-kim.png
 affiliation: MS at KAIST
-teams: ["patch"]
+team_memberships:
+- team: patch
+  weight: 50
+  role: Patch Team Member
 social:
-  - name: github
-    icon: fa-brands fa-github
-    link: https://github.com/won0-kim
-
-  - name: email
-    icon: fa-solid fa-envelope
-    link: mailto:won10.kim@gmail.com
+- name: github
+  icon: fa-brands fa-github
+  link: https://github.com/won0-kim
+- name: email
+  icon: fa-solid fa-envelope
+  link: mailto:won10.kim@gmail.com
 ---
+

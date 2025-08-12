@@ -1,24 +1,24 @@
 ---
 title: Dongju Kim
 email: molgryn@gmail.com
-image: "/images/dongju-kim.jpg"
-affiliation: 
-role: Concolic Exection
-teams: ["java"]
+image: /images/dongju-kim.jpg
+affiliation: null
+team_memberships:
+- team: java
+  weight: 50
+  role: Concolic Exection
 social:
-  - name: www
-    icon: fa-solid fa-house
-    link: https://molgryn.me/
-
-  - name: github
-    icon: fa-brands fa-github
-    link: https://github.com/molgryn
-
-  - name: linkedin
-    icon: fa-brands fa-linkedin
-    link: https://www.linkedin.com/in/molgryn
-
-  - name: email
-    icon: fa-solid fa-envelope
-    link: mailto:molgryn@gmail.com
+- name: www
+  icon: fa-solid fa-house
+  link: https://molgryn.me/
+- name: github
+  icon: fa-brands fa-github
+  link: https://github.com/molgryn
+- name: linkedin
+  icon: fa-brands fa-linkedin
+  link: https://www.linkedin.com/in/molgryn
+- name: email
+  icon: fa-solid fa-envelope
+  link: mailto:molgryn@gmail.com
 ---
+

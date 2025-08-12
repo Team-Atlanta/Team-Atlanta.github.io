@@ -1,15 +1,18 @@
 ---
 title: Yonghwi Jin
 email: yonghwi@gatech.edu
-image: "/images/yonghwi-jin.jpg"
+image: /images/yonghwi-jin.jpg
 affiliation: PhD at Georgia Tech
-teams: ["patch"]
+team_memberships:
+- team: patch
+  weight: 50
+  role: Patch Team Member
 social:
-  - name: github
-    icon: fa-brands fa-github
-    link: https://github.com/Jinmo/
-
-  - name: email
-    icon: fa-solid fa-envelope
-    link: mailto:yonghwi@gatech.edu
+- name: github
+  icon: fa-brands fa-github
+  link: https://github.com/Jinmo/
+- name: email
+  icon: fa-solid fa-envelope
+  link: mailto:yonghwi@gatech.edu
 ---
+

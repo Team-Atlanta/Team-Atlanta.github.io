@@ -1,28 +1,27 @@
 ---
 title: Dongkwan Kim
 email: 0xdkay@gmail.com
-image: "/images/dongkwan-kim.png"
+image: /images/dongkwan-kim.png
 affiliation: Postdoc at Georgia Tech
-role: AI Agents for Bug Discovery & Exploitation
-teams: ["multilang"]
+team_memberships:
+- team: multilang
+  weight: 50
+  role: AI Agents for Bug Discovery & Exploitation
 social:
-  - name: www
-    icon: fa-solid fa-house
-    link: https://0xdkay.me
-
-  - name: linkedin
-    icon: fa-brands fa-linkedin
-    link: https://www.linkedin.com/in/0xdkay
-
-  - name: github
-    icon: fa-brands fa-github
-    link: https://github.com/0xdkay
-
-  - name: twitter
-    icon: fa-brands fa-twitter
-    link: https://x.com/0xdkay
-
-  - name: email
-    icon: fa-solid fa-envelope
-    link: mailto:0xdkay@gmail.com
+- name: www
+  icon: fa-solid fa-house
+  link: https://0xdkay.me
+- name: linkedin
+  icon: fa-brands fa-linkedin
+  link: https://www.linkedin.com/in/0xdkay
+- name: github
+  icon: fa-brands fa-github
+  link: https://github.com/0xdkay
+- name: twitter
+  icon: fa-brands fa-twitter
+  link: https://x.com/0xdkay
+- name: email
+  icon: fa-solid fa-envelope
+  link: mailto:0xdkay@gmail.com
 ---
+

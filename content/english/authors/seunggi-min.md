@@ -1,15 +1,18 @@
 ---
 title: Seunggi Min
 email: alex8757@kaist.ac.kr
-image: "/images/seunggi-min.jpg"
+image: /images/seunggi-min.jpg
 affiliation: MS at KAIST
-teams: ["patch"]
+team_memberships:
+- team: patch
+  weight: 50
+  role: Patch Team Member
 social:
-  - name: github
-    icon: fa-brands fa-github
-    link: https://github.com/ironore15
-
-  - name: email
-    icon: fa-solid fa-envelope
-    link: mailto:alex8757@kaist.ac.kr
+- name: github
+  icon: fa-brands fa-github
+  link: https://github.com/ironore15
+- name: email
+  icon: fa-solid fa-envelope
+  link: mailto:alex8757@kaist.ac.kr
 ---
+

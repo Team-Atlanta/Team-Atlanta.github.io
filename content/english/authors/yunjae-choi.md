@@ -1,15 +1,18 @@
 ---
 title: Yunjae Choi
 email: yunjae9.choi@samsung.com
-image: "/images/yunjae-choi.jpg"
-affiliation: 
-teams: ["patch"]
+image: /images/yunjae-choi.jpg
+affiliation: null
+team_memberships:
+- team: patch
+  weight: 50
+  role: Patch Team Member
 social:
-  - name: github
-    icon: fa-brands fa-github
-    link: https://github.com/YunjaeChoi/
-
-  - name: email
-    icon: fa-solid fa-envelope
-    link: mailto:yunjae9.choi@samsung.com
+- name: github
+  icon: fa-brands fa-github
+  link: https://github.com/YunjaeChoi/
+- name: email
+  icon: fa-solid fa-envelope
+  link: mailto:yunjae9.choi@samsung.com
 ---
+
