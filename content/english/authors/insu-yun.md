@@ -2,9 +2,9 @@
 title: Insu Yun
 email: insuyun@kaist.ac.kr
 image: "/images/insu-yun.jpg"
-weight: 3
+weight: 2
 affiliation: Assistant Professor at KAIST
-team: "leader"
+team: "patch"
 role: "Patch Leader"
 social:
   - name: www
