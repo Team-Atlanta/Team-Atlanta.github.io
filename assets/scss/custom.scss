@@ -3,6 +3,7 @@
 // CSS Custom Properties for Dynamic Theming
 :root {
   --primary-gradient: linear-gradient(135deg, #3498db 0%, #34495e 50%, #2c3e50 100%);
+  --deep-sea-bg: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #253447 100%);
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
   --shadow-soft: 0 4px 6px -1px rgba(44, 62, 80, 0.1), 0 2px 4px -1px rgba(44, 62, 80, 0.06);
@@ -11,6 +12,31 @@
   --shadow-primary: 0 8px 25px -8px rgba(44, 62, 80, 0.3);
   --border-radius-modern: 12px;
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Apply deep sea Atlantis background to all pages
+body {
+  background: var(--deep-sea-bg) !important;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+// Ensure home page text is visible on dark background
+.section {
+  color: #ffffff;
+}
+
+.section h1, .section h2, .section h3, .section p {
+  color: #ffffff !important;
+}
+
+// Make sure dark mode text classes work on our background
+.text-dark {
+  color: #ffffff !important;
+}
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .dark:root {

@@ -1,7 +1,7 @@
 {{ define "main" }}
   <!-- Banner -->
   {{ with .Params.banner }}
-    <section class="section pt-14 bg-gradient-subtle relative overflow-hidden">
+    <section class="section pt-14 relative overflow-hidden" style="background: transparent;">
       <!-- Background decorative elements -->
       <div class="absolute inset-0 opacity-10">
         <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
@@ -43,7 +43,7 @@
 
   <!-- Features -->
   {{ range $i, $e:= .Params.features }}
-    <section class="section-sm {{ if (modBool $i 2) }}bg-gradient-subtle{{ end }}">
+    <section class="section-sm" style="background: transparent;">
       <div class="container">
         <div class="row items-center justify-between">
           <div

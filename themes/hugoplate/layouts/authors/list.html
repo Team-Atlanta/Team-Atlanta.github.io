@@ -178,7 +178,7 @@
                       <a href="{{ $member.RelPermalink }}" class="focus:outline-none focus:text-{{ $color }}-600">{{ $member.Title }}</a>
                     </h4>
                     {{ if $member.Params.role }}
-                      <p class="text-{{ $color }}-600 dark:text-{{ $color }}-400 text-sm font-semibold mb-2">{{ $member.Params.role }}</p>
+                      <p class="text-{{ $color }}-400 dark:text-{{ $color }}-300 text-sm font-semibold mb-2">{{ $member.Params.role }}</p>
                     {{ end }}
                     <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
                       {{ $member.Params.affiliation | default $member.Params.description }}
@@ -471,6 +471,19 @@
     .team-content .grid {
       contain: layout;
     }
+    
+    /* Team color overrides for role text */
+    .text-blue-400 { color: #60a5fa !important; }
+    .text-green-400 { color: #4ade80 !important; }
+    .text-amber-400 { color: #fbbf24 !important; }
+    .text-purple-400 { color: #c084fc !important; }
+    .text-pink-400 { color: #f472b6 !important; }
+    
+    .dark .text-blue-300 { color: #93c5fd !important; }
+    .dark .text-green-300 { color: #86efac !important; }
+    .dark .text-amber-300 { color: #fcd34d !important; }
+    .dark .text-purple-300 { color: #d8b4fe !important; }
+    .dark .text-pink-300 { color: #f9a8d4 !important; }
 
     /* Loading skeleton styles */
     .skeleton {
