@@ -38,6 +38,78 @@
               {{ time.Format ":date_long" .PublishDate }}
             </li>
           </ul>
+          {{ if .TableOfContents }}
+            <div class="toc-container glass-card mb-6 p-4 rounded-lg">
+              <h3 class="toc-title mb-3 text-lg font-semibold text-white flex items-center">
+                <i class="fa-solid fa-list mr-2"></i>
+                Table of Contents
+                <button class="toc-toggle ml-auto text-sm" onclick="toggleTOC()">
+                  <i class="fa-solid fa-chevron-up" id="toc-icon"></i>
+                </button>
+              </h3>
+              <div class="toc-content" id="toc-content">
+                {{ .TableOfContents }}
+              </div>
+            </div>
+            
+            <script>
+              function toggleTOC() {
+                const tocContent = document.getElementById('toc-content');
+                const tocIcon = document.getElementById('toc-icon');
+                
+                if (tocContent.classList.contains('collapsed')) {
+                  tocContent.classList.remove('collapsed');
+                  tocIcon.classList.remove('fa-chevron-down');
+                  tocIcon.classList.add('fa-chevron-up');
+                  tocContent.style.maxHeight = tocContent.scrollHeight + "px";
+                } else {
+                  tocContent.classList.add('collapsed');
+                  tocIcon.classList.remove('fa-chevron-up');
+                  tocIcon.classList.add('fa-chevron-down');
+                  tocContent.style.maxHeight = "0px";
+                }
+              }
+              
+              // Initialize TOC as expanded by default
+              document.addEventListener('DOMContentLoaded', function() {
+                const tocContent = document.getElementById('toc-content');
+                if (tocContent) {
+                  tocContent.style.maxHeight = tocContent.scrollHeight + "px";
+                }
+                
+                // Initialize back to top button
+                initializeBackToTop();
+              });
+              
+              function initializeBackToTop() {
+                const backToTop = document.getElementById('back-to-top');
+                if (!backToTop) return;
+                
+                window.addEventListener('scroll', function() {
+                  if (window.pageYOffset > 300) {
+                    backToTop.classList.remove('hidden');
+                  } else {
+                    backToTop.classList.add('hidden');
+                  }
+                });
+                
+                backToTop.addEventListener('click', function() {
+                  window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                  });
+                });
+              }
+            </script>
+          {{ end }}
+          
+          <!-- Back to Top Button -->
+          <div class="fixed bottom-8 right-8 z-50">
+            <button id="back-to-top" class="hidden bg-primary text-white w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" aria-label="Back to top">
+              <i class="fa-solid fa-arrow-up"></i>
+            </button>
+          </div>
+          
           <div class="content mb-10">
             {{ .Content }}
           </div>

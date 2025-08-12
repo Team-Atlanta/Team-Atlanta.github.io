@@ -97,6 +97,110 @@ body {
   box-shadow: var(--shadow-large);
 }
 
+// Table of Contents specific styling
+.toc-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+  }
+}
+
+.toc-title {
+  color: #ffffff !important;
+  border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem !important;
+}
+
+.toc-toggle {
+  background: rgba(52, 152, 219, 0.2);
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(52, 152, 219, 0.3);
+    border-color: rgba(52, 152, 219, 0.5);
+  }
+}
+
+.toc-content {
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: transparent !important;
+  
+  &.collapsed {
+    max-height: 0 !important;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+// Style the generated TOC navigation
+.toc-content nav {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  background: transparent !important;
+}
+
+.toc-content nav ol,
+.toc-content nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  background: transparent !important;
+}
+
+.toc-content nav ol ol,
+.toc-content nav ul ul {
+  padding-left: 1.2rem;
+  margin-top: 0.25rem;
+}
+
+.toc-content nav li {
+  margin: 0.4rem 0;
+  color: rgba(255, 255, 255, 0.9) !important;
+  background: transparent !important;
+}
+
+.toc-content nav a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-left: 2px solid transparent;
+  
+  &::before {
+    content: "•";
+    color: #3498db;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    min-width: 0.75rem;
+  }
+  
+  &:hover {
+    color: #3498db !important;
+    border-left-color: #3498db;
+    transform: translateX(4px);
+    
+    &::before {
+      color: #ffffff;
+    }
+  }
+}
+
 // Modern Button Styles
 .btn-modern {
   @apply relative overflow-hidden px-6 py-3 font-semibold;
@@ -305,5 +409,60 @@ html {
   .btn-modern {
     padding: 0.75rem 1.5rem;
     font-size: 0.875rem;
+  }
+  
+  // TOC responsive design
+  .toc-container {
+    margin: 1rem 0;
+    padding: 0.75rem;
+    
+    .toc-title {
+      font-size: 1rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      
+      .toc-toggle {
+        align-self: flex-end;
+      }
+    }
+    
+    .toc-content nav {
+      font-size: 0.8rem;
+      
+      ol ol,
+      ul ul {
+        padding-left: 0.8rem;
+      }
+      
+      a {
+        padding: 0.2rem 0.4rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .toc-container {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    
+    .toc-title {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    .toc-content nav {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      
+      a {
+        padding: 0.15rem 0.3rem;
+        
+        &:hover {
+          transform: translateX(2px);
+        }
+      }
+    }
   }
 }
