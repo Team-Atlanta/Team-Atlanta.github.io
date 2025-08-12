@@ -4,7 +4,7 @@ email: sangdon@postech.ac.kr
 image: "/images/sangdon-park.png"
 affiliation: Assistant professor at POSTECH
 role: POSTECH Team Lead
-team: "patch"
+teams: ["patch"]
 social:
   - name: www
     icon: fa-solid fa-house

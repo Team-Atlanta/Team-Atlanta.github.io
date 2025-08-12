@@ -3,7 +3,7 @@ title: Wonyoung Kim
 email: won10.kim@gmail.com
 image: "/images/wonyoung-kim.png"
 affiliation: MS at KAIST
-team: "patch"
+teams: ["patch"]
 social:
   - name: github
     icon: fa-brands fa-github

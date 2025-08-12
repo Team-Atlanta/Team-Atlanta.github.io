@@ -4,7 +4,7 @@ email: taesoo@gatech.edu
 image: "/images/taesoo-kim.png"
 affiliation: Professor at Georgia Tech and VP at Samsung
 weight: 1
-team: "leader"
+teams: ["leader"]
 role: "Head of Team Atlanta"
 social:
   - name: www

@@ -3,7 +3,7 @@ title: Yunjae Choi
 email: yunjae9.choi@samsung.com
 image: "/images/yunjae-choi.jpg"
 affiliation: 
-team: "patch"
+teams: ["patch"]
 social:
   - name: github
     icon: fa-brands fa-github

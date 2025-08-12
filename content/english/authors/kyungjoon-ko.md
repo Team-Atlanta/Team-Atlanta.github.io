@@ -4,7 +4,7 @@ email: kj2648.ko@samsung.com
 image: "/images/kyungjoon-ko.jpg"
 affiliation: Samsung Research
 role: Concolic Exection
-team: "java"
+teams: ["java"]
 social:
   - name: github
     icon: fa-brands fa-github

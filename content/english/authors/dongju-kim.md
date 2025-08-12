@@ -4,7 +4,7 @@ email: molgryn@gmail.com
 image: "/images/dongju-kim.jpg"
 affiliation: 
 role: Concolic Exection
-team: "java"
+teams: ["java"]
 social:
   - name: www
     icon: fa-solid fa-house

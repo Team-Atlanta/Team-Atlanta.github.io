@@ -3,7 +3,7 @@ title: Seunggi Min
 email: alex8757@kaist.ac.kr
 image: "/images/seunggi-min.jpg"
 affiliation: MS at KAIST
-team: "patch"
+teams: ["patch"]
 social:
   - name: github
     icon: fa-brands fa-github

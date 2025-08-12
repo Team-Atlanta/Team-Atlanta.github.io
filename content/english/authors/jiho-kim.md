@@ -4,7 +4,7 @@ email: jkim4050@gatech.edu
 image: "/images/jiho-kim.png"
 affiliation: PhD at Georgia Tech
 role: Benchmark & Infra
-team: "multilang"
+teams: ["multilang"]
 social:
   - name: github
     icon: fa-brands fa-github

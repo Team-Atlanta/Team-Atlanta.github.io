@@ -5,7 +5,7 @@ image: "/images/jinho.jpg"
 weight: 3
 affiliation: Researcher at MND
 role: SARIF Team Lead
-team: "sarif"
+teams: ["sarif"]
 social:
   - name: github
     icon: fa-brands fa-github

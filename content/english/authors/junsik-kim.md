@@ -4,7 +4,7 @@ email: junsik1.kim@samsung.com
 image: "/images/junsik-kim.jpg"
 affiliation: Samsung Research
 role: AI Agent for Seed/PoV Generation
-team: "java"
+teams: ["java"]
 social:
   - name: github
     icon: fa-brands fa-github

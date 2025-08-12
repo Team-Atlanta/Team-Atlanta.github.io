@@ -2,9 +2,9 @@
 title: Andrew Chin
 email: achin34@gatech.edu
 image: "/images/andrew-chin-194.png"
-affiliation: Ph.D. at Georgia Tech
 role: "LLM-Based Challenge Analysis; LLM tools; Fuzzing Infrastructure; Harness Reachability Analysis; Directed Fuzzing Coordination; Evaluation"
-team: "c"
+affiliation: Ph.D. at Georgia Tech
+teams: ["c"]
 social:
   - name: www
     icon: fa-solid fa-house

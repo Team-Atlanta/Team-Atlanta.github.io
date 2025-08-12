@@ -3,7 +3,7 @@ title: Hyeon Heo
 email: heohyun0703@kaist.ac.kr
 image: "/images/hyeon-heo.jpg"
 affiliation: MS at KAIST
-team: "patch"
+teams: ["patch"]
 social:
   - name: github
     icon: fa-brands fa-github

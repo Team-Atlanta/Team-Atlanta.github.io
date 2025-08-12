@@ -4,7 +4,7 @@ email: fleischer@gatech.edu
 image: "/images/fabian-fleischer.png"
 affiliation: PhD at Georgia Tech
 role: Directed Fuzzing
-team: "java"
+teams: ["java"]
 social:
   - name: www
     icon: fa-solid fa-house

@@ -3,7 +3,7 @@ title: Yonghwi Jin
 email: yonghwi@gatech.edu
 image: "/images/yonghwi-jin.jpg"
 affiliation: PhD at Georgia Tech
-team: "patch"
+teams: ["patch"]
 social:
   - name: github
     icon: fa-brands fa-github

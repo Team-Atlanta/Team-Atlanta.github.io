@@ -4,7 +4,7 @@ email: dae.r.jeong@gatech.edu
 image: "/images/dae.png"
 affiliation: Assistant Professor at Seoul National University
 role: Dictionary-based Fuzzing
-team: "multilang"
+teams: ["multilang"]
 social:
   - name: www
     icon: fa-solid fa-house

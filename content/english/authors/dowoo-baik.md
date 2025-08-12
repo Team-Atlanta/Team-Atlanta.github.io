@@ -3,7 +3,7 @@ title: Dowoo Baik
 email: arizona9506@korea.ac.kr
 image: "/images/dowoo-baik.jpg"
 affiliation: 
-team: "patch"
+teams: ["patch"]
 social:
   - name: github
     icon: fa-brands fa-github

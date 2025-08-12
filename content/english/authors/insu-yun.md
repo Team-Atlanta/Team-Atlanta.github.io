@@ -4,7 +4,7 @@ email: insuyun@kaist.ac.kr
 image: "/images/insu-yun.jpg"
 weight: 2
 affiliation: Assistant Professor at KAIST
-team: "patch"
+teams: ["patch"]
 role: "Patch Team Lead"
 social:
   - name: www

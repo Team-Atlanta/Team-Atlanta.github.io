@@ -34,8 +34,13 @@
           <h1 class="h3 mt-10">{{ .Title }}</h1>
           
           {{ if .Params.role }}
-            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" }}
-            {{ $color := index $teamColors .Params.team }}
+            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" "infra" "indigo" }}
+            {{ $color := "" }}
+            {{ if .Params.teams }}
+              {{ $color = index $teamColors (index .Params.teams 0) }}
+            {{ else if .Params.team }}
+              {{ $color = index $teamColors .Params.team }}
+            {{ end }}
             {{ if $color }}
               <p class="text-{{ $color }}-400 dark:text-{{ $color }}-300 text-lg font-semibold mt-4">{{ .Params.role }}</p>
             {{ else }}

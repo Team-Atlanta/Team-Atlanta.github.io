@@ -5,7 +5,7 @@ image: "/images/joonun-jang.png"
 weight: 3
 affiliation: Samsung Research
 role: AI Agent for Seed/PoV Generation
-team: "java"
+teams: ["java"]
 social:
   - name: github
     icon: fa-brands fa-github

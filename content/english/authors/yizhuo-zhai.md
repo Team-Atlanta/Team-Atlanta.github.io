@@ -4,7 +4,7 @@ email: yzhai60@gatech.edu
 image: "/images/yizhuo-zhai.png"
 affiliation: Postdoc at Georgia Tech
 role: "Harness Scheduling; LLM-based Fuzzing Mutator"
-team: "c"
+teams: ["c"]
 social:
   - name: www
     icon: fa-solid fa-house

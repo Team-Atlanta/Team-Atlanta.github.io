@@ -5,7 +5,7 @@ image: "/images/yeongjin-jang.png"
 weight: 3
 affiliation: Principal Engineer at Samsung Research America
 role: Java Concolic Execution Lead
-team: "java"
+teams: ["java"]
 social:
   - name: www
     icon: fa-solid fa-house

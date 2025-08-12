@@ -2,11 +2,11 @@
 
   <section class="section py-16" id="team-page">
     <div class="container max-w-7xl mx-auto px-8">
-      {{ $teamOrder := slice "multilang" "c" "java" "patch" "sarif" }}
-      {{ $teamNames := dict "multilang" "Atlantis-Multilang" "c" "Atlantis-C" "java" "Atlantis-Java" "patch" "Atlantis-Patch" "sarif" "Atlantis-SARIF" }}
-      {{ $teamDescriptions := dict "multilang" "Multi-language vulnerability analysis and cross-platform security research" "c" "C/C++ program analysis, memory safety, and low-level security vulnerabilities" "java" "Java bytecode analysis, JVM security, and enterprise application vulnerabilities" "patch" "Automated patch generation and vulnerability remediation systems" "sarif" "SARIF format integration and security tool interoperability" }}
-      {{ $teamIcons := dict "multilang" "fa-solid fa-globe" "c" "fa-solid fa-code" "java" "fa-brands fa-java" "patch" "fa-solid fa-wrench" "sarif" "fa-solid fa-file-code" }}
-      {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" }}
+      {{ $teamOrder := slice "multilang" "c" "java" "patch" "sarif" "infra" }}
+      {{ $teamNames := dict "multilang" "Atlantis-Multilang" "c" "Atlantis-C" "java" "Atlantis-Java" "patch" "Atlantis-Patch" "sarif" "Atlantis-SARIF" "infra" "Atlantis-Infra" }}
+      {{ $teamDescriptions := dict "multilang" "Multi-language vulnerability analysis and cross-platform security research" "c" "C/C++ program analysis, memory safety, and low-level security vulnerabilities" "java" "Java bytecode analysis, JVM security, and enterprise application vulnerabilities" "patch" "Automated patch generation and vulnerability remediation systems" "sarif" "SARIF format integration and security tool interoperability" "infra" "Infrastructure security, DevOps automation, and cloud security architecture" }}
+      {{ $teamIcons := dict "multilang" "fa-solid fa-globe" "c" "fa-solid fa-code" "java" "fa-brands fa-java" "patch" "fa-solid fa-wrench" "sarif" "fa-solid fa-file-code" "infra" "fa-solid fa-server" }}
+      {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "infra" "indigo" }}
       {{ $leader := slice }}
       {{ $noTeam := slice }}
       {{ $teamMembers := dict }}
@@ -15,9 +15,28 @@
 
       <!-- Group authors by team -->
       {{ range .RegularPages }}
+        {{ $author := . }}
         {{ $totalMembers = add $totalMembers 1 }}
         {{ $allMembers = $allMembers | append . }}
-        {{ if .Params.team }}
+        {{ if .Params.teams }}
+          {{ range .Params.teams }}
+            {{ $currentTeam := . }}
+            {{ if eq $currentTeam "leader" }}
+              {{ if not (in $leader $author) }}
+                {{ $leader = $leader | append $author }}
+              {{ end }}
+            {{ else }}
+              {{ $existing := index $teamMembers $currentTeam }}
+              {{ if $existing }}
+                {{ if not (in $existing $author) }}
+                  {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append $author)) }}
+                {{ end }}
+              {{ else }}
+                {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice $author)) }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ else if .Params.team }}
           {{ $currentTeam := .Params.team }}
           {{ if eq $currentTeam "leader" }}
             {{ $leader = $leader | append . }}
@@ -39,8 +58,8 @@
         <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-8">
           Our Team
         </h1>
-        <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed">
-          Meet the brilliant minds revolutionizing cybersecurity with cutting-edge AI research
+        <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed font-light tracking-wide">
+          Pioneering the future of cybersecurity through innovative AI-driven research and groundbreaking discoveries
         </p>
         <div class="inline-flex items-center bg-white dark:bg-gray-800 rounded-full px-8 py-4 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
           <div class="flex items-center">
@@ -531,12 +550,14 @@
     .text-amber-400 { color: #fbbf24 !important; }
     .text-purple-400 { color: #c084fc !important; }
     .text-pink-400 { color: #f472b6 !important; }
+    .text-indigo-400 { color: #818cf8 !important; }
     
     .dark .text-blue-300 { color: #93c5fd !important; }
     .dark .text-green-300 { color: #86efac !important; }
     .dark .text-amber-300 { color: #fcd34d !important; }
     .dark .text-purple-300 { color: #d8b4fe !important; }
     .dark .text-pink-300 { color: #f9a8d4 !important; }
+    .dark .text-indigo-300 { color: #a5b4fc !important; }
     
     /* Ensure affiliation text is gray, not white */
     .member-card .text-gray-600 {
@@ -616,12 +637,14 @@
     .name-hover-amber { color: #d97706 !important; }
     .name-hover-purple { color: #9333ea !important; }
     .name-hover-pink { color: #db2777 !important; }
+    .name-hover-indigo { color: #4f46e5 !important; }
     
     .photo-hover-blue { box-shadow: 0 0 0 3px #2563eb !important; }
     .photo-hover-green { box-shadow: 0 0 0 3px #16a34a !important; }
     .photo-hover-amber { box-shadow: 0 0 0 3px #d97706 !important; }
     .photo-hover-purple { box-shadow: 0 0 0 3px #9333ea !important; }
     .photo-hover-pink { box-shadow: 0 0 0 3px #db2777 !important; }
+    .photo-hover-indigo { box-shadow: 0 0 0 3px #4f46e5 !important; }
     
     /* Remove any default hover styling that might create rectangles */
     .name-hover:hover,

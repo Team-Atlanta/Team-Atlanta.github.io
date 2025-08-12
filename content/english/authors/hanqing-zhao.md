@@ -5,7 +5,7 @@ image: "/images/hanqing-zhao.png"
 weight: 2
 affiliation: Ph.D. at Georgia Tech
 role: C Team Lead
-team: "c"
+teams: ["c"]
 social:
   - name: www
     icon: fa-solid fa-house

@@ -4,7 +4,7 @@ email: jeongin.cho@samsung.com
 image: "/images/jeongin-cho.jpg"
 affiliation: Samsung Research
 role: AI Agent for Seed/PoV Generation
-team: "java"
+teams: ["java"]
 social:
   - name: github
     icon: fa-brands fa-github

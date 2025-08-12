@@ -4,7 +4,7 @@ email: kaleb.kim@samsung.com
 image: "/images/kangsu-kim.jpg"
 affiliation: Security Software Engineer at Samsung Research
 role: Harness Reverser & Testlang
-team: "multilang"
+teams: ["multilang"]
 social:
   - name: github
     icon: fa-brands fa-github

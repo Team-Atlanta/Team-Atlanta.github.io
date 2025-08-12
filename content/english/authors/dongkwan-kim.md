@@ -4,7 +4,7 @@ email: 0xdkay@gmail.com
 image: "/images/dongkwan-kim.png"
 affiliation: Postdoc at Georgia Tech
 role: AI Agents for Bug Discovery & Exploitation
-team: "multilang"
+teams: ["multilang"]
 social:
   - name: www
     icon: fa-solid fa-house

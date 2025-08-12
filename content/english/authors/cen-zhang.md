@@ -4,7 +4,7 @@ email: blbllhy@gmail.com
 image: "/images/cen.png"
 affiliation: Postdoc at Georgia Tech
 role: Java Team Lead
-team: "java"
+teams: ["java"]
 weight: 3
 social:
   - name: www

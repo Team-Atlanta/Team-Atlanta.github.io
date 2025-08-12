@@ -3,7 +3,7 @@ title: Minjae Gwon
 email: minjae.gwon@postech.ac.kr
 image: "/images/minjae-gwon.png"
 affiliation: MS at POSTECH
-team: "patch"
+teams: ["patch"]
 social:
   - name: www
     icon: fa-solid fa-house

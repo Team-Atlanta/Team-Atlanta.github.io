@@ -4,7 +4,7 @@ email: song94@gatech.edu
 image: "/images/woosun-song.jpg"
 affiliation: PhD at Georgia Tech
 role: Hybrid Fuzzing
-team: "multilang"
+teams: ["multilang"]
 social:
   - name: www
     icon: fa-solid fa-house

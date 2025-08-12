@@ -4,7 +4,7 @@ email: hyungseok.h@samsung.com
 image: "/images/hyungseok-han.png"
 weight: 2
 affiliation: Samsung Research America
-team: "multilang"
+teams: ["multilang", "infra"]
 role: "Multilang Team Lead"
 social:
   - name: www

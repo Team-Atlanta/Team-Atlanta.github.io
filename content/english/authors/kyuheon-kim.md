@@ -2,13 +2,13 @@
 title: Kyuheon Kim
 email: kyuheon.kim@gmail.com
 image: "/images/kyuheon.jpg"
-affiliation: 
-team: "sarif"
+affiliation:
+teams: ["sarif", "infra"]
 social:
   - name: www
     icon: fa-solid fa-house
     link: https://kyuheon-kr.github.io
-    
+
   - name: github
     icon: fa-brands fa-github
     link: https://github.com/kyuheon-kr/

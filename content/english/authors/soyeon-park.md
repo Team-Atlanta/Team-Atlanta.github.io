@@ -5,7 +5,7 @@ image: "/images/soyeon_194.png"
 weight: 3
 affiliation: Samsung Research America
 role: AI Agents for Bug Discovery & Exploitation
-team: "multilang"
+teams: ["multilang"]
 social:
   - name: www
     icon: fa-solid fa-house

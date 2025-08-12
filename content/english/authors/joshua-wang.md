@@ -4,7 +4,7 @@ email: jwang3453@gatech.edu
 image: "/images/joshua-wang.jpg"
 affiliation: BS at Georgia Tech
 role: AI Agents for Bug Discovery & Exploitation
-team: "multilang"
+teams: ["multilang"]
 social:
   - name: www
     icon: fa-solid fa-house
