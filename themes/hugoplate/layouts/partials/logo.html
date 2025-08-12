@@ -1,0 +1,5 @@
+{{ if site.Params.logo }}
+  <img width="{{ site.Params.logo_width }}" height="{{ site.Params.logo_height }}" src="{{ site.Params.logo | absURL }}" alt="{{ site.Title }}" loading="lazy" />
+{{ else }}
+  {{ site.Params.logo_text | default site.Title }}
+{{ end }}

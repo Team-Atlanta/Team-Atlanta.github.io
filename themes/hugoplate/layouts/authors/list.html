@@ -52,24 +52,12 @@
       </div>
 
 
-      <!-- Leadership Section -->
+      <!-- Team Leader -->
       {{ if $leader }}
-        <div id="team-leader" class="team-section mb-24" data-team="leader" data-expanded="true">
-          <div class="text-center mb-16">
-            <div class="inline-flex items-center bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/30 dark:to-yellow-900/30 text-amber-700 dark:text-amber-300 rounded-3xl px-10 py-6 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="w-12 h-12 bg-amber-100 dark:bg-amber-800 rounded-full flex items-center justify-center mr-6">
-                <i class="fa-solid fa-crown text-2xl text-amber-600 dark:text-amber-400"></i>
-              </div>
-              <div class="text-left">
-                <h2 class="text-4xl font-bold mb-2">Leadership</h2>
-                <p class="text-amber-600/80 dark:text-amber-400/80 text-lg">Leading innovation in AI cybersecurity</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {{ range $leader }}
-              <div class="member-card leader-card bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 text-center border border-amber-100 dark:border-amber-800 relative overflow-hidden group transform hover:scale-105"
+        {{ range $leader }}
+          <div class="mb-16">
+            <div class="flex justify-center">
+              <div class="member-card leader-card bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 text-center border border-amber-100 dark:border-amber-800 relative overflow-hidden group transform hover:scale-105 max-w-sm"
                    data-name="{{ .Title | lower }}"
                    data-description="{{ .Params.description | lower }}"
                    tabindex="0">
@@ -78,24 +66,24 @@
 
                 <div class="absolute top-6 right-6 z-10">
                   <div class="bg-amber-100 dark:bg-amber-800/50 text-amber-700 dark:text-amber-300 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                    LEADER
+                    <i class="fa-solid fa-crown mr-1"></i>LEADER
                   </div>
                 </div>
 
                 {{ $image := .Params.image }}
                 {{ if $image }}
                   <div class="relative mb-6 z-10">
-                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden ring-4 ring-amber-100 dark:ring-amber-800/50 shadow-2xl group-hover:ring-amber-200 dark:group-hover:ring-amber-700 transition-all duration-300">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden ring-4 ring-amber-100 dark:ring-amber-800/50 shadow-2xl group-hover:ring-amber-200 dark:group-hover:ring-amber-700 transition-all duration-300">
                       <img src="{{ $image }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
                     </div>
                   </div>
                 {{ end }}
 
                 <div class="relative z-10">
-                  <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                     <a href="{{ .RelPermalink }}" class="hover:text-amber-600 transition-colors duration-200 focus:outline-none focus:text-amber-600">{{ .Title }}</a>
                   </h3>
-                  <p class="text-amber-600 dark:text-amber-400 text-sm font-semibold mb-2">{{ .Params.role | default "Team Leader" }}</p>
+                  <p class="text-amber-600 dark:text-amber-400 text-base font-semibold mb-3">{{ .Params.role | default "Team Leader" }}</p>
                   <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
                     {{ .Params.affiliation | default .Params.description }}
                   </p>
@@ -113,9 +101,9 @@
                   </div>
                 </div>
               </div>
-            {{ end }}
+            </div>
           </div>
-        </div>
+        {{ end }}
       {{ end }}
 
       <!-- Progressive Disclosure Team Sections -->
@@ -127,14 +115,14 @@
           {{ $icon := index $teamIcons $team }}
           {{ $color := index $teamColors $team }}
 
-          <div id="team-{{ $team }}" class="team-section mb-12" data-team="{{ $team }}" data-expanded="false">
+          <div id="team-{{ $team }}" class="team-section mb-12" data-team="{{ $team }}" data-expanded="true">
             <!-- Team Overview Card (Collapsed State) -->
             <div class="team-overview-card bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-pointer group"
                  onclick="toggleTeamSection('{{ $team }}')"
                  role="button"
                  tabindex="0"
                  onkeydown="handleKeyPress(event, '{{ $team }}')"
-                 aria-expanded="false"
+                 aria-expanded="true"
                  aria-controls="team-{{ $team }}-content">
 
               <div class="p-8">
@@ -161,7 +149,7 @@
             </div>
 
             <!-- Team Members Grid (Expanded State) -->
-            <div id="team-{{ $team }}-content" class="team-content hidden mt-8" aria-labelledby="team-{{ $team }}">
+            <div id="team-{{ $team }}-content" class="team-content mt-8" aria-labelledby="team-{{ $team }}" style="opacity: 1; max-height: none; padding-top: 2rem;">
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {{ range $i, $member := $members }}
                   <div class="member-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2"
@@ -289,6 +277,18 @@
       initializeScrollEffects();
       initializeAnimations();
       initializeAccessibility();
+      initializeExpandedSections();
+    }
+    
+    function initializeExpandedSections() {
+      // Set initial state for expanded sections
+      const expandedSections = document.querySelectorAll('.team-section[data-expanded="true"]');
+      expandedSections.forEach(section => {
+        const icon = section.querySelector('.expand-icon');
+        if (icon) {
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
     }
 
     // Team section toggle functionality
