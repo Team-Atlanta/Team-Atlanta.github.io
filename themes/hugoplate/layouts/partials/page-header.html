@@ -1,8 +1,7 @@
-<section>
+<section class="py-16">
   <div class="container text-center">
-    <div
-      class="from-body to-theme-light dark:from-darkmode-body dark:to-darkmode-theme-light rounded-2xl bg-gradient-to-b px-8 py-14">
-      <h1>{{ .Title | title }}</h1>
+    <div class="glass-card px-8 py-14 max-w-4xl mx-auto">
+      <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-6">{{ .Title | title }}</h1>
       {{ partial "components/breadcrumb" (dict "Context" . "Class" "mt-6") }}
     </div>
   </div>

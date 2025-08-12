@@ -2,15 +2,15 @@
 {{ if isset site.Taxonomies "tags" }}
   {{ if not (eq (len site.Taxonomies.tags) 0) }}
     <div class="mb-8">
-      <h5 class="mb-6">Tags</h5>
-      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-6">
+      <h5 class="mb-6 text-gray-900 dark:text-white font-semibold">Tags</h5>
+      <div class="glass-card p-6">
         <ul>
           {{ range $name, $items := site.Taxonomies.tags }}
             <li class="inline-block">
               <a
-                class="hover:bg-primary dark:bg-darkmode-body dark:hover:bg-darkmode-primary dark:hover:text-dark {{ if (and (eq $.Page.Kind `term`) (eq $.Page.Type `tags`) (eq $.Page.Title .Page.Title)) }}
-                  active
-                {{ end }} m-1 block rounded bg-white px-3 py-1 hover:text-white"
+                class="bg-white/80 dark:bg-gray-700/80 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white {{ if (and (eq $.Page.Kind `term`) (eq $.Page.Type `tags`) (eq $.Page.Title .Page.Title)) }}
+                  bg-primary text-white
+                {{ end }} m-1 block rounded px-3 py-1 transition-all duration-300 backdrop-blur-sm"
                 href="{{ .Page.RelPermalink }}">
                 {{ .Page.Title }}
               </a>

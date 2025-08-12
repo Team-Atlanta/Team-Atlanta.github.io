@@ -1,4 +1,4 @@
-<div class="modern-card p-6 group">
+<div class="glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30">
   {{ $image:= .Params.image }}
   {{ if $image }}
     <div class="relative mb-6 overflow-hidden rounded-xl">
@@ -7,18 +7,18 @@
     </div>
   {{ end }}
   <h4 class="mb-3 group-hover:text-primary transition-colors duration-300">
-    <a href="{{ .RelPermalink }}" class="text-gradient hover:opacity-80">
+    <a href="{{ .RelPermalink }}" class="text-gray-900 dark:text-white hover:text-primary transition-colors duration-300 font-semibold">
       {{ .Title }}
     </a>
   </h4>
-  <ul class="mb-4 flex flex-wrap gap-4 text-sm text-muted dark:text-darkmode-muted">
+  <ul class="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
     <li class="flex items-center">
       <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/" class="hover:text-primary transition-colors duration-300">
         <i class="fa-regular fa-circle-user mr-2 text-primary"></i>{{ .Params.author }}
       </a>
     </li>
     <li class="flex items-center">
-      <i class="fa-regular fa-folder mr-2 text-secondary"></i>
+      <i class="fa-regular fa-folder mr-2 text-primary"></i>
       {{ $categories:= .Params.categories }}
       {{ range $i,$p:= $categories }}
         <a
@@ -31,7 +31,7 @@
       {{ end }}
     </li>
   </ul>
-  <p class="mb-6 text-muted dark:text-darkmode-muted leading-relaxed">{{ .Summary }}</p>
+  <p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">{{ .Summary }}</p>
   <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center" href="{{ .RelPermalink }}">
     {{ i18n "read_more" }}
     <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
