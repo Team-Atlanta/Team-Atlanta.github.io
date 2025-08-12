@@ -314,6 +314,66 @@ body {
   }
 }
 
+// Member Card Glow Effects - Team Color Based
+.member-card {
+  transition: var(--transition-smooth);
+  border-radius: var(--border-radius-modern);
+  
+  &:hover {
+    transform: translateY(-3px);
+    
+    // Light mode: Subtle team color glow effect
+    box-shadow: 
+      0 0 8px rgba(52, 152, 219, 0.25),
+      0 0 16px rgba(52, 152, 219, 0.15),
+      0 8px 20px rgba(44, 62, 80, 0.12);
+    border-color: #3498db;
+  }
+}
+
+// Dark mode: Subtle glow with lighter team colors
+.dark .member-card:hover {
+  box-shadow: 
+    0 0 10px rgba(133, 193, 233, 0.3),
+    0 0 20px rgba(133, 193, 233, 0.2),
+    0 10px 25px rgba(93, 173, 226, 0.15);
+  border-color: #85c1e9;
+}
+
+// Author/Team member specific cards
+.author-card,
+.team-member-card {
+  @extend .member-card;
+}
+
+// Enhanced team member profile cards
+.profile-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-modern);
+  transition: var(--transition-smooth);
+  
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    
+    // Light mode: Refined team color glow
+    box-shadow: 
+      0 0 12px rgba(52, 152, 219, 0.3),
+      0 0 24px rgba(52, 152, 219, 0.2),
+      0 12px 30px rgba(44, 62, 80, 0.15);
+    border-color: #3498db;
+  }
+}
+
+.dark .profile-card:hover {
+  box-shadow: 
+    0 0 15px rgba(133, 193, 233, 0.35),
+    0 0 30px rgba(133, 193, 233, 0.25),
+    0 15px 35px rgba(93, 173, 226, 0.2);
+  border-color: #85c1e9;
+}
+
 // Enhanced Header Styles
 .header-modern {
   backdrop-filter: blur(20px);
