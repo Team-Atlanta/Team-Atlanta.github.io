@@ -361,7 +361,7 @@
 
     
     <header
-  class="header sticky top-0 z-30">
+  class="header header-modern sticky top-0 z-30">
   <nav class="navbar container">
     
     <div class="order-0">
@@ -400,12 +400,12 @@
     <input id="nav-toggle" type="checkbox" class="hidden" />
     <label
       for="nav-toggle"
-      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1">
-      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1 p-2 rounded-lg hover:bg-theme-light dark:hover:bg-darkmode-theme-light transition-colors duration-300">
+      <svg id="show-button" class="h-6 fill-current block transition-transform duration-300" viewBox="0 0 20 20">
         <title>Menu Open</title>
         <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
       </svg>
-      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+      <svg id="hide-button" class="h-6 fill-current hidden transition-transform duration-300" viewBox="0 0 20 20">
         <title>Menu Close</title>
         <polygon
           points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
@@ -426,7 +426,7 @@
         
           <li class="nav-item">
             <a
-              class="nav-link "
+              class="nav-link relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-theme-light dark:hover:bg-darkmode-theme-light focus-modern"
               
               href="/"
               >Home</a
@@ -438,13 +438,109 @@
         
         
         
-          <li class="nav-item">
-            <a
-              class="nav-link "
+          <li class="nav-item nav-dropdown group relative">
+            <span
+              class="nav-link 
+                
+                
+                
               
-              href="/authors/"
-              >AIxCC Team</a
-            >
+                
+                
+                
+              
+                
+                
+                
+              
+                
+                
+                
+              
+                
+                
+                
+              
+                
+                
+                
+               inline-flex items-center">
+              AIxCC Team
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            </span>
+            <ul
+              class="nav-dropdown-list lg:group-hover:visible lg:group-hover:opacity-100">
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-leader">
+                    Team Leader
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-multilang">
+                    Atlantis-Multilang
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-c">
+                    Atlantis-C
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-java">
+                    Atlantis-Java
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-patch">
+                    Atlantis-Patch
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-sarif">
+                    Atlantis-SARIF
+                  </a>
+                </li>
+              
+            </ul>
           </li>
         
       
@@ -454,7 +550,7 @@
         
           <li class="nav-item">
             <a
-              class="nav-link "
+              class="nav-link relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-theme-light dark:hover:bg-darkmode-theme-light focus-modern"
               
               href="/about/"
               >About</a
@@ -468,7 +564,7 @@
         
           <li class="nav-item">
             <a
-              class="nav-link "
+              class="nav-link relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-theme-light dark:hover:bg-darkmode-theme-light focus-modern"
               
               href="/blog/"
               >Blog</a
@@ -484,7 +580,7 @@
         
           <button
             aria-label="search"
-            class="border-border text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary"
+            class="border-border text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary p-2 rounded-lg hover:bg-theme-light dark:hover:bg-darkmode-theme-light transition-all duration-300 focus-modern"
             data-target="search-modal">
             <i class="fa-solid fa-search"></i>
           </button>
@@ -581,7 +677,7 @@
     <div
       class="search-modal "
       aria-hidden="true"
-      style="--color-primary: #121212">
+      style="--color-primary: #4a5d7a">
       <div data-target="close-search-modal" class="search-modal-overlay"></div>
       <div
         class="search-wrapper"
@@ -1183,203 +1279,11 @@
           <div class="row">
             
               <div class="lg:col-4">
-                <div class="bg-body dark:bg-darkmode-body">
+                <div class="modern-card p-6 group">
   
   
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
+    <div class="relative mb-6 overflow-hidden rounded-xl">
       
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/blog/asc-sqlite/sqlite-bug-finding_hu_1f027286208c6341.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/blog/asc-sqlite/sqlite-bug-finding_hu_6e88e493bb36585e.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/blog/asc-sqlite/sqlite-bug-finding_hu_62fbdce27fb70111.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/blog/asc-sqlite/sqlite-bug-finding_hu_9d7fe53a5af10f76.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/blog/asc-sqlite/sqlite-bug-finding_hu_aa3fc855594dc6c8.png"
-            class=" mb-6 w-full rounded img"
-            alt="Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System"
-            width="1024"
-            height="768" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-  
-  <h4 class="mb-3">
-    <a href="/blog/post-asc-sqlite/">
-      Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System
-    </a>
-  </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href="/authors/hanqing-zhao/">
-        <i class="fa-regular fa-circle-user mr-2"></i>Hanqing Zhao
-      </a>
-    </li>
-    <li class="mr-4 inline-block">
-      <i class="fa-regular fa-folder mr-2"></i>
-      
-      
-        <a
-          href="/categories/vulnerability-analysis/"
-          class="ms-1"
-          >Vulnerability analysis
-        </a>
-      
-    </li>
-  </ul>
-  <p class="mb-6"><p>Without knowing beforehand that the challenge project involved SQLite3,
-our team, <a href="/authors"
-
-
-
- 
-
-
->Team Atlanta</a>, entered our Cyber Reasoning System (CRS),
-named Atlantis,
-into the <a href="https://aicyberchallenge.com/"
-
-
-
-
- target="_blank"
- 
-
-
->AI Cyber Challenge</a>
-organized by ARPA-H, DARPA, and the
-<a href="https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/"
-
-
-
-
- target="_blank"
- 
-
-
->White House</a>.</p>
-<p>Remarkably,
-Atlantis secured six first-bloods and
-autonomously identified and patched a real bug in SQLite3<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>,
-earning us a $2 million prize and a place in the grand finals of AIxCC.
-For more details, check out our <a href="/blog/post-atl"
-
-
-
- 
-
-
->team&rsquo;s announcement blog</a>.</p></p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/post-asc-sqlite/">
-    Read More
-  </a>
-</div>
-
-              </div>
-            
-              <div class="lg:col-4">
-                <div class="bg-body dark:bg-darkmode-body">
-  
-  
-    
 
 
 
@@ -1479,7 +1383,7 @@ For more details, check out our <a href="/blog/post-atl"
             
               loading="lazy" decoding="async"
               src="/images/blog/tkctf2024/ai-vs-human_hu_f2294a54c6d018e2.png"
-            class=" mb-6 w-full rounded img"
+            class=" w-full group-hover:scale-105 transition-transform duration-300 img"
             alt="Hacking Redefined: How LLM Agents Took on University Hacking Competition"
             width="1024"
             height="768" />
@@ -1494,31 +1398,33 @@ For more details, check out our <a href="/blog/post-atl"
   
 
 
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </div>
   
-  <h4 class="mb-3">
-    <a href="/blog/post-tkctf-2024/">
+  <h4 class="mb-3 group-hover:text-primary transition-colors duration-300">
+    <a href="/blog/post-tkctf-2024/" class="text-gradient hover:opacity-80">
       Hacking Redefined: How LLM Agents Took on University Hacking Competition
     </a>
   </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href="/authors/hanqing-zhao/">
-        <i class="fa-regular fa-circle-user mr-2"></i>Hanqing Zhao
+  <ul class="mb-4 flex flex-wrap gap-4 text-sm text-muted dark:text-darkmode-muted">
+    <li class="flex items-center">
+      <a href="/authors/hanqing-zhao/" class="hover:text-primary transition-colors duration-300">
+        <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Hanqing Zhao
       </a>
     </li>
-    <li class="mr-4 inline-block">
-      <i class="fa-regular fa-folder mr-2"></i>
+    <li class="flex items-center">
+      <i class="fa-regular fa-folder mr-2 text-secondary"></i>
       
       
         <a
           href="/categories/milestone/"
-          class="ms-1"
+          class="hover:text-primary transition-colors duration-300"
           >Milestone
         </a>
       
     </li>
   </ul>
-  <p class="mb-6"><p>For the first time, we deployed our hybrid system,
+  <p class="mb-6 text-muted dark:text-darkmode-muted leading-relaxed"><p>For the first time, we deployed our hybrid system,
 powered by LLM agents—<a href="/blog/post-atl"
 
 
@@ -1553,18 +1459,20 @@ showcasing the practicality and promise of our approach in a real-world hacking 
 <p>In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
 As we prepare to open-source the full details of our system following AIxCC competition rules,
 this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.</p></p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/post-tkctf-2024/">
+  <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center" href="/blog/post-tkctf-2024/">
     Read More
+    <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
   </a>
 </div>
 
               </div>
             
               <div class="lg:col-4">
-                <div class="bg-body dark:bg-darkmode-body">
+                <div class="modern-card p-6 group">
   
   
-    
+    <div class="relative mb-6 overflow-hidden rounded-xl">
+      
 
 
 
@@ -1664,7 +1572,7 @@ this milestone reflects more than just a technical achievement—it embodies our
             
               loading="lazy" decoding="async"
               src="/images/blog/atl/team_hu_3469523987771f19.png"
-            class=" mb-6 w-full rounded img"
+            class=" w-full group-hover:scale-105 transition-transform duration-300 img"
             alt="Announcing Team Atlanta!"
             width="1821"
             height="1366" />
@@ -1679,31 +1587,33 @@ this milestone reflects more than just a technical achievement—it embodies our
   
 
 
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </div>
   
-  <h4 class="mb-3">
-    <a href="/blog/post-atl/">
+  <h4 class="mb-3 group-hover:text-primary transition-colors duration-300">
+    <a href="/blog/post-atl/" class="text-gradient hover:opacity-80">
       Announcing Team Atlanta!
     </a>
   </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href="/authors/taesoo-kim/">
-        <i class="fa-regular fa-circle-user mr-2"></i>Taesoo Kim
+  <ul class="mb-4 flex flex-wrap gap-4 text-sm text-muted dark:text-darkmode-muted">
+    <li class="flex items-center">
+      <a href="/authors/taesoo-kim/" class="hover:text-primary transition-colors duration-300">
+        <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Taesoo Kim
       </a>
     </li>
-    <li class="mr-4 inline-block">
-      <i class="fa-regular fa-folder mr-2"></i>
+    <li class="flex items-center">
+      <i class="fa-regular fa-folder mr-2 text-secondary"></i>
       
       
         <a
           href="/categories/announcement/"
-          class="ms-1"
+          class="hover:text-primary transition-colors duration-300"
           >Announcement
         </a>
       
     </li>
   </ul>
-  <p class="mb-6"><p>Hello, world! We are <em>Team Atlanta</em>, the minds behind Atlantis, our innovative
+  <p class="mb-6 text-muted dark:text-darkmode-muted leading-relaxed"><p>Hello, world! We are <em>Team Atlanta</em>, the minds behind Atlantis, our innovative
 AI-driven cybersecurity solution competing in the prestigious
 <a href="https://aicyberchallenge.com/"
 
@@ -1786,8 +1696,206 @@ AI-driven cybersecurity solution competing in the prestigious
 Each of these organizations is led by Georgia Tech alumni,
 and includes past winners of prestigious hacking competitions
 such as DEF CON CTF, Pwn2Own and kernelCTF.</p></p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/post-atl/">
+  <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center" href="/blog/post-atl/">
     Read More
+    <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+  </a>
+</div>
+
+              </div>
+            
+              <div class="lg:col-4">
+                <div class="modern-card p-6 group">
+  
+  
+    <div class="relative mb-6 overflow-hidden rounded-xl">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  
+    
+      
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+    
+    
+    
+
+
+    
+    
+      
+      
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+        
+
+
+        <picture>
+          <source
+            
+              srcset="/images/blog/asc-sqlite/sqlite-bug-finding_hu_1f027286208c6341.webp"
+            
+            media="(max-width: 575px)" />
+          <source
+            
+              srcset="/images/blog/asc-sqlite/sqlite-bug-finding_hu_6e88e493bb36585e.webp"
+            
+            media="(max-width: 767px)" />
+          <source
+            
+              srcset="/images/blog/asc-sqlite/sqlite-bug-finding_hu_62fbdce27fb70111.webp"
+            
+            media="(max-width: 991px)" />
+          <source
+            
+              srcset="/images/blog/asc-sqlite/sqlite-bug-finding_hu_9d7fe53a5af10f76.webp"
+             />
+          <img
+            
+              loading="lazy" decoding="async"
+              src="/images/blog/asc-sqlite/sqlite-bug-finding_hu_aa3fc855594dc6c8.png"
+            class=" w-full group-hover:scale-105 transition-transform duration-300 img"
+            alt="Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System"
+            width="1024"
+            height="768" />
+        </picture>
+      
+      
+    
+    
+  
+
+
+  
+
+
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </div>
+  
+  <h4 class="mb-3 group-hover:text-primary transition-colors duration-300">
+    <a href="/blog/post-asc-sqlite/" class="text-gradient hover:opacity-80">
+      Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System
+    </a>
+  </h4>
+  <ul class="mb-4 flex flex-wrap gap-4 text-sm text-muted dark:text-darkmode-muted">
+    <li class="flex items-center">
+      <a href="/authors/hanqing-zhao/" class="hover:text-primary transition-colors duration-300">
+        <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Hanqing Zhao
+      </a>
+    </li>
+    <li class="flex items-center">
+      <i class="fa-regular fa-folder mr-2 text-secondary"></i>
+      
+      
+        <a
+          href="/categories/vulnerability-analysis/"
+          class="hover:text-primary transition-colors duration-300"
+          >Vulnerability analysis
+        </a>
+      
+    </li>
+  </ul>
+  <p class="mb-6 text-muted dark:text-darkmode-muted leading-relaxed"><p>Without knowing beforehand that the challenge project involved SQLite3,
+our team, <a href="/authors"
+
+
+
+ 
+
+
+>Team Atlanta</a>, entered our Cyber Reasoning System (CRS),
+named Atlantis,
+into the <a href="https://aicyberchallenge.com/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>AI Cyber Challenge</a>
+organized by ARPA-H, DARPA, and the
+<a href="https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>White House</a>.</p>
+<p>Remarkably,
+Atlantis secured six first-bloods and
+autonomously identified and patched a real bug in SQLite3<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>,
+earning us a $2 million prize and a place in the grand finals of AIxCC.
+For more details, check out our <a href="/blog/post-atl"
+
+
+
+ 
+
+
+>team&rsquo;s announcement blog</a>.</p></p>
+  <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center" href="/blog/post-asc-sqlite/">
+    Read More
+    <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
   </a>
 </div>
 
@@ -1803,7 +1911,7 @@ such as DEF CON CTF, Pwn2Own and kernelCTF.</p></p>
 
     
     
-      <footer class="bg-theme-light dark:bg-darkmode-theme-light">
+      <footer class="footer-modern">
   <div class="container">
     <div class="row items-center py-10">
       <div class="lg:col-3 mb-8 text-center lg:mb-0 lg:text-left">

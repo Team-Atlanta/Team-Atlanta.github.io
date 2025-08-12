@@ -356,7 +356,7 @@
 
     
     <header
-  class="header sticky top-0 z-30">
+  class="header header-modern sticky top-0 z-30">
   <nav class="navbar container">
     
     <div class="order-0">
@@ -395,12 +395,12 @@
     <input id="nav-toggle" type="checkbox" class="hidden" />
     <label
       for="nav-toggle"
-      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1">
-      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1 p-2 rounded-lg hover:bg-theme-light dark:hover:bg-darkmode-theme-light transition-colors duration-300">
+      <svg id="show-button" class="h-6 fill-current block transition-transform duration-300" viewBox="0 0 20 20">
         <title>Menu Open</title>
         <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
       </svg>
-      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+      <svg id="hide-button" class="h-6 fill-current hidden transition-transform duration-300" viewBox="0 0 20 20">
         <title>Menu Close</title>
         <polygon
           points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
@@ -421,7 +421,7 @@
         
           <li class="nav-item">
             <a
-              class="nav-link "
+              class="nav-link relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-theme-light dark:hover:bg-darkmode-theme-light focus-modern"
               
               href="/"
               >Home</a
@@ -433,13 +433,109 @@
         
         
         
-          <li class="nav-item">
-            <a
-              class="nav-link "
+          <li class="nav-item nav-dropdown group relative">
+            <span
+              class="nav-link 
+                
+                
+                
               
-              href="/authors/"
-              >AIxCC Team</a
-            >
+                
+                
+                
+              
+                
+                
+                
+              
+                
+                
+                
+              
+                
+                
+                
+              
+                
+                
+                
+               inline-flex items-center">
+              AIxCC Team
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            </span>
+            <ul
+              class="nav-dropdown-list lg:group-hover:visible lg:group-hover:opacity-100">
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-leader">
+                    Team Leader
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-multilang">
+                    Atlantis-Multilang
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-c">
+                    Atlantis-C
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-java">
+                    Atlantis-Java
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-patch">
+                    Atlantis-Patch
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/authors/#team-sarif">
+                    Atlantis-SARIF
+                  </a>
+                </li>
+              
+            </ul>
           </li>
         
       
@@ -449,7 +545,7 @@
         
           <li class="nav-item">
             <a
-              class="nav-link "
+              class="nav-link relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-theme-light dark:hover:bg-darkmode-theme-light focus-modern"
               
               href="/about/"
               >About</a
@@ -463,7 +559,7 @@
         
           <li class="nav-item">
             <a
-              class="nav-link "
+              class="nav-link relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-theme-light dark:hover:bg-darkmode-theme-light focus-modern"
               
               href="/blog/"
               >Blog</a
@@ -479,7 +575,7 @@
         
           <button
             aria-label="search"
-            class="border-border text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary"
+            class="border-border text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary p-2 rounded-lg hover:bg-theme-light dark:hover:bg-darkmode-theme-light transition-all duration-300 focus-modern"
             data-target="search-modal">
             <i class="fa-solid fa-search"></i>
           </button>
@@ -576,7 +672,7 @@
     <div
       class="search-modal "
       aria-hidden="true"
-      style="--color-primary: #121212">
+      style="--color-primary: #4a5d7a">
       <div data-target="close-search-modal" class="search-modal-overlay"></div>
       <div
         class="search-wrapper"
@@ -681,17 +777,20 @@
 
     <main>
       
-  <section>
-  <div class="container text-center">
-    <div
-      class="from-body to-theme-light dark:from-darkmode-body dark:to-darkmode-theme-light rounded-2xl bg-gradient-to-b px-8 py-14">
-      <h1>Silicon</h1>
-      
+  <section class="py-6">
+  <div class="container">
+    <div class="glass-card px-6 py-4 max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="flex-1">
+          <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">Silicon</h1>
+        </div>
+        <div class="flex-shrink-0">
+          
 
 
 
 
-<ul class="mt-6 inline-flex space-x-1 capitalize">
+<ul class="text-sm inline-flex space-x-1 capitalize">
   <li>
     <a class="text-primary dark:text-darkmode-primary" href="http://localhost:1313/">
       Home
@@ -719,6 +818,8 @@
   </li>
 </ul>
 
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -732,160 +833,6 @@
         <div class="lg:col-8">
           <div class="row">
             
-              <div class="md:col-6 mb-14">
-                <div class="bg-body dark:bg-darkmode-body">
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/image-placeholder_hu_419308a04695d55e.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_b12b9371db6eff8d.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_30bbd95ebcb83d6a.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_a4cf66fbeeeb8e65.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/image-placeholder_hu_2219f6cf43f3d869.png"
-            class=" mb-6 w-full rounded img"
-            alt="How to build an Application with modern Technology"
-            width="1096"
-            height="480" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-  
-  <h4 class="mb-3">
-    <a href="/blog/post-4/">
-      How to build an Application with modern Technology
-    </a>
-  </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href="/authors/john-doe/">
-        <i class="fa-regular fa-circle-user mr-2"></i>John Doe
-      </a>
-    </li>
-    <li class="mr-4 inline-block">
-      <i class="fa-regular fa-folder mr-2"></i>
-      
-      
-        <a
-          href="/categories/architecture/"
-          class="ms-1"
-          >Architecture
-        </a>
-      
-    </li>
-  </ul>
-  <p class="mb-6"><p>Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo vel ad consectetur ut aperiam. Itaque eligendi natus aperiam? Excepturi repellendus consequatur quibusdam optio expedita praesentium est adipisci dolorem ut eius!</p>
-<h2 id="creative-design">Creative Design</h2>
-<p>Nam ut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.</p></p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/post-4/">
-    Read More
-  </a>
-</div>
-
-              </div>
-            
           </div>
         </div>
       </div>
@@ -896,7 +843,7 @@
 
     
     
-      <footer class="bg-theme-light dark:bg-darkmode-theme-light">
+      <footer class="footer-modern">
   <div class="container">
     <div class="row items-center py-10">
       <div class="lg:col-3 mb-8 text-center lg:mb-0 lg:text-left">
