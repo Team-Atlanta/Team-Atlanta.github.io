@@ -18,7 +18,32 @@
         {{ $author := . }}
         {{ $totalMembers = add $totalMembers 1 }}
         {{ $allMembers = $allMembers | append . }}
-        {{ if .Params.teams }}
+        {{ if .Params.team_memberships }}
+          {{ range .Params.team_memberships }}
+            {{ $membership := . }}
+            {{ $currentTeam := .team }}
+            {{ if eq $currentTeam "leader" }}
+              {{ if not (in $leader $author) }}
+                {{ $leader = $leader | append $author }}
+              {{ end }}
+            {{ else }}
+              {{ $existing := index $teamMembers $currentTeam }}
+              {{ if $existing }}
+                {{ $found := false }}
+                {{ range $existing }}
+                  {{ if eq .author $author }}
+                    {{ $found = true }}
+                  {{ end }}
+                {{ end }}
+                {{ if not $found }}
+                  {{ $teamMembers = merge $teamMembers (dict $currentTeam ($existing | append (dict "author" $author "weight" $membership.weight "role" $membership.role))) }}
+                {{ end }}
+              {{ else }}
+                {{ $teamMembers = merge $teamMembers (dict $currentTeam (slice (dict "author" $author "weight" $membership.weight "role" $membership.role))) }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ else if .Params.teams }}
           {{ range .Params.teams }}
             {{ $currentTeam := . }}
             {{ if eq $currentTeam "leader" }}
@@ -172,7 +197,21 @@
             <!-- Team Members Grid (Expanded State) -->
             <div id="team-{{ $team }}-content" class="team-content mt-8" aria-labelledby="team-{{ $team }}" style="opacity: 1; max-height: none; padding-top: 2rem;">
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8">
-                {{ range $i, $member := $members }}
+                {{ $sortedMembers := $members }}
+                {{ if gt (len $members) 0 }}
+                  {{ if reflect.IsMap (index $members 0) }}
+                    {{ $sortedMembers = sort $members "weight" "desc" }}
+                  {{ end }}
+                {{ end }}
+                {{ range $i, $item := $sortedMembers }}
+                  {{ $member := $item }}
+                  {{ $teamRole := "" }}
+                  {{ $teamWeight := 0 }}
+                  {{ if reflect.IsMap $item }}
+                    {{ $member = $item.author }}
+                    {{ $teamRole = $item.role }}
+                    {{ $teamWeight = $item.weight }}
+                  {{ end }}
                   <div class="member-card member-card-animated bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 text-center border border-gray-100 dark:border-gray-700 group transform hover:-translate-y-2 relative overflow-hidden"
                        data-name="{{ $member.Title | lower }}"
                        data-description="{{ $member.Params.description | lower }}"
@@ -200,8 +239,12 @@
                     <h4 class="name-hover text-lg font-bold text-gray-900 dark:text-white mb-2 transition-colors" data-team="{{ $color }}">
                       <a href="{{ $member.RelPermalink }}" class="focus:outline-none">{{ $member.Title }}</a>
                     </h4>
-                    {{ if $member.Params.role }}
-                      <p class="text-{{ $color }}-400 dark:text-{{ $color }}-300 text-sm font-semibold mb-2">{{ $member.Params.role }}</p>
+                    {{ $displayRole := $teamRole }}
+                    {{ if not $displayRole }}
+                      {{ $displayRole = $member.Params.role }}
+                    {{ end }}
+                    {{ if $displayRole }}
+                      <p class="text-{{ $color }}-400 dark:text-{{ $color }}-300 text-sm font-semibold mb-2">{{ $displayRole }}</p>
                     {{ end }}
                     <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
                       {{ $member.Params.affiliation | default $member.Params.description }}
