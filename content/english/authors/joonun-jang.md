@@ -4,6 +4,7 @@ email: joonun.jang@samsung.com
 image: "/images/joonun-jang.png"
 weight: 3
 affiliation: Samsung Research
+role: AI Agent for Seed/PoV Generation
 team: "java"
 social:
   - name: github

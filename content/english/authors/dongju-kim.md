@@ -3,6 +3,7 @@ title: Dongju Kim
 email: molgryn@gmail.com
 image: "/images/dongju-kim.jpg"
 affiliation: 
+role: Concolic Exection
 team: "java"
 social:
   - name: www
