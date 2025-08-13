@@ -132,105 +132,131 @@ but it must be extensively adapted for real-world scale.
 
 ## L2. Ensembling to Promote Diversity
 
-Ensembling in fuzzing outperforms a single fuzzing campaign
-with the same amount of computing resource,
-as shown in [autofz](https://www.usenix.org/conference/usenixsecurity23/presentation/fu-yu-fu).
-In Atlantis,
-we adopt the design principle of "ensembling" everywhere:
-coverage-guided fuzzers, directed fuzzers, concolic executors, and even patching agents.
-In particular,
-patching, a process of generating code that fixes a given proof-of-vulnerability (PoV), 
-takes advantages of the diversity of LLMs -- 
-a.k.a., hallucination in the ML community,
-non-determinism in systems community,
-or "creativity" in other contexts.
-Atlantis is designed to fully utilize 
-such non-deterministic characteristics of LLMs
-by ensembling multiple agents 
-taking orthogonal approaches.
-This ensembling works effectively
-only when ***oracles*** exist as a judge.
-For example, in fuzzing, 
-segmentation faults 
-such as invalid access to unmapped memory region
-can be raised effectively 
-with negligible performance overheads 
-thanks to page tables enforced by the hardware.
-More effectively, SW-based sanitizers
-such as address (ASAN), undefined behavior (UBSAN), memory leaks (MSAN), etc
-have been playing essential roles 
-in regonizing erroneous conditions
-way before segmentation fault like symptom appears.
-In patching,
-PoV plays as an oracle
-telling the suggseted patch is likely correct
-by simply reruning PoV with the patched program.
-It is said "likely" because
-there exists a chance to prevent PoV via *mitigation*
-or via functionally unintended
-(i.e., developers think it is not deseriable 
-as Atlantis can fully recognize that developers want or its specification).
-For example, 
-simply recompiling C projects with recent MTE or PAX enabled on AArch8 
-can suppress such PoV 
-or simply wrapping around a main entrance code of Java with a `catch` statement 
-with `Exception`.
-These are undesirable patches in our competition, of course, 
-so cautiously avoided by our patching agents.
-However, functional or semantic correctness 
-can be very subjective. 
-Accordingly, in AIxCC, `test.sh` is optionally provided in each CP,
-serving as an oracle to the patching agents.
+Research shows that ensemble fuzzing outperforms single campaigns
+with equivalent computing resources, as demonstrated 
+by [autofz](https://www.usenix.org/conference/usenixsecurity23/presentation/fu-yu-fu).
+Atlantis embraces this principle everywhere:
+coverage-guided fuzzers, directed fuzzers, concolic executors, and patching agents.
+
+Patching particularly benefits from LLM diversity—
+what the ML community calls "hallucination,"
+systems engineers call "non-determinism,"
+and we call "creativity."
+By ensembling multiple agents with orthogonal approaches,
+Atlantis harnesses this non-deterministic nature of LLMs.
+
+***The Critical Role of Oracles.***
+Ensembling only works when **oracles** exist to judge correctness.
+
+In fuzzing, hardware provides our first oracle:
+segmentation faults from invalid memory access
+are caught efficiently through page table violations.
+Software sanitizers extend this coverage—
+ASAN for memory errors, UBSAN for undefined behavior, MSAN for memory leaks—
+detecting bugs long before crashes occur.
+
+For patching, the Proof-of-Vulnerability (PoV) serves as our oracle.
+We validate patches by re-running the PoV against patched programs.
+We say "likely correct" because patches might work through unintended mitigation
+rather than true fixes.
+
+Consider these problematic "patches":
+- Recompiling C code with MTE or PAC on ARM to suppress PoVs
+- Wrapping Java entry points in broad `catch(Exception)` blocks
+
+Our agents carefully avoid such mitigations.
+Yet semantic correctness remains subjective—
+which is why AIxCC provides optional `test.sh` scripts
+as additional oracles for our patching agents.
 
 {{< image src="images/blog/afc/overview-patching.png" width="1000" position="center" class="img-fluid" 
     caption="Design of Patching Agents." >}}
 
-During preperation, 
-our team recognized that 
-it is hard to build a universally powerful agents
-but it is feasible to build a single agent 
-to tackle a simple task well, 
-similar in concept to [AlphaEvolve](https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/) or [AlphaCode](https://alphacode.deepmind.com/).
-One interesting observation we made, 
-a similar model like `o4-mini` outperforms other bigger foundational or even reasoning models.
-Our speculation is that 
-8 billion parameters of `o4-mini` 
-abstracts the coding task nicely 
-with the amount of source code data 
-used during training?
+***Building Specialized Agents.***
+During preparation, we recognized a key insight:
+building one universally powerful agent is harder than
+building multiple specialized agents for specific tasks.
+This echoes the philosophy behind [AlphaEvolve](https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/) and [AlphaCode](https://alphacode.deepmind.com/).
 
-In our patching CRS, we could not scale the number of agents and approaches 
-unlike AlphaCode,
-as its oracle -- building and validating PoV -- is too slow 
-in a large scale software (e.g., 10 min in nginx).
-Accordingly,
-Atlantis-Patching 
-limits the number of agents to six
-and aims also to create a high quality code fixes 
-given PoV.
-Another team, [Theori](https://theori.io/blog/aixcc-and-roboduck-63447), 
-on the other hand,
-took a purely static approach:
-producing three correct patches ***without** PoVs!
-This well shows hidden potential of LLMs 
-in understanding the semantics of the code
-without causing too high false positives.
-In the scoringboard (see below),
-you can see how Theori's accuracy score (44.4%)
-got impacted by Accuracy Modifier (AM), which is decreased to $1 - (1 - 0.4444)^4 = 0.9044$
-vs. our AM is near perfect, $1 - (1 - 0.9127)^4 = 0.9999$.
+Surprisingly, smaller models like GPT-4o-mini often outperformed
+larger foundation models and even reasoning models for our tasks.
+We speculate that its 8 billion parameters hit a sweet spot—
+large enough to understand code patterns,
+small enough to avoid overthinking simple fixes.
 
-In fact, our patching CRS can produce patching and validate it without PoV.
-However, this was purely decided
-as part of our game plan. 
-We discussed this design decision nuermously
-and simulated the situation with our [internal benchmark](https://github.com/Team-Atlanta/aixcc-afc-benchmark).
-As the competition ends,
-we will also explore the feasibility of generating patches without PoV!
+***Practical Constraints on Scaling.***
+Unlike AlphaCode's massive agent scaling,
+we faced a practical bottleneck:
+validating patches in large codebases takes minutes (10+ minutes for nginx).
+This forced Atlantis-Patching to limit itself to six agents,
+focusing on quality over quantity.
+
+[Theori](https://theori.io/blog/aixcc-and-roboduck-63447) took a radically different approach:
+purely static analysis, producing three correct patches **without PoVs**.
+This demonstrates LLMs' remarkable ability to understand code semantics
+without runtime validation.
+
+The scoreboard reveals the trade-off:
+Theori's 44.4% accuracy yielded an Accuracy Modifier of 0.9044
+($1 - (1 - 0.4444)^4$),
+while our PoV-validated approach achieved 0.9999
+($1 - (1 - 0.9127)^4$).
+
+Our CRS can generate patches without PoVs,
+but we deliberately chose not to—a strategic decision
+we debated extensively and validated through our [internal benchmark](https://github.com/Team-Atlanta/aixcc-afc-benchmark).
+
+Post-competition, we're excited to explore
+PoV-free patching's full potential.
 
 {{< image src="images/blog/afc/ensemble-table.png" width="1000" position="center" class="img-fluid" >}}
 
-## L3. LLM 101. How to Babysiting Jack Jack?
+## L3. LLM 101. How to Babysiting Jack-Jack?
+
+During 
+our interview at [CTFRadio](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html),
+Yan mentioned that Shellfish had to babysit LLMs
+for their CRS. 
+I always thought LLM is like [Jack-Jack Parr in Incredibles](https://the-incredibles.fandom.com/wiki/Jack-Jack_Parr),
+who is born out of two superhero parents.
+His superpower is not yet known to their parents.
+It turns out he has superpower, not just one but MANY
+and hard to tell exactly what they are.
+People discovered that LLM has superpower
+and we are still in the process of discovering 
+how to render such superpower in the right context and effective way.
+We often gaslite LLMs, telling they are ["security researcher"](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-userspace/libs/libAgents/libAgents/agents/diff_analysis_agent.py#L94)
+or even a resaercher from [Google DeepMind](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/libs/libAgents/libAgents/session/research_session.py).
+During the competition,
+we had first hand experiences 
+in experiencing the evolution of the foundation models.
+Prompting tricks like "giving $200 tip" 
+turned out to be surprisingly effective in rednering longer response
+and all sorts of prompting engineering techniques like CoT, ToT, SC 
+started appearing.
+Our team tested all these tricks 
+and leveraged many of them 
+(e.g., ["Think step by step"](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/libs/libAgents/libAgents/session/research_session.py#L274)) in our CRS.
+Similarly, we observed evolution of agentic architectures: 
+ReAct, Reflection, Tool uses, Multi-agent, Sub-agent, etc,
+and of course, adopted many of them (see above).
+However, the speed of such changes 
+is unprecedented in the LLM space, 
+and hardly possible for us to adopt or test the latest claims by each community -- 
+observed that each of LLM services claimed that their benchmark results are the best? as always?
+In our team,
+we always evaluate the performance (everyday or weeks regularly via CI) 
+via internal benchamrk we have
+and closely monitors sudden performance drops or improvement-
+I recalled Shellfish made a LLM agent to do this job!
+Responsing to such rapid improvement in the LLM ecosystem,
+we tried hard not to be dependent on one specific vendor of LLM (i.e., no binding), 
+instead creating a proxy (i.e., LiteLLM) to multiplex LLM requests and responses 
+to each agent in our CRS.
+Since LLM are externally managed,
+Atlantis should avoid various unexpected errors from them: 
+e.g., max token limit, daily / subscription limit, down/delay for unknown reason, etc,
+which experienced all of them during the exhibition rounds.
 
 {{< image src="images/blog/afc/llm-babysitting.png" width="1000" position="center" class="img-fluid" >}}
 
