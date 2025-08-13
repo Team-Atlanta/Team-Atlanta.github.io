@@ -139,7 +139,26 @@ but it must be extensively adapted for real-world scale.
 
 {{< image src="images/blog/afc/llm-babysitting.png" width="1000" position="center" class="img-fluid" >}}
 
-## L4. LLM-Augmented, LLM-Opinionated, and LLM-Driven Approaches
+## L4. LLM-Augmented, LLM-Opinionated, and LLM-Driven
+
+## How Did Atlantis Perform?
+
+{{< image src="images/blog/afc/scoreboard.png" width="1000" position="center" class="img-fluid" >}}
+
+{{< image src="images/blog/afc/0day.jpg" width="1000" position="center" class="img-fluid" >}}
 
 ## What's Next?
 
+Our interview at [CTFRadio](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html)
+summarized many of our lessons pretty in depth.
+
+<div style="display: flex; justify-content: center; gap: 10px;">
+<iframe width="1000" height="562" src="https://www.youtube.com/embed/w-HZtwUXByg?si=a6xtZvCwfh4bw_vZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+- open source
+   - local version
+   - enabling human in-the-loop
+   - runing against open source projects
+- technical report
+- series of blog postings
