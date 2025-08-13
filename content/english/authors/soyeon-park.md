@@ -7,6 +7,9 @@ team_memberships:
 - team: multilang
   role: AI Agents for Bug Discovery & Exploitation
   priority: 3
+- team: infra
+  role: LLM Dev Infra
+  priority: 10
 social:
 - name: www
   icon: fa-solid fa-house
