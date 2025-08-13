@@ -7,7 +7,7 @@ image: "/images/blog/afc/afc-team.jpeg"
 categories: ["Milestone"]
 author: "Taesoo Kim"
 tags: ["ASC"]
-draft: true
+draft: false
 ---
 
 Two years after its first announcement at [DEF CON 31](https://aicyberchallenge.com/), 
@@ -77,7 +77,8 @@ For bug finding alone, we deployed three distinct CRSs:
 - **Atlantis-C**: Optimized specifically for C/C++ vulnerabilities
 - **Atlantis-Java**: Tailored for Java-specific bug patterns
 
-{{< image src="images/blog/afc/design-overview.png" width="1000" position="center" class="img-fluid" >}}
+{{< image src="images/blog/afc/design-overview.png" width="1000" position="center" class="img-fluid" 
+    caption="Design Overview of Atlantis (stay tuned for our Technical Report)." >}}
 
 These CRSs deliberately made orthogonal approaches;
 Atlantis-Multilang took conservative paths (no instrumentation)
@@ -129,9 +130,103 @@ Each tool required non-trivial engineering efforts to be effective.
 The lesson: AI alone isn't enough—traditional program analysis remains essential,
 but it must be extensively adapted for real-world scale.
 
-## L3. Ensembling to Promote Diversity
+## L2. Ensembling to Promote Diversity
 
-{{< image src="images/blog/afc/overview-patching.png" width="1000" position="center" class="img-fluid" >}}
+Ensembling in fuzzing outperforms a single fuzzing campaign
+with the same amount of computing resource,
+as shown in [autofz](https://www.usenix.org/conference/usenixsecurity23/presentation/fu-yu-fu).
+In Atlantis,
+we adopt the design principle of "ensembling" everywhere:
+coverage-guided fuzzers, directed fuzzers, concolic executors, and even patching agents.
+In particular,
+patching, a process of generating code that fixes a given proof-of-vulnerability (PoV), 
+takes advantages of the diversity of LLMs -- 
+a.k.a., hallucination in the ML community,
+non-determinism in systems community,
+or "creativity" in other contexts.
+Atlantis is designed to fully utilize 
+such non-deterministic characteristics of LLMs
+by ensembling multiple agents 
+taking orthogonal approaches.
+This ensembling works effectively
+only when ***oracles*** exist as a judge.
+For example, in fuzzing, 
+segmentation faults 
+such as invalid access to unmapped memory region
+can be raised effectively 
+with negligible performance overheads 
+thanks to page tables enforced by the hardware.
+More effectively, SW-based sanitizers
+such as address (ASAN), undefined behavior (UBSAN), memory leaks (MSAN), etc
+have been playing essential roles 
+in regonizing erroneous conditions
+way before segmentation fault like symptom appears.
+In patching,
+PoV plays as an oracle
+telling the suggseted patch is likely correct
+by simply reruning PoV with the patched program.
+It is said "likely" because
+there exists a chance to prevent PoV via *mitigation*
+or via functionally unintended
+(i.e., developers think it is not deseriable 
+as Atlantis can fully recognize that developers want or its specification).
+For example, 
+simply recompiling C projects with recent MTE or PAX enabled on AArch8 
+can suppress such PoV 
+or simply wrapping around a main entrance code of Java with a `catch` statement 
+with `Exception`.
+These are undesirable patches in our competition, of course, 
+so cautiously avoided by our patching agents.
+However, functional or semantic correctness 
+can be very subjective. 
+Accordingly, in AIxCC, `test.sh` is optionally provided in each CP,
+serving as an oracle to the patching agents.
+
+{{< image src="images/blog/afc/overview-patching.png" width="1000" position="center" class="img-fluid" 
+    caption="Design of Patching Agents." >}}
+
+During preperation, 
+our team recognized that 
+it is hard to build a universally powerful agents
+but it is feasible to build a single agent 
+to tackle a simple task well, 
+similar in concept to [AlphaEvolve](https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/) or [AlphaCode](https://alphacode.deepmind.com/).
+One interesting observation we made, 
+a similar model like `o4-mini` outperforms other bigger foundational or even reasoning models.
+Our speculation is that 
+8 billion parameters of `o4-mini` 
+abstracts the coding task nicely 
+with the amount of source code data 
+used during training?
+
+In our patching CRS, we could not scale the number of agents and approaches 
+unlike AlphaCode,
+as its oracle -- building and validating PoV -- is too slow 
+in a large scale software (e.g., 10 min in nginx).
+Accordingly,
+Atlantis-Patching 
+limits the number of agents to six
+and aims also to create a high quality code fixes 
+given PoV.
+Another team, [Theori](https://theori.io/blog/aixcc-and-roboduck-63447), 
+on the other hand,
+took a purely static approach:
+producing three correct patches ***without** PoVs!
+This well shows hidden potential of LLMs 
+in understanding the semantics of the code
+without causing too high false positives.
+In the scoringboard (see below),
+you can see how Theori's accuracy score (44.4%)
+got impacted by Accuracy Modifier (AM), which is decreased to $1 - (1 - 0.4444)^4 = 0.9044$
+vs. our AM is near perfect, $1 - (1 - 0.9127)^4 = 0.9999$.
+
+In fact, our patching CRS can produce patching and validate it without PoV.
+However, this was purely decided
+as part of our game plan. 
+We discussed this design decision nuermously
+and simulated the situation with our [internal benchmark](https://github.com/Team-Atlanta/aixcc-afc-benchmark).
+As the competition ends,
+we will also explore the feasibility of generating patches without PoV!
 
 {{< image src="images/blog/afc/ensemble-table.png" width="1000" position="center" class="img-fluid" >}}
 
