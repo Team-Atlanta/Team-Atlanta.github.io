@@ -73,6 +73,12 @@ name = "Atlantis-SARIF"
 url = "authors/#team-sarif"
 weight = 6
 
+[[main]]
+parent = "AIxCC Team"
+name = "Atlantis-Infra"
+url = "authors/#team-infra"
+weight = 7
+
 #[[main]]
 #parent = "Pages"
 #name = "Categories"
