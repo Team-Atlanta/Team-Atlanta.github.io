@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
+        {{ range .RegularPages }}
+          {{ partial "components/author-card" . }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

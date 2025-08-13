@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          {{ if .Params.image }}
+            {{ partial "image" (dict "Src" .Params.image "Context" .Page "Alt" .Title "Class" "mx-auto mb-6" "Size" "200x200") }}
+          {{ end }}
+          <div class="content">{{ .Content }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}
