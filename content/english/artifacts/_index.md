@@ -32,20 +32,6 @@
 
 <div class="glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30 flex flex-col h-full">
   <div class="flex items-center mb-4">
-    <i class="fa-solid fa-chart-line text-2xl text-green-500 mr-3"></i>
-    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Detailed Benchmark</h3>
-  </div>
-  <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">Comprehensive benchmarking suite with detailed performance metrics and analysis tools for thorough evaluation of Atlantis capabilities.</p>
-  <div class="mt-auto">
-    <a href="https://github.com/Team-Atlanta/aixcc-afc-detailed-benchmark" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
-      View Repository
-      <i class="fa fa-external-link ml-2 text-xs"></i>
-    </a>
-  </div>
-</div>
-
-<div class="glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30 flex flex-col h-full">
-  <div class="flex items-center mb-4">
     <i class="fa-solid fa-wrench text-2xl text-purple-500 mr-3"></i>
     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Custom Patch Module</h3>
   </div>
