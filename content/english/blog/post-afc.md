@@ -7,7 +7,7 @@ image: "/images/blog/afc/afc-team.jpeg"
 categories: ["Milestone"]
 author: "Taesoo Kim"
 tags: ["ASC"]
-draft: false
+draft: true
 ---
 
 Two years after its first announcement at [DEF CON 31](https://aicyberchallenge.com/), 
@@ -211,56 +211,63 @@ PoV-free patching's full potential.
 
 {{< image src="images/blog/afc/ensemble-table.png" width="1000" position="center" class="img-fluid" >}}
 
-## L3. LLM 101. How to Babysiting Jack-Jack?
+## L3. LLM 101: How to Babysit Jack-Jack?
 
-During 
-our interview at [CTFRadio](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html),
-Yan mentioned that Shellfish had to babysit LLMs
-for their CRS. 
-I always thought LLM is like [Jack-Jack Parr in Incredibles](https://the-incredibles.fandom.com/wiki/Jack-Jack_Parr),
-who is born out of two superhero parents.
-His superpower is not yet known to their parents.
-It turns out he has superpower, not just one but MANY
-and hard to tell exactly what they are.
-People discovered that LLM has superpower
-and we are still in the process of discovering 
-how to render such superpower in the right context and effective way.
-We often gaslite LLMs, telling they are ["security researcher"](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-userspace/libs/libAgents/libAgents/agents/diff_analysis_agent.py#L94)
-or even a resaercher from [Google DeepMind](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/libs/libAgents/libAgents/session/research_session.py).
-During the competition,
-we had first hand experiences 
-in experiencing the evolution of the foundation models.
-Prompting tricks like "giving $200 tip" 
-turned out to be surprisingly effective in rednering longer response
-and all sorts of prompting engineering techniques like CoT, ToT, SC 
-started appearing.
-Our team tested all these tricks 
-and leveraged many of them 
-(e.g., ["Think step by step"](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/libs/libAgents/libAgents/session/research_session.py#L274)) in our CRS.
-Similarly, we observed evolution of agentic architectures: 
-ReAct, Reflection, Tool uses, Multi-agent, Sub-agent, etc,
-and of course, adopted many of them (see above).
-However, the speed of such changes 
-is unprecedented in the LLM space, 
-and hardly possible for us to adopt or test the latest claims by each community -- 
-observed that each of LLM services claimed that their benchmark results are the best? as always?
-In our team,
-we always evaluate the performance (everyday or weeks regularly via CI) 
-via internal benchamrk we have
-and closely monitors sudden performance drops or improvement-
-I recalled Shellfish made a LLM agent to do this job!
-Responsing to such rapid improvement in the LLM ecosystem,
-we tried hard not to be dependent on one specific vendor of LLM (i.e., no binding), 
-instead creating a proxy (i.e., LiteLLM) to multiplex LLM requests and responses 
-to each agent in our CRS.
-Since LLM are externally managed,
-Atlantis should avoid various unexpected errors from them: 
-e.g., max token limit, daily / subscription limit, down/delay for unknown reason, etc,
-which experienced all of them during the exhibition rounds.
+During our [CTFRadio interview](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html),
+Yan mentioned that Shellfish had to babysit their LLMs.
+The analogy resonates: LLMs are like [Jack-Jack Parr from The Incredibles](https://the-incredibles.fandom.com/wiki/Jack-Jack_Parr)—
+a superpowered infant with multiple, unpredictable abilities
+that even his superhero parents don't fully understand.
 
 {{< image src="images/blog/afc/llm-babysitting.png" width="1000" position="center" class="img-fluid" >}}
 
+Like Jack-Jack, LLMs have not one superpower but many,
+and we're still discovering how to harness them effectively.
+We "gaslight" our LLMs into specific roles,
+telling them they're ["security researchers"](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-userspace/libs/libAgents/libAgents/agents/diff_analysis_agent.py#L94)
+or even researchers from [Google DeepMind](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/libs/libAgents/libAgents/session/research_session.py).
+
+***The Evolution of Prompting Techniques.***
+Throughout the competition, we witnessed firsthand
+the rapid evolution of foundation models and prompting strategies.
+Early tricks like "I'll give you a $200 tip" 
+surprisingly generated longer, more detailed responses.
+Techniques multiplied: Chain-of-Thought (CoT), Tree-of-Thoughts (ToT), Self-Consistency (SC).
+
+We tested everything and integrated what worked,
+like ["Think step by step"](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/libs/libAgents/libAgents/session/research_session.py#L274) prompts.
+Agentic architectures evolved in parallel:
+ReAct, Reflection, tool use, multi-agent systems, sub-agents—
+we adopted many (as shown above).
+
+***Managing Rapid Change.***
+The pace of change in the LLM space is unprecedented.
+Every vendor claims benchmark supremacy,
+making it impossible to evaluate every new claim or technique.
+
+Our solution: continuous empirical testing.
+We evaluate performance daily through CI
+using our internal benchmark,
+monitoring for sudden drops or improvements.
+(Shellfish even built an LLM agent specifically for this task!)
+
+To avoid vendor lock-in, we built abstraction layers.
+LiteLLM serves as our proxy, multiplexing requests and responses
+across different LLM providers for each agent.
+
+***Handling External Dependencies.***
+Since LLMs are externally managed services,
+Atlantis must handle various failure modes:
+- Token limits exceeded
+- Daily/subscription quotas hit
+- Unexplained downtime or delays
+
+We experienced all of these during the exhibition rounds
+and built resilience mechanisms accordingly.
+
 ## L4. LLM-Augmented, LLM-Opinionated, and LLM-Driven
+
+
 
 ## How Did Atlantis Perform?
 
