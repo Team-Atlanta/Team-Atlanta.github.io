@@ -5,7 +5,7 @@ image: /images/gyejin-lee.png
 affiliation: Ph.D. at Georgia Tech
 team_memberships:
 - team: c
-  role: Integration; Microservices; Fuzzing Scheduling; Harness Scheduling; Custom Fuzzers
+  role: Fuzzing Infrastructure & Custom Fuzzers
   priority: 10
 - team: infra
   role: Cloud Infrastructure & K8S
@@ -20,4 +20,7 @@ social:
 - name: linkedin
   icon: fa-brands fa-linkedin
   link: https://www.linkedin.com/in/gyejinlee/
+- name: email
+  icon: fa-solid fa-envelope
+  link: mailto:gyejinlee@gatech.edu
 ---
