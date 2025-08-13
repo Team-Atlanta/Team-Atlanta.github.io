@@ -267,11 +267,64 @@ and built resilience mechanisms accordingly.
 
 ## L4. LLM-Augmented, LLM-Opinionated, and LLM-Driven
 
+Atlantis employs LLMs through three distinct integration strategies,
+each with different levels of trust and autonomy.
 
+***LLM-Augmented: Extending Traditional Tool.***
+In this approach, LLMs enhance traditional analysis techniques
+where conventional methods struggle with scale.
+Fuzzing tools integrate LLMs for:
+- [Input generation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-userspace/microservices/deepgen_service)
+- [Dictionary generation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/dictgen)
+- [Seed generation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-userspace/microservices/deepgen_service)
+
+Here, LLMs fill gaps where traditional techniques
+fail to scale to real-world software complexity.
+
+***LLM-Opinionated: Optimistic Suggestions.***
+Tools like [Testlang](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/testlang) and [Harness Reverser](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/reverser)
+operate with calculated risk.
+LLMs provide likelihood-based suggestions
+that workflows treat as hints—similar to optimistic concurrency control.
+
+When predictions are correct, the system benefits significantly.
+When wrong, we pay a performance penalty but maintain correctness.
+
+***LLM-Driven: Autonomous Navigation.***
+Our most ambitious approach gives LLMs full autonomy.
+The [MLLA agent](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)
+autonomously navigates code repositories,
+generating "blobs"—inputs designed to trigger identified bugs
+from diffs or SARIF reports.
+
+This strategy bets on LLMs having latent security intuition
+buried in their weights,
+allowing them to reason about entire codebases independently.
 
 ## How Did Atlantis Perform?
 
+Our CRS, Atlantis, scored more points in almost 
+all core categories of the competition.
+Importantly, it gained a similar amount of points 
+combined two other winning teams.
+We still in the process of analyzing the final data -- soon!
+But our gut feeling is that
+there are certain cetgory of CP 
+(e.g., wireshark)
+that our CRS significantly outperforms 
+while other teams' CRSs look down.
+Our conservative approach 
+in submitting crash reports and patches
+pays off in the accuricy multiplier, 
+and our high bundle score also indicates 
+that our conservative approach in matching PoV to patch and SARIF pays off
+during the competition.
+
 {{< image src="images/blog/afc/scoreboard.png" width="1000" position="center" class="img-fluid" >}}
+
+So does this approach work in battel field? 
+During the final, all CRSs found 6 and 12 real-world bugs from C and Java, respectively.
+Atlantis found 3 and 3 from C and Java -- our CRS found one [0-day in the semi-final]({{< relref "post-asc-sqlite.md" >}}).
 
 {{< image src="images/blog/afc/0day.jpg" width="1000" position="center" class="img-fluid" >}}
 
