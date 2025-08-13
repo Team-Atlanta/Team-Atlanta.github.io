@@ -165,3 +165,6 @@ lazy = true
 [[params.plugins.js]]
 link = "plugins/youtube-lite.js"
 lazy = true
+[[params.plugins.js]]
+link = "js/authors-optimized.js"
+lazy = false

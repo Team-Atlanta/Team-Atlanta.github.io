@@ -1,0 +1,177 @@
+// Optimized Authors Page Styles
+
+.team-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: max-height, opacity;
+  
+  &.expanded {
+    overflow: visible;
+  }
+}
+
+.expand-icon {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Faster, smoother animation
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); // Reduced from 30px for faster perceived animation
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.member-card {
+  // Remove default animation, will be added by JS
+  animation-fill-mode: both;
+  border: 1px solid;
+  border-color: #f3f4f6;
+  isolation: isolate;
+  will-change: transform, opacity;
+  contain: layout style;
+  content-visibility: auto;
+  
+  .dark & {
+    border-color: #374151;
+  }
+}
+
+// Optimize grid performance
+.team-content .grid {
+  contain: layout;
+  will-change: contents;
+}
+
+// Team colors - keep existing
+.text-blue-400 { color: #60a5fa !important; }
+.text-green-400 { color: #4ade80 !important; }
+.text-amber-400 { color: #fbbf24 !important; }
+.text-purple-400 { color: #c084fc !important; }
+.text-pink-400 { color: #f472b6 !important; }
+.text-indigo-400 { color: #818cf8 !important; }
+
+.dark {
+  .text-blue-300 { color: #93c5fd !important; }
+  .text-green-300 { color: #86efac !important; }
+  .text-amber-300 { color: #fcd34d !important; }
+  .text-purple-300 { color: #d8b4fe !important; }
+  .text-pink-300 { color: #f9a8d4 !important; }
+  .text-indigo-300 { color: #a5b4fc !important; }
+}
+
+// Member card text colors
+.member-card .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark .member-card .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+// Leader card special styling
+.leader-card {
+  .text-amber-600,
+  .text-amber-400,
+  p.text-amber-600,
+  p.text-amber-400,
+  .text-base.font-semibold,
+  p[class*="text-amber"] {
+    color: #fbbf24 !important;
+  }
+  
+  // Ensure the role text is amber
+  > div > p:nth-child(2) {
+    color: #fbbf24 !important;
+  }
+}
+
+// Smooth card animations
+.member-card-animated {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 0 20px rgba(255, 255, 255, 0.1),
+      0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.leader-card.member-card-animated:hover {
+  box-shadow: 
+    0 0 0 1px rgba(251, 191, 36, 0.3),
+    0 0 25px rgba(251, 191, 36, 0.15),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+// Hover effects for names and photos
+.name-hover-blue { color: #2563eb !important; }
+.name-hover-green { color: #16a34a !important; }
+.name-hover-amber { color: #d97706 !important; }
+.name-hover-purple { color: #9333ea !important; }
+.name-hover-pink { color: #db2777 !important; }
+.name-hover-indigo { color: #4f46e5 !important; }
+
+.photo-hover-blue { box-shadow: 0 0 0 3px #2563eb !important; }
+.photo-hover-green { box-shadow: 0 0 0 3px #16a34a !important; }
+.photo-hover-amber { box-shadow: 0 0 0 3px #d97706 !important; }
+.photo-hover-purple { box-shadow: 0 0 0 3px #9333ea !important; }
+.photo-hover-pink { box-shadow: 0 0 0 3px #db2777 !important; }
+.photo-hover-indigo { box-shadow: 0 0 0 3px #4f46e5 !important; }
+
+.name-hover,
+.photo-hover {
+  &:hover {
+    cursor: pointer;
+    background: transparent !important;
+    outline: none !important;
+    border: none !important;
+  }
+}
+
+.name-hover a:hover {
+  background: transparent !important;
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+// Remove skeleton loader as we're loading faster
+.skeleton {
+  display: none;
+}
+
+// Focus styles
+.focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+// Optimize transitions
+* {
+  transition-property: color, background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Performance optimizations
+.team-overview-card {
+  will-change: transform;
+  
+  &:hover {
+    will-change: auto;
+  }
+}
+
+// Preload critical images
+.member-card img {
+  loading: eager; // Override lazy loading for visible cards
+  will-change: transform;
+}
