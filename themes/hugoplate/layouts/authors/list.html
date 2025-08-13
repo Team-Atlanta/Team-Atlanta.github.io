@@ -16,8 +16,10 @@
       <!-- Group authors by team -->
       {{ range .RegularPages }}
         {{ $author := . }}
-        {{ $totalMembers = add $totalMembers 1 }}
-        {{ $allMembers = $allMembers | append . }}
+        <!-- Skip acknowledgments entry from team processing -->
+        {{ if ne .Title "Acknowledgments" }}
+          {{ $totalMembers = add $totalMembers 1 }}
+          {{ $allMembers = $allMembers | append . }}
         {{ if .Params.team_memberships }}
           {{ range .Params.team_memberships }}
             {{ $membership := . }}
@@ -94,11 +96,12 @@
         {{ else }}
           {{ $noTeam = $noTeam | append . }}
         {{ end }}
+        {{ end }} <!-- End of acknowledgments check -->
       {{ end }}
 
       <!-- Team Leader Anchor -->
       <div id="team-leader" class="scroll-mt-24"></div>
-      
+
       <!-- Modern Header Section -->
       <div class="text-center mb-20">
         <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-8">
@@ -184,7 +187,7 @@
 
           <!-- Team Anchor -->
           <div id="team-{{ $team }}" class="scroll-mt-24"></div>
-          
+
           <div class="team-section mb-12" data-team="{{ $team }}" data-expanded="true">
             <!-- Team Overview Card (Collapsed State) -->
             <div class="team-overview-card bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-pointer group"
@@ -352,6 +355,40 @@
         </div>
       {{ end }}
 
+      <!-- Acknowledgments Section -->
+      {{ range .RegularPages }}
+        {{ if eq .Title "Acknowledgments" }}
+          <div class="acknowledgments-section mt-20 mb-16">
+            <div class="container max-w-7xl mx-auto px-8">
+              <!-- Simple Header -->
+              <div class="text-left mb-12">
+                <h2 class="mb-6">{{ .Title }}</h2>
+
+                <!-- Description -->
+                <div class="prose prose-lg mx-auto text-gray-600 dark:text-gray-400 max-w-3xl mb-8">
+                  {{ .Content }}
+                </div>
+              </div>
+
+              <!-- Acknowledgments List -->
+              {{ if .Params.acknowledgments }}
+                <div class="acknowledgments-list max-w-4xl mx-auto">
+                  <ul class="space-y-2">
+                    {{ range .Params.acknowledgments }}
+                      <li class="acknowledgment-entry text-left">
+                        <span class="font-medium text-gray-900 dark:text-white">{{ .name }}</span>
+                        <span class="text-gray-500 dark:text-gray-400 mx-2">—</span>
+                        <span class="text-gray-600 dark:text-gray-400">{{ .affiliation }}</span>
+                      </li>
+                    {{ end }}
+                  </ul>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+          {{ break }}
+        {{ end }}
+      {{ end }}
 
       <!-- Back to Top Button -->
       <div class="fixed bottom-8 right-8 z-50">
