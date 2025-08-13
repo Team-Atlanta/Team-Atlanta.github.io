@@ -96,13 +96,16 @@
         {{ end }}
       {{ end }}
 
+      <!-- Team Leader Anchor -->
+      <div id="team-leader" class="scroll-mt-24"></div>
+      
       <!-- Modern Header Section -->
       <div class="text-center mb-20">
         <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-8">
           Our Team
         </h1>
         <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed font-light tracking-wide">
-          Pioneering the future of cybersecurity through innovative AI-driven research and groundbreaking discoveries
+          Meet the brilliant minds revolutionizing cybersecurity with cutting-edge AI research
         </p>
         <div class="inline-flex items-center bg-white dark:bg-gray-800 rounded-full px-8 py-4 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
           <div class="flex items-center">
@@ -179,7 +182,10 @@
           {{ $icon := index $teamIcons $team }}
           {{ $color := index $teamColors $team }}
 
-          <div id="team-{{ $team }}" class="team-section mb-12" data-team="{{ $team }}" data-expanded="true">
+          <!-- Team Anchor -->
+          <div id="team-{{ $team }}" class="scroll-mt-24"></div>
+          
+          <div class="team-section mb-12" data-team="{{ $team }}" data-expanded="true">
             <!-- Team Overview Card (Collapsed State) -->
             <div class="team-overview-card bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-pointer group"
                  onclick="toggleTeamSection('{{ $team }}')"
@@ -369,7 +375,7 @@
       initializeExpandedSections();
       initializeNamePhotoHover();
     }
-    
+
     function initializeExpandedSections() {
       // Set initial state for expanded sections
       const expandedSections = document.querySelectorAll('.team-section[data-expanded="true"]');
@@ -421,14 +427,14 @@
         content.style.paddingTop = '0px';
 
         content.offsetHeight; // Force reflow
-        
+
         // Use requestAnimationFrame for proper height calculation
         requestAnimationFrame(() => {
           // Get actual visual height including all borders and margins
           const actualHeight = content.getBoundingClientRect().height;
           const gridHeight = content.querySelector('.grid')?.getBoundingClientRect().height || 0;
           const safeHeight = Math.max(actualHeight, gridHeight) + 30; // 30px safety buffer
-          
+
           content.style.maxHeight = safeHeight + 'px';
           content.style.opacity = '1';
           content.style.paddingTop = '2rem';
@@ -444,7 +450,7 @@
               card.style.animation = `fadeInUp 0.6s ease-out forwards`;
             }, index * 100);
           });
-          
+
           // Final height adjustment after animations and set overflow visible
           setTimeout(() => {
             const finalHeight = content.getBoundingClientRect().height + 20;
@@ -522,31 +528,31 @@
     function initializeNamePhotoHover() {
       // Handle synchronized hover effects for names and photos
       const memberCards = document.querySelectorAll('.member-card');
-      
+
       memberCards.forEach(card => {
         const nameElement = card.querySelector('.name-hover');
         const photoElement = card.querySelector('.photo-hover');
-        
+
         if (nameElement && photoElement) {
           const team = nameElement.getAttribute('data-team');
-          
+
           // Name hover events
           nameElement.addEventListener('mouseenter', () => {
             nameElement.classList.add(`name-hover-${team}`);
             photoElement.classList.add(`photo-hover-${team}`);
           });
-          
+
           nameElement.addEventListener('mouseleave', () => {
             nameElement.classList.remove(`name-hover-${team}`);
             photoElement.classList.remove(`photo-hover-${team}`);
           });
-          
+
           // Photo hover events
           photoElement.addEventListener('mouseenter', () => {
             nameElement.classList.add(`name-hover-${team}`);
             photoElement.classList.add(`photo-hover-${team}`);
           });
-          
+
           photoElement.addEventListener('mouseleave', () => {
             nameElement.classList.remove(`name-hover-${team}`);
             photoElement.classList.remove(`photo-hover-${team}`);
@@ -569,7 +575,7 @@
       backface-visibility: hidden;
       transform: translateZ(0);
     }
-    
+
     .team-content.expanded {
       overflow: visible;
     }
@@ -598,16 +604,16 @@
       isolation: isolate;
       will-change: transform;
     }
-    
+
     .dark .member-card {
       border-color: rgb(55 65 81);
     }
-    
+
     /* Ensure proper layout containment */
     .team-content .grid {
       contain: layout;
     }
-    
+
     /* Team color overrides for role text */
     .text-blue-400 { color: #60a5fa !important; }
     .text-green-400 { color: #4ade80 !important; }
@@ -615,86 +621,86 @@
     .text-purple-400 { color: #c084fc !important; }
     .text-pink-400 { color: #f472b6 !important; }
     .text-indigo-400 { color: #818cf8 !important; }
-    
+
     .dark .text-blue-300 { color: #93c5fd !important; }
     .dark .text-green-300 { color: #86efac !important; }
     .dark .text-amber-300 { color: #fcd34d !important; }
     .dark .text-purple-300 { color: #d8b4fe !important; }
     .dark .text-pink-300 { color: #f9a8d4 !important; }
     .dark .text-indigo-300 { color: #a5b4fc !important; }
-    
+
     /* Ensure affiliation text is gray, not white */
     .member-card .text-gray-600 {
       color: #9ca3af !important;
     }
-    
+
     .dark .member-card .text-gray-400 {
       color: #9ca3af !important;
     }
-    
+
     /* Leader card role text should be amber */
     .leader-card .text-amber-600 {
       color: #d97706 !important;
     }
-    
+
     .leader-card .text-amber-400 {
       color: #fbbf24 !important;
     }
-    
+
     /* More specific targeting for leader card */
     .leader-card p.text-amber-600 {
       color: #d97706 !important;
     }
-    
+
     .leader-card p.text-amber-400 {
       color: #fbbf24 !important;
     }
-    
+
     /* Override any global white text for leader role - very specific */
     .leader-card .text-base.font-semibold {
       color: #fbbf24 !important;
     }
-    
+
     /* Even more specific targeting */
     .leader-card p.text-amber-600.dark\\:text-amber-400.text-base.font-semibold.mb-3,
     .leader-card p.text-amber-600.text-base.font-semibold.mb-3 {
       color: #fbbf24 !important;
     }
-    
+
     /* Nuclear option - target by position */
     .leader-card > div > p:nth-child(2) {
       color: #fbbf24 !important;
     }
-    
+
     /* Ultimate override for leader role text */
     .leader-card p[class*="text-amber"] {
       color: #fbbf24 !important;
     }
-    
+
     /* Force override any global body or section color rules */
     body .leader-card p.text-amber-600,
     html body .leader-card p.text-amber-600 {
       color: #fbbf24 !important;
     }
-    
+
     /* Light border glow effect for member cards - only on card hover */
     .member-card-animated {
       transition: all 0.3s ease;
     }
-    
+
     .member-card-animated:hover {
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2),
                   0 0 20px rgba(255, 255, 255, 0.1),
                   0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
-    
+
     /* Enhanced glow for leader card */
     .leader-card.member-card-animated:hover {
-      box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.3), 
+      box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.3),
                   0 0 25px rgba(251, 191, 36, 0.15),
                   0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
-    
+
     /* Team color classes for hover effects */
     .name-hover-blue { color: #2563eb !important; }
     .name-hover-green { color: #16a34a !important; }
@@ -702,14 +708,14 @@
     .name-hover-purple { color: #9333ea !important; }
     .name-hover-pink { color: #db2777 !important; }
     .name-hover-indigo { color: #4f46e5 !important; }
-    
+
     .photo-hover-blue { box-shadow: 0 0 0 3px #2563eb !important; }
     .photo-hover-green { box-shadow: 0 0 0 3px #16a34a !important; }
     .photo-hover-amber { box-shadow: 0 0 0 3px #d97706 !important; }
     .photo-hover-purple { box-shadow: 0 0 0 3px #9333ea !important; }
     .photo-hover-pink { box-shadow: 0 0 0 3px #db2777 !important; }
     .photo-hover-indigo { box-shadow: 0 0 0 3px #4f46e5 !important; }
-    
+
     /* Remove any default hover styling that might create rectangles */
     .name-hover:hover,
     .photo-hover:hover {
@@ -718,13 +724,13 @@
       outline: none !important;
       border: none !important;
     }
-    
+
     .name-hover a:hover {
       background: none !important;
       outline: none !important;
       text-decoration: none !important;
     }
-    
+
 
     /* Loading skeleton styles */
     .skeleton {
