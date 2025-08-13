@@ -8,7 +8,7 @@ team_memberships:
   role: Sarif Team Member
   priority: 10
 - team: infra
-  role: Infra Team Member
+  role: OpenTelemetry
   priority: 5
 social:
 - name: www

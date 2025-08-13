@@ -8,7 +8,7 @@ team_memberships:
   role: Multilang Team Lead
   priority: 2
 - team: infra
-  role: Integration Lead
+  role: Infra Team Lead
   priority: 2
 social:
 - name: www
