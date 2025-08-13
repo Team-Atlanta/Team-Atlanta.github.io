@@ -1976,6 +1976,9 @@ input#nav-toggle:checked ~ #nav-menu{
   margin-left: auto;
   margin-right: auto;
 }
+.mb-1{
+  margin-bottom: 0.25rem;
+}
 .mb-10{
   margin-bottom: 2.5rem;
 }
@@ -2548,9 +2551,6 @@ input#nav-toggle:checked ~ #nav-menu{
 .tracking-wide{
   letter-spacing: 0.025em;
 }
-.tracking-wider{
-  letter-spacing: 0.05em;
-}
 .text-amber-400{
   --tw-text-opacity: 1;
   color: rgb(251 191 36 / var(--tw-text-opacity, 1));
@@ -2686,9 +2686,6 @@ input#nav-toggle:checked ~ #nav-menu{
 }
 .opacity-100{
   opacity: 1;
-}
-.opacity-75{
-  opacity: 0.75;
 }
 .mix-blend-multiply{
   mix-blend-mode: multiply;
