@@ -976,8 +976,8 @@
   <ol>
     <li><a href="#l0-system-robustness-is-priority-1">L0. System Robustness is Priority #1</a></li>
     <li><a href="#l1-dont-give-up-on-traditional-program-analysis">L1. Don&rsquo;t Give Up on Traditional Program Analysis</a></li>
-    <li><a href="#l3-ensembling-to-promote-diversity">L3. Ensembling to Promote Diversity</a></li>
-    <li><a href="#l3-llm-101-how-to-babysiting-jack-jack">L3. LLM 101. How to Babysiting Jack Jack?</a></li>
+    <li><a href="#l2-ensembling-to-promote-diversity">L2. Ensembling to Promote Diversity</a></li>
+    <li><a href="#l3-llm-101-how-to-babysit-jack-jack">L3. LLM 101: How to Babysit Jack-Jack?</a></li>
     <li><a href="#l4-llm-augmented-llm-opinionated-and-llm-driven">L4. LLM-Augmented, LLM-Opinionated, and LLM-Driven</a></li>
     <li><a href="#how-did-atlantis-perform">How Did Atlantis Perform?</a></li>
     <li><a href="#whats-next">What&rsquo;s Next?</a></li>
@@ -1397,19 +1397,26 @@ to maximize both coverage and fault tolerance.</p>
 
     
     
-      
+      <figure
+        class="img-center"
+        role="group"
+        aria-describedby="caption-Design Overview of Atlantis (stay tuned for our Technical Report).">
       
           <img
             title=""
             loading="lazy"
             decoding="async"
-            class="img img-fluid img-center"
+            class="img img-fluid"
             width="1000"
             height="428"
             src="/images/blog/afc/design-overview_hu_63bbe8012edacee8.webp"
             alt=""
             onerror="this.onerror='null';this.src='\/images\/blog\/afc\/design-overview_hu_bd2ac2bc761aab28.png'" />
       
+        <figcaption id="caption-Design Overview of Atlantis (stay tuned for our Technical Report)." class="caption-Design-Overview-of-Atlantis-stay-tuned-for-our-Technical-Report">
+          Design Overview of Atlantis (stay tuned for our Technical Report).
+        </figcaption>
+      </figure>
     
 
   
@@ -1569,7 +1576,48 @@ For both C and Java, we developed three categories:</p>
 <p>Each tool required non-trivial engineering efforts to be effective.
 The lesson: AI alone isn&rsquo;t enough—traditional program analysis remains essential,
 but it must be extensively adapted for real-world scale.</p>
-<h2 id="l3-ensembling-to-promote-diversity">L3. Ensembling to Promote Diversity</h2>
+<h2 id="l2-ensembling-to-promote-diversity">L2. Ensembling to Promote Diversity</h2>
+<p>Research shows that ensemble fuzzing outperforms single campaigns
+with equivalent computing resources, as demonstrated
+by <a href="https://www.usenix.org/conference/usenixsecurity23/presentation/fu-yu-fu"
+
+
+
+
+ target="_blank"
+ 
+
+
+>autofz</a>.
+Atlantis embraces this principle everywhere:
+coverage-guided fuzzers, directed fuzzers, concolic executors, and patching agents.</p>
+<p>Patching particularly benefits from LLM diversity—
+what the ML community calls &ldquo;hallucination,&rdquo;
+systems engineers call &ldquo;non-determinism,&rdquo;
+and we call &ldquo;creativity.&rdquo;
+By ensembling multiple agents with orthogonal approaches,
+Atlantis harnesses this non-deterministic nature of LLMs.</p>
+<p><em><strong>The Critical Role of Oracles.</strong></em>
+Ensembling only works when <strong>oracles</strong> exist to judge correctness.</p>
+<p>In fuzzing, hardware provides our first oracle:
+segmentation faults from invalid memory access
+are caught efficiently through page table violations.
+Software sanitizers extend this coverage—
+ASAN for memory errors, UBSAN for undefined behavior, MSAN for memory leaks—
+detecting bugs long before crashes occur.</p>
+<p>For patching, the Proof-of-Vulnerability (PoV) serves as our oracle.
+We validate patches by re-running the PoV against patched programs.
+We say &ldquo;likely correct&rdquo; because patches might work through unintended mitigation
+rather than true fixes.</p>
+<p>Consider these problematic &ldquo;patches&rdquo;:</p>
+<ul>
+<li>Recompiling C code with MTE or PAC on ARM to suppress PoVs</li>
+<li>Wrapping Java entry points in broad <code>catch(Exception)</code> blocks</li>
+</ul>
+<p>Our agents carefully avoid such mitigations.
+Yet semantic correctness remains subjective—
+which is why AIxCC provides optional <code>test.sh</code> scripts
+as additional oracles for our patching agents.</p>
 
 
 
@@ -1646,19 +1694,26 @@ but it must be extensively adapted for real-world scale.</p>
 
     
     
-      
+      <figure
+        class="img-center"
+        role="group"
+        aria-describedby="caption-Design of Patching Agents.">
       
           <img
             title=""
             loading="lazy"
             decoding="async"
-            class="img img-fluid img-center"
+            class="img img-fluid"
             width="1000"
             height="486"
             src="/images/blog/afc/overview-patching_hu_c67f7e760595bb87.webp"
             alt=""
             onerror="this.onerror='null';this.src='\/images\/blog\/afc\/overview-patching_hu_662d7ee50e07e7a.png'" />
       
+        <figcaption id="caption-Design of Patching Agents." class="caption-Design-of-Patching-Agents">
+          Design of Patching Agents.
+        </figcaption>
+      </figure>
     
 
   
@@ -1670,6 +1725,72 @@ but it must be extensively adapted for real-world scale.</p>
 
 
 
+<p><em><strong>Building Specialized Agents.</strong></em>
+During preparation, we recognized a key insight:
+building one universally powerful agent is harder than
+building multiple specialized agents for specific tasks.
+This echoes the philosophy behind <a href="https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>AlphaEvolve</a> and <a href="https://alphacode.deepmind.com/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>AlphaCode</a>.</p>
+<p>Surprisingly, smaller models like GPT-4o-mini often outperformed
+larger foundation models and even reasoning models for our tasks.
+We speculate that its 8 billion parameters hit a sweet spot—
+large enough to understand code patterns,
+small enough to avoid overthinking simple fixes.</p>
+<p><em><strong>Practical Constraints on Scaling.</strong></em>
+Unlike AlphaCode&rsquo;s massive agent scaling,
+we faced a practical bottleneck:
+validating patches in large codebases takes minutes (10+ minutes for nginx).
+This forced Atlantis-Patching to limit itself to six agents,
+focusing on quality over quantity.</p>
+<p><a href="https://theori.io/blog/aixcc-and-roboduck-63447"
+
+
+
+
+ target="_blank"
+ 
+
+
+>Theori</a> took a radically different approach:
+purely static analysis, producing three correct patches <strong>without PoVs</strong>.
+This demonstrates LLMs&rsquo; remarkable ability to understand code semantics
+without runtime validation.</p>
+<p>The scoreboard reveals the trade-off:
+Theori&rsquo;s 44.4% accuracy yielded an Accuracy Modifier of 0.9044
+($1 - (1 - 0.4444)^4$),
+while our PoV-validated approach achieved 0.9999
+($1 - (1 - 0.9127)^4$).</p>
+<p>Our CRS can generate patches without PoVs,
+but we deliberately chose not to—a strategic decision
+we debated extensively and validated through our <a href="https://github.com/Team-Atlanta/aixcc-afc-benchmark"
+
+
+
+
+ target="_blank"
+ 
+
+
+>internal benchmark</a>.</p>
+<p>Post-competition, we&rsquo;re excited to explore
+PoV-free patching&rsquo;s full potential.</p>
 
 
 
@@ -1770,7 +1891,30 @@ but it must be extensively adapted for real-world scale.</p>
 
 
 
-<h2 id="l3-llm-101-how-to-babysiting-jack-jack">L3. LLM 101. How to Babysiting Jack Jack?</h2>
+<h2 id="l3-llm-101-how-to-babysit-jack-jack">L3. LLM 101: How to Babysit Jack-Jack?</h2>
+<p>During our <a href="https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html"
+
+
+
+
+ target="_blank"
+ 
+
+
+>CTFRadio interview</a>,
+Yan mentioned that Shellfish had to babysit their LLMs.
+The analogy resonates: LLMs are like <a href="https://the-incredibles.fandom.com/wiki/Jack-Jack_Parr"
+
+
+
+
+ target="_blank"
+ 
+
+
+>Jack-Jack Parr from The Incredibles</a>—
+a superpowered infant with multiple, unpredictable abilities
+that even his superhero parents don&rsquo;t fully understand.</p>
 
 
 
@@ -1871,6 +2015,71 @@ but it must be extensively adapted for real-world scale.</p>
 
 
 
+<p>Like Jack-Jack, LLMs have not one superpower but many,
+and we&rsquo;re still discovering how to harness them effectively.
+We &ldquo;gaslight&rdquo; our LLMs into specific roles,
+telling them they&rsquo;re <a href="https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-userspace/libs/libAgents/libAgents/agents/diff_analysis_agent.py#L94"
+
+
+
+
+ target="_blank"
+ 
+
+
+>&ldquo;security researchers&rdquo;</a>
+or even researchers from <a href="https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/libs/libAgents/libAgents/session/research_session.py"
+
+
+
+
+ target="_blank"
+ 
+
+
+>Google DeepMind</a>.</p>
+<p><em><strong>The Evolution of Prompting Techniques.</strong></em>
+Throughout the competition, we witnessed firsthand
+the rapid evolution of foundation models and prompting strategies.
+Early tricks like &ldquo;I&rsquo;ll give you a $200 tip&rdquo;
+surprisingly generated longer, more detailed responses.
+Techniques multiplied: Chain-of-Thought (CoT), Tree-of-Thoughts (ToT), Self-Consistency (SC).</p>
+<p>We tested everything and integrated what worked,
+like <a href="https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/libs/libAgents/libAgents/session/research_session.py#L274"
+
+
+
+
+ target="_blank"
+ 
+
+
+>&ldquo;Think step by step&rdquo;</a> prompts.
+Agentic architectures evolved in parallel:
+ReAct, Reflection, tool use, multi-agent systems, sub-agents—
+we adopted many (as shown above).</p>
+<p><em><strong>Managing Rapid Change.</strong></em>
+The pace of change in the LLM space is unprecedented.
+Every vendor claims benchmark supremacy,
+making it impossible to evaluate every new claim or technique.</p>
+<p>Our solution: continuous empirical testing.
+We evaluate performance daily through CI
+using our internal benchmark,
+monitoring for sudden drops or improvements.
+(Shellfish even built an LLM agent specifically for this task!)</p>
+<p>To avoid vendor lock-in, we built abstraction layers.
+LiteLLM serves as our proxy, multiplexing requests and responses
+across different LLM providers for each agent.</p>
+<p><em><strong>Handling External Dependencies.</strong></em>
+Since LLMs are externally managed services,
+Atlantis must handle various failure modes:</p>
+<ul>
+<li>Token limits exceeded</li>
+<li>Daily/subscription quotas hit</li>
+<li>Unexplained downtime or delays</li>
+</ul>
+<p>We experienced all of these during the exhibition rounds
+and built resilience mechanisms accordingly.</p>
 <h2 id="l4-llm-augmented-llm-opinionated-and-llm-driven">L4. LLM-Augmented, LLM-Opinionated, and LLM-Driven</h2>
 <h2 id="how-did-atlantis-perform">How Did Atlantis Perform?</h2>
 
@@ -2504,6 +2713,243 @@ summarized many of our lessons pretty in depth.</p>
         <picture>
           <source
             
+              srcset="/images/blog/atl/team_hu_9d406ba3d2797d9b.webp"
+            
+            media="(max-width: 575px)" />
+          <source
+            
+              srcset="/images/blog/atl/team_hu_b8f9859dec7b2e3c.webp"
+            
+            media="(max-width: 767px)" />
+          <source
+            
+              srcset="/images/blog/atl/team_hu_ac9111d55eeb8231.webp"
+            
+            media="(max-width: 991px)" />
+          <source
+            
+              srcset="/images/blog/atl/team_hu_655c793b2071c0d4.webp"
+             />
+          <img
+            
+              loading="lazy" decoding="async"
+              src="/images/blog/atl/team_hu_3469523987771f19.png"
+            class=" w-full group-hover:scale-105 transition-transform duration-300 img"
+            alt="Announcing Team Atlanta!"
+            width="1821"
+            height="1366" />
+        </picture>
+      
+      
+    
+    
+  
+
+
+  
+
+
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </div>
+  
+  <h4 class="mb-3 group-hover:text-primary transition-colors duration-300">
+    <a href="/blog/post-atl/" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-semibold">
+      Announcing Team Atlanta!
+    </a>
+  </h4>
+  <ul class="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
+    <li class="flex items-center">
+      <a href="/authors/taesoo-kim/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+        <i class="fa-regular fa-circle-user mr-2 text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"></i>Taesoo Kim
+      </a>
+    </li>
+    <li class="flex items-center">
+      <i class="fa-regular fa-folder mr-2 text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"></i>
+      
+      
+        <a
+          href="/categories/announcement/"
+          class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+          >Announcement
+        </a>
+      
+    </li>
+  </ul>
+  <p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><p>Hello, world! We are <em>Team Atlanta</em>, the minds behind Atlantis, our innovative
+AI-driven cybersecurity solution competing in the prestigious
+<a href="https://aicyberchallenge.com/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>DARPA AIxCC</a>.</p>
+<p><a href="/authors/"
+
+
+
+ 
+
+
+>Our team</a> is a collaborative powerhouse made up of six leading institutions:
+<a href="https://www.gatech.edu/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>Georgia Tech</a>,
+<a href="https://www.gtri.gatech.edu/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>GTRI</a>,
+<a href="https://research.samsung.com/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>Samsung Research</a>,
+<a href="https://sra.samsung.com/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>Samsung Research America</a>,
+<a href="https://www.kaist.ac.kr/en/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>KAIST</a>, and
+<a href="https://www.postech.ac.kr/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>POSTECH</a>.
+Each of these organizations is led by Georgia Tech alumni,
+and includes past winners of prestigious hacking competitions
+such as DEF CON CTF, Pwn2Own and kernelCTF.</p></p>
+  <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center" href="/blog/post-atl/">
+    Read More
+    <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+  </a>
+</div>
+
+              </div>
+            
+              <div class="lg:col-4">
+                <div class="glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30">
+  
+  
+    <div class="relative mb-6 overflow-hidden rounded-xl">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  
+    
+      
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+    
+    
+    
+
+
+    
+    
+      
+      
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+        
+
+
+        <picture>
+          <source
+            
               srcset="/images/blog/tkctf2024/ai-vs-human_hu_e210a1e9dd31657d.webp"
             
             media="(max-width: 575px)" />
@@ -2799,243 +3245,6 @@ For more details, check out our <a href="/blog/post-atl"
 
 >team&rsquo;s announcement blog</a>.</p></p>
   <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center" href="/blog/post-asc-sqlite/">
-    Read More
-    <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-  </a>
-</div>
-
-              </div>
-            
-              <div class="lg:col-4">
-                <div class="glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30">
-  
-  
-    <div class="relative mb-6 overflow-hidden rounded-xl">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/blog/atl/team_hu_9d406ba3d2797d9b.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/blog/atl/team_hu_b8f9859dec7b2e3c.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/blog/atl/team_hu_ac9111d55eeb8231.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/blog/atl/team_hu_655c793b2071c0d4.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/blog/atl/team_hu_3469523987771f19.png"
-            class=" w-full group-hover:scale-105 transition-transform duration-300 img"
-            alt="Announcing Team Atlanta!"
-            width="1821"
-            height="1366" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-    </div>
-  
-  <h4 class="mb-3 group-hover:text-primary transition-colors duration-300">
-    <a href="/blog/post-atl/" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-semibold">
-      Announcing Team Atlanta!
-    </a>
-  </h4>
-  <ul class="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
-    <li class="flex items-center">
-      <a href="/authors/taesoo-kim/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-        <i class="fa-regular fa-circle-user mr-2 text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"></i>Taesoo Kim
-      </a>
-    </li>
-    <li class="flex items-center">
-      <i class="fa-regular fa-folder mr-2 text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"></i>
-      
-      
-        <a
-          href="/categories/announcement/"
-          class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
-          >Announcement
-        </a>
-      
-    </li>
-  </ul>
-  <p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><p>Hello, world! We are <em>Team Atlanta</em>, the minds behind Atlantis, our innovative
-AI-driven cybersecurity solution competing in the prestigious
-<a href="https://aicyberchallenge.com/"
-
-
-
-
- target="_blank"
- 
-
-
->DARPA AIxCC</a>.</p>
-<p><a href="/authors/"
-
-
-
- 
-
-
->Our team</a> is a collaborative powerhouse made up of six leading institutions:
-<a href="https://www.gatech.edu/"
-
-
-
-
- target="_blank"
- 
-
-
->Georgia Tech</a>,
-<a href="https://www.gtri.gatech.edu/"
-
-
-
-
- target="_blank"
- 
-
-
->GTRI</a>,
-<a href="https://research.samsung.com/"
-
-
-
-
- target="_blank"
- 
-
-
->Samsung Research</a>,
-<a href="https://sra.samsung.com/"
-
-
-
-
- target="_blank"
- 
-
-
->Samsung Research America</a>,
-<a href="https://www.kaist.ac.kr/en/"
-
-
-
-
- target="_blank"
- 
-
-
->KAIST</a>, and
-<a href="https://www.postech.ac.kr/"
-
-
-
-
- target="_blank"
- 
-
-
->POSTECH</a>.
-Each of these organizations is led by Georgia Tech alumni,
-and includes past winners of prestigious hacking competitions
-such as DEF CON CTF, Pwn2Own and kernelCTF.</p></p>
-  <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center" href="/blog/post-atl/">
     Read More
     <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
   </a>
