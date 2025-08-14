@@ -2,7 +2,7 @@
 title: Minjae Lee
 email: minjae.lee@postech.ac.kr
 image: /images/minjae-lee.png
-affiliation: GSAI at POSTECH
+affiliation: PhD at POSTECH
 team_memberships:
 - team: patch
   role: Patch Team Member
