@@ -449,6 +449,44 @@ html {
   scroll-behavior: smooth;
 }
 
+// Invisible anchor positioning for TOC navigation
+// Creates invisible divs above headings so headings are visible when clicked from TOC
+.heading-anchor {
+  display: block;
+  position: relative;
+  top: -120px; // Offset for fixed header height
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+// Horizontal lines between headings in blog posts
+// Adds elegant separators similar to authors page
+.content h2:not(:first-child),
+.content h3:not(:first-child),
+.content h4:not(:first-child) {
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+  padding-top: 2rem;
+  margin-top: 3rem;
+}
+
+// Dark mode horizontal lines
+.dark .content h2:not(:first-child),
+.dark .content h3:not(:first-child),
+.dark .content h4:not(:first-child) {
+  border-top-color: rgba(51, 65, 85, 0.6);
+}
+
+// Ensure first heading after title doesn't get a border
+.content h1 + h2,
+.content h1 + h3,
+.content h1 + h4 {
+  border-top: none;
+  margin-top: 2rem;
+  padding-top: 0;
+}
+
 // Enhanced Focus States
 .focus-modern:focus {
   outline: 2px solid #2c3e50;
