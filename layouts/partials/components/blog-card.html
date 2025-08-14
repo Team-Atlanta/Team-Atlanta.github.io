@@ -1,0 +1,61 @@
+<div class="blog-card-uniform glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30 h-full">
+  <div class="blog-card-content flex flex-col h-full">
+    <!-- Image Section -->
+    <div class="blog-card-image mb-4">
+      {{ $image:= .Params.image }}
+      {{ if $image }}
+        <div class="relative overflow-hidden rounded-xl aspect-video">
+          {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300") }}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+      {{ else }}
+        <div class="relative overflow-hidden rounded-xl aspect-video bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
+          <i class="fa-regular fa-file-text text-4xl text-blue-300 dark:text-gray-400"></i>
+        </div>
+      {{ end }}
+    </div>
+    
+    <!-- Content Section -->
+    <div class="blog-card-body flex-grow flex flex-col">
+      <!-- Title -->
+      <h4 class="blog-card-title mb-3 line-clamp-3 group-hover:text-primary transition-colors duration-300">
+        <a href="{{ .RelPermalink }}" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-semibold text-lg leading-tight" title="{{ .Title }}">
+          {{ .Title }}
+        </a>
+      </h4>
+      
+      <!-- Meta Information -->
+      <ul class="blog-card-meta mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
+        <li class="flex items-center">
+          <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+            <i class="fa-regular fa-circle-user mr-2 text-primary"></i>{{ .Params.author }}
+          </a>
+        </li>
+        {{ $categories:= .Params.categories }}
+        {{ if $categories }}
+          <li class="flex items-center">
+            <i class="fa-regular fa-folder mr-2 text-primary"></i>
+            {{ range $i,$p:= $categories }}
+              <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                {{ . | humanize }}{{ if ne $i (sub (len $categories) 1) }}{{ ", " }}{{ end }}
+              </a>
+            {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+      
+      <!-- Summary -->
+      <p class="blog-card-summary mb-6 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-5 flex-grow">
+        {{ .Summary | plainify }}
+      </p>
+    </div>
+    
+    <!-- Footer Section -->
+    <div class="blog-card-footer mt-auto">
+      <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center w-full justify-center" href="{{ .RelPermalink }}">
+        {{ i18n "read_more" }}
+        <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+      </a>
+    </div>
+  </div>
+</div>

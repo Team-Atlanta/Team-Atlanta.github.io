@@ -461,30 +461,198 @@ html {
   pointer-events: none;
 }
 
-// Horizontal lines between headings in blog posts
-// Adds elegant separators similar to authors page
-.content h2:not(:first-child),
-.content h3:not(:first-child),
-.content h4:not(:first-child) {
+// Horizontal lines between headings in blog posts ONLY
+// Adds elegant separators similar to authors page - scoped to blog posts only
+.blog-single .content h2:not(:first-child),
+.blog-single .content h3:not(:first-child),
+.blog-single .content h4:not(:first-child) {
   border-top: 1px solid rgba(226, 232, 240, 0.6);
   padding-top: 2rem;
   margin-top: 3rem;
 }
 
-// Dark mode horizontal lines
-.dark .content h2:not(:first-child),
-.dark .content h3:not(:first-child),
-.dark .content h4:not(:first-child) {
+// Dark mode horizontal lines - blog posts only
+.dark .blog-single .content h2:not(:first-child),
+.dark .blog-single .content h3:not(:first-child),
+.dark .blog-single .content h4:not(:first-child) {
   border-top-color: rgba(51, 65, 85, 0.6);
 }
 
-// Ensure first heading after title doesn't get a border
-.content h1 + h2,
-.content h1 + h3,
-.content h1 + h4 {
+// Ensure first heading after title doesn't get a border - blog posts only
+.blog-single .content h1 + h2,
+.blog-single .content h1 + h3,
+.blog-single .content h1 + h4 {
   border-top: none;
   margin-top: 2rem;
   padding-top: 0;
+}
+
+// Uniform Blog Card Styling
+// Creates consistent card sizes and layout for blog posts
+.blog-card-uniform {
+  height: 600px; // Increased height for desktop
+  transition: var(--transition-smooth);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-large);
+  }
+}
+
+.blog-card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card-image {
+  flex-shrink: 0;
+  height: 180px; // Fixed image area height
+  
+  .aspect-video {
+    height: 100%;
+    aspect-ratio: 16/9;
+  }
+}
+
+.blog-card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; // Allow flex items to shrink
+}
+
+.blog-card-title {
+  flex-shrink: 0;
+  height: 4.5rem; // Increased height for more title space
+  overflow: hidden;
+  
+  a {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; // Allow 3 lines for titles
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+}
+
+.blog-card-meta {
+  flex-shrink: 0;
+  height: 2rem; // Fixed height for meta
+}
+
+.blog-card-summary {
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; // Increased to 5 lines for more content
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.6;
+  margin-bottom: 1.5rem !important;
+}
+
+.blog-card-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+// Enhanced line clamp utility with seamless text overflow
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  hyphens: auto;
+  
+  // Fallback for browsers that don't support line-clamp
+  @supports not (-webkit-line-clamp: 2) {
+    max-height: 2.8em; // Approximate height for 2 lines
+    line-height: 1.4;
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  hyphens: auto;
+  
+  // Fallback for browsers that don't support line-clamp
+  @supports not (-webkit-line-clamp: 3) {
+    max-height: 4.5em; // Approximate height for 3 lines
+    line-height: 1.5;
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+.line-clamp-5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  hyphens: auto;
+  
+  // Fallback for browsers that don't support line-clamp
+  @supports not (-webkit-line-clamp: 5) {
+    max-height: 8em; // Approximate height for 5 lines
+    line-height: 1.6;
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+// Better text overflow handling for specific elements - seamless hidden text
+.blog-card-title a {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.blog-card-summary {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+// Responsive adjustments for blog cards
+@media (max-width: 768px) {
+  .blog-card-uniform {
+    height: 550px; // Increased mobile height
+  }
+  
+  .blog-card-image {
+    height: 160px; // Larger image area on mobile
+  }
+  
+  .blog-card-title {
+    height: 4rem; // More space for title
+    
+    a {
+      font-size: 1rem;
+      -webkit-line-clamp: 3; // Keep 3 lines on mobile
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-card-uniform {
+    height: 500px; // Increased for small screens
+  }
+  
+  .blog-card-image {
+    height: 140px;
+  }
+  
+  .blog-card-title {
+    height: 3.5rem;
+  }
 }
 
 // Enhanced Focus States
