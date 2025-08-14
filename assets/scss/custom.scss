@@ -662,6 +662,51 @@ html {
   border-radius: var(--border-radius-modern);
 }
 
+// Improved Code Block Styling
+// Better contrast and readability for both light and dark modes
+pre {
+  background: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto;
+  
+  code {
+    background: transparent !important;
+    color: #2d3748 !important;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace !important;
+    font-size: 0.875rem !important;
+    line-height: 1.6 !important;
+    white-space: pre !important;
+  }
+}
+
+// Dark mode code blocks
+.dark pre {
+  background: #1a202c !important;
+  border-color: #2d3748 !important;
+  
+  code {
+    color: #e2e8f0 !important;
+  }
+}
+
+// Inline code styling
+:not(pre) > code {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  padding: 0.2em 0.4em !important;
+  border-radius: 4px !important;
+  font-size: 0.875em !important;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace !important;
+}
+
+.dark :not(pre) > code {
+  background: #374151 !important;
+  color: #d1d5db !important;
+}
+
 // Modern Image Styles
 .image-modern {
   border-radius: var(--border-radius-modern);
