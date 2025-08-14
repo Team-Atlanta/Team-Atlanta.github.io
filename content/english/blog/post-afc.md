@@ -7,7 +7,7 @@ image: "/images/blog/afc/afc-team.jpeg"
 categories: ["Milestone"]
 author: "Taesoo Kim"
 tags: ["ASC"]
-draft: true
+draft: false
 ---
 
 Two years after its first announcement at [DEF CON 31](https://aicyberchallenge.com/), 
@@ -303,43 +303,69 @@ allowing them to reason about entire codebases independently.
 
 ## How Did Atlantis Perform?
 
-Our CRS, Atlantis, scored more points in almost 
-all core categories of the competition.
-Importantly, it gained a similar amount of points 
-combined two other winning teams.
-We still in the process of analyzing the final data -- soon!
-But our gut feeling is that
-there are certain cetgory of CP 
-(e.g., wireshark)
-that our CRS significantly outperforms 
-while other teams' CRSs look down.
-Our conservative approach 
-in submitting crash reports and patches
-pays off in the accuricy multiplier, 
-and our high bundle score also indicates 
-that our conservative approach in matching PoV to patch and SARIF pays off
-during the competition.
+Atlantis dominated the scoreboard, earning top scores 
+in nearly every category.
+Remarkably, we accumulated roughly the same total points
+as the second and third place teams combined.
+
+While we're still analyzing the complete dataset,
+early observations suggest our CRS excelled on certain challenge projects
+(like Wireshark) where other teams struggled.
+Our conservative strategy proved decisive:
+high accuracy in crash reports and patches yielded a near-perfect accuracy multiplier,
+while our strong bundle scores validated our careful approach
+to matching PoVs with patches and SARIF reports.
 
 {{< image src="images/blog/afc/scoreboard.png" width="1000" position="center" class="img-fluid" >}}
 
-So does this approach work in battel field? 
-During the final, all CRSs found 6 and 12 real-world bugs from C and Java, respectively.
-Atlantis found 3 and 3 from C and Java -- our CRS found one [0-day in the semi-final]({{< relref "post-asc-sqlite.md" >}}).
+***Real-World Bugs.***
+Does this approach work in the field?
+During the final, all competing CRSs collectively discovered 
+6 C/C++ bugs and 12 Java bugs in real-world software.
+Atlantis contributed 3 of each category,
+including a [0-day vulnerability in SQLite]({{< relref "post-asc-sqlite.md" >}}) 
+discovered during the semi-final.
 
 {{< image src="images/blog/afc/0day.jpg" width="1000" position="center" class="img-fluid" >}}
 
 ## What's Next?
 
-Our interview at [CTFRadio](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html)
-summarized many of our lessons pretty in depth.
+You can find our interview at
+[CTFRadio](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html)
+summarized many of our lessons
+in a causual manner.
 
 <div style="display: flex; justify-content: center; gap: 10px;">
 <iframe width="1000" height="562" src="https://www.youtube.com/embed/w-HZtwUXByg?si=a6xtZvCwfh4bw_vZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-- open source
-   - local version
-   - enabling human in-the-loop
-   - runing against open source projects
-- technical report
-- series of blog postings
+There are many work to be done post competition:
+
+***Open Source.*** 
+Our CRS code that competed in the final
+is available for public review in [here](/artifacts/).
+However, we belive 
+the scale of our system, designed to run on Microsft Azure 
+with a huge infrastructure (e.g., Terraform, K8s, Tailscale) 
+and dependencies on external LLM services,
+making it hard for the public to leverage 
+in their daily tasks.
+We will launch an official fork of Atlantis -- removing competition APIs --
+and runnable in reasonable size single workstation in a docker environment.
+We also plan to revise [benchmark](https://github.com/Team-Atlanta/aixcc-afc-benchmark)
+standardized for wider adoption as well.
+
+***Open Calls.***
+One of our short term future plan is 
+to continuously run Atlantis to [oss-fuzz project](https://google.github.io/oss-fuzz/)
+and start initiating the bug hunting!
+Our LLM-based CRSs require non-trivial amount of computing resources 
+and Team Atlanta decides to donate ***$2.0M (50%)*** of the prize money 
+to SSLab at GT to foster research in this line 
+and continue to service the open source projects.
+Please join us!
+
+***Next?***
+We are writing a technical report and plan to release it in *two weeks*,
+along with a series of blog posting 
+that highlight our CRS design.
