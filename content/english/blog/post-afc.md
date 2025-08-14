@@ -283,7 +283,7 @@ where conventional methods struggle with scale.
 Fuzzing tools integrate LLMs for:
 - [Input generation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-userspace/microservices/deepgen_service)
 - [Dictionary generation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/dictgen)
-- [Seed generation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-userspace/microservices/deepgen_service)
+- [Seed generation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/jazzer-llm-augmented)
 
 Here, LLMs fill gaps where traditional techniques
 fail to scale to real-world software complexity.
@@ -300,7 +300,8 @@ When wrong, we pay a performance penalty but maintain correctness.
 ***LLM-Driven: Autonomous Navigation.***
 Our most ambitious approach gives LLMs full autonomy.
 The [MLLA agent](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)
-autonomously navigates code repositories,
+and [POC Gen in Java CRS](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/llm-poc-gen)
+autonomously navigate code repositories,
 generating "blobs"—inputs designed to trigger identified bugs
 from diffs or SARIF reports.
 
