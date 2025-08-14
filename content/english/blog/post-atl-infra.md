@@ -1,5 +1,5 @@
 ---
-title: "Atlantis Infrastrcuture"
+title: "Atlantis Infrastructure"
 meta_title: ""
 description: "Beginning"
 date: 2025-08-13T05:00:00Z
