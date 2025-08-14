@@ -6,7 +6,7 @@ date: 2025-08-12T12:15:00Z
 image: "/images/blog/afc/afc-team.jpeg"
 categories: ["Milestone"]
 author: "Taesoo Kim"
-tags: ["ASC"]
+tags: ["AFC"]
 draft: false
 ---
 
@@ -25,7 +25,8 @@ We simply hoped our Cyber Reasoning System (CRS) would run as intended—
 but it exceeded expectations, outperforming other teams 
 in most categories by significant margins.
 
-In this post, I'll answer the most common questions we received from the DEF CON audience 
+In this post, I'll answer the most common questions
+we received from the DEF CON audience 
 and share the story behind our victory.
 
 {{< image src="images/blog/afc/announcement.jpg" width="1000" position="center" class="img-fluid" >}}
@@ -34,7 +35,7 @@ and share the story behind our victory.
 <iframe width="1000" height="562" src="https://www.youtube.com/embed/21Zrj632Y1I?si=D4tQ1bvsnbNRD7Zm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-Why were we so anxious despite our confidence?
+Why were we so anxious?
 In this competition, a single bug can be fatal.
 One line of code nearly destroyed our chances.
 
@@ -55,13 +56,16 @@ with "ossfuzz" (e.g., "r3-ossfuzz-sqlite3").
 The irony wasn't lost on us—here we were,
 building an *autonomous* CRS powered by state-of-the-art AI,
 nearly defeated by a string matching bug.
+In postmortem, 
+we figured none of the CP is named
+with the "fuzz" prefix though!
 
 {{< image src="images/blog/afc/patch-crs-bug.png" width="1000" position="center" class="img-fluid" >}}
 
 ## L0. System Robustness is Priority #1
 
 As our near-miss demonstrated, a single bug can kill a CRS entirely. 
-The system is that brittle.
+The autonomous system is that brittle.
 So how did we balance engineering for robustness 
 with novel research needed to win?
 
@@ -81,9 +85,9 @@ For bug finding alone, we deployed three distinct CRSs:
     caption="Design Overview of Atlantis (stay tuned for our Technical Report)." >}}
 
 These CRSs deliberately made orthogonal approaches;
-Atlantis-Multilang took conservative paths (no instrumentation)
+Atlantis-Multilang took conservative paths (no instrumentation at build time)
 while Atlantis-C took risky approaches 
-requiring heavy build-time instrumentation:
+requiring heavy compilation-time instrumentation:
 
 1. **Atlantis-C CRS**:
   - ↑ instrumentation: libafl-based, instrument-based directed fuzzer
@@ -151,8 +155,9 @@ Ensembling only works when **oracles** exist to judge correctness.
 In fuzzing, hardware provides our first oracle:
 segmentation faults from invalid memory access
 are caught efficiently through page table violations.
-Software sanitizers extend this coverage—
-ASAN for memory errors, UBSAN for undefined behavior, MSAN for memory leaks—
+Software sanitizers extend this scope—
+ASAN for memory unsafety bugs, 
+UBSAN for undefined behavior, MSAN for memory leaks—
 detecting bugs long before crashes occur.
 
 For patching, the Proof-of-Vulnerability (PoV) serves as our oracle.
@@ -187,14 +192,16 @@ small enough to avoid overthinking simple fixes.
 ***Practical Constraints on Scaling.***
 Unlike AlphaCode's massive agent scaling,
 we faced a practical bottleneck:
-validating patches in large codebases takes minutes (10+ minutes for nginx).
+validating patches in large codebases takes minutes if not hours
+(e.g., 10+ minutes for nginx).
 This forced Atlantis-Patching to limit itself to six agents,
 focusing on quality over quantity.
 
 [Theori](https://theori.io/blog/aixcc-and-roboduck-63447) took a radically different approach:
 purely static analysis, producing three correct patches **without PoVs**.
 This demonstrates LLMs' remarkable ability to understand code semantics
-without runtime validation.
+without runtime validation,
+which we'd like to explore further.
 
 The scoreboard reveals the trade-off:
 Theori's 44.4% accuracy yielded an Accuracy Modifier of 0.9044
@@ -214,9 +221,9 @@ PoV-free patching's full potential.
 ## L3. LLM 101: How to Babysit Jack-Jack?
 
 During our [CTFRadio interview](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html),
-Yan mentioned that Shellfish had to babysit their LLMs.
-The analogy resonates: LLMs are like [Jack-Jack Parr from The Incredibles](https://the-incredibles.fandom.com/wiki/Jack-Jack_Parr)—
-a superpowered infant with multiple, unpredictable abilities
+Yan mentioned that Shellfish had to babysit LLMs for their agents.
+The analogy resonates: LLMs are like [Jack-Jack Parr from Incredibles](https://the-incredibles.fandom.com/wiki/Jack-Jack_Parr)—
+a superpowered baby with multiple, unpredictable abilities
 that even his superhero parents don't fully understand.
 
 {{< image src="images/blog/afc/llm-babysitting.png" width="1000" position="center" class="img-fluid" >}}
@@ -301,7 +308,7 @@ This strategy bets on LLMs having latent security intuition
 buried in their weights,
 allowing them to reason about entire codebases independently.
 
-## How Did Atlantis Perform?
+## So How Well Did Atlantis Perform?
 
 Atlantis dominated the scoreboard, earning top scores 
 in nearly every category.
@@ -319,7 +326,7 @@ to matching PoVs with patches and SARIF reports.
 {{< image src="images/blog/afc/scoreboard.png" width="1000" position="center" class="img-fluid" >}}
 
 ***Real-World Bugs.***
-Does this approach work in the field?
+Does this approach work in the wild?
 During the final, all competing CRSs collectively discovered 
 6 C/C++ bugs and 12 Java bugs in real-world software.
 Atlantis contributed 3 of each category,
@@ -330,42 +337,40 @@ discovered during the semi-final.
 
 ## What's Next?
 
-You can find our interview at
-[CTFRadio](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html)
-summarized many of our lessons
-in a causual manner.
+For a casual discussion of our journey and lessons learned,
+check out our [CTFRadio interview](https://ctfradi.ooo/2025/07/22/01D-team-atlantas-aixcc-final-submission.html):
 
 <div style="display: flex; justify-content: center; gap: 10px;">
 <iframe width="1000" height="562" src="https://www.youtube.com/embed/w-HZtwUXByg?si=a6xtZvCwfh4bw_vZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-There are many work to be done post competition:
+***Open Source Release.***
+Our competition CRS code is [publicly available](/artifacts/),
+but the current system requires substantial infrastructure:
+Microsoft Azure deployment, Terraform, Kubernetes, Tailscale,
+and external LLM service dependencies.
 
-***Open Source.*** 
-Our CRS code that competed in the final
-is available for public review in [here](/artifacts/).
-However, we belive 
-the scale of our system, designed to run on Microsft Azure 
-with a huge infrastructure (e.g., Terraform, K8s, Tailscale) 
-and dependencies on external LLM services,
-making it hard for the public to leverage 
-in their daily tasks.
-We will launch an official fork of Atlantis -- removing competition APIs --
-and runnable in reasonable size single workstation in a docker environment.
-We also plan to revise [benchmark](https://github.com/Team-Atlanta/aixcc-afc-benchmark)
-standardized for wider adoption as well.
+To make Atlantis accessible to the broader community,
+we're creating a streamlined fork that:
+- Removes competition-specific APIs
+- Runs on a single workstation via Docker Compose
+- Includes a revised [benchmark suite](https://github.com/Team-Atlanta/aixcc-afc-benchmark) for standardized evaluation
 
-***Open Calls.***
-One of our short term future plan is 
-to continuously run Atlantis to [oss-fuzz project](https://google.github.io/oss-fuzz/)
-and start initiating the bug hunting!
-Our LLM-based CRSs require non-trivial amount of computing resources 
-and Team Atlanta decides to donate ***$2.0M (50%)*** of the prize money 
-to SSLab at GT to foster research in this line 
-and continue to service the open source projects.
-Please join us!
+***Call for Collaboration.***
+We're launching continuous bug hunting on [OSS-Fuzz projects](https://google.github.io/oss-fuzz/).
+To sustain this effort, Team Atlanta is donating **$2.0M (50% of our prize)**
+to [SSLab](https://gts3.org/) at Georgia Tech for:
+- Ongoing research in autonomous security systems with LLM
+- Expenses to continuously run Atlantis to open source projects
+- Scholarship to PhD students and postdocs
 
-***Next?***
-We are writing a technical report and plan to release it in *two weeks*,
-along with a series of blog posting 
-that highlight our CRS design.
+Join us in advancing autonomous security research! 
+And we are seeking funding for public research -- 
+OpenAI joined this effort to make donation
+to us along with the API credits.
+
+***Coming Soon.***
+
+- **Technical Report**: Detailed system architecture and findings (releasing in two weeks)
+- **Blog Series**: Deep dives into specific CRS components and strategies
+- **Postmortem**: Analysis of the final competition data and effectiveness of each techniques/CRSs
