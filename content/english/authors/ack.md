@@ -9,6 +9,12 @@ team_memberships:
 acknowledgments:
   - name: "Yu-Fu Fu"
     affiliation: "PhD at Georgia Tech"
+  - name: "Robert Wright"
+    affiliation: "GTRI"
+  - name: "Shelby Allen"
+    affiliation: "GTRI"
+  - name: "Brendan Dolan-Gavitt"
+    affiliation: "Xbow"
   - name: "Elijah Manstinu"
     affiliation: "Admin at Georgia Tech"
   - name: "JP Popham"
