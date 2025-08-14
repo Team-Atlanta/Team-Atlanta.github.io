@@ -2822,9 +2822,6 @@ input#nav-toggle:checked ~ #nav-menu{
 .w-full{
   width: 100%;
 }
-.max-w-2xl{
-  max-width: 42rem;
-}
 .max-w-3xl{
   max-width: 48rem;
 }
@@ -2924,11 +2921,6 @@ input#nav-toggle:checked ~ #nav-menu{
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
-.space-y-3 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
-}
 .space-y-4 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -3007,10 +2999,6 @@ input#nav-toggle:checked ~ #nav-menu{
 .bg-gray-200{
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
-}
-.bg-gray-50{
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
 }
 .bg-green-100{
   --tw-bg-opacity: 1;
@@ -3299,9 +3287,6 @@ input#nav-toggle:checked ~ #nav-menu{
 .text-gray-600{
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
-}
-.text-gray-600\/80{
-  color: rgb(75 85 99 / 0.8);
 }
 .text-gray-700{
   --tw-text-opacity: 1;
@@ -5170,11 +5155,6 @@ html {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.hover\:border-gray-200:hover{
-  --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
-}
-
 .hover\:border-transparent:hover{
   border-color: transparent;
 }
@@ -5553,10 +5533,6 @@ html {
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }
 
-.dark\:text-gray-400\/80:is(.dark *){
-  color: rgb(156 163 175 / 0.8);
-}
-
 .dark\:text-green-300:is(.dark *){
   --tw-text-opacity: 1;
   color: rgb(134 239 172 / var(--tw-text-opacity, 1));
@@ -5617,11 +5593,6 @@ html {
 .dark\:ring-gray-700:is(.dark *){
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(55 65 81 / var(--tw-ring-opacity, 1));
-}
-
-.dark\:hover\:border-gray-600:hover:is(.dark *){
-  --tw-border-opacity: 1;
-  border-color: rgb(75 85 99 / var(--tw-border-opacity, 1));
 }
 
 .dark\:hover\:bg-darkmode-primary:hover:is(.dark *){
