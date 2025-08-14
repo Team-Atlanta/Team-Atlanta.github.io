@@ -11,21 +11,4 @@ banner:
     label: "Check our AIxCC Team"
     link: "/authors"
 
-# Features
-features:
-  - title: "Atlantis, a next-generation automated bug finding & fixing system"
-    image: "/images/team-icon.jpg"
-    content: "Intelligent beyond what you'd expect from a machine."
-    bulletpoints:
-      - "**AI-Driven**: Large Language Models (LLMs) powered bug detection and fixing for real-world software."
-      - "**End-to-End Automation**: Manages the entire bug-finding and fixing process."
-      - "**Smart Patching**: Fixing bugs automatically with human-like reasoning."
-      - "**Multi-Lang Support**: Compatible with complex languages such as C/C++, Java, etc."
-      - "**Kernel Support**: Supports complex systems like the Linux kernel."
-      - "**Self-Improving**: Employs LLM-powered techniques that enhance over time."
-      - "**Autonomous Knowledge Inference**: Applies domain-specific knowledge without human intervention."
-    button:
-      enable: true
-      label: "More about Atlantis"
-      link: "/artifacts"
 ---
