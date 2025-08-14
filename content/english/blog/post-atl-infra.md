@@ -49,9 +49,11 @@ Redundant bug-finding modules further improve stability and coverage;
 for example, if **Atlantis-C** fails on certain CPs, **Atlantis-Multilang** can still find vulnerabilities in them.
 
 As a result, during the final competition, 
-- **70%** of submitted POVs come from **Atlantis-Multilang**
+- **73%** of submitted POVs come from **Atlantis-Multilang**
 - **15%** from **Atlantis-C**
-- **15%** from **Atlantis-Java**
+- **12%** from **Atlantis-Java**
+
+Notably, **81%** of all POVs were found in C-based CPs and **19%** in Java-based CPs.
 
 In addition, for each harness in a CP, **Atlantis-Multilang** and **Atlantis-Java** run on nodes sized according to the allocated Azure budget,
 while **Atlantis-C** operates on a fixed pool of up to 15 nodes.
