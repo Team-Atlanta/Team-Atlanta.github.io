@@ -2789,6 +2789,12 @@ input#nav-toggle:checked ~ #nav-menu{
 .h-full{
   height: 100%;
 }
+.max-h-16{
+  max-height: 4rem;
+}
+.max-h-20{
+  max-height: 5rem;
+}
 .w-10{
   width: 2.5rem;
 }
@@ -2819,6 +2825,9 @@ input#nav-toggle:checked ~ #nav-menu{
 .w-\[30px\]{
   width: 30px;
 }
+.w-auto{
+  width: auto;
+}
 .w-full{
   width: 100%;
 }
@@ -2827,6 +2836,9 @@ input#nav-toggle:checked ~ #nav-menu{
 }
 .max-w-4xl{
   max-width: 56rem;
+}
+.max-w-5xl{
+  max-width: 64rem;
 }
 .max-w-6xl{
   max-width: 72rem;
@@ -2864,6 +2876,9 @@ input#nav-toggle:checked ~ #nav-menu{
 .grid-cols-1{
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 .flex-col{
   flex-direction: column;
 }
@@ -2882,11 +2897,17 @@ input#nav-toggle:checked ~ #nav-menu{
 .justify-between{
   justify-content: space-between;
 }
+.justify-items-center{
+  justify-items: center;
+}
 .gap-4{
   gap: 1rem;
 }
 .gap-6{
   gap: 1.5rem;
+}
+.gap-8{
+  gap: 2rem;
 }
 .space-x-1 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
@@ -3000,6 +3021,10 @@ input#nav-toggle:checked ~ #nav-menu{
   --tw-bg-opacity: 1;
   background-color: rgb(224 231 255 / var(--tw-bg-opacity, 1));
 }
+.bg-light{
+  --tw-bg-opacity: 1;
+  background-color: rgb(90 108 125 / var(--tw-bg-opacity, 1));
+}
 .bg-pink-100{
   --tw-bg-opacity: 1;
   background-color: rgb(252 231 243 / var(--tw-bg-opacity, 1));
@@ -3058,6 +3083,9 @@ input#nav-toggle:checked ~ #nav-menu{
 }
 .fill-current{
   fill: currentColor;
+}
+.object-contain{
+  object-fit: contain;
 }
 .object-cover{
   object-fit: cover;
@@ -3147,6 +3175,9 @@ input#nav-toggle:checked ~ #nav-menu{
 }
 .pr-5{
   padding-right: 1.25rem;
+}
+.pt-0{
+  padding-top: 0px;
 }
 .pt-14{
   padding-top: 3.5rem;
@@ -4957,6 +4988,44 @@ pre {
     transform: scale(1.05);
     box-shadow: var(--shadow-large); }
 
+.logo-grid .logo-item {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(226, 232, 240, 0.3);
+  min-height: 100px;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .logo-grid .logo-item:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(52, 152, 219, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(52, 152, 219, 0.3); }
+
+.logo-grid .org-logo {
+  filter: opacity(0.9);
+  transition: all 0.3s ease;
+  max-height: 70px;
+  max-width: 200px; }
+
+.logo-grid .logo-item:hover .org-logo {
+  filter: opacity(1);
+  transform: scale(1.05); }
+
+.dark .logo-grid .logo-item {
+  background: rgba(26, 37, 47, 0.5);
+  border-color: rgba(51, 65, 85, 0.3); }
+  .dark .logo-grid .logo-item:hover {
+    background: rgba(26, 37, 47, 0.8);
+    border-color: rgba(133, 193, 233, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(133, 193, 233, 0.3); }
+
+.dark .logo-grid .org-logo {
+  filter: brightness(0.95) opacity(0.9); }
+
+.dark .logo-grid .logo-item:hover .org-logo {
+  filter: brightness(1) opacity(1);
+  transform: scale(1.05); }
+
 @media (max-width: 768px) {
   .glass-card {
     backdrop-filter: blur(10px); }
@@ -5312,6 +5381,10 @@ pre {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.hover\:transform:hover{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .hover\:border-transparent:hover{
   border-color: transparent;
 }
@@ -5536,6 +5609,14 @@ pre {
   --tw-ring-color: rgb(253 230 138 / var(--tw-ring-opacity, 1));
 }
 
+.dark\:block:is(.dark *){
+  display: block;
+}
+
+.dark\:hidden:is(.dark *){
+  display: none;
+}
+
 .dark\:border-amber-800:is(.dark *){
   --tw-border-opacity: 1;
   border-color: rgb(146 64 14 / var(--tw-border-opacity, 1));
@@ -5569,6 +5650,11 @@ pre {
 
 .dark\:bg-blue-900\/30:is(.dark *){
   background-color: rgb(30 58 138 / 0.3);
+}
+
+.dark\:bg-darkmode-light:is(.dark *){
+  --tw-bg-opacity: 1;
+  background-color: rgb(189 195 199 / var(--tw-bg-opacity, 1));
 }
 
 .dark\:bg-darkmode-primary:is(.dark *){
@@ -5810,6 +5896,9 @@ pre {
   }
   .md\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .md\:grid-cols-4{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .md\:flex-row{
     flex-direction: row;
