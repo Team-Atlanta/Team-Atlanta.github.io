@@ -1,183 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Team Atlanta</title><link>https://team-atlanta.github.io/blog/</link><description>Recent content in Blog on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 12 Aug 2025 12:15:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p>Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
-
-
-
-
- target="_blank"
- 
-
-
->DEF CON 31&lt;/a>,
-our team stood on stage as the winners of the AIxCC Final—a moment we had been working toward
-since the competition began.&lt;/p>
-&lt;p>Yet when we heard we placed 1st, relief overshadowed excitement.
-Why? While competing head-to-head with world-class teams like &lt;a href="https://theori.io/blog/aixcc-and-roboduck-63447"
-
-
-
-
- target="_blank"
- 
-
-
->Theori&lt;/a>
-was a privilege, the real-time, long-running nature of this competition
-demanded extreme engineering reliability alongside novel approaches to succeed.&lt;/p></description></item><item><title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title><link>https://team-atlanta.github.io/blog/post-tkctf-2024/</link><pubDate>Tue, 03 Dec 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-tkctf-2024/</guid><description>&lt;p>For the first time, we deployed our hybrid system,
-powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl"
-
-
-
- 
-
-
->Atlantis&lt;/a>—to compete in &lt;a href="https://www.gatech.edu/"
-
-
-
-
- target="_blank"
- 
-
-
->Georgia Tech’s&lt;/a> flagship CTF event,
-&lt;a href="https://tc.gts3.org/cs6265/2024-fall/ctf.html"
-
-
-
-
- target="_blank"
- 
-
-
->TKCTF 2024&lt;/a>.
-During the competition, Atlantis concentrated on two pivotal areas:
-vulnerability analysis and automatic vulnerability remediation.
-Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>,
-showcasing the practicality and promise of our approach in a real-world hacking competition.&lt;/p>
-&lt;p>In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
-As we prepare to open-source the full details of our system following AIxCC competition rules,
-this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.&lt;/p></description></item><item><title>Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System</title><link>https://team-atlanta.github.io/blog/post-asc-sqlite/</link><pubDate>Wed, 28 Aug 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-asc-sqlite/</guid><description>&lt;p>Without knowing beforehand that the challenge project involved SQLite3,
-our team, &lt;a href="https://team-atlanta.github.io/authors"
-
-
-
- 
-
-
->Team Atlanta&lt;/a>, entered our Cyber Reasoning System (CRS),
-named Atlantis,
-into the &lt;a href="https://aicyberchallenge.com/"
-
-
-
-
- target="_blank"
- 
-
-
->AI Cyber Challenge&lt;/a>
-organized by ARPA-H, DARPA, and the
-&lt;a href="https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/"
-
-
-
-
- target="_blank"
- 
-
-
->White House&lt;/a>.&lt;/p>
-&lt;p>Remarkably,
-Atlantis secured six first-bloods and
-autonomously identified and patched a real bug in SQLite3&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>,
-earning us a $2 million prize and a place in the grand finals of AIxCC.
-For more details, check out our &lt;a href="https://team-atlanta.github.io/blog/post-atl"
-
-
-
- 
-
-
->team&amp;rsquo;s announcement blog&lt;/a>.&lt;/p></description></item><item><title>Announcing Team Atlanta!</title><link>https://team-atlanta.github.io/blog/post-atl/</link><pubDate>Tue, 13 Aug 2024 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl/</guid><description>&lt;p>Hello, world! We are &lt;em>Team Atlanta&lt;/em>, the minds behind Atlantis, our innovative
-AI-driven cybersecurity solution competing in the prestigious
-&lt;a href="https://aicyberchallenge.com/"
-
-
-
-
- target="_blank"
- 
-
-
->DARPA AIxCC&lt;/a>.&lt;/p>
-&lt;p>&lt;a href="https://team-atlanta.github.io/authors/"
-
-
-
- 
-
-
->Our team&lt;/a> is a collaborative powerhouse made up of six leading institutions:
-&lt;a href="https://www.gatech.edu/"
-
-
-
-
- target="_blank"
- 
-
-
->Georgia Tech&lt;/a>,
-&lt;a href="https://www.gtri.gatech.edu/"
-
-
-
-
- target="_blank"
- 
-
-
->GTRI&lt;/a>,
-&lt;a href="https://research.samsung.com/"
-
-
-
-
- target="_blank"
- 
-
-
->Samsung Research&lt;/a>,
-&lt;a href="https://sra.samsung.com/"
-
-
-
-
- target="_blank"
- 
-
-
->Samsung Research America&lt;/a>,
-&lt;a href="https://www.kaist.ac.kr/en/"
-
-
-
-
- target="_blank"
- 
-
-
->KAIST&lt;/a>, and
-&lt;a href="https://www.postech.ac.kr/"
-
-
-
-
- target="_blank"
- 
-
-
->POSTECH&lt;/a>.
-Each of these organizations is led by Georgia Tech alumni,
-and includes past winners of prestigious hacking competitions
-such as DEF CON CTF, Pwn2Own and kernelCTF.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Team Atlanta</title>
+    <link>http://localhost:1313/blog/</link>
+    <description>Recent content in Blog on Team Atlanta</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Aug 2025 18:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jazzer&#43;LibAFL: Insights into Java Fuzzing</title>
+      <link>http://localhost:1313/blog/post-crs-java-libafl-jazzer/</link>
+      <pubDate>Thu, 14 Aug 2025 18:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-crs-java-libafl-jazzer/</guid>
+      <description>&lt;p&gt;AIxCC involved finding bugs in software written in two languages: C++ and &lt;em&gt;Java&lt;/em&gt;.&#xA;The focus of the competition was on the use of LLMs and AI, however, our teams&#xA;approach was to balance ambitious strategies alongside proven traditional&#xA;bug-finding techniques like fuzzing.&#xA;While our team was deeply familiar with fuzzing C++ from decades of academic&#xA;research and industry work, Java was uncharted territory for us.&#xA;In part of our Java fuzzing development we created a fork of Jazzer that uses&#xA;LibAFL as the fuzzing backend and it is available as&#xA;&lt;a href=&#34;https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/fuzzers/atl-libafl-jazzer&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;part of our open source release&lt;/a&gt;.&#xA;This post details some of the lessons we learned about Java fuzzing and the&#xA;creation of this fork.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Atlantis Infrastructure</title>
+      <link>http://localhost:1313/blog/post-atl-infra/</link>
+      <pubDate>Wed, 13 Aug 2025 05:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-atl-infra/</guid>
+      <description>&lt;p&gt;The AIxCC competition is not just about creating automated bug-finding and patching techniques&#xA;&amp;ndash; it is about building a &lt;strong&gt;cyber reasoning system&lt;/strong&gt; (CRS) that can do both without any human assistance.&#xA;To succeed, a CRS must excel in three critical infrastructure areas:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Reliability:&lt;/strong&gt; Run continuously for weeks without intervention.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Scalability:&lt;/strong&gt; Handle many challenge projects concurrently.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Budget Utilization:&lt;/strong&gt; Maximize Azure cloud and LLM credit usage.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Submission Management:&lt;/strong&gt; Consistently deliver valid POVs, Patches, SARIF assessments, and Bundles.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;In this post, we will share how we designed the infrastructure of our CRS, &lt;strong&gt;Atlantis&lt;/strong&gt;, to meet these keys and make it as robust as possible.&#xA;We could not have won AIxCC without the exceptional work of &lt;a href=&#34;http://localhost:1313/authors/#team-infra&#34;&#xA;&#xA;&#xA;&#xA; &#xA;&#xA;&#xA;&gt;our infrastructure team&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>AIxCC Final and Team Atlanta</title>
+      <link>http://localhost:1313/blog/post-afc/</link>
+      <pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-afc/</guid>
+      <description>&lt;p&gt;Two years after its first announcement at &lt;a href=&#34;https://aicyberchallenge.com/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;DEF CON 31&lt;/a&gt;,&#xA;our team stood on stage as the winners of the AIxCC Final—a moment we had been working toward&#xA;since the competition began.&lt;/p&gt;&#xA;&lt;p&gt;Yet when we heard we placed 1st, relief overshadowed excitement.&#xA;Why? While competing head-to-head with world-class teams like &lt;a href=&#34;https://theori.io/blog/aixcc-and-roboduck-63447&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;Theori&lt;/a&gt;&#xA;was a privilege, the real-time, long-running nature of this competition&#xA;demanded extreme engineering reliability alongside novel approaches to succeed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title>
+      <link>http://localhost:1313/blog/post-tkctf-2024/</link>
+      <pubDate>Tue, 03 Dec 2024 12:15:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-tkctf-2024/</guid>
+      <description>&lt;p&gt;For the first time, we deployed our hybrid system,&#xA;powered by LLM agents—&lt;a href=&#34;http://localhost:1313/blog/post-atl&#34;&#xA;&#xA;&#xA;&#xA; &#xA;&#xA;&#xA;&gt;Atlantis&lt;/a&gt;—to compete in &lt;a href=&#34;https://www.gatech.edu/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;Georgia Tech’s&lt;/a&gt; flagship CTF event,&#xA;&lt;a href=&#34;https://tc.gts3.org/cs6265/2024-fall/ctf.html&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;TKCTF 2024&lt;/a&gt;.&#xA;During the competition, Atlantis concentrated on two pivotal areas:&#xA;vulnerability analysis and automatic vulnerability remediation.&#xA;Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;,&#xA;showcasing the practicality and promise of our approach in a real-world hacking competition.&lt;/p&gt;&#xA;&lt;p&gt;In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.&#xA;As we prepare to open-source the full details of our system following AIxCC competition rules,&#xA;this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System</title>
+      <link>http://localhost:1313/blog/post-asc-sqlite/</link>
+      <pubDate>Wed, 28 Aug 2024 12:15:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-asc-sqlite/</guid>
+      <description>&lt;p&gt;Without knowing beforehand that the challenge project involved SQLite3,&#xA;our team, &lt;a href=&#34;http://localhost:1313/authors&#34;&#xA;&#xA;&#xA;&#xA; &#xA;&#xA;&#xA;&gt;Team Atlanta&lt;/a&gt;, entered our Cyber Reasoning System (CRS),&#xA;named Atlantis,&#xA;into the &lt;a href=&#34;https://aicyberchallenge.com/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;AI Cyber Challenge&lt;/a&gt;&#xA;organized by ARPA-H, DARPA, and the&#xA;&lt;a href=&#34;https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;White House&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Remarkably,&#xA;Atlantis secured six first-bloods and&#xA;autonomously identified and patched a real bug in SQLite3&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;,&#xA;earning us a $2 million prize and a place in the grand finals of AIxCC.&#xA;For more details, check out our &lt;a href=&#34;http://localhost:1313/blog/post-atl&#34;&#xA;&#xA;&#xA;&#xA; &#xA;&#xA;&#xA;&gt;team&amp;rsquo;s announcement blog&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Announcing Team Atlanta!</title>
+      <link>http://localhost:1313/blog/post-atl/</link>
+      <pubDate>Tue, 13 Aug 2024 05:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-atl/</guid>
+      <description>&lt;p&gt;Hello, world! We are &lt;em&gt;Team Atlanta&lt;/em&gt;, the minds behind Atlantis, our innovative&#xA;AI-driven cybersecurity solution competing in the prestigious&#xA;&lt;a href=&#34;https://aicyberchallenge.com/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;DARPA AIxCC&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/authors/&#34;&#xA;&#xA;&#xA;&#xA; &#xA;&#xA;&#xA;&gt;Our team&lt;/a&gt; is a collaborative powerhouse made up of six leading institutions:&#xA;&lt;a href=&#34;https://www.gatech.edu/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;Georgia Tech&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.gtri.gatech.edu/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;GTRI&lt;/a&gt;,&#xA;&lt;a href=&#34;https://research.samsung.com/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;Samsung Research&lt;/a&gt;,&#xA;&lt;a href=&#34;https://sra.samsung.com/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;Samsung Research America&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.kaist.ac.kr/en/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;KAIST&lt;/a&gt;, and&#xA;&lt;a href=&#34;https://www.postech.ac.kr/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;POSTECH&lt;/a&gt;.&#xA;Each of these organizations is led by Georgia Tech alumni,&#xA;and includes past winners of prestigious hacking competitions&#xA;such as DEF CON CTF, Pwn2Own and kernelCTF.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
