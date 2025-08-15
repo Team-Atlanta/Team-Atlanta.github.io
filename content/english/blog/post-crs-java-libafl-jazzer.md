@@ -3,11 +3,11 @@ title: "Jazzer+LibAFL: Insights into Java Fuzzing"
 meta_title: ""
 description: "How we incorporated LibAFL as a new fuzzing backend for Jazzer"
 date: 2025-08-14T18:00:00Z
-image: "/images/blog/libafl-jazzer/jazzer_plus_libafl.png"
+image: "/images/blog/crs-java/libafl-jazzer/jazzer_plus_libafl.png"
 categories: ["Atlantis"]
 author: "Ammar Askar"
 tags: ["retrospective", "java"]
-draft: false
+draft: true
 ---
 
 AIxCC involved finding bugs in software written in two languages: C++ and *Java*.
