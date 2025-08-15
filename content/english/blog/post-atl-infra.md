@@ -7,7 +7,7 @@ image: "/images/blog/atl-infra/infra.png"
 categories: ["Atlantis"]
 author: "HyungSeok Han"
 tags: ["infrastructure"]
-draft: false
+draft: true
 ---
 
 The AIxCC competition is not just about creating automated bug-finding and patching techniques
