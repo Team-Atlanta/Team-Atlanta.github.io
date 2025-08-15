@@ -398,6 +398,41 @@
           <i class="fa-solid fa-arrow-up"></i>
         </button>
       </div>
+
+      <!-- Logos Grid -->
+      <div class="logo-grid grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center max-w-5xl mx-auto">
+        
+        <!-- Georgia Tech -->
+        <a href="https://www.gatech.edu" target="_blank" rel="noopener" class="logo-item w-full flex items-center justify-center p-6 rounded-lg transition-all duration-300 hover:transform hover:scale-105">
+          {{ $gtLight := resources.Get "images/logo/GTExtended_RGB.png" }}
+          {{ $gtDark := resources.Get "images/logo/GTExtended_TechGoldandWhite.png" }}
+          <img src="{{ $gtLight.RelPermalink }}" alt="Georgia Tech" class="org-logo org-logo-gt-light max-h-20 w-auto object-contain dark:hidden">
+          <img src="{{ $gtDark.RelPermalink }}" alt="Georgia Tech" class="org-logo org-logo-gt-dark max-h-20 w-auto object-contain hidden dark:block">
+        </a>
+        
+        <!-- Samsung -->
+        <a href="https://research.samsung.com" target="_blank" rel="noopener" class="logo-item w-full flex items-center justify-center p-6 rounded-lg transition-all duration-300 hover:transform hover:scale-105">
+          {{ $samsungLight := resources.Get "images/logo/Samsung_Orig_Wordmark_BLUE_RGB.png" }}
+          {{ $samsungDark := resources.Get "images/logo/Samsung_Orig_Wordmark_WHITE_RGB.png" }}
+          <img src="{{ $samsungLight.RelPermalink }}" alt="Samsung Research" class="org-logo org-logo-samsung-light max-h-16 w-auto object-contain dark:hidden">
+          <img src="{{ $samsungDark.RelPermalink }}" alt="Samsung Research" class="org-logo org-logo-samsung-dark max-h-16 w-auto object-contain hidden dark:block">
+        </a>
+        
+        <!-- KAIST -->
+        <a href="https://www.kaist.ac.kr/en/" target="_blank" rel="noopener" class="logo-item w-full flex items-center justify-center p-6 rounded-lg transition-all duration-300 hover:transform hover:scale-105">
+          {{ $kaistLight := resources.Get "images/logo/KAIST_logo_trans(Single Color).png" }}
+          {{ $kaistDark := resources.Get "images/logo/kaist_logo_trans(white).png" }}
+          <img src="{{ $kaistLight.RelPermalink }}" alt="KAIST" class="org-logo org-logo-kaist-light max-h-20 w-auto object-contain dark:hidden">
+          <img src="{{ $kaistDark.RelPermalink }}" alt="KAIST" class="org-logo org-logo-kaist-dark max-h-20 w-auto object-contain hidden dark:block">
+        </a>
+        
+        <!-- POSTECH -->
+        <a href="https://www.postech.ac.kr/eng/" target="_blank" rel="noopener" class="logo-item w-full flex items-center justify-center p-6 rounded-lg transition-all duration-300 hover:transform hover:scale-105">
+          {{ $postech := resources.Get "images/logo/POSTECH_Logo.jpg" }}
+          <img src="{{ $postech.RelPermalink }}" alt="POSTECH" class="org-logo max-h-20 w-auto object-contain rounded">
+        </a>
+        
+      </div>
     </div>
   </section>
 
