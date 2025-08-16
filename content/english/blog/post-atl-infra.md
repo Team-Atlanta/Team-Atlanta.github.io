@@ -124,16 +124,17 @@ Please note that this is not fully accurate since a portion of the logs is missi
 We will provide an updated and verified version once the AIxCC organizers release the official detailed logs.
 
 ```
-+--------------------+-------+--------+--------+
-|      Category      | Count | Passed | Failed |
-+--------------------+-------+--------+--------+
-| POV -> CP Manager  | 1,002 | N/A    | N/A    |
-| POV -> Organizers* |   107 | 107    | 0      |
-| Patches            |    47 | 41     | 6      |
-| SARIF Reports      |     8 | N/A    | N/A    |
-| Bundles            |    42 | N/A    | N/A    |
-+--------------------+-------+--------+--------+
++--------------------+-------+--------+--------+--------+
+|      Category      | Count | Passed | Failed | Scored |
++--------------------+-------+--------+--------+--------+
+| POV -> CP Manager  | 1,002 | N/A    | N/A    | N/A    |
+| POV -> Organizers* |   107 | 107    | 0      | 43     |
+| Patches            |    47 | 41     | 6      | 31     |
+| SARIF Reports      |     8 | N/A    | N/A    | N/A    |
+| Bundles            |    42 | N/A    | N/A    | N/A    |
++--------------------+-------+--------+--------+--------+
 *: after POV verification & deduplication
+`Scored`: Marked after the AIxCC organizers manually reviewed `Passed` result
 ```
 
 ## Testing, Testing, and Testing!
