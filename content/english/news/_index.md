@@ -13,6 +13,7 @@ draft: false
 
   <!-- August 2025 Articles -->
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/openssf.ico" alt="OpenSSF" class="w-6 h-6 mr-3">
@@ -27,6 +28,7 @@ draft: false
   </div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/fortune.ico" alt="Fortune" class="w-6 h-6 mr-3">
@@ -41,6 +43,7 @@ draft: false
   </div>
 
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/healthcare-it-news.ico" alt="Healthcare IT News" class="w-6 h-6 mr-3">
@@ -55,6 +58,7 @@ draft: false
   </div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/georgia-tech.ico" alt="Georgia Tech" class="w-6 h-6 mr-3">
@@ -69,6 +73,7 @@ draft: false
   </div>
 
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/samsung.ico" alt="Samsung" class="w-6 h-6 mr-3">
@@ -83,6 +88,7 @@ draft: false
   </div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/infosecurity-magazine.ico" alt="Infosecurity Magazine" class="w-6 h-6 mr-3">
@@ -97,6 +103,7 @@ draft: false
   </div>
 
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/meritalk.ico" alt="MeriTalk" class="w-6 h-6 mr-3">
@@ -111,6 +118,7 @@ draft: false
   </div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/executivegov.png" alt="ExecutiveGov" class="w-6 h-6 mr-3">
@@ -125,6 +133,7 @@ draft: false
   </div>
 
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
@@ -141,6 +150,7 @@ draft: false
   <div class="timeline-period-marker timeline-year-change">2024</div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/georgia-tech.ico" alt="Georgia Tech" class="w-6 h-6 mr-3">
@@ -155,6 +165,7 @@ draft: false
   </div>
 
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/dark-reading.ico" alt="Dark Reading" class="w-6 h-6 mr-3">
@@ -169,6 +180,7 @@ draft: false
   </div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/the-register.ico" alt="The Register" class="w-6 h-6 mr-3">
@@ -183,6 +195,7 @@ draft: false
   </div>
 
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/meritalk.ico" alt="MeriTalk" class="w-6 h-6 mr-3">
@@ -197,6 +210,7 @@ draft: false
   </div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/infosecurity-magazine.ico" alt="Infosecurity Magazine" class="w-6 h-6 mr-3">
@@ -211,6 +225,7 @@ draft: false
   </div>
 
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/samsung.ico" alt="Samsung" class="w-6 h-6 mr-3">
@@ -225,6 +240,7 @@ draft: false
   </div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
@@ -238,6 +254,7 @@ draft: false
   </div>
 
   <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
@@ -254,6 +271,7 @@ draft: false
   <div class="timeline-period-marker timeline-year-change">2023</div>
 
   <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">

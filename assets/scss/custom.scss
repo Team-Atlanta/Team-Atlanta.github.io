@@ -874,7 +874,7 @@ pre {
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 4px;
+  width: 1px;
   background: linear-gradient(to bottom,
     #3498db 0%,
     #2980b9 25%,
@@ -983,48 +983,101 @@ pre {
   transition: all 0.3s ease;
 }
 
-// Small article dots on timeline
+// Article dots on timeline - base styles
 .timeline-article-dot {
   position: absolute;
-  left: 50%;
   top: 50%;
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
   background: radial-gradient(circle, #3498db 0%, #2980b9 70%);
-  border: 3px solid #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 50%;
-  transform: translateX(-50%) translateY(-50%);
   z-index: 4;
   box-shadow:
-    0 0 0 2px rgba(52, 152, 219, 0.3),
-    0 3px 6px rgba(52, 152, 219, 0.2);
+    0 0 0 1px rgba(52, 152, 219, 0.3),
+    0 1px 2px rgba(52, 152, 219, 0.2);
   transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.3);
+    box-shadow:
+      0 0 0 2px rgba(52, 152, 219, 0.4),
+      0 2px 4px rgba(52, 152, 219, 0.3);
+  }
 }
 
-// Small article dots on timeline - positioned on central timeline line
-.timeline-article-dot {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 12px;
-  height: 12px;
-  background: radial-gradient(circle, #3498db 0%, #2980b9 70%);
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: 4;
-  box-shadow:
-    0 0 0 2px rgba(52, 152, 219, 0.3),
-    0 3px 6px rgba(52, 152, 219, 0.2);
-  transition: all 0.3s ease;
+// Position dots on the timeline line, not in article boxes
+.timeline-container {
+  position: relative; // Ensure this is the positioning context
 }
+
+// Left article dot - positioned on timeline line
+.timeline-content-left {
+  position: relative;
+
+  .timeline-left-dot {
+    position: absolute;
+    left: calc(100% + 10.5%); // Position closer to timeline center
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    // Add connecting line from article to dot
+    &::before {
+      content: '';
+      position: absolute;
+      right: 6px; // Start from the right edge of the dot
+      top: 50%;
+      width: 50px; // Fixed width for testing
+      height: 2px; // Thicker for visibility
+      transform: translateY(-50%);
+      z-index: 5; // Above everything for testing
+    }
+  }
+}
+
+// Right article dot - positioned on timeline line
+.timeline-content-right {
+  position: relative;
+
+  .timeline-right-dot {
+    position: absolute;
+    left: calc(0% - 11.5%); // Position closer to timeline center
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    // Add connecting line from article to dot
+    &::before {
+      content: '';
+      position: absolute;
+      left: 6px; // Start from the left edge of the dot
+      top: 50%;
+      width: 50px; // Fixed width for testing
+      height: 2px; // Thicker for visibility
+      transform: translateY(-50%);
+      z-index: 5; // Above everything for testing
+    }
+  }
+}
+
+// Prevent collision with year marker dots
+.timeline-period-marker + .timeline-content-left .timeline-left-dot,
+.timeline-period-marker + .timeline-content-right .timeline-right-dot {
+  top: calc(50% + 20px); // Move down to avoid collision with year marker dot
+}
+
+// Note: Articles before year markers would need manual adjustment if collision occurs
 
 .dark .timeline-article-dot {
   background: radial-gradient(circle, #5dade2 0%, #3498db 70%);
   border-color: #1a2332;
-  box-shadow:
-    0 0 0 2px rgba(133, 193, 233, 0.3),
-    0 3px 6px rgba(133, 193, 233, 0.2);
+}
+
+// Dark mode styles for connecting lines
+.dark .timeline-left-dot::before,
+.dark .timeline-right-dot::before {
+  background: rgba(133, 193, 233, 0.4);
 }
 
 // Date badge on timeline (removed - dates no longer displayed on timeline)
@@ -1035,7 +1088,7 @@ pre {
   margin-right: 55%;
   position: relative;
   margin-bottom: -3.5rem;
-  z-index: 1;
+  z-index: 20; // Bring article cards to front
 }
 
 // Right side articles (odd indexes)
@@ -1045,7 +1098,7 @@ pre {
   position: relative;
   margin-bottom: -3.5rem;
   margin-top: 0;
-  z-index: 2;
+  z-index: 20; // Bring article cards to front
 }
 
 // Consistent spacing for articles after period markers
@@ -1073,6 +1126,7 @@ pre {
   transition: var(--transition-smooth);
   padding: 1.5rem;
   position: relative;
+  z-index: 25; // Ensure cards are above all timeline elements
 }
 
 // Remove individual article arrows - only period markers connect to timeline
@@ -1159,11 +1213,36 @@ pre {
   }
 
   .timeline-article-dot {
-    width: 10px;
-    height: 10px;
-    border: 2px solid #ffffff;
-    left: 2rem;
-    transform: translateX(-50%) translateY(-50%);
+    width: 5px;
+    height: 5px;
+    border: 1px solid #ffffff;
+  }
+
+  .timeline-content-left .timeline-left-dot,
+  .timeline-content-right .timeline-right-dot {
+    left: calc(2rem - 2px); // Position at mobile timeline line
+    width: 4px;
+    height: 4px;
+    transform: translateY(-50%);
+
+    // Mobile connecting lines
+    &::before {
+      content: '';
+      position: absolute;
+      right: 4px; // Start from edge of dot
+      top: 50%;
+      width: calc(4rem - 10px); // Length back to article content
+      height: 1px;
+      background: rgba(52, 152, 219, 0.4);
+      transform: translateY(-50%);
+      z-index: -1;
+    }
+  }
+
+  // Mobile collision prevention
+  .timeline-period-marker + .timeline-content-left .timeline-left-dot,
+  .timeline-period-marker + .timeline-content-right .timeline-right-dot {
+    top: calc(50% + 15px); // Move down on mobile to avoid collision
   }
 
   .timeline-period-marker {
@@ -1213,11 +1292,11 @@ pre {
   }
 
   .timeline-content-left {
-    z-index: 1;
+    z-index: 20; // Bring mobile article cards to front
   }
 
   .timeline-content-right {
-    z-index: 2;
+    z-index: 20; // Bring mobile article cards to front
   }
 
   // Consistent spacing for articles after period marker on mobile
