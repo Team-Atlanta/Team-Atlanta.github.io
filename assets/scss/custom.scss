@@ -1031,7 +1031,8 @@ pre {
       width: 50px; // Fixed width for testing
       height: 2px; // Thicker for visibility
       transform: translateY(-50%);
-      z-index: 5; // Above everything for testing
+      z-index: 15; // Below cards (20) but above timeline (1-10)
+      background: rgba(52, 152, 219, 0.4);
     }
   }
 }
@@ -1056,7 +1057,8 @@ pre {
       width: 50px; // Fixed width for testing
       height: 2px; // Thicker for visibility
       transform: translateY(-50%);
-      z-index: 5; // Above everything for testing
+      z-index: 15; // Below cards (20) but above timeline (1-10)
+      background: rgba(52, 152, 219, 0.4);
     }
   }
 }
@@ -1208,8 +1210,13 @@ pre {
 
   .timeline-top-separator {
     top: 1rem;
-    width: 150px;
-    padding-left: 80px; // Adjust for mobile
+    left: 0rem; // Start from timeline position
+    width: calc(30%); // Extend from timeline to right edge
+    transform: none;
+    background: linear-gradient(to right, rgba(52, 152, 219, 0.6), rgba(52, 152, 219, 0.2), transparent);
+    justify-content: flex-start; // Align text to left
+    padding-left: 80px; // Space for year text
+    font-size: 0.9rem;
   }
 
   .timeline-article-dot {
@@ -1220,7 +1227,7 @@ pre {
 
   .timeline-content-left .timeline-left-dot,
   .timeline-content-right .timeline-right-dot {
-    left: calc(2rem - 2px); // Position at mobile timeline line
+    left: calc(-3rem); // Move even further left to center dot on timeline
     width: 4px;
     height: 4px;
     transform: translateY(-50%);
@@ -1229,13 +1236,13 @@ pre {
     &::before {
       content: '';
       position: absolute;
-      right: 4px; // Start from edge of dot
+      left: 4px; // Start from right edge of dot
       top: 50%;
-      width: calc(4rem - 10px); // Length back to article content
+      width: 3rem; // Extend line to reach article edge
       height: 1px;
       background: rgba(52, 152, 219, 0.4);
       transform: translateY(-50%);
-      z-index: -1;
+      z-index: 8; // Below dots but visible
     }
   }
 
@@ -1254,22 +1261,22 @@ pre {
     }
 
     // Add horizontal separator line only for year changes on mobile
-    &.timeline-year-change::before {
-      content: '';
-      position: absolute;
-      top: -1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 150px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(52, 152, 219, 0.4), transparent);
-      z-index: 1;
-    }
-
-    // Year text positioning for mobile
     &.timeline-year-change {
-      left: calc(50% + 20px); // Adjust position for mobile screen
-      top: -1.5rem;
+      position: relative;
+      left: 0rem; // Align with timeline position
+      width: calc(30%); // Extend from timeline to right edge
+      height: 1px;
+      background: linear-gradient(to right, rgba(52, 152, 219, 0.6), rgba(52, 152, 219, 0.2), transparent);
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; // Align text to left
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding-left: 80px; // Space for text after timeline
+      margin-bottom: 2rem;
+      transform: none; // Remove transform
     }
 
     .timeline-dot {
@@ -1287,7 +1294,7 @@ pre {
     width: calc(100% - 4rem);
     margin-left: 4rem;
     margin-right: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; // Positive spacing to prevent overlap
     margin-top: 0;
   }
 
@@ -1303,7 +1310,13 @@ pre {
   .timeline-period-marker + .timeline-content-left,
   .timeline-period-marker + .timeline-content-right {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; // Match general mobile spacing
+  }
+
+  // Override desktop consecutive article spacing for mobile
+  .timeline-content-right + .timeline-content-left,
+  .timeline-content-left + .timeline-content-right {
+    margin-top: 0; // Remove negative spacing on mobile
   }
 
   .timeline-content-left,
