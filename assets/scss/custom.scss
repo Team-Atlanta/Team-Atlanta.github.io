@@ -73,11 +73,11 @@ body {
   color: #f8f9fa !important;
   background: var(--primary-gradient);
   border: none;
-  
+
   &:hover {
     color: #f8f9fa !important;
   }
-  
+
   &:focus, &:active {
     color: #f8f9fa !important;
   }
@@ -114,7 +114,7 @@ body {
   border-radius: 12px;
   box-shadow: var(--shadow-medium);
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-large);
@@ -135,7 +135,7 @@ body {
   padding: 0.25rem 0.5rem;
   color: var(--text-primary);
   transition: all 0.2s ease;
-  
+
   &:hover {
     background: rgba(52, 152, 219, 0.3);
     border-color: rgba(52, 152, 219, 0.5);
@@ -146,7 +146,7 @@ body {
   transition: all 0.3s ease;
   overflow: hidden;
   background: transparent !important;
-  
+
   &.collapsed {
     max-height: 0 !important;
     opacity: 0;
@@ -190,7 +190,7 @@ body {
   align-items: center;
   padding: 0.25rem 0.5rem;
   border-left: 2px solid transparent;
-  
+
   &::before {
     content: "•";
     color: #3498db;
@@ -198,12 +198,12 @@ body {
     font-weight: bold;
     min-width: 0.75rem;
   }
-  
+
   &:hover {
     color: #3498db !important;
     border-left-color: #3498db;
     transform: translateX(4px);
-    
+
     &::before {
       color: var(--text-primary);
     }
@@ -219,7 +219,7 @@ body {
   box-shadow: var(--shadow-soft);
   border: none;
   color: #f8f9fa !important;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -230,11 +230,11 @@ body {
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
     transition: left 0.5s ease;
   }
-  
+
   &:hover::before {
     left: 100%;
   }
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-primary);
@@ -296,7 +296,7 @@ body {
   @apply bg-white dark:bg-darkmode-theme-light rounded-xl transition-all duration-300;
   border: 1px solid theme('colors.border');
   box-shadow: var(--shadow-soft);
-  
+
   &:hover {
     transform: translateY(-4px);
     border-color: theme('colors.primary');
@@ -307,7 +307,7 @@ body {
 .dark .modern-card {
   border-color: theme('colors.darkmode.border');
   box-shadow: var(--shadow-soft);
-  
+
   &:hover {
     border-color: theme('colors.darkmode.primary');
     box-shadow: var(--shadow-medium);
@@ -318,12 +318,12 @@ body {
 .member-card {
   transition: var(--transition-smooth);
   border-radius: var(--border-radius-modern);
-  
+
   &:hover {
     transform: translateY(-3px);
-    
+
     // Light mode: Subtle team color glow effect
-    box-shadow: 
+    box-shadow:
       0 0 8px rgba(52, 152, 219, 0.25),
       0 0 16px rgba(52, 152, 219, 0.15),
       0 8px 20px rgba(44, 62, 80, 0.12);
@@ -333,7 +333,7 @@ body {
 
 // Dark mode: Subtle glow with lighter team colors
 .dark .member-card:hover {
-  box-shadow: 
+  box-shadow:
     0 0 10px rgba(133, 193, 233, 0.3),
     0 0 20px rgba(133, 193, 233, 0.2),
     0 10px 25px rgba(93, 173, 226, 0.15);
@@ -353,12 +353,12 @@ body {
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius-modern);
   transition: var(--transition-smooth);
-  
+
   &:hover {
     transform: translateY(-4px) scale(1.01);
-    
+
     // Light mode: Refined team color glow
-    box-shadow: 
+    box-shadow:
       0 0 12px rgba(52, 152, 219, 0.3),
       0 0 24px rgba(52, 152, 219, 0.2),
       0 12px 30px rgba(44, 62, 80, 0.15);
@@ -367,7 +367,7 @@ body {
 }
 
 .dark .profile-card:hover {
-  box-shadow: 
+  box-shadow:
     0 0 15px rgba(133, 193, 233, 0.35),
     0 0 30px rgba(133, 193, 233, 0.25),
     0 15px 35px rgba(93, 173, 226, 0.2);
@@ -492,7 +492,7 @@ html {
 .blog-card-uniform {
   height: 600px; // Increased height for desktop
   transition: var(--transition-smooth);
-  
+
   &:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-large);
@@ -508,7 +508,7 @@ html {
 .blog-card-image {
   flex-shrink: 0;
   height: 180px; // Fixed image area height
-  
+
   .aspect-video {
     height: 100%;
     aspect-ratio: 16/9;
@@ -526,7 +526,7 @@ html {
   flex-shrink: 0;
   height: 4.5rem; // Increased height for more title space
   overflow: hidden;
-  
+
   a {
     display: -webkit-box;
     -webkit-line-clamp: 3; // Allow 3 lines for titles
@@ -564,7 +564,7 @@ html {
   overflow: hidden;
   word-wrap: break-word;
   hyphens: auto;
-  
+
   // Fallback for browsers that don't support line-clamp
   @supports not (-webkit-line-clamp: 2) {
     max-height: 2.8em; // Approximate height for 2 lines
@@ -581,7 +581,7 @@ html {
   overflow: hidden;
   word-wrap: break-word;
   hyphens: auto;
-  
+
   // Fallback for browsers that don't support line-clamp
   @supports not (-webkit-line-clamp: 3) {
     max-height: 4.5em; // Approximate height for 3 lines
@@ -598,7 +598,7 @@ html {
   overflow: hidden;
   word-wrap: break-word;
   hyphens: auto;
-  
+
   // Fallback for browsers that don't support line-clamp
   @supports not (-webkit-line-clamp: 5) {
     max-height: 8em; // Approximate height for 5 lines
@@ -626,14 +626,14 @@ html {
   .blog-card-uniform {
     height: 550px; // Increased mobile height
   }
-  
+
   .blog-card-image {
     height: 160px; // Larger image area on mobile
   }
-  
+
   .blog-card-title {
     height: 4rem; // More space for title
-    
+
     a {
       font-size: 1rem;
       -webkit-line-clamp: 3; // Keep 3 lines on mobile
@@ -645,11 +645,11 @@ html {
   .blog-card-uniform {
     height: 500px; // Increased for small screens
   }
-  
+
   .blog-card-image {
     height: 140px;
   }
-  
+
   .blog-card-title {
     height: 3.5rem;
   }
@@ -671,7 +671,7 @@ pre {
   padding: 1.5rem !important;
   margin: 1.5rem 0 !important;
   overflow-x: auto;
-  
+
   code {
     background: transparent !important;
     color: #2d3748 !important;
@@ -686,7 +686,7 @@ pre {
 .dark pre {
   background: #1a202c !important;
   border-color: #2d3748 !important;
-  
+
   code {
     color: #e2e8f0 !important;
   }
@@ -713,7 +713,7 @@ pre {
   overflow: hidden;
   box-shadow: var(--shadow-medium);
   transition: var(--transition-smooth);
-  
+
   &:hover {
     transform: scale(1.05);
     box-shadow: var(--shadow-large);
@@ -730,21 +730,21 @@ pre {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     &:hover {
       background: rgba(255, 255, 255, 0.8);
       border-color: rgba(52, 152, 219, 0.3);
       box-shadow: 0 10px 30px -10px rgba(52, 152, 219, 0.3);
     }
   }
-  
+
   .org-logo {
     filter: opacity(0.9);
     transition: all 0.3s ease;
     max-height: 70px; // Reduced height to fit shorter container
     max-width: 200px; // Consistent max width
   }
-  
+
   .logo-item:hover .org-logo {
     filter: opacity(1);
     transform: scale(1.05);
@@ -756,18 +756,18 @@ pre {
   .logo-item {
     background: rgba(26, 37, 47, 0.5);
     border-color: rgba(51, 65, 85, 0.3);
-    
+
     &:hover {
       background: rgba(26, 37, 47, 0.8);
       border-color: rgba(133, 193, 233, 0.3);
       box-shadow: 0 10px 30px -10px rgba(133, 193, 233, 0.3);
     }
   }
-  
+
   .org-logo {
     filter: brightness(0.95) opacity(0.9);
   }
-  
+
   .logo-item:hover .org-logo {
     filter: brightness(1) opacity(1);
     transform: scale(1.05);
@@ -779,36 +779,36 @@ pre {
   .glass-card {
     backdrop-filter: blur(10px);
   }
-  
+
   .btn-modern {
     padding: 0.75rem 1.5rem;
     font-size: 0.875rem;
   }
-  
+
   // TOC responsive design
   .toc-container {
     margin: 1rem 0;
     padding: 0.75rem;
-    
+
     .toc-title {
       font-size: 1rem;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.5rem;
-      
+
       .toc-toggle {
         align-self: flex-end;
       }
     }
-    
+
     .toc-content nav {
       font-size: 0.8rem;
-      
+
       ol ol,
       ul ul {
         padding-left: 0.8rem;
       }
-      
+
       a {
         padding: 0.2rem 0.4rem;
       }
@@ -820,19 +820,19 @@ pre {
   .toc-container {
     margin: 0.5rem 0;
     padding: 0.5rem;
-    
+
     .toc-title {
       font-size: 0.9rem;
       margin-bottom: 0.5rem !important;
     }
-    
+
     .toc-content nav {
       font-size: 0.75rem;
       line-height: 1.4;
-      
+
       a {
         padding: 0.15rem 0.3rem;
-        
+
         &:hover {
           transform: translateX(2px);
         }
@@ -849,6 +849,25 @@ pre {
   padding: 3rem 1rem;
 }
 
+// Top separator line at beginning of timeline
+.timeline-top-separator {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(52, 152, 219, 0.4), transparent);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding-left: 130px; // Push text to the right of the line
+}
+
 // Central timeline line
 .timeline-line {
   position: absolute;
@@ -856,102 +875,190 @@ pre {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(to bottom, 
-    #3498db 0%, 
-    #2980b9 25%, 
-    #3498db 50%, 
-    #2980b9 75%, 
+  background: linear-gradient(to bottom,
+    #3498db 0%,
+    #2980b9 25%,
+    #3498db 50%,
+    #2980b9 75%,
     #3498db 100%
   );
   transform: translateX(-50%);
   z-index: 1;
   border-radius: 2px;
-  box-shadow: 
+  box-shadow:
     0 0 15px rgba(52, 152, 219, 0.5),
     0 0 30px rgba(52, 152, 219, 0.3),
     inset 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
 .dark .timeline-line {
-  background: linear-gradient(to bottom, 
-    #85c1e9 0%, 
-    #5dade2 25%, 
-    #85c1e9 50%, 
-    #5dade2 75%, 
+  background: linear-gradient(to bottom,
+    #85c1e9 0%,
+    #5dade2 25%,
+    #85c1e9 50%,
+    #5dade2 75%,
     #85c1e9 100%
   );
-  box-shadow: 
+  box-shadow:
     0 0 18px rgba(133, 193, 233, 0.6),
     0 0 35px rgba(133, 193, 233, 0.4),
     inset 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
-// Timeline item wrapper
-.timeline-item {
+// Timeline period marker (aggregated month/year)
+.timeline-period-marker {
   position: relative;
-  margin-bottom: 4rem;
-  
-  &:last-child {
-    margin-bottom: 0;
+  margin-bottom: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Add margin before period markers (except the first one)
+  &:not(:first-child) {
+    margin-top: 5rem;
+  }
+
+  // Add horizontal separator line only for year changes
+  &.timeline-year-change {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(52, 152, 219, 0.4), transparent);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding-left: 130px; // Push text to the right of the line
+    margin-bottom: 2rem; // Reduce bottom margin for tighter spacing
+  }
+
+  // Timeline date styling removed - dates no longer displayed on timeline
+
+  .timeline-dot {
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, #2980b9 0%, #1a5490 70%);
+    border: 5px solid #ffffff;
+    box-shadow:
+      0 0 0 4px rgba(52, 152, 219, 0.4),
+      0 6px 12px rgba(52, 152, 219, 0.3);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
   }
 }
 
-// Timeline dot
+.dark .timeline-period-marker .timeline-dot {
+  background: radial-gradient(circle, #5dade2 0%, #3498db 70%);
+  border-color: #1a2332;
+  box-shadow:
+    0 0 0 4px rgba(133, 193, 233, 0.4),
+    0 6px 12px rgba(133, 193, 233, 0.3);
+}
+
+// Dark mode separator line for year changes only
+.dark .timeline-period-marker.timeline-year-change::before {
+  background: linear-gradient(to right, transparent, rgba(133, 193, 233, 0.4), transparent);
+}
+
+// Dark mode top separator
+.dark .timeline-top-separator {
+  background: linear-gradient(to right, transparent, rgba(133, 193, 233, 0.4), transparent);
+}
+
+// Timeline dot (shared styles)
 .timeline-dot {
   position: absolute;
   left: 50%;
-  top: 2rem;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, #3498db 0%, #2980b9 70%);
-  border: 5px solid #ffffff;
+  top: 0;
   border-radius: 50%;
   transform: translateX(-50%);
   z-index: 3;
   transition: all 0.3s ease;
-  box-shadow: 
-    0 0 0 3px rgba(52, 152, 219, 0.3),
-    0 4px 8px rgba(52, 152, 219, 0.2);
 }
 
-.dark .timeline-dot {
-  background: radial-gradient(circle, #85c1e9 0%, #5dade2 70%);
-  border-color: #1a2332;
-  box-shadow: 
-    0 0 0 3px rgba(133, 193, 233, 0.3),
-    0 4px 8px rgba(133, 193, 233, 0.2);
-}
-
-// Date badge on timeline
-.timeline-date {
+// Small article dots on timeline
+.timeline-article-dot {
   position: absolute;
   left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  z-index: 2;
-  white-space: nowrap;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #3498db 0%, #2980b9 70%);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 4;
+  box-shadow:
+    0 0 0 2px rgba(52, 152, 219, 0.3),
+    0 3px 6px rgba(52, 152, 219, 0.2);
+  transition: all 0.3s ease;
 }
+
+// Small article dots on timeline - positioned on central timeline line
+.timeline-article-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #3498db 0%, #2980b9 70%);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 4;
+  box-shadow:
+    0 0 0 2px rgba(52, 152, 219, 0.3),
+    0 3px 6px rgba(52, 152, 219, 0.2);
+  transition: all 0.3s ease;
+}
+
+.dark .timeline-article-dot {
+  background: radial-gradient(circle, #5dade2 0%, #3498db 70%);
+  border-color: #1a2332;
+  box-shadow:
+    0 0 0 2px rgba(133, 193, 233, 0.3),
+    0 3px 6px rgba(133, 193, 233, 0.2);
+}
+
+// Date badge on timeline (removed - dates no longer displayed on timeline)
 
 // Left side articles (even indexes)
 .timeline-content-left {
   width: 45%;
   margin-right: 55%;
   position: relative;
+  margin-bottom: -3.5rem;
+  z-index: 1;
 }
 
-// Right side articles (odd indexes)  
+// Right side articles (odd indexes)
 .timeline-content-right {
   width: 45%;
   margin-left: 55%;
   position: relative;
+  margin-bottom: -3.5rem;
+  margin-top: 0;
+  z-index: 2;
+}
+
+// Consistent spacing for articles after period markers
+.timeline-period-marker + .timeline-content-left,
+.timeline-period-marker + .timeline-content-right {
+  margin-top: 0;
+  margin-bottom: -3.5rem; // Use same negative margin as other articles
+}
+
+// Fix spacing between articles that follow year markers
+.timeline-content-right + .timeline-content-left,
+.timeline-content-left + .timeline-content-right {
+  margin-top: -2rem; // Reduce gap between consecutive articles
 }
 
 // Connector lines removed - cleaner timeline design
@@ -970,16 +1077,18 @@ pre {
 
 // Remove individual article arrows - only period markers connect to timeline
 
-// Hover effects
-.timeline-item:hover .timeline-dot {
-  transform: translateX(-50%) scale(1.2);
-  background: #2980b9;
-  box-shadow: 0 0 0 8px rgba(52, 152, 219, 0.3);
+// Hover effects for period markers
+.timeline-period-marker:hover .timeline-dot {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow:
+    0 0 0 6px rgba(52, 152, 219, 0.4),
+    0 8px 16px rgba(52, 152, 219, 0.3);
 }
 
-.dark .timeline-item:hover .timeline-dot {
-  background: #5dade2;
-  box-shadow: 0 0 0 8px rgba(133, 193, 233, 0.3);
+.dark .timeline-period-marker:hover .timeline-dot {
+  box-shadow:
+    0 0 0 6px rgba(133, 193, 233, 0.4),
+    0 8px 16px rgba(133, 193, 233, 0.3);
 }
 
 .timeline-card:hover {
@@ -1038,31 +1147,94 @@ pre {
   .timeline-container {
     padding: 2rem 1rem;
   }
-  
+
   .timeline-line {
     left: 2rem;
   }
-  
-  .timeline-dot {
-    left: 2rem;
+
+  .timeline-top-separator {
+    top: 1rem;
+    width: 150px;
+    padding-left: 80px; // Adjust for mobile
   }
-  
-  .timeline-date {
+
+  .timeline-article-dot {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #ffffff;
     left: 2rem;
-    font-size: 0.75rem;
-    padding: 0.375rem 0.75rem;
+    transform: translateX(-50%) translateY(-50%);
   }
-  
+
+  .timeline-period-marker {
+    margin-bottom: 3rem;
+
+    // Add margin before period markers on mobile (except the first one)
+    &:not(:first-child) {
+      margin-top: 3rem;
+    }
+
+    // Add horizontal separator line only for year changes on mobile
+    &.timeline-year-change::before {
+      content: '';
+      position: absolute;
+      top: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(52, 152, 219, 0.4), transparent);
+      z-index: 1;
+    }
+
+    // Year text positioning for mobile
+    &.timeline-year-change {
+      left: calc(50% + 20px); // Adjust position for mobile screen
+      top: -1.5rem;
+    }
+
+    .timeline-dot {
+      left: 2rem;
+      width: 20px;
+      height: 20px;
+      border: 4px solid #ffffff;
+    }
+
+    // Timeline date styling removed - dates no longer displayed
+  }
+
   .timeline-content-left,
   .timeline-content-right {
     width: calc(100% - 4rem);
     margin-left: 4rem;
     margin-right: 0;
+    margin-bottom: 1rem;
+    margin-top: 0;
   }
-  
+
+  .timeline-content-left {
+    z-index: 1;
+  }
+
+  .timeline-content-right {
+    z-index: 2;
+  }
+
+  // Consistent spacing for articles after period marker on mobile
+  .timeline-period-marker + .timeline-content-left,
+  .timeline-period-marker + .timeline-content-right {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
   .timeline-content-left,
   .timeline-content-right {
     animation: timelineSlideInRight 0.8s ease-out forwards;
+  }
+
+  // Dark mode mobile separator line for year changes only
+  .dark .timeline-period-marker.timeline-year-change::before {
+    background: linear-gradient(to right, transparent, rgba(133, 193, 233, 0.4), transparent);
   }
 }
 
