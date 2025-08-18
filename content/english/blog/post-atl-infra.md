@@ -12,11 +12,11 @@ draft: false
 
 The AIxCC competition is not just about creating automated bug-finding and patching techniques
 -- it is about building a **cyber reasoning system** (CRS) that can do both without any human assistance.
-To succeed, a CRS must excel in three critical infrastructure areas:
+To succeed, a CRS must excel in four critical infrastructure areas:
 - **Reliability:** Run continuously for weeks without intervention.
 - **Scalability:** Handle many challenge projects concurrently.
 - **Budget Utilization:** Maximize Azure cloud and LLM credit usage.
-- **Submission Management:** Consistently deliver valid POVs, Patches, SARIF assessments, and Bundles.
+- **Submission Management:** Consistently deliver valid proof-of-vulnerability blobs (POVs), Patches, SARIF assessments, and Bundles.
 
 In this post, we will share how we designed the infrastructure of our CRS, **Atlantis**, to meet these keys and make it as robust as possible.
 We could not have won AIxCC without the exceptional work of [our infrastructure team](/authors/#team-infra).
@@ -48,12 +48,23 @@ This per-challenge scaling significantly boosts reliability
 Redundant bug-finding modules further improve stability and coverage;
 for example, if **Atlantis-C** fails on certain CPs, **Atlantis-Multilang** can still find vulnerabilities in them.
 
-As a result, during the final competition, 
-- **73%** of submitted POVs come from **Atlantis-Multilang**
-- **15%** from **Atlantis-C**
-- **12%** from **Atlantis-Java**
+Here are the statistics on POVs from the final competition.
+```
++--------------------+--------------------------+
+|       Module       | POV Submission by Module |
++--------------------+--------------------------+
+| Atlantis-Multilang | 69.2%                    |
+| Atlantis-C         | 16.8%                    |
+| Atlantis-Java      | 14.0%                    |
++--------------------+--------------------------+
 
-Notably, **81%** of all POVs were found in C-based CPs and **19%** in Java-based CPs.
++-------------+---------------------------------+
+| CP Language | POV Distribution by CP Language |
++-------------+---------------------------------+
+| C-based     | 78.5%                           |
+| Java-based  | 21.5%                           |
++-------------+---------------------------------+
+```
 
 In addition, for each harness in a CP, **Atlantis-Multilang** and **Atlantis-Java** run on nodes sized according to the allocated Azure budget,
 while **Atlantis-C** operates on a fixed pool of up to 15 nodes.
@@ -107,6 +118,24 @@ This demonstrates that **Atlantis** was able to effectively map the relationship
 -- a capability that can be incredibly valuable for real-world developers.
 
 {{< image src="images/blog/atl-infra/score.png" position="center" class="img-fluid" >}}
+
+Here is a breakdown of our submission, reconstructed from the logs we were able to recover.
+Please note that this is not fully accurate since a portion of the logs is missing, and we are not yet certain which submission was ultimately scored.
+We will provide an updated and verified version once the AIxCC organizers release the official detailed logs.
+
+```
++--------------------+-------+--------+--------+--------+
+|      Category      | Count | Passed | Failed | Scored |
++--------------------+-------+--------+--------+--------+
+| POV -> CP Manager  | 1,002 | N/A    | N/A    | N/A    |
+| POV -> Organizers* |   107 | 107    | 0      | 43     |
+| Patches            |    47 | 41     | 6      | 31     |
+| SARIF Reports      |     8 | N/A    | N/A    | N/A    |
+| Bundles            |    42 | N/A    | N/A    | N/A    |
++--------------------+-------+--------+--------+--------+
+*: after POV verification & deduplication
+`Scored`: Marked after the AIxCC organizers manually reviewed `Passed` result
+```
 
 ## Testing, Testing, and Testing!
 While developing **Atlantis**, we conducted extensive testing to fix bugs and evaluate the effectiveness of each module.

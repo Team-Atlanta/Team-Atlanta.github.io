@@ -6,14 +6,19 @@
       "link": "https://team-atlanta.github.io/"
     },
     {
+      "name": "github",
+      "icon": "fab fa-github",
+      "link": "https://github.com/Team-Atlanta/"
+    },
+    {
       "name": "twitter",
       "icon": "fab fa-twitter",
       "link": "https://x.com/TeamAtlanta24"
     },
     {
-      "name": "github",
-      "icon": "fab fa-github",
-      "link": "https://github.com/Team-Atlanta/"
+      "name": "linkedin",
+      "icon": "fab fa-linkedin",
+      "link": "https://www.linkedin.com/company/team-atlanta"
     }
   ]
 }

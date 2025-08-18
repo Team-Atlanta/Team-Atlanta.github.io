@@ -102,16 +102,41 @@ weight = 7
 
 # footer menu
 [[footer]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[footer]]
+name = "AIxCC Team"
+url = "authors/"
+weight = 2
+
+[[footer]]
 name = "Artifacts"
 url = "artifacts/"
-weight = 1
+weight = 3
+
+[[footer]]
+name = "News"
+url = "news/"
+weight = 4
+
+[[footer]]
+name = "Blog"
+url = "blog/"
+weight = 5
+
+#[[footer]]
+#name = "Contact"
+#url = "contact/"
+#weight = 6
 
 #[[footer]]
 #name = "Elements"
 #url = "elements/"
-#weight = 2
+#weight = 7
 
 #[[footer]]
 #name = "Privacy Policy"
 #url = "privacy-policy/"
-#weight = 3
+#weight = 8
