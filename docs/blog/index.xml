@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Team Atlanta</title><link>https://team-atlanta.github.io/blog/</link><description>Recent content in Blog on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 12 Aug 2025 12:15:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p>Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Team Atlanta</title><link>https://team-atlanta.github.io/blog/</link><description>Recent content in Blog on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 13 Aug 2025 05:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Atlantis Infrastructure</title><link>https://team-atlanta.github.io/blog/post-atl-infra/</link><pubDate>Wed, 13 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl-infra/</guid><description>&lt;p>The AIxCC competition is not just about creating automated bug-finding and patching techniques
+&amp;ndash; it is about building a &lt;strong>cyber reasoning system&lt;/strong> (CRS) that can do both without any human assistance.
+To succeed, a CRS must excel in three critical infrastructure areas:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Reliability:&lt;/strong> Run continuously for weeks without intervention.&lt;/li>
+&lt;li>&lt;strong>Scalability:&lt;/strong> Handle many challenge projects concurrently.&lt;/li>
+&lt;li>&lt;strong>Budget Utilization:&lt;/strong> Maximize Azure cloud and LLM credit usage.&lt;/li>
+&lt;li>&lt;strong>Submission Management:&lt;/strong> Consistently deliver valid POVs, Patches, SARIF assessments, and Bundles.&lt;/li>
+&lt;/ul>
+&lt;p>In this post, we will share how we designed the infrastructure of our CRS, &lt;strong>Atlantis&lt;/strong>, to meet these keys and make it as robust as possible.
+We could not have won AIxCC without the exceptional work of &lt;a href="https://team-atlanta.github.io/authors/#team-infra"
+
+
+
+ 
+
+
+>our infrastructure team&lt;/a>.&lt;/p></description></item><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p>Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
 
 
 
