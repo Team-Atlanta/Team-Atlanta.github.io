@@ -244,4 +244,5 @@ we could.
 
 ## Reference
 
-- [Code Repo](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/fuzzers)
+- [Code Repository](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/fuzzers)
+- Technical Report (forthcoming)
