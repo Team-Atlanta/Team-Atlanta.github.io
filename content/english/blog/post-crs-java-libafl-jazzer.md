@@ -32,7 +32,7 @@ Java Fuzzer developed by the *Code Intelligence* company. It makes use of
 LibFuzzer (written in C++) using the [Java Native Interface](https://en.wikipedia.org/wiki/Java_Native_Interface) (JNI).
 The architecture of Jazzer is roughly:
 
-<span style="color: lightcyan">
+<span>
 
 ```goat
      Java           |                C++
@@ -242,6 +242,6 @@ we could.
    a little hacky.
 
 
-### Reference
+## Reference
 
 - [Code Repo](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/fuzzers)
