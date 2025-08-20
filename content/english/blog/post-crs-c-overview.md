@@ -3,7 +3,7 @@ title: "Atlantis-C: A " # TODO
 meta_title: ""
 description: "Overview of Atlantis-C"
 date: 2025-08-19T10:00:00Z
-image: "/images/blog/crs-c/icon.png"
+image: "/images/blog/crs-c/overview/icon.png"
 categories: ["Atlantis"]
 author: "Gyejin Lee"
 tags: ["c", "c++"]
