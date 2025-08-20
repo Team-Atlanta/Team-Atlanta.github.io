@@ -2,7 +2,7 @@
 title: "Sinkpoint-focused Directed Fuzzing"
 meta_title: ""
 description: "Guiding Jazzer towards critical code locations"
-date: 2025-08-18T18:00:00Z
+date: 2025-08-19T12:00:00Z
 image: "/images/blog/crs-java/directed.png"
 categories: ["Atlantis"]
 author: "Fabian Fleischer"
