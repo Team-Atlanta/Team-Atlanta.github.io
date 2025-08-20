@@ -10,7 +10,7 @@ tags: ["c", "c++"]
 draft: true
 ---
 
-**Atlantis-C** is a vulnerability detection subsystem developed as a part of the **[Atlantis CRS framework](https://team-atlanta.github.io/blog/post-atl-infra/)**, focusing on finding bugs in C/C++ programs.
+**Atlantis-C** is a vulnerability detection subsystem developed as a part of the [Atlantis CRS framework](https://team-atlanta.github.io/blog/post-atl-infra/), focusing on finding bugs in C/C++ programs.
 Rather than limiting itself to the libFuzzer based toolset provided by the [AIxCC competition infrastructure](https://github.com/aixcc-finals/oss-fuzz-aixcc/),
 it integrates multiple fuzzing engines (LibAFL, AFL++, libFuzzer, and other custom components).
 **Atlantis-C** aimed to crank up its capability by adding independent modules
@@ -38,7 +38,7 @@ Since we typically have fewer nodes than tasks, intelligent scheduling becomes c
 The system maintains a priority-weighted task queue, where high-priority tasks get scheduled more frequently.
 This makes two interesting features possible:
 
-1. Atlantis-C can ensure that computational resources flow to the more "promising" tasks.
+1. **Atlantis-C** can ensure that computational resources flow to the more "promising" tasks.
 These would be the tasks that are connected to the "hints"
 (SARIF vulnerability reports or diffs provided in delta mode) provided during the competition.
 
@@ -48,16 +48,16 @@ If LibAFL performs poorly on a certain harness, the system seamlessly falls back
 ### Seed Synchronization Across Space and Time
 
 Seeds (test inputs that trigger interesting behaviors) need to flow efficiently between all-related components.
-Atlantis-C implements a pipeline to ensure discoveries by any component benefits the entire system.
+**Atlantis-C** implements a pipeline to ensure discoveries by any component benefits the entire system.
 
-*Seeds Collector* continuously monitors seed sources—fuzzers, directed fuzzers, custom format fuzzers. 
+- *Seeds Collector* continuously monitors seed sources—fuzzers, directed fuzzers, custom format fuzzers. 
 It relays these new seeds to *Ensembler*.
 It also creates periodic snapshots of fuzzer progress,
 allowing newly scheduled tasks to instantly inherit collective discoveries.
 
-*Crash Collector* is a similar component that only relays seeds that were reported to cause crashes.
+- *Crash Collector* is a similar component that only relays seeds that were reported to cause crashes.
 
-*Ensembler* maintains a master corpus using libFuzzer's merge capability.
+- *Ensembler* maintains a master corpus using libFuzzer's merge capability.
 It tests all incoming seeds, keeping only those that expand coverage.
 Additionally, if any of the incoming seeds trigger a crash,
 it will verify, deduplicate and submit the seed as a POV (Proof-of-Vulnerability).
@@ -81,7 +81,7 @@ that produce semantically valid test cases.
 - *LLM-Augmented Mutator* helps when fuzzers get stuck.
 If a fuzzer fails to generate new seeds for two minutes, it kicks in to "unblock" the fuzzer.
 
-This semantic layer does not replace coverage-guided fuzzing—it accelerates it,
+This layer does not replace coverage-guided fuzzing—it accelerates it,
 providing shortcuts through complex validation that could take millions of random attempts.
 
 ## Other Components in **Atlantis-C**
@@ -90,11 +90,12 @@ This blog post briefly introduces the core pipeline of **Atlantis-C**.
 Each of the microservices shown in (TODO: fig) have interesting stories behind them worth sharing.
 We will try to cover these in future blog posts.
 
-## How Did Atlantis-C Perform?
+## How Did **Atlantis-C** Perform?
 
 From the telemetry logs provided by the organizers,
-Atlantis-C contributed by submitting 18 of the 84 submissions made for the C/C++ challenge projects;
+**Atlantis-C** contributed by submitting 18 of the 84 submissions made for the C/C++ challenge projects;
 the submissions include 16 unique discoveries.
+More detailed analysis will be available once we are done with the post-mortem analysis.
 
 ## What's Next
 
@@ -113,7 +114,7 @@ Have questions or ideas? Want to collaborate? Reach out to [us](https://www.link
 
 ## Reference
 
-- [Atlantis-C Code Repository](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-c)
+- [Atlantis-C Code Repository](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-userspace)
 
 - Technical Report (forthcoming)
 
