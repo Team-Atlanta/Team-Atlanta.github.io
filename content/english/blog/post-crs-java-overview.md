@@ -7,7 +7,7 @@ image: "/images/blog/crs-java/icon.png"
 categories: ["Atlantis"]
 author: "Cen Zhang"
 tags: ["java"]
-draft: true
+draft: false
 ---
 
 Atlantis-Java is a specialized bug-finding subsystem within the [Atlantis CRS framework](https://team-atlanta.github.io/blog/post-atl-infra/), specifically designed for Java CPV detection in the AIxCC competition.

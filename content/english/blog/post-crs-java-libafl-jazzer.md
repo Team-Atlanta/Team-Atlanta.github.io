@@ -7,7 +7,7 @@ image: "/images/blog/crs-java/libafl-jazzer/jazzer_plus_libafl.png"
 categories: ["Atlantis"]
 author: "Ammar Askar"
 tags: ["retrospective", "java"]
-draft: true
+draft: false
 ---
 
 AIxCC involved finding bugs in software written in two languages: C++ and *Java*.
