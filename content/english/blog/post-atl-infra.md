@@ -1,7 +1,7 @@
 ---
 title: "Atlantis Infrastructure"
 meta_title: ""
-description: "Beginning"
+description: "Atlantis Infrastructure"
 date: 2025-08-13T05:00:00Z
 image: "/images/blog/atl-infra/infra.png"
 categories: ["Atlantis"]
