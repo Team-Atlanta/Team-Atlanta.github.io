@@ -126,4 +126,4 @@ This precision-guided approach represents a significant evolution beyond coverag
 
 ---
 
-*This post is part of our series on Atlantis-Java components. Next, we'll explore our [LibAFL-based Jazzer integration](https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/) for enhanced mutation diversity.*
+*This post is part of our series on Atlantis-Java components. We already explored our [LibAFL-based Jazzer integration](https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/) for enhanced mutation diversity. Check back later for more.*
