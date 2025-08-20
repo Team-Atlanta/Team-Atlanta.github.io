@@ -19,7 +19,7 @@ multiple fuzzing instances running different fuzzing engines.
 
 ## Overview of **Atlantis-C**
 
-TODO: update and add figure
+{{< figure src="images/blog/crs-c/overview/overview.png" class="img-fluid text-center" width="80%" caption="Fig.1 Overview of Atlantis-C" >}}
 
 **Atlantis-C** is consisted of multiple microservices that communicate via Kafka.
 The microservices can be grouped into two modules, the controller and worker modules.
@@ -87,7 +87,8 @@ providing shortcuts through complex validation that could take millions of rando
 ## Other Components in **Atlantis-C**
 
 This blog post briefly introduces the core pipeline of **Atlantis-C**.
-Each of the microservices shown in (TODO: fig) have interesting stories behind them worth sharing.
+Each of the microservices shown in [Fig. 1](#overview-of-atlantis-c)
+like the *Bullseye Directed Fuzzer*, *Deep Generator*, *Ensembler* have interesting stories behind them worth sharing.
 We will try to cover these in future blog posts.
 
 ## How Did **Atlantis-C** Perform?
@@ -103,14 +104,15 @@ More detailed analysis will be available once we are done with the post-mortem a
 
 - **Technical Report**: Complete implementation details, evaluation results, and more!
 
-- **Post-Mortem Analysis**: In-depth analysis of how we dominated AIxCC.
+- **Post-Mortem Analysis**: In-depth analysis of how Atlantis dominated AIxCC.
 
 - **Open Source Release**: Making key components available and usable(!) to anyone in the community.
 
 ## Join the Conversation
 
 We're excited to share more about Atlantis and learn from the community's experiences.
-Have questions or ideas? Want to collaborate? Reach out to [us](https://www.linkedin.com/company/team-atlanta/) directly!
+Have questions or ideas? Want to collaborate?
+Reach out to [us](https://www.linkedin.com/company/team-atlanta/) directly!
 
 ## Reference
 
