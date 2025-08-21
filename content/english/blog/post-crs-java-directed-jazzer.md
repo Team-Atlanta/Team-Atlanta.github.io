@@ -4,7 +4,7 @@ meta_title: ""
 description: "Guiding Jazzer towards critical code locations"
 date: 2025-08-19T12:00:00Z
 image: "/images/blog/crs-java/directed/featured.png"
-categories: ["Atlantis"]
+categories: ["Atlantis-Java"]
 author: "Fabian Fleischer"
 tags: ["directed fuzzing", "java", "sinkpoints"]
 draft: false

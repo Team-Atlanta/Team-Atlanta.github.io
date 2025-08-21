@@ -4,7 +4,7 @@ meta_title: ""
 description: "Overview of Atlantis-Multilang"
 date: 2025-08-20T05:00:00Z
 image: "/images/blog/crs-multilang/multilang.png"
-categories: ["Atlantis"]
+categories: ["Atlantis-Multilang"]
 author: "HyungSeok Han"
 tags: ["multilang"]
 draft: true

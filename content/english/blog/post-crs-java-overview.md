@@ -4,7 +4,7 @@ meta_title: ""
 description: "Overview of Atlantis-Java"
 date: 2025-08-19T10:00:00Z
 image: "/images/blog/crs-java/overview/icon.png"
-categories: ["Atlantis"]
+categories: ["Atlantis-Java"]
 author: "Cen Zhang"
 tags: ["java"]
 draft: false

@@ -4,7 +4,7 @@ meta_title: ""
 description: "How we incorporated LibAFL as a new fuzzing backend for Jazzer"
 date: 2025-08-19T11:00:00Z
 image: "/images/blog/crs-java/libafl-jazzer/jazzer_plus_libafl.png"
-categories: ["Atlantis"]
+categories: ["Atlantis-Java"]
 author: "Ammar Askar"
 tags: ["retrospective", "java"]
 draft: false
