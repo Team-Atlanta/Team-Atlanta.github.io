@@ -3,7 +3,7 @@ title: "Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection"
 meta_title: ""
 description: "Overview of Atlantis-Java"
 date: 2025-08-19T10:00:00Z
-image: "/images/blog/crs-java/icon.png"
+image: "/images/blog/crs-java/overview/icon.png"
 categories: ["Atlantis"]
 author: "Cen Zhang"
 tags: ["java"]
@@ -124,8 +124,8 @@ Following rescheduling, Atlantis-Java synchronizes all cached sinkpoint metadata
 The framework integrates multiple specialized tools for sinkpoint exploration and exploitation:
 
 - Exploration-focused components
-  - Directed-Jazzer: Guides fuzzing toward potentially reachable sinkpoints
-  - LibAFL-Jazzer: Leveraging libAFL mutators for more diverse input mutations
+  - [Directed-Jazzer](https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/): Guides fuzzing toward potentially reachable sinkpoints
+  - [LibAFL-Jazzer](https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/): Leveraging libAFL mutators for more diverse input mutations
   - DeepGen: LLM-based input generation script generator
   - DictGen: LLM-based fuzzing dictionary generation
 
@@ -138,7 +138,7 @@ The framework integrates multiple specialized tools for sinkpoint exploration an
 
 ## How Does Atlantis-Java Perform?
 
-While we don't have full log for post-mortem analysis, the recovered logs have recorded 107 deduplicated PoV submissions from Atlantis to organizers.
+While we don't have full log for post-mortem analysis, the recovered logs have recorded 107 deduplicated PoV submissions (122 in total, 15 submission logs were lost..) from Atlantis to organizers.
 Among them, 23 submissions are of Java CPs and Atlantis-Java submitted 15 of them, which is a strong indicator for its effectiveness.
 
 ## What's Next
