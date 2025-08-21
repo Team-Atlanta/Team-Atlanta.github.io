@@ -45,7 +45,7 @@ False or missing matches could misdirect the fuzzer toward incorrect targets, po
 ## Static Analysis
 
 Our static analysis pipeline detects sinkpoints, checks reachability and exploitability, and calculates sinkpoint distances in the call graph.
-Recognizing that no single analysis tool provides complete call graph coverage, we merge the call graphs from multiple frameworks including CodeQL, Soot, and Joern.
+Recognizing that no single analysis tool provides complete call graph coverage, we merge the call graphs from multiple frameworks including CodeQL, Soot, and Joern as well as from dynamic execution traces.
 This multi-tool approach handles Java's complex object-oriented features where interface calls and reflective invocations often confound individual analyzers.
 
 **Sinkpoint Detection**.
@@ -94,7 +94,7 @@ The system combines pre-computed method-level distances with runtime basic block
 The distance metric itself uses an off-the-shelf formula: We calculate the average distance of each basic block given the trace of a seed, with the basic block distance being the sum of the method distance and the intra-CFG distance to the next level in the CG.
 
 **Sinkpoint Scheduling**.
-Our scheduler schedules up to 15 concurrent sinkpoints using prioritized round-robin scheduling.
+Our [scheduler](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-java/crs/fuzzers/atl-jazzer/src/main/java/com/code_intelligence/jazzer/driver/directed/FuzzInputDistanceCalculator.java#L301) schedules up to 15 concurrent sinkpoints using prioritized round-robin scheduling.
 The system uses two separate queues to implement prioritization: one queue contains all active sinkpoints, while a second queue contains only high-priority sinkpoints from SARIF reports or diff mode.
 The round-robin scheduler consideres both queues, effectively scheduling SARIF and diff-related sinkpoints twice as frequently as regular sinkpoints.
 This dual-queue approach ensures that competition-relevant sinkpoints receive appropriate focus while maintaining systematic coverage and a scheduling guarantee for all sinkpoints.
@@ -123,6 +123,12 @@ By combining static analysis with runtime distance computation, we create a syst
 The approach proves particularly valuable in the time-constrained competition scenario where reaching security-critical code quickly is essential for effective vulnerability discovery.
 
 This precision-guided approach represents a significant evolution beyond coverage-based fuzzing, focusing computational resources on the code locations that matter most for security testing.
+
+## References
+
+- [Directed Jazzer modifications](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/fuzzers/atl-jazzer/src/main/java/com/code_intelligence/jazzer/driver/directed)
+- Static analysis components based on [CodeQL](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/codeql) and [Soot](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-java/crs/static-analysis)
+
 
 ---
 
