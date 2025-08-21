@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on Team Atlanta</title>
+    <link>http://localhost:1313/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Team Atlanta</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Aug 2025 10:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Atlantis-C: A </title>
+      <link>http://localhost:1313/blog/post-crs-c-overview/</link>
+      <pubDate>Tue, 19 Aug 2025 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-crs-c-overview/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Atlantis-C&lt;/strong&gt; is a vulnerability detection subsystem developed as a part of the &lt;a href=&#34;https://team-atlanta.github.io/blog/post-atl-infra/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;Atlantis CRS framework&lt;/a&gt;, focusing on finding bugs in C/C++ programs.&#xA;Rather than limiting itself to the libFuzzer based toolset provided by the &lt;a href=&#34;https://github.com/aixcc-finals/oss-fuzz-aixcc/&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;AIxCC competition infrastructure&lt;/a&gt;,&#xA;it integrates multiple fuzzing engines (LibAFL, AFL++, libFuzzer, and other custom components).&#xA;&lt;strong&gt;Atlantis-C&lt;/strong&gt; aimed to crank up its capability by adding independent modules&#xA;that can seamlessly orchestrate, synchronize, and enhance&#xA;multiple fuzzing instances running different fuzzing engines.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
