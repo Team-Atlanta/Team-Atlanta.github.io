@@ -76,6 +76,21 @@ draft: false
     <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
+        <img src="/images/favicons/meritalk.ico" alt="MeriTalk" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://www.meritalk.com/articles/darpa-announces-winners-of-ai-cyber-challenge/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            DARPA Announces Winners of AI Cyber Challenge
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">MeriTalk • August 12, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
         <img src="/images/favicons/georgia-tech.ico" alt="Georgia Tech" class="w-6 h-6 mr-3">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           <a href="https://www.cc.gatech.edu/news/georgia-tech-makes-history-wins-darpa-challenge" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
@@ -87,8 +102,8 @@ draft: false
     </div>
   </div>
 
-  <div class="timeline-content-right">
-    <div class="timeline-article-dot timeline-right-dot"></div>
+  <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/rswebsols.png" alt="RSWebsols" class="w-6 h-6 mr-3">
@@ -102,8 +117,8 @@ draft: false
     </div>
   </div>
 
-  <div class="timeline-content-left">
-    <div class="timeline-article-dot timeline-left-dot"></div>
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/sammyguru.png" alt="SammyGuru" class="w-6 h-6 mr-3">
@@ -117,8 +132,8 @@ draft: false
     </div>
   </div>
 
-  <div class="timeline-content-right">
-    <div class="timeline-article-dot timeline-right-dot"></div>
+  <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/sammobile.ico" alt="SamMobile" class="w-6 h-6 mr-3">
@@ -129,6 +144,21 @@ draft: false
         </h3>
       </div>
       <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">SamMobile • August 11, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
+        <img src="/images/favicons/executivegov.png" alt="ExecutiveGov" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://www.executivegov.com/articles/darpa-ai-cyber-challenge-open-source-software-team-atlanta-cyber-reasoning" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            DARPA Announces AI Cyber Challenge Winners
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">ExecutiveGov • August 11, 2025</p>
     </div>
   </div>
 
@@ -159,36 +189,6 @@ draft: false
         </h3>
       </div>
       <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">Infosecurity Magazine • August 9, 2025</p>
-    </div>
-  </div>
-
-  <div class="timeline-content-left">
-    <div class="timeline-article-dot timeline-left-dot"></div>
-    <div class="timeline-card">
-      <div class="flex items-center mb-4">
-        <img src="/images/favicons/meritalk.ico" alt="MeriTalk" class="w-6 h-6 mr-3">
-        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-          <a href="https://www.meritalk.com/articles/darpa-announces-winners-of-ai-cyber-challenge/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
-            DARPA Announces Winners of AI Cyber Challenge
-          </a>
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">MeriTalk • August 9, 2025</p>
-    </div>
-  </div>
-
-  <div class="timeline-content-right">
-    <div class="timeline-article-dot timeline-right-dot"></div>
-    <div class="timeline-card">
-      <div class="flex items-center mb-4">
-        <img src="/images/favicons/executivegov.png" alt="ExecutiveGov" class="w-6 h-6 mr-3">
-        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-          <a href="https://www.executivegov.com/articles/darpa-ai-cyber-challenge-open-source-software-team-atlanta-cyber-reasoning" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
-            DARPA Announces AI Cyber Challenge Winners
-          </a>
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">ExecutiveGov • August 9, 2025</p>
     </div>
   </div>
 
@@ -355,7 +355,7 @@ draft: false
           </a>
         </h3>
       </div>
-      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">Samsung Newsroom • August 11, 2024</p>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">Samsung Newsroom • August 20, 2024</p>
     </div>
   </div>
 
@@ -373,6 +373,9 @@ draft: false
     </div>
   </div>
 
+  <!-- 2023 Year Marker -->
+  <div class="timeline-period-marker timeline-year-change">2023</div>
+
   <div class="timeline-content-left">
     <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
@@ -386,9 +389,6 @@ draft: false
       <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">DARPA Official • December 14, 2023</p>
     </div>
   </div>
-
-  <!-- 2023 Year Marker -->
-  <div class="timeline-period-marker timeline-year-change">2023</div>
 
   <div class="timeline-content-right">
     <div class="timeline-article-dot timeline-right-dot"></div>
