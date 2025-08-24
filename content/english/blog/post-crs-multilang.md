@@ -7,7 +7,7 @@ image: "/images/blog/crs-multilang/multilang.png"
 categories: ["Atlantis-Multilang"]
 author: "HyungSeok Han"
 tags: ["multilang"]
-draft: true
+draft: false
 ---
 
 ## Atlantis-Multilang == UniAFL
