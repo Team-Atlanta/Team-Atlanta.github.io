@@ -16,6 +16,21 @@ draft: false
     <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
+        <img src="/images/favicons/securityboulevard.png" alt="Security Boulevard" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://securityboulevard.com/2025/08/darpa-ai-cyber-challenge-winners-impress-with-quick-scalable-patching/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            DARPA AI Cyber Challenge Winners Impress With Quick, Scalable Patching
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">Security Boulevard • August 18, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
         <img src="/images/favicons/openssf.ico" alt="OpenSSF" class="w-6 h-6 mr-3">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           <a href="https://openssf.org/blog/2025/08/14/openssf-at-black-hat-usa-2025-def-con-33-aixcc-highlights-big-wins-and-the-future-of-securing-open-source/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
@@ -27,8 +42,8 @@ draft: false
     </div>
   </div>
 
-  <div class="timeline-content-right">
-    <div class="timeline-article-dot timeline-right-dot"></div>
+  <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/fortune.ico" alt="Fortune" class="w-6 h-6 mr-3">
@@ -42,8 +57,8 @@ draft: false
     </div>
   </div>
 
-  <div class="timeline-content-left">
-    <div class="timeline-article-dot timeline-left-dot"></div>
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/healthcare-it-news.ico" alt="Healthcare IT News" class="w-6 h-6 mr-3">
@@ -57,18 +72,63 @@ draft: false
     </div>
   </div>
 
-  <div class="timeline-content-right">
-    <div class="timeline-article-dot timeline-right-dot"></div>
+  <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
         <img src="/images/favicons/georgia-tech.ico" alt="Georgia Tech" class="w-6 h-6 mr-3">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           <a href="https://www.cc.gatech.edu/news/georgia-tech-makes-history-wins-darpa-challenge" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
-            Georgia Tech Makes History, Wins DARPA Challenge
+            [GT Official] Georgia Tech Makes History, Wins DARPA Challenge
           </a>
         </h3>
       </div>
       <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">Georgia Tech News • August 11, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
+        <img src="/images/favicons/rswebsols.png" alt="RSWebsols" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://www.rswebsols.com/news/defcon-winners-of-darpas-4m-ai-cyber-challenge-unveiled/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            #DEFCON: Winners of DARPA's $4M AI Cyber Challenge Unveiled
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">RSWebsols • August 11, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
+        <img src="/images/favicons/sammyguru.png" alt="SammyGuru" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://sammyguru.com/samsung-wins-first-place-in-world-largest-ai-security-technology-competition/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            Samsung Wins First Place in World's Largest AI Security Technology Competition
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">SammyGuru • August 11, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
+        <img src="/images/favicons/sammobile.ico" alt="SamMobile" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://www.sammobile.com/news/samsung-wins-darpas-ai-cyber-challenge-takes-home-4-million/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            Samsung wins DARPA's AI Cyber Challenge, takes home $4 million
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">SamMobile • August 11, 2025</p>
     </div>
   </div>
 
@@ -136,9 +196,69 @@ draft: false
     <div class="timeline-article-dot timeline-left-dot"></div>
     <div class="timeline-card">
       <div class="flex items-center mb-4">
+        <img src="/images/favicons/opentools.ico" alt="OpenTools" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://opentools.ai/news/samsung-leads-global-charge-in-ai-cybersecurity-team-atlanta-secures-top-spot-in-aixcc#section26" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            Samsung Leads Global Charge in AI Cybersecurity: Team Atlanta Secures Top Spot in AIxCC
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">OpenTools • August 9, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
+        <img src="/images/favicons/nextgov.png" alt="Nextgov" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://www.nextgov.com/cybersecurity/2025/08/darpa-unveils-winners-ai-challenge-boost-critical-infrastructure-cybersecurity/407337/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            DARPA unveils winners of AI challenge to boost critical infrastructure cybersecurity
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">Nextgov • August 8, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
+        <img src="/images/favicons/cybersecuritydive.ico" alt="Cybersecurity Dive" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://www.cybersecuritydive.com/news/darpa-ai-cyber-challenge-winners-def-con/757252/" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            DARPA touts value of AI-powered vulnerability detection as it announces competition winners
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">Cybersecurity Dive • August 8, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-right">
+    <div class="timeline-article-dot timeline-right-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
+        <img src="/images/favicons/therecord.ico" alt="The Record" class="w-6 h-6 mr-3">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          <a href="https://therecord.media/darpa-ai-code-competition-winner-def-con" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+            DARPA announces $4 million winner of AI code review competition at DEF CON
+          </a>
+        </h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">The Record • August 8, 2025</p>
+    </div>
+  </div>
+
+  <div class="timeline-content-left">
+    <div class="timeline-article-dot timeline-left-dot"></div>
+    <div class="timeline-card">
+      <div class="flex items-center mb-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           <a href="https://www.darpa.mil/news/2025/aixcc-results" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
-            [DARPA] AI Cyber Challenge Marks Pivotal Inflection Point for Cyber Defense
+            [DARPA Official] AI Cyber Challenge Marks Pivotal Inflection Point for Cyber Defense
           </a>
         </h3>
       </div>
@@ -156,7 +276,7 @@ draft: false
         <img src="/images/favicons/georgia-tech.ico" alt="Georgia Tech" class="w-6 h-6 mr-3">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           <a href="https://www.gatech.edu/news/2024/11/04/google-cybersecurity-team-inspired-georgia-techs-aixcc-win" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
-            Google Cybersecurity Team Inspired by Georgia Tech's AIxCC Win
+            [GT Official] Google Cybersecurity Team Inspired by Georgia Tech's AIxCC Win
           </a>
         </h3>
       </div>
@@ -245,7 +365,7 @@ draft: false
       <div class="flex items-center mb-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           <a href="https://www.darpa.mil/news/2024/ai-cyber-challenge-cybersecurity" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
-            [DARPA] AI Cyber Challenge Proves Promise of AI-Driven Cybersecurity
+            [DARPA Official] AI Cyber Challenge Proves Promise of AI-Driven Cybersecurity
           </a>
         </h3>
       </div>
@@ -259,7 +379,7 @@ draft: false
       <div class="flex items-center mb-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           <a href="https://www.darpa.mil/news/2023/ai-cyber-challenge-opens" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
-            [DARPA] AI Cyber Challenge Opens Registration, Adds $4 Million in Prizes
+            [DARPA Official] AI Cyber Challenge Opens Registration, Adds $4 Million in Prizes
           </a>
         </h3>
       </div>
@@ -276,7 +396,7 @@ draft: false
       <div class="flex items-center mb-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           <a href="https://www.darpa.mil/news/2023/ai-cyber-challenge-software" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
-            [DARPA] AI Cyber Challenge Aims to Secure Nation's Most Critical Software
+            [DARPA Official] AI Cyber Challenge Aims to Secure Nation's Most Critical Software
           </a>
         </h3>
       </div>
