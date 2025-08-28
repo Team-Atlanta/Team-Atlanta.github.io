@@ -100,5 +100,6 @@ They consistently provided meaningful new inputs that helped UniAFL break out of
 </span>
 
 ## What's Next?
+- [🧠 **Explore MLLA: The Multi-Language LLM Agent System**](https://team-atlanta.github.io/blog/post-mlla-overview/)
 - <h5>🚀 See upcoming individual posts diving deeper into each input generator and the UniAFL infrastructure!</h5> 
 - [<h5>🌐 Check UniAFL Source Code!</h5>](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang)
