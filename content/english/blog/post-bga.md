@@ -446,7 +446,6 @@ Ready to explore BGA in detail? Here are your next steps:
   - [BlobGen Agent](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/blobgen_agent)
   - [Generator Agent](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/generator_agent)
   - [Mutator Agent](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/mutator_agent)
-- [libfdp library for FuzzedDataProvider handling](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/libs/libFDP)
 
 ### 🔗 **Related Deep Dives**
 - [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
