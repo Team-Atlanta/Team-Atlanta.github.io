@@ -12,13 +12,15 @@ draft: true
 
 ## Why Programs Beat Payloads
 
-We'll never forget the moment we realized we were asking LLMs the wrong question. Picture this: you need an exploit with exactly 1000 'A' characters followed by shellcode. Ask an LLM to generate it directly, and you might get 847 A's, maybe 1203 A's – never quite right. But ask it to write `payload = "A" * 1000 + shellcode`, and you get perfection every time.
+Here's the problem that changed everything: you need an exploit with exactly 1000 'A' characters followed by shellcode. Ask an LLM to generate it directly, and you might get 847 A's, maybe 1203 A's – never quite right. But ask it to write `payload = "A" * 1000 + shellcode`, and you get perfection every time.
 
-This insight sparked our breakthrough during the AIxCC competition. Instead of hoping AI could guess the right attack data, we taught it to write programs that create that data. The result? **BlobGen found 2 vulnerabilities. Generator found 4. Mutator found 1.** Seven exploits that evolved and adapted until they found their targets.
+This insight sparked our breakthrough during the AIxCC competition. Instead of hoping AI could guess the right attack data, we taught it to write programs that create that data. The result? **Seven unique vulnerabilities discovered** - exploits that evolved and adapted until they found their targets.
 
 The Blob Generation Agent (BGA) framework works on a simple principle: exploits that can rewrite themselves based on what they learn are far more effective than static attacks. Each agent approaches this self-evolution differently – some refine single payloads through iterative feedback, others generate variations and learn from collective results, still others perform surgical modifications on existing inputs.
 
 What emerged was a system where exploits literally evolve in real-time, getting smarter with each execution until they crack their target.
+
+But how did we get there? It started with a fundamental rethink of how AI should approach exploit generation.
 
 ## The Script-Based Breakthrough
 
@@ -50,6 +52,8 @@ def mutate(rnd: random.Random, seed: bytes) -> bytes:
 
 This shift unlocks several key capabilities: handling arbitrarily complex formats (ZIP, XML, Protocol Buffers), incorporating dynamic values (checksums, lengths, timestamps), documenting reasoning in code comments, iterating based on coverage feedback, and generating thousands of variations from a single strategy.
 
+Once we cracked the script-based approach, the next challenge became clear: different vulnerabilities needed different strategies. No single approach would work for everything.
+
 ## The Four Specialists: Brief Overview
 
 The BGA framework coordinates four specialist agents, each with a different strategy for creating self-evolving exploits. Rather than competing, they complement each other – covering different vulnerability landscapes through distinct adaptation mechanisms.
@@ -62,11 +66,13 @@ The BGA framework coordinates four specialist agents, each with a different stra
 
 **🔧 Mutator Agent**: The surgical specialist that focuses on single function transitions when full vulnerability context would exceed LLM limits. It creates targeted mutations for specific transitions, handling deep call graphs with precision.
 
+Now let's dive into how we actually built these agents and the engineering challenges we solved along the way.
+
 ## Building the Agents: The Development Journey
 
 ### 🎭 Orchestrator Agent: Strategic Commander
 
-When we started building BGA, we quickly realized that before any exploit gets crafted, something needed to take command of the operation. The Orchestrator Agent became our mission control for vulnerability exploitation.
+The first challenge we faced wasn't technical – it was logistical. With multiple agents generating exploits concurrently, we needed something to prevent chaos. The Orchestrator Agent emerged as our mission control, turning potential resource conflicts into coordinated strikes.
 
 The Orchestrator receives Bug Inducing Things (BITs) from upstream analysis (BCDA) – detailed vulnerability reports with call paths, trigger conditions, and annotated code. But not every BIT deserves attention. The Orchestrator filters aggressively:
 - Eliminates transitions already covered by previous fuzzing
@@ -99,7 +105,7 @@ The Orchestrator's workflow demonstrates true concurrent execution: preprocessin
 
 ### 🎯 BlobGen Agent: The Precision Sniper
 
-BlobGen became our precision instrument – when you know exactly where the vulnerability is and need a perfect shot to trigger it. This agent specializes in generating Python scripts that create targeted binary payloads, then iteratively refining them through coverage feedback.
+Some vulnerabilities demand surgical precision – exact timestamps, specific byte sequences, perfect format compliance. BlobGen became our answer to these high-stakes scenarios, iteratively crafting Python scripts until they hit their target with sniper-like accuracy.
 
 **The Approach:** Instead of generating payloads directly, BlobGen creates a Python `create_payload() -> bytes` function and refines it through up to 4 iterations based on execution results.
 
@@ -119,8 +125,6 @@ BlobGen became our precision instrument – when you know exactly where the vuln
 ```
 
 The iterative refinement loop allows BlobGen to learn from execution feedback and progressively improve its payload generation script until it successfully reaches the target vulnerability.
-
-**Coverage Intelligence**: We used line coverage information consisting of hit file name, function name, and line number to guide the evolution process. While this coverage data wasn't always perfectly accurate, it provided crucial guidance for the LLM during iterative refinement, helping it understand which parts of the target code were being reached and which critical paths remained unexplored.
 
 **Example Approach: Apache Commons Compress GZIP**
 ```python
@@ -157,7 +161,7 @@ Notice the surgical precision: exact modification time, specific filename patter
 
 ### 🎲 Generator Agent: The Probability Explorer
 
-Generator discovered something counterintuitive: when you can't predict which attack will succeed, systematic variation beats precision. This agent probabilistically reaches target vulnerability points through multiple payload variations rather than hoping for one perfect attempt.
+Then we discovered something counterintuitive that changed our whole approach: when you can't predict which attack will succeed, systematic variation beats precision. The Generator Agent emerged from a crucial realization – instead of fighting LLM non-determinism, we could weaponize it.
 
 **The Approach:** Generator creates `generate(rnd: random.Random) -> bytes` functions that produce 20 variations per iteration. This probabilistic strategy turns LLM non-determinism from weakness into strength through systematic exploration.
 
@@ -236,7 +240,7 @@ The probabilistic approach overcomes LLM non-determinism by embracing it rather 
 
 ### 🔧 Mutator Agent: The Surgical Specialist
 
-Mutator tackles a different problem: what happens when vulnerability paths are so complex that even LLMs can't hold the entire context? Its solution is elegant – focus on single transitions between functions rather than trying to comprehend the whole picture.
+The final breakthrough came when we hit a wall: some vulnerability paths were so complex that even the most capable LLMs couldn't hold the entire context. The Mutator Agent's solution was elegantly simple – focus on single transitions between functions rather than trying to comprehend the whole picture.
 
 **The Strategy:** Mutator creates `mutate(rnd: random.Random, seed: bytes) -> bytes` functions that surgically target specific function-to-function transitions. This focused approach handles large codebases by concentrating on precise transition points.
 
@@ -301,29 +305,34 @@ def _mutate_makernote(rnd, body):
 
 **When Mutator Wins:** Deep call graphs, context limitations, specific transition requirements.
 
+After months of development, we were ready to put BGA to the ultimate test: the AIxCC competition against some of the world's best security teams.
+
 ## Competition Results and Technical Analysis
 
 ### Seven Critical Discoveries
 
-The AIxCC competition provided a real-world test of the self-evolving exploit approach. In the Final Final round, BGA discovered **7 unique vulnerabilities** – genuine bugs in production software that other approaches had not identified.
+The AIxCC competition became our proving ground. When the dust settled, BGA had discovered **7 unique vulnerabilities** – genuine bugs in production software that other approaches had completely missed. Each discovery validated a different aspect of our multi-agent approach.
 
-{{< image src="images/blog/bga/scoreboard.png" caption="BGA's contribution to Team Atlanta's success" >}}
+| Agent | Vulnerabilities Found | Approach |
+|-------|---------------------|----------|
+| **Generator** | 4 PoVs | Probabilistic exploration with 20+ variations |
+| **BlobGen** | 2 PoVs | Iterative refinement with coverage feedback |
+| **Mutator** | 1 PoV | Surgical targeting of function transitions |
+| **Total** | **7 PoVs** | Multi-agent coordination |
 
 These discoveries validate the multi-agent, script-based approach, though the specific code examples shown throughout this post come from earlier development and rounds, illustrating how the techniques work in practice.
 
-### System in Action: How Four Strategies Work Together
+### Why Multiple Agents Were Necessary
 
-An interesting question emerged during development: why not just use the most successful approach (Generator) for everything? The answer lies in how different vulnerability types require different evolutionary strategies.
+A critical question emerged during development: if Generator was finding the most bugs, why not just use it for everything? The answer revealed a fundamental insight about vulnerability exploitation – different bug classes require completely different evolutionary strategies.
 
-**Complementary Evolution Patterns**: Each agent embodies a distinct adaptation mechanism – BlobGen provides iterative refinement, Generator offers probabilistic exploration, and Mutator enables surgical precision. These patterns address fundamentally different challenges in exploit development.
+The Orchestrator coordinates this by analyzing each vulnerability candidate and dispatching appropriate agents concurrently. Some vulnerabilities need surgical precision, others benefit from probabilistic exploration, and still others require iterative refinement. Rather than forcing one approach on all problems, the multi-agent system lets each strategy handle what it does best while running in parallel through intelligent orchestration.
 
-**Real-World Workflow**: When vulnerability candidates arrive from upstream analysis, the Orchestrator analyzes each BIT and dispatches work concurrently: BlobGen handles precise conditions, Generator tackles complex paths with multiple variations, and Mutator focuses on specific function transitions. All three agents work simultaneously using asyncio, launching different exploitation approaches in parallel while maintaining resource limits.
+### The Technical Breakthroughs Behind Our Success
 
-### Technical Innovations That May Have Contributed
+Looking back, several key innovations emerged that we believe enabled these discoveries:
 
-Our analysis suggests several technical factors may have enabled these discoveries:
-
-**Script-Based Generation**: Instead of generating raw payloads, the system creates Python programs that construct exploits programmatically. This enables handling complex formats, incorporating dynamic values, and documenting reasoning in code.
+**The Script-Based Revolution**: Our core breakthrough was teaching LLMs to generate Python programs instead of raw payloads. This paradigm shift unlocked complex format handling, dynamic value incorporation, and self-documenting exploit logic.
 
 **Probabilistic Exploration Strategy**: The Generator approach embraces systematic variation rather than hoping for deterministic success:
 
@@ -338,30 +347,20 @@ for i in range(20):
     coverage.merge(result)  # Learn from ALL attempts
 ```
 
-**Collective Learning from Execution**: Rather than learning only from successes, the system analyzes patterns across all variations:
+**Collective Learning from Execution**: Rather than learning only from successes, the system analyzes patterns across all variations, merging coverage data from multiple payload attempts to understand which strategies are making progress toward the target vulnerability.
 
-```xml
-<COVERAGE_SUMMARY>
-Primary Coverage (Functions in target call path):
-- Functions: 5, Files: 3, Lines: 287
-Changes in Entire Coverage:
-- Newly covered: 2 functions in 2 files (+41 lines)
-- parseHeader: 23 more lines, validateFormat: 18 more lines
-</COVERAGE_SUMMARY>
-```
+**Coverage-Guided Evolution**: We used line coverage information consisting of hit file name, function name, and line number to guide the LLM evolution process. While this coverage data wasn't always perfectly accurate, it provided crucial intelligence that helped our agents understand which parts of the target code were being reached and which critical paths remained unexplored. BlobGen used structured feedback showing exactly which vulnerability conditions were hit versus missed, while Generator tracked collective coverage patterns across all 20+ variations to understand which strategies were making progress toward targets.
 
-**Multi-Agent Coordination**: Building effective multi-agent LLM coordination required solving several engineering challenges including context management through intelligent compression, safety isolation in Docker containers, and domain knowledge integration with specialized security patterns.
+These innovations proved especially effective against the types of vulnerabilities we encountered, which shared several challenging characteristics:
 
-### What We Think Made the Difference
-
-The discoveries appear to benefit from characteristics that favor adaptive approaches:
-
-1. **Format Complexity**: Multi-layer format requirements (valid ZIP containing valid XML containing valid XXE) that challenge traditional random approaches
-2. **Semantic Requirements**: Understanding that specific functions execute commands or that certain values trigger vulnerabilities
-3. **Precision Constraints**: Exact checksums, specific string patterns, correct binary structures  
-4. **Multiple Valid Attack Paths**: Different strategies leading to the same vulnerability
+- **Format Complexity**: Multi-layer format requirements (valid ZIP containing valid XML containing valid XXE) that challenge traditional random approaches
+- **Semantic Requirements**: Understanding that specific functions execute commands or that certain values trigger vulnerabilities  
+- **Precision Constraints**: Exact checksums, specific string patterns, correct binary structures
+- **Multiple Valid Attack Paths**: Different strategies leading to the same vulnerability
 
 We believe traditional approaches would require millions of attempts to accidentally discover these combinations, while the self-evolving approach found them more systematically through code understanding, execution feedback, and adaptive strategy refinement.
+
+Reflecting on this journey, several key insights emerged that go beyond just the technical implementation.
 
 ## Lessons Learned: Key Insights from Development
 
@@ -369,49 +368,73 @@ Developing BGA revealed several critical insights about LLM-based security resea
 
 ### Context Management and LLM Limitations
 
-We discovered that LLM context limitations aren't just about token counts – they're about meaningful reasoning boundaries. The Mutator Agent's focused transition analysis emerged from recognizing that trying to understand entire call graphs often overwhelmed the LLM's ability to provide precise analysis. By concentrating on single function transitions, we achieved surgical precision that wouldn't be possible with broader context.
+One of our biggest revelations was that LLM context limitations aren't just about token counts – they're about meaningful reasoning boundaries. The Mutator Agent's focused transition analysis emerged from recognizing that trying to understand entire call graphs often overwhelmed the LLM's ability to provide precise analysis. By concentrating on single function transitions, we achieved surgical precision that wouldn't be possible with broader context.
 
-### Script-Based vs Direct Generation
+### The Power of Indirection
 
-The shift from generating raw payloads to generating Python scripts that create payloads was transformative. LLMs excel at code generation and logical reasoning but struggle with precise binary format construction. By asking for executable exploit recipes rather than raw exploits, we leveraged LLM strengths while avoiding their weaknesses in exact format compliance.
+Perhaps our most transformative insight was realizing that the best way to get what you want from an LLM isn't always to ask for it directly. By asking for executable exploit recipes rather than raw exploits, we discovered we could leverage LLM strengths (code generation and logical reasoning) while sidestepping their weaknesses (precise binary format construction).
 
 ### Multi-Agent Coordination Challenges
 
-Coordinating multiple LLM agents requires solving problems that don't exist in single-agent systems. We learned that:
+We quickly learned that coordinating multiple LLM agents creates entirely new classes of problems that simply don't exist in single-agent systems. Building effective multi-agent orchestration required breakthroughs in several areas:
 
-- **Fault Isolation** is critical – one agent's failure cannot cascade to others
-- **Resource Management** through semaphore-based concurrency control prevents system exhaustion
-- **Context Transformation** requires tailoring information for each agent's specialized needs
-- **Intelligent Filtering** eliminates redundant work that would waste computational resources
+- **Fault Isolation** is critical – one agent's failure cannot cascade to others, requiring careful async error handling
+- **Resource Management** through semaphore-based concurrency control prevents system exhaustion while maintaining parallelism  
+- **Context Transformation** requires tailoring information for each agent's specialized needs rather than broadcasting everything
+- **Intelligent Filtering** eliminates redundant work across agents to avoid wasting computational resources
+- **Work Distribution** requires understanding each agent's strengths and dispatching appropriate vulnerability contexts
+- **Result Aggregation** from multiple concurrent agents while maintaining system stability and preventing race conditions
 
 ### Domain Knowledge Integration
 
 Rather than overwhelming LLMs with comprehensive security knowledge, we found that adaptive, context-sensitive guidance works better. The system selectively integrates vulnerability patterns and data structure insights based on target-specific analysis, preventing information overload while ensuring relevant knowledge reaches the agents.
 
-### Probabilistic Success vs Deterministic Failure
+### When "Good Enough" Beats Perfect
 
-The Generator Agent taught us that embracing LLM non-determinism through systematic variation is more effective than fighting it. Instead of trying to generate one perfect payload, generating 20 targeted variations dramatically increases success probability while providing collective learning opportunities.
+The Generator Agent taught us a counterintuitive lesson about working with non-deterministic systems: sometimes it's better to generate 20 "good enough" attempts than to spend all your effort trying to craft one perfect solution. This insight applies far beyond exploit generation – it's a fundamental principle for working with any probabilistic AI system.
 
 *For a deep dive into the context engineering techniques that enable these capabilities, see our upcoming post: "Context Engineering: How BGA Teaches LLMs to Write Exploits"*
 
+So where does this breakthrough lead us? The implications extend far beyond just finding vulnerabilities.
+
 ## Future Vision: Where BGA Goes Next
 
-BGA's success in AIxCC is just the beginning. Here's where this technology is heading:
+BGA's success in AIxCC revealed something important: **we already have incredible context information available**, but we may not be utilizing it effectively.
 
-### Immediate Improvements
-- **Cross-Agent Learning**: Successful strategies from Generator inform BlobGen's refinement
-- **Adaptive Selection**: Orchestrator learns which agent types work best for specific vulnerability classes
-- **Context Optimization**: Better compression techniques for larger codebases
+### The Context Goldmine We're Sitting On
 
-### Revolutionary Possibilities
-- **Self-Improving Agents**: Scripts that modify themselves based on execution results
-- **Collaborative Human-AI**: Security researchers guiding agent strategies in real-time
-- **Cross-Language Mastery**: Extending beyond C/Java to Rust, Go, Python
-- **Defensive Applications**: Using BGA to automatically generate patches
+Looking at our current pipeline, we have access to rich information that most LLM systems can only dream of:
 
-### The Broader Impact
+- **Testlang structure** from our harness analysis
+- **Dictgen tokens** and existing dictionary patterns in the repo  
+- **Concolic constraints** from our symbolic execution tools
+- **Call graphs** from CPUA providing precise function relationships
+- **Bug information (BITs)** from BCDA with detailed vulnerability context
+- **Plus many other analysis tools** feeding structured data
 
-BGA proves that AI can do more than assist security research – it can fundamentally transform how we approach vulnerability discovery. The script-based generation paradigm could extend beyond security to any domain where complex test generation is needed.
+The realization hit us: we may not be utilizing these context sources effectively. 
+
+### Context Engineering: The Next Frontier
+
+Working with LLMs taught us they function much like humans in crucial ways:
+
+- **Love top-down descriptions** - they need the big picture first
+- **Require context information and direct instructions** - vague requests fail
+- **Core information is important and verbosity matters** - too much noise hurts, too little context also hurts
+
+This points to a massive opportunity: **context engineering**. People talk about "prompt engineering," but we think the future is "context engineering" - intelligently structuring and presenting information to maximize LLM effectiveness.
+
+### The Questions Driving Us Forward
+
+- **Context Optimization**: How can we effectively structure all this rich information? 
+- **Beyond Fuzzing**: Can we build a full exploit agent for CTF targets (like XBOW) or real-world vulnerabilities without harnesses?
+- **Memory Utilization**: Can we tap into LLMs' knowledge base like humans recall memories? They already know about Java's ServletFileUpload, repository patterns, and common vulnerability classes
+- **Intermediate Representations**: Is there an LLM-friendly structure for representing code, bugs, and exploitation context?
+- **Context Engineering for Discovery**: Can better context engineering enhance not just exploitation but bug discovery itself?
+
+### The Bigger Picture
+
+BGA proved that script-based generation works. Now the question becomes: how far can intelligent context engineering take us? The components are all there - we just need to learn how to orchestrate them more effectively.
 
 ## Dive Deeper
 
