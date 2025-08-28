@@ -6,7 +6,7 @@ date: 2025-08-27T10:00:00Z
 image: "/images/blog/mlla/preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Dongkwan Kim"
-tags: ["mlla", "llm", "vulnerability-discovery"]
+tags: ["mlla", "llm", "vulnerability-discovery", "multi-agent"]
 draft: true
 ---
 
@@ -210,15 +210,15 @@ This is MLLA's surgical mode – taking interesting leads and turning them into 
 ### 🎯 **The Power of Adaptability**
 This dual-mode design captures a crucial insight: <span style="background-color:lightgray;color:green">the best AI-assisted security tools aren't about replacing human approaches, but about intelligently amplifying them at exactly the right moments.</span>
 
-Sometimes you need broad exploration (standalone mode). Sometimes you need surgical precision (full pipeline). MLLA gives you both, automatically switching between them based on what the situation demands.
+Sometimes you need broad exploration (standalone mode). Sometimes you need surgical precision (full pipeline). MLLA supports both modes, allowing users to choose the approach that best fits their current needs.
 
 ## The Orchestration: When All Agents Unite
 
-Here's how the magic actually happens. Picture a cybersecurity war room where our five AI agents are collaborating in real-time:
+Here's how the magic actually happens when the full pipeline mode is activated. Picture a cybersecurity war room where our five AI agents collaborate:
 
-**CPUA** starts by surveying the target, identifying the most promising entry points. **MCGA** then maps out how these entry points connect to potentially dangerous code, while **CGPA** ensures everyone stays oriented in the complexity. When **BCDA** confirms a genuine vulnerability, **BGA** immediately starts crafting targeted exploits.
+**CPUA** surveys the target, identifying the most promising entry points. **MCGA** maps out how these entry points connect to potentially dangerous code, while **CGPA** ensures everyone stays oriented in the complexity. **BCDA** analyzes these connections to confirm genuine vulnerabilities, and **BGA** then crafts targeted exploits for the identified issues.
 
-Throughout this entire process, all agents share information through a distributed intelligence network. When one discovers something interesting, others instantly adapt their strategies. It's collective intelligence operating at machine speed.
+In this orchestrated process, agents work in coordination, sharing information and building upon each other's findings to systematically identify and exploit vulnerabilities.
 
 ## The Results: 7 Vulnerabilities That Mattered
 
