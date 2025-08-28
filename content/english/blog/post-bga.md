@@ -68,13 +68,34 @@ The BGA framework coordinates four specialist agents, each with a different stra
 
 When we started building BGA, we quickly realized that before any exploit gets crafted, something needed to take command of the operation. The Orchestrator Agent became our mission control for vulnerability exploitation.
 
-The Orchestrator receives Bug Inducing Things (BITs) from upstream analysis – detailed vulnerability reports with call paths, trigger conditions, and annotated code. But not every BIT deserves attention. The Orchestrator filters aggressively:
+The Orchestrator receives Bug Inducing Things (BITs) from upstream analysis (BCDA) – detailed vulnerability reports with call paths, trigger conditions, and annotated code. But not every BIT deserves attention. The Orchestrator filters aggressively:
 - Eliminates transitions already covered by previous fuzzing
 - Removes duplicates across different call graphs
 - Filters out paths without conditional branches (no mutation opportunities)
 - Prioritizes high-value targets from recent code changes
 
 Once filtered, it transforms raw BITs into specialized contexts for each agent and dispatches work concurrently using asyncio. One BIT might spawn multiple exploitation attempts across different agents, all running in parallel. The Orchestrator ensures no resource exhaustion, no redundant work, and no cascade failures.
+
+```
+┌─────────────────┐
+│ Preprocess      │ (Create contexts, determine sanitizers, priority handling)
+└────────┬────────┘
+         │
+         ├───────────────────────┬───────────────────────┐
+         ▼                       ▼                       ▼
+┌──────────────────┐    ┌─────────────────┐    ┌──────────────────┐
+│ BlobGenAgent     │    │ GeneratorAgent  │    │ MutatorAgent     │
+│ (Concurrent)     │    │ (Concurrent)    │    │ (Concurrent)     │
+└──────────────────┘    └─────────────────┘    └──────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 ▼
+                        ┌─────────────────┐
+                        │ Finalize        │ (Aggregate results, status reporting)
+                        └─────────────────┘
+```
+
+The Orchestrator's workflow demonstrates true concurrent execution: preprocessing contexts, dispatching to all three agents simultaneously, and aggregating results while maintaining system stability through intelligent resource management.
 
 ### 🎯 BlobGen Agent: The Precision Sniper
 
@@ -411,7 +432,5 @@ Ready to explore BGA in detail? Here are your next steps:
 - Coming Soon: "Inside BCDA: How AI Detects Real Vulnerabilities"
 
 ---
-
-**The Bottom Line:** BGA discovered 7 critical vulnerabilities through self-evolving exploits that adapt and improve based on execution feedback. Generator's probabilistic approach led with 4 discoveries, while BlobGen's iterative refinement and Mutator's surgical precision each contributed their own successes. The results suggest that teaching AI to write programs that create exploits, rather than generating static payloads, opens new possibilities for intelligent vulnerability discovery.
 
 Self-evolving exploits represent a different approach to AI-assisted security research – one where adaptation and learning drive success rather than hoping for perfect initial generation.
