@@ -2,13 +2,13 @@
 title: "MLLA: Teaching LLMs to Hunt Bugs Like Security Researchers"
 meta_title: ""
 description: "Overview of Multi-Language LLM Agent (MLLA) - The most LLM-intensive vulnerability discovery system in Atlantis-Multilang"
-date: 2025-08-27T10:00:00Z
+date: 2025-08-28T10:00:00Z
 image: "/images/blog/mlla/preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Dongkwan Kim"
 authors: ["Dongkwan Kim", "Soyeon Park"]
-tags: ["authors", "mlla", "llm", "vulnerability-discovery", "multi-agent"]
-draft: true
+tags: ["mlla", "llm", "vulnerability-discovery", "multi-agent"]
+draft: false
 ---
 
 ## When Fuzzing Meets Intelligence
@@ -27,13 +27,13 @@ A traditional fuzzer doesn't know that `ProcessBuilder` in Java can execute syst
 
 Over the years, researchers have tried to overcome this limitation with
 [structure-aware
-fuzzing](https://github.com/google/fuzzing/blob/master/docs/structure-aware-fuzzing.md)
-– crafting custom input generators or grammar models
-that understand formats like JSON, PDF, or TLS handshakes. But building these
-harnesses is highly manual and brittle. For example, fuzzing a TLS
-implementation often requires painstakingly writing a generator that encodes
-valid handshake messages; one missing detail and the fuzzer simply stalls at the
-parser. This kind of effort doesn’t scale.
+fuzzing](https://github.com/google/fuzzing/blob/master/docs/structure-aware-fuzzing.md),
+crafting custom input generators or grammar models
+that understand formats like JSON, PDF, or TLS handshakes. But here's the problem: building these
+harnesses is incredibly manual and brittle. Take fuzzing a TLS
+implementation: you need to painstakingly write a generator that encodes
+valid handshake messages, and one missing detail means your fuzzer just stalls at the
+parser. This kind of effort simply doesn't scale.
 
 The cracks in this approach become obvious when you face modern software's complexity:
 
@@ -233,25 +233,24 @@ In this orchestrated process, agents work in coordination, sharing information a
 
 ## The Results: 7 Vulnerabilities That Mattered
 
-When the competition ended, measuring MLLA’s exact contribution was difficult.
-We had disabled logging early on, anticipating that logs would not be available
-during the final evaluation. As a result, we could not precisely quantify how
-many vulnerabilities MLLA uncovered relative to other modules.
+When the competition ended, we couldn't measure MLLA's exact contribution. We'd 
+intentionally turned off logging early on to save storage and computing costs, which meant 
+we couldn't get the exact final evaluation results for each module. However, by utilizing 
+the OpenTelemetry logs from the organizers, we confirmed that MLLA contributed to finding 
+at least 7 unique vulnerabilities.
 
-What we do know is that the submission data confirmed at least 7 unique
-vulnerabilities directly attributable to MLLA. These were not random crashes,
-but sophisticated bugs hiding behind validation layers, buried in complex file
-format parsers, and dependent on precise semantic relationships between code
-components. They required exactly the kind of strategic, format-aware analysis
-that traditional fuzzing struggles with.
+These weren't random crashes. They were sophisticated bugs hiding behind validation layers, 
+buried in complex file format parsers, and dependent on precise semantic relationships 
+between code components. Exactly the kind of strategic, format-aware vulnerabilities that 
+traditional fuzzing struggles to find.
 
-Moreover, in our extensive internal testing before submission, MLLA consistently
-demonstrated its unique value. It often reached complex vulnerabilities that no
-other module could touch, and even when it did not directly trigger a bug itself
-(with the final crash discovered by BGA), its intermediate outputs — bug
-hypotheses, branch conditions, and semantic traces — significantly enriched
-UniAFL’s seed pool and results. In short, MLLA acted not only as a bug finder
-but also as a catalyst, amplifying the effectiveness of the broader system.
+But here's what really matters: in our extensive internal testing before submission, MLLA 
+consistently demonstrated value beyond just finding bugs. It often reached complex 
+vulnerabilities that no other module could touch. And even when MLLA didn't directly trigger 
+the final crash (that honor went to its BGA component), its intermediate outputs like bug 
+hypotheses, branch conditions, and semantic traces significantly enriched [UniAFL's](https://team-atlanta.github.io/blog/post-crs-multilang/) seed pool 
+and results. MLLA acted not just as a bug finder, but as a catalyst that amplified the 
+effectiveness of the entire system.
 
 ## The Engineering Reality Check
 
