@@ -2,7 +2,7 @@
 title: "BGA: Self-Evolving Exploits Through Multi-Agent AI"
 meta_title: ""
 description: "How BGA's multi-agent AI framework creates self-evolving exploits that adapt and improve through coverage feedback - discovering 7 critical vulnerabilities through intelligent iteration"
-date: 2025-08-27T21:00:00Z
+date: 2025-08-29T10:00:00Z
 image: "/images/blog/mlla/bga_preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Dongkwan Kim"
