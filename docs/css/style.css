@@ -4692,16 +4692,14 @@ html {
   overflow: hidden;
   pointer-events: none; }
 
-.blog-single .content h2:not(:first-child),
-.blog-single .content h3:not(:first-child),
-.blog-single .content h4:not(:first-child) {
+.blog-single .content h1:not(:first-child),
+.blog-single .content h2:not(:first-child) {
   border-top: 1px solid rgba(226, 232, 240, 0.6);
   padding-top: 2rem;
   margin-top: 3rem; }
 
-.dark .blog-single .content h2:not(:first-child),
-.dark .blog-single .content h3:not(:first-child),
-.dark .blog-single .content h4:not(:first-child) {
+.dark .blog-single .content h1:not(:first-child),
+.dark .blog-single .content h2:not(:first-child) {
   border-top-color: rgba(51, 65, 85, 0.6); }
 
 .blog-single .content h1 + h2,

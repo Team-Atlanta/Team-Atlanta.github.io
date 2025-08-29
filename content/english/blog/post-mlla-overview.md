@@ -6,7 +6,8 @@ date: 2025-08-27T10:00:00Z
 image: "/images/blog/mlla/preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Dongkwan Kim"
-tags: ["mlla", "llm", "vulnerability-discovery", "multi-agent"]
+authors: ["Dongkwan Kim", "Soyeon Park"]
+tags: ["authors", "mlla", "llm", "vulnerability-discovery", "multi-agent"]
 draft: true
 ---
 
@@ -23,6 +24,16 @@ But what if we could change the game entirely?
 Don't get us wrong – traditional fuzzing has been a phenomenal success story. It's uncovered thousands of critical vulnerabilities across every piece of software you use daily. But here's the thing: traditional fuzzers are essentially very sophisticated random number generators. They don't *understand* what they're testing.
 
 A traditional fuzzer doesn't know that `ProcessBuilder` in Java can execute system commands. It can't recognize that deserializing untrusted data is a security minefield. It just flips bits and hopes something crashes – which is both its greatest strength and its Achilles' heel.
+
+Over the years, researchers have tried to overcome this limitation with
+[structure-aware
+fuzzing](https://github.com/google/fuzzing/blob/master/docs/structure-aware-fuzzing.md)
+– crafting custom input generators or grammar models
+that understand formats like JSON, PDF, or TLS handshakes. But building these
+harnesses is highly manual and brittle. For example, fuzzing a TLS
+implementation often requires painstakingly writing a generator that encodes
+valid handshake messages; one missing detail and the fuzzer simply stalls at the
+parser. This kind of effort doesn’t scale.
 
 The cracks in this approach become obvious when you face modern software's complexity:
 
@@ -222,9 +233,25 @@ In this orchestrated process, agents work in coordination, sharing information a
 
 ## The Results: 7 Vulnerabilities That Mattered
 
-When the competition ended, the numbers told the story. MLLA discovered 7 unique vulnerabilities – each one requiring the exact kind of strategic, format-aware analysis that traditional fuzzing struggles with.
+When the competition ended, measuring MLLA’s exact contribution was difficult.
+We had disabled logging early on, anticipating that logs would not be available
+during the final evaluation. As a result, we could not precisely quantify how
+many vulnerabilities MLLA uncovered relative to other modules.
 
-These weren't random crashes. They were sophisticated bugs hiding behind validation layers, buried in complex file format parsers, and dependent on precise semantic relationships between different code components. The kind of vulnerabilities that require both deep code understanding and creative exploitation thinking to uncover.
+What we do know is that the submission data confirmed at least 7 unique
+vulnerabilities directly attributable to MLLA. These were not random crashes,
+but sophisticated bugs hiding behind validation layers, buried in complex file
+format parsers, and dependent on precise semantic relationships between code
+components. They required exactly the kind of strategic, format-aware analysis
+that traditional fuzzing struggles with.
+
+Moreover, in our extensive internal testing before submission, MLLA consistently
+demonstrated its unique value. It often reached complex vulnerabilities that no
+other module could touch, and even when it did not directly trigger a bug itself
+(with the final crash discovered by BGA), its intermediate outputs — bug
+hypotheses, branch conditions, and semantic traces — significantly enriched
+UniAFL’s seed pool and results. In short, MLLA acted not only as a bug finder
+but also as a catalyst, amplifying the effectiveness of the broader system.
 
 ## The Engineering Reality Check
 

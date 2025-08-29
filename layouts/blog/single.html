@@ -13,6 +13,24 @@
             {{ .Title }}
           </h1>
           <ul class="mb-4">
+            <!-- <li class="mr-4 inline-block">
+              <a
+                href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/">
+                <i class="fa-regular fa-circle-user mr-2"></i
+                >{{ .Params.author }}
+              </a>
+            </li> -->
+            {{ $authors := .Params.authors }}
+            {{ if $authors }}
+              <li class="mr-4 inline-block">
+                <i class="fa-regular fa-user-group mr-2 text-primary"></i>
+            {{ range $i,$p:= $authors }}
+                <a href="{{ `authors/` | relLangURL }}{{ . | urlize }}/">
+                  {{ . }}{{ if ne $i (sub (len $authors) 1) }}{{ ", " }}{{ end }}
+                </a>
+            {{ end }}
+              </li>
+            {{ else }}
             <li class="mr-4 inline-block">
               <a
                 href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/">
@@ -20,6 +38,7 @@
                 >{{ .Params.author }}
               </a>
             </li>
+            {{ end }}
             <li class="mr-4 inline-block">
               <i class="fa-regular fa-folder mr-2"></i>
               {{ $categories:= .Params.categories }}

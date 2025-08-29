@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Team Atlanta</title><link>https://team-atlanta.github.io/blog/</link><description>Recent content in Blog on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 20 Aug 2025 05:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Atlantis-Multilang (UniAFL): LLM-powered &amp; Lauguage-agonistic Automatic Bug Finding</title><link>https://team-atlanta.github.io/blog/post-crs-multilang/</link><pubDate>Wed, 20 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-multilang/</guid><description>&lt;h2 id="atlantis-multilang--uniafl">Atlantis-Multilang == UniAFL&lt;/h2>
-&lt;p>Atlantis-Multilang is a fuzzing framework called UniAFL, designed to LLMs for fuzzing across multiple programming languages.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Team Atlanta</title><link>https://team-atlanta.github.io/blog/</link><description>Recent content in Blog on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 20 Aug 2025 05:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Atlantis-Multilang (UniAFL): LLM-powered &amp; Lauguage-agonistic Automatic Bug Finding</title><link>https://team-atlanta.github.io/blog/post-crs-multilang/</link><pubDate>Wed, 20 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-multilang/</guid><description>&lt;h2 id="atlantis-multilang--uniafl"&gt;Atlantis-Multilang == UniAFL&lt;/h2&gt;
+&lt;p&gt;Atlantis-Multilang is a fuzzing framework called UniAFL, designed to LLMs for fuzzing across multiple programming languages.
 Unlike Atlantis-C and Atlantis-Java, it avoids language-specific instrumentation and is intentionally built to be as language-agnostic as possible — both in design and execution.
-&lt;span style="background-color:lightgray;color:green">Despite this broad and general approach, UniAFL proved to be highly effective in the AIxCC finals, contributing to 69.2% of all POV (Proof-of-Vulnerability) submissions.&lt;/span>
+&lt;span style="background-color:lightgray;color:green"&gt;Despite this broad and general approach, UniAFL proved to be highly effective in the AIxCC finals, contributing to 69.2% of all POV (Proof-of-Vulnerability) submissions.&lt;/span&gt;
 This result highlights not only the flexibility of its design but also its strong performance in practice.
-In this post, we’ll walk you through how we pulled it off, why we made these design choices, and what made UniAFL so effective in practice.&lt;/p></description></item><item><title>Sinkpoint-focused Directed Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</link><pubDate>Tue, 19 Aug 2025 12:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</guid><description>&lt;p>Traditional coverage-based fuzzers excel at code exploration.
-When testing Java code, however, most vulnerabilities require the invocation of a certain Java API, such as creating an SQL statement (&lt;code>java.sql.Statement&lt;/code>) for an SQL injection bug.
+In this post, we’ll walk you through how we pulled it off, why we made these design choices, and what made UniAFL so effective in practice.&lt;/p&gt;</description></item><item><title>Sinkpoint-focused Directed Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</link><pubDate>Tue, 19 Aug 2025 12:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</guid><description>&lt;p&gt;Traditional coverage-based fuzzers excel at code exploration.
+When testing Java code, however, most vulnerabilities require the invocation of a certain Java API, such as creating an SQL statement (&lt;code&gt;java.sql.Statement&lt;/code&gt;) for an SQL injection bug.
 Thus, we target such security-critical APIs with our modified, directed Jazzer to reach and exploit critical code locations faster.
-This blog post gives an overview over our directed fuzzing setup for Java challenge problems.&lt;/p>
-&lt;p>Calculating a distance metric for directed fuzzing requires static analysis to identify critical code locations (aka sinkpoints) and compute distances.
+This blog post gives an overview over our directed fuzzing setup for Java challenge problems.&lt;/p&gt;
+&lt;p&gt;Calculating a distance metric for directed fuzzing requires static analysis to identify critical code locations (aka sinkpoints) and compute distances.
 This static analysis happens mostly offline, independent of the modified Jazzer, to reduce the computational overhead in the fuzzer.
-However, we still compute the CFG (and, thus, basic block-level distances) in Jazzer to maintain a precise distance metric and allow the update of seed distances during fuzzing.&lt;/p></description></item><item><title>Jazzer+LibAFL: Insights into Java Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</link><pubDate>Tue, 19 Aug 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</guid><description>&lt;p>AIxCC involved finding bugs in software written in two languages: C++ and &lt;em>Java&lt;/em>.
+However, we still compute the CFG (and, thus, basic block-level distances) in Jazzer to maintain a precise distance metric and allow the update of seed distances during fuzzing.&lt;/p&gt;</description></item><item><title>Jazzer+LibAFL: Insights into Java Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</link><pubDate>Tue, 19 Aug 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</guid><description>&lt;p&gt;AIxCC involved finding bugs in software written in two languages: C++ and &lt;em&gt;Java&lt;/em&gt;.
 The focus of the competition was on the use of LLMs and AI, however, our teams
 approach was to balance ambitious strategies alongside proven traditional
 bug-finding techniques like fuzzing.
@@ -26,9 +26,9 @@ LibAFL as the fuzzing backend and it is available as
  
 
 
->part of our open source release&lt;/a>.
+&gt;part of our open source release&lt;/a&gt;.
 This post details some of the lessons we learned about Java fuzzing and the
-creation of this fork.&lt;/p></description></item><item><title>Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection</title><link>https://team-atlanta.github.io/blog/post-crs-java-overview/</link><pubDate>Tue, 19 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-overview/</guid><description>&lt;p>Atlantis-Java is a specialized bug-finding subsystem within the &lt;a href="https://team-atlanta.github.io/blog/post-atl-infra/"
+creation of this fork.&lt;/p&gt;</description></item><item><title>Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection</title><link>https://team-atlanta.github.io/blog/post-crs-java-overview/</link><pubDate>Tue, 19 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-overview/</guid><description>&lt;p&gt;Atlantis-Java is a specialized bug-finding subsystem within the &lt;a href="https://team-atlanta.github.io/blog/post-atl-infra/"
 
 
 
@@ -37,17 +37,17 @@ creation of this fork.&lt;/p></description></item><item><title>Atlantis-Java: A 
  
 
 
->Atlantis CRS framework&lt;/a>, specifically designed for Java CPV detection in the AIxCC competition.
-It integrates fuzzing, program analysis, and LLM capabilities, with a particular focus on security-sensitive APIs (also known as sinks).&lt;/p>
-&lt;h2 id="many-java-vulnerabilities-are-sink-centered">Many Java Vulnerabilities Are Sink-Centered&lt;/h2>
-&lt;figure class="img-fluid text-center">&lt;img src="https://team-atlanta.github.io/images/blog/crs-java/overview/motivation-example.png"
- alt="Fig.1 Example CPV from AIxCC Semifinal Jenkins CP" width="80%">&lt;figcaption>
- &lt;p>Fig.1 Example CPV from AIxCC Semifinal Jenkins CP&lt;/p>
- &lt;/figcaption>
-&lt;/figure>
+&gt;Atlantis CRS framework&lt;/a&gt;, specifically designed for Java CPV detection in the AIxCC competition.
+It integrates fuzzing, program analysis, and LLM capabilities, with a particular focus on security-sensitive APIs (also known as sinks).&lt;/p&gt;
+&lt;h2 id="many-java-vulnerabilities-are-sink-centered"&gt;Many Java Vulnerabilities Are Sink-Centered&lt;/h2&gt;
+&lt;figure class="img-fluid text-center"&gt;&lt;img src="https://team-atlanta.github.io/images/blog/crs-java/overview/motivation-example.png"
+ alt="Fig.1 Example CPV from AIxCC Semifinal Jenkins CP" width="80%"&gt;&lt;figcaption&gt;
+ &lt;p&gt;Fig.1 Example CPV from AIxCC Semifinal Jenkins CP&lt;/p&gt;
+ &lt;/figcaption&gt;
+&lt;/figure&gt;
 
-&lt;p>This vulnerability contains a backdoor that enables OS command injection when specific conditions are met.
-The &lt;code>ProcessBuilder&lt;/code> constructor serves as a &lt;a href="https://github.com/github/codeql/blob/963e02864515b3f09fbd1c53e04ab0c4499c0351/java/ql/lib/ext/java.lang.model.yml#L15"
+&lt;p&gt;This vulnerability contains a backdoor that enables OS command injection when specific conditions are met.
+The &lt;code&gt;ProcessBuilder&lt;/code&gt; constructor serves as a &lt;a href="https://github.com/github/codeql/blob/963e02864515b3f09fbd1c53e04ab0c4499c0351/java/ql/lib/ext/java.lang.model.yml#L15"
 
 
 
@@ -56,17 +56,17 @@ The &lt;code>ProcessBuilder&lt;/code> constructor serves as a &lt;a href="https:
  
 
 
->sink API&lt;/a>, where an attacker-controllable first argument can lead to arbitrary command execution.
-The sinkpoint (line 20) refers to the location in the target CP where this sink API is called.&lt;/p></description></item><item><title>Atlantis Infrastructure</title><link>https://team-atlanta.github.io/blog/post-atl-infra/</link><pubDate>Wed, 13 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl-infra/</guid><description>&lt;p>The AIxCC competition is not just about creating automated bug-finding and patching techniques
-&amp;ndash; it is about building a &lt;strong>cyber reasoning system&lt;/strong> (CRS) that can do both without any human assistance.
-To succeed, a CRS must excel in four critical infrastructure areas:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Reliability:&lt;/strong> Run continuously for weeks without intervention.&lt;/li>
-&lt;li>&lt;strong>Scalability:&lt;/strong> Handle many challenge projects concurrently.&lt;/li>
-&lt;li>&lt;strong>Budget Utilization:&lt;/strong> Maximize Azure cloud and LLM credit usage.&lt;/li>
-&lt;li>&lt;strong>Submission Management:&lt;/strong> Consistently deliver valid proof-of-vulnerability blobs (POVs), Patches, SARIF assessments, and Bundles.&lt;/li>
-&lt;/ul>
-&lt;p>In this post, we will share how we designed the infrastructure of our CRS, &lt;strong>Atlantis&lt;/strong>, to meet these keys and make it as robust as possible.
+&gt;sink API&lt;/a&gt;, where an attacker-controllable first argument can lead to arbitrary command execution.
+The sinkpoint (line 20) refers to the location in the target CP where this sink API is called.&lt;/p&gt;</description></item><item><title>Atlantis Infrastructure</title><link>https://team-atlanta.github.io/blog/post-atl-infra/</link><pubDate>Wed, 13 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl-infra/</guid><description>&lt;p&gt;The AIxCC competition is not just about creating automated bug-finding and patching techniques
+&amp;ndash; it is about building a &lt;strong&gt;cyber reasoning system&lt;/strong&gt; (CRS) that can do both without any human assistance.
+To succeed, a CRS must excel in four critical infrastructure areas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reliability:&lt;/strong&gt; Run continuously for weeks without intervention.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability:&lt;/strong&gt; Handle many challenge projects concurrently.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Budget Utilization:&lt;/strong&gt; Maximize Azure cloud and LLM credit usage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Submission Management:&lt;/strong&gt; Consistently deliver valid proof-of-vulnerability blobs (POVs), Patches, SARIF assessments, and Bundles.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this post, we will share how we designed the infrastructure of our CRS, &lt;strong&gt;Atlantis&lt;/strong&gt;, to meet these keys and make it as robust as possible.
 We could not have won AIxCC without the exceptional work of &lt;a href="https://team-atlanta.github.io/authors/#team-infra"
 
 
@@ -74,7 +74,7 @@ We could not have won AIxCC without the exceptional work of &lt;a href="https://
  
 
 
->our infrastructure team&lt;/a>.&lt;/p></description></item><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p>Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
+&gt;our infrastructure team&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p&gt;Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
 
 
 
@@ -83,10 +83,10 @@ We could not have won AIxCC without the exceptional work of &lt;a href="https://
  
 
 
->DEF CON 31&lt;/a>,
+&gt;DEF CON 31&lt;/a&gt;,
 our team stood on stage as the winners of the AIxCC Final—a moment we had been working toward
-since the competition began.&lt;/p>
-&lt;p>Yet when we heard we placed 1st, relief overshadowed excitement.
+since the competition began.&lt;/p&gt;
+&lt;p&gt;Yet when we heard we placed 1st, relief overshadowed excitement.
 Why? While competing head-to-head with world-class teams like &lt;a href="https://theori.io/blog/aixcc-and-roboduck-63447"
 
 
@@ -96,9 +96,9 @@ Why? While competing head-to-head with world-class teams like &lt;a href="https:
  
 
 
->Theori&lt;/a>
+&gt;Theori&lt;/a&gt;
 was a privilege, the real-time, long-running nature of this competition
-demanded extreme engineering reliability alongside novel approaches to succeed.&lt;/p></description></item><item><title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title><link>https://team-atlanta.github.io/blog/post-tkctf-2024/</link><pubDate>Tue, 03 Dec 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-tkctf-2024/</guid><description>&lt;p>For the first time, we deployed our hybrid system,
+demanded extreme engineering reliability alongside novel approaches to succeed.&lt;/p&gt;</description></item><item><title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title><link>https://team-atlanta.github.io/blog/post-tkctf-2024/</link><pubDate>Tue, 03 Dec 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-tkctf-2024/</guid><description>&lt;p&gt;For the first time, we deployed our hybrid system,
 powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl"
 
 
@@ -106,7 +106,7 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
->Atlantis&lt;/a>—to compete in &lt;a href="https://www.gatech.edu/"
+&gt;Atlantis&lt;/a&gt;—to compete in &lt;a href="https://www.gatech.edu/"
 
 
 
@@ -115,7 +115,7 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
->Georgia Tech’s&lt;/a> flagship CTF event,
+&gt;Georgia Tech’s&lt;/a&gt; flagship CTF event,
 &lt;a href="https://tc.gts3.org/cs6265/2024-fall/ctf.html"
 
 
@@ -125,14 +125,14 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
->TKCTF 2024&lt;/a>.
+&gt;TKCTF 2024&lt;/a&gt;.
 During the competition, Atlantis concentrated on two pivotal areas:
 vulnerability analysis and automatic vulnerability remediation.
-Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>,
-showcasing the practicality and promise of our approach in a real-world hacking competition.&lt;/p>
-&lt;p>In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
+Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;,
+showcasing the practicality and promise of our approach in a real-world hacking competition.&lt;/p&gt;
+&lt;p&gt;In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
 As we prepare to open-source the full details of our system following AIxCC competition rules,
-this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.&lt;/p></description></item><item><title>Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System</title><link>https://team-atlanta.github.io/blog/post-asc-sqlite/</link><pubDate>Wed, 28 Aug 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-asc-sqlite/</guid><description>&lt;p>Without knowing beforehand that the challenge project involved SQLite3,
+this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.&lt;/p&gt;</description></item><item><title>Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System</title><link>https://team-atlanta.github.io/blog/post-asc-sqlite/</link><pubDate>Wed, 28 Aug 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-asc-sqlite/</guid><description>&lt;p&gt;Without knowing beforehand that the challenge project involved SQLite3,
 our team, &lt;a href="https://team-atlanta.github.io/authors"
 
 
@@ -140,7 +140,7 @@ our team, &lt;a href="https://team-atlanta.github.io/authors"
  
 
 
->Team Atlanta&lt;/a>, entered our Cyber Reasoning System (CRS),
+&gt;Team Atlanta&lt;/a&gt;, entered our Cyber Reasoning System (CRS),
 named Atlantis,
 into the &lt;a href="https://aicyberchallenge.com/"
 
@@ -151,7 +151,7 @@ into the &lt;a href="https://aicyberchallenge.com/"
  
 
 
->AI Cyber Challenge&lt;/a>
+&gt;AI Cyber Challenge&lt;/a&gt;
 organized by ARPA-H, DARPA, and the
 &lt;a href="https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/"
 
@@ -162,10 +162,10 @@ organized by ARPA-H, DARPA, and the
  
 
 
->White House&lt;/a>.&lt;/p>
-&lt;p>Remarkably,
+&gt;White House&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Remarkably,
 Atlantis secured six first-bloods and
-autonomously identified and patched a real bug in SQLite3&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>,
+autonomously identified and patched a real bug in SQLite3&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;,
 earning us a $2 million prize and a place in the grand finals of AIxCC.
 For more details, check out our &lt;a href="https://team-atlanta.github.io/blog/post-atl"
 
@@ -174,7 +174,7 @@ For more details, check out our &lt;a href="https://team-atlanta.github.io/blog/
  
 
 
->team&amp;rsquo;s announcement blog&lt;/a>.&lt;/p></description></item><item><title>Announcing Team Atlanta!</title><link>https://team-atlanta.github.io/blog/post-atl/</link><pubDate>Tue, 13 Aug 2024 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl/</guid><description>&lt;p>Hello, world! We are &lt;em>Team Atlanta&lt;/em>, the minds behind Atlantis, our innovative
+&gt;team&amp;rsquo;s announcement blog&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Announcing Team Atlanta!</title><link>https://team-atlanta.github.io/blog/post-atl/</link><pubDate>Tue, 13 Aug 2024 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl/</guid><description>&lt;p&gt;Hello, world! We are &lt;em&gt;Team Atlanta&lt;/em&gt;, the minds behind Atlantis, our innovative
 AI-driven cybersecurity solution competing in the prestigious
 &lt;a href="https://aicyberchallenge.com/"
 
@@ -185,15 +185,15 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->DARPA AIxCC&lt;/a>.&lt;/p>
-&lt;p>&lt;a href="https://team-atlanta.github.io/authors/"
+&gt;DARPA AIxCC&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://team-atlanta.github.io/authors/"
 
 
 
  
 
 
->Our team&lt;/a> is a collaborative powerhouse made up of six leading institutions:
+&gt;Our team&lt;/a&gt; is a collaborative powerhouse made up of six leading institutions:
 &lt;a href="https://www.gatech.edu/"
 
 
@@ -203,7 +203,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->Georgia Tech&lt;/a>,
+&gt;Georgia Tech&lt;/a&gt;,
 &lt;a href="https://www.gtri.gatech.edu/"
 
 
@@ -213,7 +213,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->GTRI&lt;/a>,
+&gt;GTRI&lt;/a&gt;,
 &lt;a href="https://research.samsung.com/"
 
 
@@ -223,7 +223,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->Samsung Research&lt;/a>,
+&gt;Samsung Research&lt;/a&gt;,
 &lt;a href="https://sra.samsung.com/"
 
 
@@ -233,7 +233,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->Samsung Research America&lt;/a>,
+&gt;Samsung Research America&lt;/a&gt;,
 &lt;a href="https://www.kaist.ac.kr/en/"
 
 
@@ -243,7 +243,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->KAIST&lt;/a>, and
+&gt;KAIST&lt;/a&gt;, and
 &lt;a href="https://www.postech.ac.kr/"
 
 
@@ -253,7 +253,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->POSTECH&lt;/a>.
+&gt;POSTECH&lt;/a&gt;.
 Each of these organizations is led by Georgia Tech alumni,
 and includes past winners of prestigious hacking competitions
-such as DEF CON CTF, Pwn2Own and kernelCTF.&lt;/p></description></item></channel></rss>
+such as DEF CON CTF, Pwn2Own and kernelCTF.&lt;/p&gt;</description></item></channel></rss>

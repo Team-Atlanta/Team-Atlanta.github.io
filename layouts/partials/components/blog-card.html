@@ -26,11 +26,29 @@
       
       <!-- Meta Information -->
       <ul class="blog-card-meta mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
-        <li class="flex items-center">
+        <!-- <li class="flex items-center">
           <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
             <i class="fa-regular fa-circle-user mr-2 text-primary"></i>{{ .Params.author }}
           </a>
-        </li>
+        </li> -->
+        {{ $authors := .Params.authors }}
+        {{ if $authors }}
+          <li class="flex inline-block items-center">
+            <i class="fa-regular fa-user-group mr-2 text-primary"></i>
+            {{ range $i,$p:= $authors }}
+              <a href="{{ `authors/` | relLangURL }}{{ . | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                {{ . }}{{ if ne $i (sub (len $authors) 1) }},&nbsp;{{ end }}
+              </a>
+            {{ end }}
+          </li>
+        {{ else }}
+          <li class="flex items-center">
+            <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+              <i class="fa-regular fa-circle-user mr-2 text-primary"></i>{{ .Params.author }}
+            </a>
+          </li>
+        {{ end }}
+
         {{ $categories:= .Params.categories }}
         {{ if $categories }}
           <li class="flex items-center">

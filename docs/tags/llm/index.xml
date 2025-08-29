@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Llm on Team Atlanta</title>
+    <link>http://localhost:1313/tags/llm/</link>
+    <description>Recent content in Llm on Team Atlanta</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 Aug 2025 10:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/llm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MLLA: Teaching LLMs to Hunt Bugs Like Security Researchers</title>
+      <link>http://localhost:1313/blog/post-mlla-overview/</link>
+      <pubDate>Wed, 27 Aug 2025 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-mlla-overview/</guid>
+      <description>&lt;h2 id=&#34;when-fuzzing-meets-intelligence&#34;&gt;When Fuzzing Meets Intelligence&lt;/h2&gt;&#xA;&lt;p&gt;Picture this: you&amp;rsquo;re a security researcher staring at 20 million lines of code, hunting for vulnerabilities that could compromise everything from your smartphone to critical infrastructure. Traditional fuzzers approach this challenge with brute force – throwing millions of random inputs at the program like a toddler mashing keyboard keys. Sometimes it works. Often, it doesn&amp;rsquo;t.&lt;/p&gt;&#xA;&lt;p&gt;But what if we could change the game entirely?&lt;/p&gt;&#xA;&lt;p&gt;&lt;span style=&#34;background-color:lightgray;color:green&#34;&gt;Meet MLLA (Multi-Language LLM Agent) – the most ambitious experiment in AI-assisted vulnerability discovery we&amp;rsquo;ve ever built. Instead of random chaos, MLLA thinks, plans, and hunts bugs like an experienced security researcher, but at machine scale.&lt;/span&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
