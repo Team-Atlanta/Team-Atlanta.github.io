@@ -74,7 +74,7 @@ If CGPA is your GPS, MCGA is the mapmaker who surveys uncharted territory. It tr
 **🎯 BCDA (Bug Candidate Detection Agent): The Detective**  
 Not every suspicious activity is actually a crime. BCDA is the seasoned detective who can tell the difference between a false alarm and the real deal. It takes MCGA's marked locations and asks the hard questions: "Is this actually exploitable? What conditions need to be met? What would an attack look like?" BCDA produces what we call BITs – detailed case files for genuine vulnerabilities.
 
-**💣 BGA (Blob Generation Agent): The Mastermind**  
+**💣 BGA (Blob Generation Agent): The Demolition Expert**  
 Here's where the magic happens. <span style="background-color:lightgray;color:green">Instead of just creating attack payloads, BGA writes *programs that create attack payloads*</span> – like a master criminal who doesn't just plan one heist, but writes the playbook that can be adapted for any target. These Python scripts can generate thousands of variations, each one precisely crafted for the specific vulnerability BCDA identified.
 
 ## The Revolutionary Approach: Programming Attacks
