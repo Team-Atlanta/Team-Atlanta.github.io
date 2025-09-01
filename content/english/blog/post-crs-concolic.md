@@ -7,7 +7,7 @@ image: "/images/blog/afc/concolic-blog-header1.jpg"
 categories: ["Atlantis"]
 author: "Woosun Song"
 tags: ["AFC"]
-draft: false 
+draft: true
 ---
 
 ## 1. Why Concolic Execution?
