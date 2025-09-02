@@ -409,7 +409,7 @@ Rather than overwhelming LLMs with comprehensive security knowledge, we found th
 
 The Generator Agent taught us a counterintuitive lesson about working with non-deterministic systems: sometimes it's better to generate 20 "good enough" attempts than to spend all your effort trying to craft one perfect solution. This insight applies far beyond exploit generation – it's a fundamental principle for working with any probabilistic AI system.
 
-*For a deep dive into the context engineering techniques that enable these capabilities, see our upcoming post: "Context Engineering: How BGA Teaches LLMs to Write Exploits"*
+*For a deep dive into the context engineering techniques that enable these capabilities, see our post: [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)*
 
 So where does this breakthrough lead us? The implications extend far beyond just finding vulnerabilities.
 
@@ -464,10 +464,10 @@ Ready to explore BGA in detail? Here are your next steps:
   - [Mutator Agent](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/mutator_agent)
 
 ### 🔗 **Related Deep Dives**
-- [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
 - [UniAFL: The Fuzzing Infrastructure](https://team-atlanta.github.io/blog/post-crs-multilang/)
+- [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
+- [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)
 - [BCDA: The AI Detective Separating Real Bugs from False Alarms](https://team-atlanta.github.io/blog/post-mlla-bcda/)
-- Coming Soon: "Context Engineering: How BGA Teaches LLMs to Write Exploits"
 
 ---
 
