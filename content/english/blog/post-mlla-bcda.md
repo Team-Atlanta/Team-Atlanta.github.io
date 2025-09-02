@@ -98,7 +98,7 @@ This was a look into our AI detective, BCDA.
 To see how MLLA components work together, check out our other deep dives:
 
 * [**MLLA Overview: Teaching LLMs to Hunt Bugs Like Security Researchers**](https://team-atlanta.github.io/blog/post-mlla-overview/)
-* **🗺️ Deep dive into CPUA, MCGA, CGPA's code understanding and navigation**
-* **🛠️ Deep dive into BGA's self-evolving exploits (will be release on Sep. 1st)**
+* [**🗺️ Deep dive into CPUA, MCGA, CGPA's code understanding and navigation**](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)
+* [**🛠️ Deep dive into BGA's self-evolving exploits**](https://team-atlanta.github.io/blog/post-mlla-bga/)
 * [**🌐 Browse the complete MLLA source code**](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)
 ```

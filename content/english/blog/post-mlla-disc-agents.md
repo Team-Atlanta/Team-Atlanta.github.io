@@ -7,7 +7,7 @@ image: "/images/blog/mlla/cpua_preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Soyeon Park"
 tags: ["mlla", "llm", "multi-agent"]
-draft: false
+draft: true
 ---
 
 ## **Beneath the Exploit: The Groundwork That Makes Bug Hunting Possible**
@@ -259,7 +259,7 @@ security landscape that used to feel unreachable.</span>
 - [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
 - [UniAFL: The Fuzzing Infrastructure](https://team-atlanta.github.io/blog/post-crs-multilang/)
 - [BGA: Self-Evolving Exploits Through Multi-Agent AI](https://team-atlanta.github.io/blog/post-mlla-bga/)
+- [BCDA: The AI Detective Separating Real Bugs from False Alarms](https://team-atlanta.github.io/blog/post-mlla-bcda/)
 - Coming Soon: "Context Engineering: How BGA Teaches LLMs to Write Exploits"
-- Coming Soon: "Inside BCDA: How AI Detects Real Vulnerabilities"
 
 ---
