@@ -2,7 +2,7 @@
 title: "From Harness to Vulnerability: AI Agents for Code Comprehension and Bug Discovery"
 meta_title: ""
 description: ""
-date: 2025-08-29T21:00:00Z
+date: 2025-12-31T21:00:00Z
 image: "/images/blog/mlla/cpua_preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Soyeon Park"
@@ -48,7 +48,7 @@ CPUA uses LLM reasoning to analyze harnesses, detect functions that handle **unt
 
 - Function names and locations
 - Priority scores (e.g., fuzzed input vs. utility function)
-- Tainted parameters    
+- Tainted parameters
 
 This focus prevents wasted effort. Instead of traversing millions of functions, CPUA narrows the field to dozens that actually matter.
 
@@ -79,7 +79,7 @@ public void fuzzerTestOneInput(FuzzedDataProvider data) {
 """
 
 print(analyze_harness(harness))
-# Output: ["parseDocument", "helperLog"]  
+# Output: ["parseDocument", "helperLog"]
 ```
 
 ---
@@ -192,7 +192,7 @@ Reflecting on this design, a few insights stand out:
     Early on, we tried to mimic human auditors too literally. Later, we leaned into machine advantages — like async graph expansion and LLM-guided fuzzing integration — and saw better results.
 1. **Context Engineering Is the Next Frontier**
     LLMs thrive on top-down descriptions with selective detail. Feeding call paths, tainted args, and sanitizer hints in structured form was more effective than dumping entire files.
-1. **Integration Matters**    
+1. **Integration Matters**
     These agents weren’t just standalone tools; they were designed to hand off work seamlessly. CPUA’s outputs flowed into MCGA, which in turn leaned on CGPA, all culminating in BCDA and BGA.
 
 ---
@@ -203,7 +203,7 @@ When I actually worked on using LLMs to find bugs, I came away with some mixed b
 First, I realized that **fuzzing and LLMs shine in very different domains**. Fuzzers
 are still unmatched at surfacing **memory corruption** issues, such as crashes, overflows,
 dangling pointers, the kinds of low-level chaos that brute-force mutation is
-naturally good at exploring. 
+naturally good at exploring.
 But when it comes to **logic errors**, fuzzers are only as good as their bug oracles.
 LLMs, on the other hand, surprised me
 with how well they could identify logic errors. They’re able to reason about
@@ -220,7 +220,7 @@ than replacements. The fuzzer provides raw coverage and brute force, while the
 LLM helps steer: generating better seeds, prioritizing paths, or highlighting
 suspicious functions. It worked well in practice, but it also showed me how much
 room there is to grow. Handling **execution context**, the stateful conditions that
-make subtle memory bugs appear, is still a frontier. 
+make subtle memory bugs appear, is still a frontier.
 I even considered attaching tools like a **debugger** to give LLMs richer execution
 insights, but we simply didn’t have the time during the competition. Still, I
 think giving LLMs better tools to reason about those contexts will be one of the
@@ -259,7 +259,7 @@ security landscape that used to feel unreachable.</span>
 - [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
 - [UniAFL: The Fuzzing Infrastructure](https://team-atlanta.github.io/blog/post-crs-multilang/)
 - [BGA: Self-Evolving Exploits Through Multi-Agent AI](https://team-atlanta.github.io/blog/post-mlla-bga/)
+- [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)
 - [BCDA: The AI Detective Separating Real Bugs from False Alarms](https://team-atlanta.github.io/blog/post-mlla-bcda/)
-- Coming Soon: "Context Engineering: How BGA Teaches LLMs to Write Exploits"
 
 ---

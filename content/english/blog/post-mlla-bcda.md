@@ -2,7 +2,7 @@
 title: "BCDA: The AI Detective Separating Real Bugs from False Alarms"
 meta_title: ""
 description: "A deep dive into BCDA, the AI agent that acts as a detective, analyzing potential vulnerability paths to distinguish genuine threats from false positives and creating detailed bug reports for exploitation."
-date: 2025-08-28T11:00:00Z
+date: 2025-12-31T11:00:00Z
 image: "/images/blog/mlla/bcda_preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Sangwoo Ji"
@@ -66,7 +66,7 @@ For example, it might determine that an `if (user.isAdmin())` check must evaluat
 
 ### Step 4: 📝 BIT Generation (Filing the Case Report)
 
-The investigation concludes with the creation of a **Bug Inducing Thing (BIT)**. 
+The investigation concludes with the creation of a **Bug Inducing Thing (BIT)**.
 This isn't just a simple alert; it's a structured data object, optimized for the next stages of our pipeline.
 
 Each BIT contains everything an exploitation agent needs to know:
@@ -87,18 +87,20 @@ BCDA transforms the system from a heavy, resource-draining carpet-bombing approa
 
 `MCGA (Finds Leads) ➔ BCDA (Verifies & Details Leads) ➔ BGA (Exploitation Leads)`
 
-By filtering out false positives and enriching real vulnerabilities with precise trigger conditions, BCDA ensures that our most powerful and computationally expensive agent, BGA, focuses its efforts only on confirmed, high-value targets. 
+By filtering out false positives and enriching real vulnerabilities with precise trigger conditions, BCDA ensures that our most powerful and computationally expensive agent, BGA, focuses its efforts only on confirmed, high-value targets.
 It is the crucial link that turns MCGA's broad surveillance into BGA's surgical strike, saving time and improving the quality of discovered bugs.
 
 BCDA demonstrates that in automated security analysis, the goal isn't just to find more potential bugs—it's to find the *right* ones, armed with the intelligence needed to act on them.
 
 ## Dive Deeper
 
-This was a look into our AI detective, BCDA. 
+This was a look into our AI detective, BCDA.
 To see how MLLA components work together, check out our other deep dives:
 
-* [**MLLA Overview: Teaching LLMs to Hunt Bugs Like Security Researchers**](https://team-atlanta.github.io/blog/post-mlla-overview/)
-* [**🗺️ Deep dive into CPUA, MCGA, CGPA's code understanding and navigation**](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)
-* [**🛠️ Deep dive into BGA's self-evolving exploits**](https://team-atlanta.github.io/blog/post-mlla-bga/)
-* [**🌐 Browse the complete MLLA source code**](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)
-```
+- [🌐 **Browse the complete MLLA source code**](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)
+- [MLLA Overview: Teaching LLMs to Hunt Bugs Like Security Researchers](https://team-atlanta.github.io/blog/post-mlla-overview/)
+- [🗺️ Deep dive into CPUA, MCGA, CGPA's code understanding and navigation](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)
+- [🛠️ Deep dive into BGA's self-evolving exploits](https://team-atlanta.github.io/blog/post-mlla-bga/)
+- [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)
+
+---

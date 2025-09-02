@@ -464,9 +464,10 @@ Ready to explore BGA in detail? Here are your next steps:
   - [Mutator Agent](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/mutator_agent)
 
 ### 🔗 **Related Deep Dives**
+- [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)
 - [UniAFL: The Fuzzing Infrastructure](https://team-atlanta.github.io/blog/post-crs-multilang/)
 - [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
-- [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)
+- [Deep dive into CPUA, MCGA, CGPA's code understanding and navigation](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)
 - [BCDA: The AI Detective Separating Real Bugs from False Alarms](https://team-atlanta.github.io/blog/post-mlla-bcda/)
 
 ---

@@ -2,7 +2,7 @@
 title: "Hybrid Fuzzing: Exploring Complex Paths with Concolic Execution"
 meta_title: ""
 description: "How we used concolic execution to enhance our fuzzing capabilities in the AIxCC competition."
-date: 2025-08-19T12:15:00Z
+date: 2025-12-31T12:15:00Z
 image: "/images/blog/afc/concolic-blog-header1.jpg"
 categories: ["Atlantis"]
 author: "Woosun Song"

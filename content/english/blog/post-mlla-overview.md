@@ -38,7 +38,7 @@ parser. This kind of effort simply doesn't scale.
 The cracks in this approach become obvious when you face modern software's complexity:
 
 - **Validation gauntlets**: Modern programs have layers of input validation that random mutations rarely penetrate
-- **Format awareness**: Try fuzzing a JSON API with random bytes – you'll spend 99% of your time triggering parsing errors instead of logic bugs  
+- **Format awareness**: Try fuzzing a JSON API with random bytes – you'll spend 99% of your time triggering parsing errors instead of logic bugs
 - **State dependencies**: Some vulnerabilities only appear after precise sequences of operations
 - **Multi-language chaos**: Real systems blend C, Java, Python, and more in ways that single-language fuzzers can't handle
 
@@ -48,7 +48,7 @@ That's when we decided to build something different.
 
 ## From Chaos to Strategy
 
-What if, instead of randomly mutating inputs, we could teach AI to craft attacks like a human security researcher would? 
+What if, instead of randomly mutating inputs, we could teach AI to craft attacks like a human security researcher would?
 
 Our [UniAFL system](https://team-atlanta.github.io/blog/post-crs-multilang/) explores this idea across six different input generation modules, each using AI at different intensity levels. At one extreme, you have traditional fuzzers with zero AI involvement. At the other extreme sits MLLA – our "what happens if we go all-in on AI?" experiment.
 
@@ -62,19 +62,19 @@ Here's where MLLA gets interesting: instead of building one monolithic AI brain,
 
 {{< image src="images/blog/mlla/overview.png" position="center" class="img-fluid" caption="MLLA's multi-agent architecture orchestrating vulnerability discovery" >}}
 
-**📍 CGPA (Call Graph Parser Agent): The Navigator**  
+**📍 CGPA (Call Graph Parser Agent): The Navigator**
 Picture the most organized person you know – the one who never gets lost, always knows exactly where everything is, and can give perfect directions to anywhere. That's CGPA. In a codebase with millions of functions scattered across thousands of files, CGPA keeps everyone oriented. When another agent says "I need to analyze the function that processes user input," CGPA instantly knows exactly which function, in which file, with which dependencies.
 
-**🔍 CPUA (CP Understanding Agent): The Scout**  
+**🔍 CPUA (CP Understanding Agent): The Scout**
 Every heist movie has that character who cases the joint first – mapping out entrances, exits, and security vulnerabilities. CPUA fills this role for code. It analyzes the "harness" (the entry point to the program) and identifies the most promising targets. Instead of wandering aimlessly through millions of functions, CPUA says "These 50 functions handle untrusted input – start here."
 
-**🗺️ MCGA (Make Call Graph Agent): The Cartographer**  
+**🗺️ MCGA (Make Call Graph Agent): The Cartographer**
 If CGPA is your GPS, MCGA is the mapmaker who surveys uncharted territory. It traces how functions connect to each other, building detailed relationship maps across the entire codebase. But MCGA doesn't just map roads – it marks the dangerous neighborhoods. When it spots a function that deserializes data or executes system commands, it flags it as a high-value target.
 
-**🎯 BCDA (Bug Candidate Detection Agent): The Detective**  
+**🎯 BCDA (Bug Candidate Detection Agent): The Detective**
 Not every suspicious activity is actually a crime. BCDA is the seasoned detective who can tell the difference between a false alarm and the real deal. It takes MCGA's marked locations and asks the hard questions: "Is this actually exploitable? What conditions need to be met? What would an attack look like?" BCDA produces what we call BITs – detailed case files for genuine vulnerabilities.
 
-**💣 BGA (Blob Generation Agent): The Demolition Expert**  
+**💣 BGA (Blob Generation Agent): The Demolition Expert**
 Here's where the magic happens. <span style="background-color:lightgray;color:green">Instead of just creating attack payloads, BGA writes *programs that create attack payloads*</span> – like a master criminal who doesn't just plan one heist, but writes the playbook that can be adapted for any target. These Python scripts can generate thousands of variations, each one precisely crafted for the specific vulnerability BCDA identified.
 
 ## The Revolutionary Approach: Programming Attacks
@@ -120,25 +120,25 @@ Here's the kind of generator MLLA produces:
 ```python
 def generate(rnd: random.Random) -> bytes:
     """Generate XXE payloads embedded in valid ZIP files.
-    
+
     This demonstrates MLLA's approach: not just generating XML,
     but orchestrating complex multi-format attacks.
     """
-    
+
     # Step 1: Choose attack strategy intelligently
     strategy = rnd.choice(['basic_xxe', 'xinclude', 'schema_ref', 'dtd_external'])
-    
+
     # Step 2: Create valid ZIP container structure
     root_filename = rnd.choice(['root.xml', 'data.xml', 'content.xml'])
     manifest = create_manifest(root_filename)
-    
+
     # Step 3: Generate XXE payload based on strategy
     if strategy == 'basic_xxe':
         xml_content = create_xxe_entity(rnd)
     elif strategy == 'xinclude':
-        xml_content = create_xinclude_attack(rnd) 
+        xml_content = create_xinclude_attack(rnd)
     # ... other strategies
-    
+
     # Step 4: Build complete ZIP file with proper binary structure
     return create_zip([('Manifest.xml', manifest), (root_filename, xml_content)], rnd)
 
@@ -146,7 +146,7 @@ def create_xxe_entity(rnd):
     """Generate XXE with external entity targeting jazzer.com"""
     port = rnd.choice([80, 443, 8080, 8443])
     path = rnd.choice(['', '/test', '/data.xml', '/api/endpoint'])
-    
+
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE root [
     <!ENTITY xxe SYSTEM "http://jazzer.com:{port}{path}">
@@ -157,22 +157,22 @@ def create_zip(files, rnd):
     """Construct valid ZIP with proper headers, compression, CRC32..."""
     # This is where the binary format mastery happens
     zip_data = bytearray()
-    
+
     for filename, content in files:
         # Choose compression strategy
-        compress_level = rnd.choice([0, 1, 6, 9])  
+        compress_level = rnd.choice([0, 1, 6, 9])
         compressed = zlib.compress(content, compress_level) if compress_level else content
-        
+
         # Build ZIP headers with proper signatures and metadata
         header = struct.pack('<I', 0x04034b50)  # ZIP local file header
-        header += struct.pack('<H', 20)         # Version needed  
+        header += struct.pack('<H', 20)         # Version needed
         header += struct.pack('<H', 0)          # Flags
         header += struct.pack('<H', 8 if compress_level else 0)  # Compression method
         header += struct.pack('<I', zlib.crc32(content) & 0xffffffff)  # CRC32
         # ... complete ZIP specification implementation
-        
+
         zip_data.extend(header + filename.encode() + compressed)
-    
+
     # Add central directory and end-of-central-directory records
     zip_data.extend(build_central_directory(files))
     return bytes(zip_data)
@@ -189,7 +189,7 @@ Look at what this generator accomplishes in a single function: it's not just cre
 The real breakthrough is that <span style="background-color:lightgray;color:green">MLLA generates *attack strategies*, not just attack payloads</span>. Each generator function is essentially a condensed security researcher's playbook, encoded in executable Python that can run thousands of variations.
 
 Traditional fuzzing would need millions of random mutations to stumble upon:
-- A valid ZIP file structure 
+- A valid ZIP file structure
 - With properly embedded XML
 - That contains working XXE syntax
 - Targeting the exact domain that triggers detection
@@ -209,10 +209,10 @@ When you need to quickly explore a new codebase, MLLA's standalone mode kicks in
 
 Think of it as MLLA's reconnaissance mode – quickly surveying the terrain and generating interesting inputs to get fuzzing started.
 
-### 🔬 **Full Pipeline Mode: Deep and Targeted**  
+### 🔬 **Full Pipeline Mode: Deep and Targeted**
 When standalone mode or other fuzzing modules discover interesting crash sites or code paths, the full MLLA pipeline engages:
 - All five agents (CGPA, CPUA, MCGA, BCDA, BGA) work in concert
-- Builds comprehensive call graphs and identifies precise vulnerability paths  
+- Builds comprehensive call graphs and identifies precise vulnerability paths
 - Generates highly targeted exploits for specific bug candidates
 - Employs sophisticated static analysis and LLM reasoning
 
@@ -233,23 +233,23 @@ In this orchestrated process, agents work in coordination, sharing information a
 
 ## The Results: 7 Vulnerabilities That Mattered
 
-When the competition ended, we couldn't measure MLLA's exact contribution. We'd 
-intentionally turned off logging early on to save storage and computing costs, which meant 
-we couldn't get the exact final evaluation results for each module. However, by utilizing 
-the OpenTelemetry logs from the organizers, we confirmed that MLLA contributed to finding 
+When the competition ended, we couldn't measure MLLA's exact contribution. We'd
+intentionally turned off logging early on to save storage and computing costs, which meant
+we couldn't get the exact final evaluation results for each module. However, by utilizing
+the OpenTelemetry logs from the organizers, we confirmed that MLLA contributed to finding
 at least 7 unique vulnerabilities.
 
-These weren't random crashes. They were sophisticated bugs hiding behind validation layers, 
-buried in complex file format parsers, and dependent on precise semantic relationships 
-between code components. Exactly the kind of strategic, format-aware vulnerabilities that 
+These weren't random crashes. They were sophisticated bugs hiding behind validation layers,
+buried in complex file format parsers, and dependent on precise semantic relationships
+between code components. Exactly the kind of strategic, format-aware vulnerabilities that
 traditional fuzzing struggles to find.
 
-But here's what really matters: in our extensive internal testing before submission, MLLA 
-consistently demonstrated value beyond just finding bugs. It often reached complex 
-vulnerabilities that no other module could touch. And even when MLLA didn't directly trigger 
-the final crash (that honor went to its BGA component), its intermediate outputs like bug 
-hypotheses, branch conditions, and semantic traces significantly enriched [UniAFL's](https://team-atlanta.github.io/blog/post-crs-multilang/) seed pool 
-and results. MLLA acted not just as a bug finder, but as a catalyst that amplified the 
+But here's what really matters: in our extensive internal testing before submission, MLLA
+consistently demonstrated value beyond just finding bugs. It often reached complex
+vulnerabilities that no other module could touch. And even when MLLA didn't directly trigger
+the final crash (that honor went to its BGA component), its intermediate outputs like bug
+hypotheses, branch conditions, and semantic traces significantly enriched [UniAFL's](https://team-atlanta.github.io/blog/post-crs-multilang/) seed pool
+and results. MLLA acted not just as a bug finder, but as a catalyst that amplified the
 effectiveness of the entire system.
 
 ## The Engineering Reality Check
@@ -282,6 +282,8 @@ This overview just scratches the surface. In our upcoming deep-dive posts, we'll
 **Ready to explore?**
 - [🌐 **Browse the complete MLLA source code**](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)
 - [📖 **Learn about UniAFL, MLLA's parent system**](https://team-atlanta.github.io/blog/post-crs-multilang/)
+- [🗺️ **Deep dive into CPUA, MCGA, CGPA's code understanding and navigation**](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)
+- [🔬 **BCDA: The AI Detective Separating Real Bugs from False Alarms**](https://team-atlanta.github.io/blog/post-mlla-bcda/)
 - [🛠️ **Deep dive into BGA's self-evolving exploits**](https://team-atlanta.github.io/blog/post-mlla-bga/)
 - [🧠 **Context Engineering: How BGA teaches LLMs to write exploits**](https://team-atlanta.github.io/blog/post-context-engineering/)
 

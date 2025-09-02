@@ -2,7 +2,7 @@
 title: "ExpKit: Solving the Last Mile Challenge in Java Vulnerability Detection"
 meta_title: ""
 description: "Overview of Atlantis-Java"
-date: 2025-09-02T10:00:00Z
+date: 2025-12-31T10:00:00Z
 image: "/images/blog/crs-java/expkit/icon.png"
 categories: ["Atlantis-Java"]
 author: "Cen Zhang"
