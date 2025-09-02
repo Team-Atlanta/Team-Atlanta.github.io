@@ -3,11 +3,11 @@ title: "From Harness to Vulnerability: AI Agents for Code Comprehension and Bug 
 meta_title: ""
 description: ""
 date: 2025-08-29T21:00:00Z
-image: "/images/blog/mlla/bga_preview.png"
+image: "/images/blog/mlla/cpua_preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Soyeon Park"
 tags: ["mlla", "llm", "multi-agent"]
-draft: true
+draft: false
 ---
 
 ## **Beneath the Exploit: The Groundwork That Makes Bug Hunting Possible**
@@ -79,7 +79,7 @@ public void fuzzerTestOneInput(FuzzedDataProvider data) {
 """
 
 print(analyze_harness(harness))
-# Output: ["parseDocument"]  (ranked as target)
+# Output: ["parseDocument", "helperLog"]  
 ```
 
 ---
@@ -174,19 +174,6 @@ print(graph.to_json())
 Here, loadExternalDTD is flagged as a sink — a finding that triggers BCDA to generate a **BugInducingThing** and eventually hands off to BGA for exploit generation.
 
 ---
-## **The Trio in Action**
-
-Individually, these agents are useful. Together, they form the backbone of MLLA’s code comprehension layer:
-
-- **CPUA** scouts the entry points.
-- **CGPA** fetches the precise definitions.
-- **MCGA** maps the relationships and danger zones.
-
-Only after this pipeline runs can **BCDA** classify bug candidates and **BGA** generate exploit strategies.
-
-This is why we say: **without CPUA, CGPA, and MCGA, BGA’s spectacular exploits could never exist.**
-
----
 
 ## **Engineering Challenges**
 
@@ -195,29 +182,84 @@ Building these agents was far from trivial. Some lessons from the trenches:
 - **LLM Cost Control**: Call graph expansion is recursive and potentially explosive. We had to integrate caching layers and prioritize tool-based results (Joern, LSP) before falling back to LLM calls.
 - **Balancing Static and Dynamic**: Pure LLM reasoning often hallucinated callees. By mixing AST parsing, coverage traces, and Joern outputs, MCGA became both faster and more accurate.
 - **Asynchronous Execution**: Instead of serially building massive graphs, MCGA launches sink detections asynchronously, enabling early-stage bug discovery.
-- **Context Windows**: For CPUA, harness files were often too large. We learned to slice harnesses, summarize reflection-heavy code, and feed LLMs only the most relevant chunks.
 
 ---
 ## **Lessons Learned**
 
 Reflecting on this design, a few insights stand out:
 
-1. **Groundwork Is Invisible but Essential**
-    People celebrate payloads and crashes, but the real innovation is building the maps that make them possible.
-2. **Machine-Guided Beats Human-Mimicry**
+1. **Machine-Guided Beats Human-Mimicry**
     Early on, we tried to mimic human auditors too literally. Later, we leaned into machine advantages — like async graph expansion and LLM-guided fuzzing integration — and saw better results.
-3. **Context Engineering Is the Next Frontier**
+1. **Context Engineering Is the Next Frontier**
     LLMs thrive on top-down descriptions with selective detail. Feeding call paths, tainted args, and sanitizer hints in structured form was more effective than dumping entire files.
-4. **Integration Matters**    
+1. **Integration Matters**    
     These agents weren’t just standalone tools; they were designed to hand off work seamlessly. CPUA’s outputs flowed into MCGA, which in turn leaned on CGPA, all culminating in BCDA and BGA.
 
 ---
 ## **Closing Thoughts**
 
-In AI-assisted vulnerability discovery, flashy exploits may get the headlines. But the unsung heroes are the agents that quietly do the groundwork — mapping functions, resolving symbols, and tracing call graphs until dangerous paths come into focus.
+When I actually worked on using LLMs to find bugs, I came away with some mixed but exciting impressions.
 
-**From harness to vulnerability, the journey is long. And without scouts, librarians, and cartographers, you’d never reach the treasure.**
+First, I realized that **fuzzing and LLMs shine in very different domains**. Fuzzers
+are still unmatched at surfacing **memory corruption** issues, such as crashes, overflows,
+dangling pointers, the kinds of low-level chaos that brute-force mutation is
+naturally good at exploring. 
+But when it comes to **logic errors**, fuzzers are only as good as their bug oracles.
+LLMs, on the other hand, surprised me
+with how well they could identify logic errors. They’re able to reason about
+semantics, invariants, and unintended behavior in a way fuzzers can’t. That made
+me think: maybe LLMs could be especially valuable in areas like smart contracts,
+where correctness depends far more on logic than memory safety.
 
-The next time you see an AI exploit demo, remember: behind every successful exploit is an army of silent agents, building the maps that made it possible.
+That said, LLMs struggle with memory corruption directly. Many of these bugs are
+**deeply context-dependent** — think use-after-free, or API-sequence–driven
+vulnerabilities. To capture that context, you’d have to feed the model an
+enormous slice of the codebase, which quickly runs into context window limits.
+That’s why we designed UniAFL to use LLMs more as assistants to fuzzing rather
+than replacements. The fuzzer provides raw coverage and brute force, while the
+LLM helps steer: generating better seeds, prioritizing paths, or highlighting
+suspicious functions. It worked well in practice, but it also showed me how much
+room there is to grow. Handling **execution context**, the stateful conditions that
+make subtle memory bugs appear, is still a frontier. 
+I even considered attaching tools like a **debugger** to give LLMs richer execution
+insights, but we simply didn’t have the time during the competition. Still, I
+think giving LLMs better tools to reason about those contexts will be one of the
+most promising directions forward.
+
+Looking back at the competition, I think the results were encouraging. Every
+system was constrained to a handful of harnesses, each exercising only a limited
+set of functions. Within that tight scope, Atlantis still uncovered **six zero-day vulnerabilities**. That felt significant. It also hinted at potential: with more
+harnesses, or with broader harness coverage per project, the number of bugs we
+could find would scale up dramatically.
+
+That leaves me asking a deeper question: what makes a good harness? A harness
+isn’t just a piece of glue code. It defines the **context needed to trigger a bug**. And building the right context is exactly where I think LLMs can shine.
+They’re good at understanding code, generating scaffolding, and filling in the
+missing pieces of a test. If we can teach them to generate better harnesses, we
+might open up whole new classes of vulnerabilities that current tools can’t
+touch.
+
+In the end, my biggest takeaway is that LLMs are not here to replace human
+security researchers or fuzzers. Instead, they’re here to **amplify our reach**.
+Fuzzers will continue to hammer the low-level space. Humans will continue to
+frame the hardest questions. And LLMs can be the bridge, helping us understand
+complex codebases, reason about hidden contexts, and design smarter experiments.
+
+<span style="background-color:lightgray;color:green">From harness to vulnerability, the journey is long. But with LLMs as
+collaborators rather than replacements, I believe we can explore parts of the
+security landscape that used to feel unreachable.</span>
+
+## 📚 **Technical Resources**
+- **Source Code by Agent:**
+  - [CPUA](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/cpua.py)
+  - [CGPA](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/cgpa.py)
+  - [MCGA](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/mcga.py)
+
+### 🔗 **Related Deep Dives**
+- [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
+- [UniAFL: The Fuzzing Infrastructure](https://team-atlanta.github.io/blog/post-crs-multilang/)
+- [BGA: Self-Evolving Exploits Through Multi-Agent AI](https://team-atlanta.github.io/blog/post-mlla-bga/)
+- Coming Soon: "Context Engineering: How BGA Teaches LLMs to Write Exploits"
+- Coming Soon: "Inside BCDA: How AI Detects Real Vulnerabilities"
 
 ---
