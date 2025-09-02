@@ -2,68 +2,114 @@
 title: "Context Engineering: How BGA Teaches LLMs to Write Exploits"
 meta_title: ""
 description: "Deep dive into the context engineering techniques that make BGA's AI agents effective at vulnerability exploitation - from XML structuring to coverage feedback loops"
-date: 2025-08-30T10:00:00Z
-image: "/images/blog/mlla/context_preview.png"
+date: 2025-12-31T10:00:00Z
+image: "/images/blog/mlla/context_engineering.png"
 categories: ["Atlantis-Multilang"]
 author: "Dongkwan Kim"
-tags: ["context-engineering", "llm", "prompt-engineering", "bga", "coverage-feedback"]
+tags: ["mlla", "llm", "exploit-generation", "context-engineering", "prompt-engineering", "coverage-feedback", "bga"]
 draft: true
 ---
 
 ## The Problem with Teaching AI to Hack
 
-Getting an LLM to write working exploits isn't just hard – it's a fundamentally different problem than most AI tasks. You can't approximate your way to success. You can't be "mostly right." When you need to trigger a vulnerability that requires an exact timestamp (1731695077), a specific filename ("jazze"), and perfect GZIP structure, 99% accuracy means 100% failure.
+Teaching an LLM to write working exploits is surprisingly tricky. Unlike most AI tasks where "close enough" gets you there, vulnerability exploitation is an all-or-nothing game. You can't approximate your way to success.
 
-This precision requirement drove us to develop what we call **context engineering** – a systematic approach to structuring and delivering information that transforms LLMs from sophisticated guessers into reliable technical problem solvers. During the AIxCC competition, these techniques enabled our [BGA framework](https://team-atlanta.github.io/blog/post-mlla-bga/) to discover 7 unique vulnerabilities.
+Take this Java reflective call injection vulnerability:
 
-The key insight: LLMs don't need smarter algorithms – they need smarter information delivery. This post reveals the actual techniques we developed, with real examples from our technical implementation.
-
-## The Core Challenge: From Chaos to Context
-
-When we started building BGA, we immediately hit a wall that reveals the fundamental challenge of AI-assisted security research: **how do you teach an LLM about vulnerabilities that exist across massive, complex codebases?**
-
-Traditional prompt engineering assumes you can describe your problem in natural language. But vulnerabilities don't work that way. They emerge from the interaction between:
-
-- **Call graphs** spanning dozens of functions across multiple files
-- **Data flow** through complex transformations and validations
-- **Format specifications** that must be byte-perfect (GZIP headers, XML structures, protocol buffers)
-- **Execution context** including sanitizers, containerization, and runtime environments
-- **Domain knowledge** about vulnerability patterns, exploitation techniques, and specific tool behaviors
-
-The breakthrough came when we realized this isn't a prompting problem – it's an information architecture problem. We needed to build a complete pipeline for transforming raw security analysis into structured, actionable context that LLMs could systematically use.
-
-## The BGA Context Engineering Architecture
-
-Our approach centers on five core techniques that work together:
-
-1. **XML-Structured Context Design** – Organizing complex technical information for reliable LLM parsing
-2. **Source Code Annotation Systems** – Marking vulnerabilities and conditions with precise labels
-3. **Coverage-Driven Iterative Refinement** – Using execution feedback to guide systematic improvement
-4. **Domain Knowledge Integration** – Injecting specialized security expertise contextually
-5. **Multi-Agent Context Coordination** – Transforming information as it flows between specialized agents
-
-Let's dive into how each technique works in practice.
-
-## Technique 1: XML-Structured Context Design
-
-### Why XML Beat Every Alternative
-
-We tested multiple approaches for structuring context: JSON, YAML, plain text with markers, and XML. XML won decisively, but not for the reasons you might expect.
-
-**The Parsing Reliability Problem**: When your context includes code snippets with nested braces, JSON parsing becomes unreliable. LLMs consistently misinterpret where code ends and structure begins. XML's verbose tags provide unambiguous boundaries:
-
-```xml
-<vulnerability>
-  <code>if (modTime == 1731695077L && fname != null) {</code>
-  <annotation>@KEY_CONDITION</annotation>
-</vulnerability>
+```java
+String className = request.getParameter("class");
+Class.forName(className); // BUG: arbitrary class loading
 ```
 
-**Hierarchical Information Architecture**: Security contexts are naturally hierarchical – vulnerabilities contain functions, functions contain conditions, conditions have execution states. XML's opening/closing tags make these relationships explicit without ambiguity.
+Looks straightforward, right? But here's the catch: to exploit this vulnerability, the LLM must load the exact class name [`"jaz.Zer"`](https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25) to trigger [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer)'s detection. Not `"jaz.Zero"`, not `"java.Zer"`, not `"jaz.zer"`. One wrong character and the whole exploit fails.
+
+This precision challenge led us to develop what we call **context engineering** – a way to structure information that transforms LLMs from educated guessers into reliable exploit generators. These techniques became the backbone of our [BGA framework](https://team-atlanta.github.io/blog/post-mlla-bga/) and delivered [impressive results](#proof-of-impact) during the AIxCC competition.
+
+**Here's what we learned**: LLMs don't need smarter algorithms – they need smarter information delivery. This post shows you exactly how we cracked this puzzle, with real examples from our work.
+
+## Four Foundational Principles
+
+After studying prompt engineering research ([OpenAI](https://platform.openai.com/docs/guides/prompt-engineering), [Anthropic](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)), we had a realization: talking to LLMs effectively is a lot like explaining complex topics to humans. What makes sense to a human usually makes sense to an LLM too.
+
+Think about it – when you're overwhelmed with information, you lose focus. LLMs do the same thing. That's why we design focused prompts that clearly establish what needs to be done.
+
+This human-centered approach led us to four core principles that guide everything we do:
+
+### 1. Top-Down Guidance
+**Give the big picture first, then zoom in.** Just like explaining a complex topic to a colleague, you start with the overall goal before diving into specifics. We always begin with role definition, then expertise areas, then objectives, and finally the detailed steps.
+
+### 2. Structure & Clarity  
+**Organize information logically and eliminate ambiguity.** We use hierarchical XML structures, clear section boundaries, and explicit relationships between concepts. In vulnerability exploitation, vague instructions lead to failed exploits.
+
+### 3. Concise Yet Comprehensive
+**Include everything needed, but cut the fluff.** Every piece of information should serve a purpose. We provide complete vulnerability context while filtering out irrelevant details that might confuse the LLM.
+
+### 4. Avoid Overcomplication
+**Simple and clear beats clever and complex.** If we can't easily explain how something works, it's probably too complicated for consistent LLM performance. We stick to patterns that work reliably.
+
+These principles treat LLMs as intelligent partners that need well-structured information, not magic boxes that somehow "just know" what to do. As you'll see in our [results](#proof-of-impact), this approach made a huge difference.
+
+## Four Core Techniques
+
+Building our LLM-based security tools taught us something important: basic prompting doesn't cut it for complex vulnerability exploitation. LLMs need a systematic way to understand vulnerabilities, parse complicated code relationships, and generate precise exploits.
+
+Our context engineering approach solves this through four key techniques that delivered [solid improvements](#proof-of-impact) across different vulnerability types:
+
+1. **XML-Structured Context Design** – Hierarchical organization for reliable LLM parsing
+2. **Source Code Annotation Systems** – Precision markers that focus attention on critical code  
+3. **Coverage-Driven Iterative Refinement** – Execution feedback loops that eliminate guesswork
+4. **Domain Knowledge Integration** – Selective injection of vulnerability-specific expertise
+
+### How They Work Together
+
+These techniques work as a team, with each one strengthening the others:
+
+- **XML structures** provide the foundation - a reliable way to organize complex vulnerability information that LLMs can consistently parse, following our "big picture first" approach
+
+- **Annotation systems** add precision through markers like `@VISITED`, `@BUG_HERE`, and `@KEY_CONDITION`, helping LLMs focus on what actually matters in massive codebases
+
+- **Coverage feedback** turns guesswork into systematic problem-solving by showing the LLM exactly what conditions it has reached and what still needs to be satisfied
+
+- **Domain knowledge** fills in the gaps - providing vulnerability patterns, data structure handling, and exploitation techniques that generic LLMs don't naturally know
+
+Put it all together, and you get LLMs that can reliably generate working exploits instead of just making educated guesses. Let's dive into how each technique works.
+
+## Technique 1: XML-Structured Context Design
+*Implements: Structure & Clarity*
+
+### Why XML Works for Technical Context
+
+Our approach employs XML organization to implement our **Structure & Clarity** principle, emphasizing hierarchical structure, context-before-complexity, annotation clarity, and clear organization. This approach aligns with [Anthropic's recommendations for using XML with Claude](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags), which highlights XML's advantages: **Clarity**, **Accuracy**, **Flexibility**, and **Parseability**.
+
+XML excels at representing data hierarchy and relationships. The verbose tags provide unambiguous boundaries and semantic sections that help LLMs understand not just the data, but its purpose and nested structure:
+
+```xml
+<SOURCE_CODE_INFO>
+  <FUNCTION_CALL_FLOW>
+    - fuzzerTestOneInput
+      - GzipCompressorInputStream.<init>
+        // @BUG is in the below function.
+        - init
+  </FUNCTION_CALL_FLOW>
+  
+  <VULNERABLE_FUNCTION>
+    <FUNC_BODY>
+    [398]:     if (modTime == 1731695077L && fname != null) { /* @KEY_CONDITION */
+    [399]:       new ProcessBuilder(fname).start(); /* @BUG_HERE */
+    </FUNC_BODY>
+  </VULNERABLE_FUNCTION>
+</SOURCE_CODE_INFO>
+```
+
+This hierarchical XML structure shows how we organize complex vulnerability context - from high-level call flows down to specific vulnerable lines, with clear semantic sections that enable both automated parsing and human readability.
+
+### Implementing Top-Down Guidance
+
+Our prompt structure follows **Top-Down Guidance** through a systematic flow: System prompt → Source code → Sub-task → Coverage feedback → Analysis. Each agent receives context in this order, starting with their role and objectives before diving into technical details.
 
 ### Real System Prompt Structure
 
-Here's our actual BlobGen system prompt structure, demonstrating the principles we discovered:
+Here's our actual BlobGen system prompt structure, demonstrating these principles in practice:
 
 ```xml
 <role>
@@ -114,11 +160,12 @@ Notice the systematic organization:
 
 This hierarchical structure, combined with **context-before-complexity** ordering and **annotation clarity**, maximizes LLM effectiveness for technical exploitation challenges.
 
-## Technique 2: Source Code Annotation Systems
+## Technique 2: Source Code Annotation Systems  
+*Implements: Concise Yet Comprehensive*
 
 ### The [n]: Line Number Format
 
-We developed a specific format for delivering source code that consistently works across different LLMs. Inspired by RustAssistant, we use `[n]:` formatting where brackets and colons distinguish line numbers from code literals:
+We developed a specific format for delivering source code that consistently works across different LLMs. Inspired by [RustAssistant](https://www.microsoft.com/en-us/research/publication/rustassistant-using-llms-to-fix-compilation-errors-in-rust-code/) by Microsoft, we use `[n]:` formatting where brackets and colons distinguish line numbers from code literals:
 
 ```xml
 <SOURCE_CODE_INFO>
@@ -155,20 +202,23 @@ We developed a specific format for delivering source code that consistently work
 
 ### The @ Annotation System
 
-We use `@` prefixes to mark critical lines without conflicting with developer comments:
+Our annotation system implements **Concise Yet Comprehensive** by using precise markers like `@VISITED`, `@KEY_CONDITION`, and `@BUG_HERE` to highlight only the most critical information. Instead of overwhelming the LLM with entire codebases, we mark exactly what matters:
 
 - **@BUG_HERE**: The line immediately after contains the actual vulnerability
-- **@KEY_CONDITION**: The line immediately after contains a condition that must be satisfied to reach the vulnerability
+- **@KEY_CONDITION**: The line immediately after contains a condition that must be satisfied to reach the vulnerability  
+- **@VISITED**: Added dynamically during execution to show which conditions were reached
 
-This annotation system derives from BCDA's Bug Inducing Things (BITs) and provides clear, unambiguous markers that LLMs can reliably identify and reference.
+This annotation system derives from BCDA's Bug Inducing Things (BITs) and provides clear, unambiguous markers that focus LLM attention on critical decision points while filtering out irrelevant code paths.
 
 ## Technique 3: Coverage-Driven Iterative Refinement
 
 ### The @VISITED Breakthrough
 
-The breakthrough that transformed our success rate was incorporating execution coverage directly into context through @VISITED markers. Here's how it works:
+Here's where things get really interesting. The breakthrough that transformed our success rate was incorporating execution coverage directly into context through @VISITED markers. Think of it as giving the AI real-time feedback on what's actually happening when it runs its code.
 
-When a payload is executed, we collect runtime coverage data and compare executed lines against BIT-identified key conditions. We then add @VISITED markers to show which conditions were reached:
+When a payload executes, we collect coverage data - which functions ran, which files were touched, which lines were hit. Then we compare this against our BIT-identified key conditions and add @VISITED markers to show exactly which conditions were reached. It's like having a conversation: "You tried this, here's what actually happened, now what should you try next?"
+
+We also provide brief hints about the source code structure upfront, giving agents initial understanding before they receive detailed coverage feedback. But here's the key insight - coverage engines aren't perfect. We explicitly guide the LLM that this information might have gaps and should be used as reference only. Notice how we frame our coverage feedback:
 
 ```xml
 <COVERAGE_INFO_FOR_KEY_CONDITIONS>
@@ -207,18 +257,17 @@ The `@VISITED` markers provide immediate visual feedback: you can see the payloa
 
 ### Systematic Iterative Refinement 
 
-This coverage feedback integrates with our iterative refinement workflow. The BlobGen agent repeats up to four refinement cycles, with each iteration:
+This coverage feedback transforms what could be random guessing into systematic problem-solving. The LLM analyzes coverage results to identify the gap between where it got and where it needs to be. Instead of showing the entire codebase, we present only the vulnerability-relevant annotated lines with @VISITED markers. This filters out the noise and focuses attention on the critical decision points.
 
-1. Analyzing coverage gaps between executed lines and required conditions
-2. Using selective source code inclusion to present only vulnerability-relevant annotated lines  
-3. Filtering irrelevant code paths to focus LLM attention on critical decision points
-4. Systematically communicating coverage gaps to guide targeted script modifications
+Here's the workflow: analyze coverage gaps → identify what conditions weren't met → make targeted modifications → try again. The agent repeats this up to four times, each iteration getting smarter about what needs to change. It's like having a persistent debugging session where each attempt builds on the insights from the previous one.
 
-This transforms unreliable single-shot LLM generation into systematic vulnerability exploitation through feedback loops and adaptive refinement.
+This approach transforms unreliable single-shot LLM generation into systematic vulnerability exploitation through feedback loops and adaptive refinement. Instead of hoping the AI gets lucky on the first try, we give it a structured way to learn from its mistakes.
 
 ### Multi-Variation Coverage Analysis
 
-The Generator agent takes a different approach, running 20 payload variations and learning from collective coverage:
+But we don't stop at single attempts. The [Generator Agent](https://team-atlanta.github.io/blog/post-mlla-bga/#-generator-agent-the-probability-explorer) operates through a systematic 6-step process: select sanitizer, plan the approach, create multiple payload variations, collect coverage from all attempts, update context based on promising patterns, then analyze and refine.
+
+Here's the clever part: instead of just looking at one payload attempt, we generate about 20 variations and merge their coverage data. This gives us a broader view of what's possible and what's working across multiple attempts. It's like having 20 different explorers mapping out a cave system - collectively, they discover much more than any single explorer could alone.
 
 ```xml
 <COVERAGE_SUMMARY>
@@ -257,13 +306,29 @@ Finally, provide detailed feedback for improvement.
 </task>
 ```
 
-This aggregated view helps the LLM understand which strategies are making progress across multiple attempts, enabling probabilistic exploration strategies that turn LLM non-determinism from weakness into strength.
+This aggregated view helps the LLM understand which strategies are making progress across multiple attempts. Instead of seeing LLM non-determinism as a bug, we turn it into a feature - the natural variation in AI outputs becomes a systematic exploration strategy.
 
 ## Technique 4: Domain Knowledge Integration
+*Implements: Concise Yet Comprehensive*
+
+### Selective Knowledge Injection
+
+Here's the reality: general-purpose LLMs don't know much about security vulnerabilities. They might know SQL injection exists, but they don't know the specific patterns that trigger each type or how to craft payloads that actually work. 
+
+Rather than overwhelming the AI with exhaustive security textbooks, we selectively inject only the relevant domain expertise for each vulnerability type. Think of it as just-in-time learning - we provide exactly what's needed for the specific vulnerability at hand, no more, no less.
+
+This domain knowledge integration also helped other agents in [MLLA](https://team-atlanta.github.io/blog/post-mlla-overview/) (MCGA, BCDA) detect vulnerability candidates by providing structured understanding of security patterns. However, the exploit guides are specifically used only in BGA for exploitation - other agents focus on bug discovery and don't need the exploitation-specific guidance.
 
 ### Vulnerability-Specific Context Templates
 
-Generic LLMs lack the specialized security knowledge needed for effective exploitation. We address this through structured domain knowledge templates that provide concrete patterns and triggering mechanisms.
+We systematically prepared templates ([complete implementation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/sanitizer.py)) covering **20 total vulnerability types**:
+
+- **12 Jazzer types**: SQLInjection, OSCommandInjection, XPathInjection, ServerSideRequestForgery, RegexInjection, JNDIInjection, ReflectiveCallInjection, ScriptEngineInjection, LDAPInjection, DeserializeObjectInjection, FilePathTraversal, TimeoutDenialOfService
+- **8 AddressSanitizer types**: BufferOverflow/Underflow, UseAfterFree/Return, DoubleFree, UseBeforeInitialization, FloatingPointException, TimeoutDenialOfService
+
+Each template combines three crucial elements: what the vulnerability looks like in code, how it typically manifests, and most importantly, exactly how to trigger it. You can see our complete templates in [JazzerSanitizer_with_exploit.yaml](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/sanitizer_info/JazzerSanitizer_with_exploit.yaml) and [AddressSanitizer_with_exploit.yaml](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/sanitizer_info/AddressSanitizer_with_exploit.yaml).
+
+We intentionally focused on these 20 types and skipped MemorySanitizer and UndefinedBehaviorSanitizer - they would add compilation complexity for the [UniAFL](https://team-atlanta.github.io/blog/post-crs-multilang/) side and mostly catch easier bugs like signed integer overflow.
 
 **OS Command Injection Template**:
 ```xml
@@ -300,13 +365,23 @@ Generic LLMs lack the specialized security knowledge needed for effective exploi
 </sanitizer>
 ```
 
-This template provides complete exploitation context: conceptual understanding, code patterns to recognize, exact triggering requirements, and multiple valid approaches.
+This template provides complete exploitation context: what the vulnerability looks like, how to recognize it in code, and most importantly, exactly how to trigger it.
 
 ### Data Structure Handling Guides
 
-Complex data structures require specialized handling. We developed guides for three categories of challenging structures:
+But domain knowledge isn't just about vulnerability types - it's also about the tricky data structures that fuzzing frameworks use. We developed specialized guides ([complete implementation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/known_struct.py)) for three categories of challenging structures:
 
-**FuzzedDataProvider Structures**: These pose significant challenges due to complex data consumption behaviors – consuming primitive types from the end of data buffers while consuming structured data from the beginning:
+1. **FuzzedDataProvider Structures** - The complex data consumption patterns
+2. **Java ByteBuffer Formats** - Binary data handling
+3. **Application-Specific Data Structures** - Custom formats found in target applications
+
+#### FuzzedDataProvider Structures
+
+[FuzzedDataProvider](https://www.code-intelligence.com/blog/java-fuzzing-with-jazzer) structures are particularly tricky. They consume primitive types from the end of data buffers while consuming structured data from the beginning, with specialized methods like `consumeInt(min, max)` for bounded value generation. It's like trying to eat a sandwich from both ends simultaneously - you need to know exactly how much space each bite will take.
+
+Here's our key insight: instead of trying to explain these complex data consumption patterns to the LLM, we built **libFDP integration** ([GitHub](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/libs/libFDP)) that abstracts away the implementation details. LLMs are excellent at programming, so we give them simple functions to call rather than asking them to understand the underlying binary format specifications.
+
+The system provides language-specific encoders: `libFDP.JazzerFdpEncoder()` for Java targets ([implementation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/known_struct_info/jazzer_fdp.py)) and `libFDP.LlvmFdpEncoder()` for C/C++ targets ([implementation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/known_struct_info/llvm_fdp.py)). Each encoder uses **selective function mapping** - we only include methods that are actually used in the target code, avoiding unnecessary complexity.
 
 ```xml
 <DATA_STRUCT_GUIDE_FOR_EXPLOIT>
@@ -341,9 +416,55 @@ def create_payload() -> bytes:
 </DATA_STRUCT_GUIDE_FOR_EXPLOIT>
 ```
 
-**Java ByteBuffer Formats**: Require precise endianness handling for multi-byte integer consumption. The framework guides agents in understanding ByteBuffer's big-endian byte ordering, enabling proper payload construction for methods like `getInt()` and `getLong()`. Agents must generate payloads with correct byte ordering, such as transforming `b'\r\x00\x00\x00\x01\x00\x00\x00'` to `b'\x00\x00\x00\r\x00\x00\x00\x01'`.
+#### Java ByteBuffer Formats
 
-**Application-Specific Data Structures**: Including domain-specific formats like ServletFileUpload for multipart-based file upload processing:
+These require precise endianness handling for multi-byte integer consumption. The framework provides structured guidance ([implementation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/known_struct_info/jvm_byte_buffer.py)) for understanding ByteBuffer's BIG-ENDIAN byte ordering:
+
+```xml
+<ByteBuffer>
+  <description>
+    ByteBuffer is a utility class in Java that specially handles integer value in BIG-ENDIAN.
+  </description>
+
+  <core_principles>
+    <principle>Default is BIG-ENDIAN byte order (most significant byte first)</principle>
+  </core_principles>
+
+  <methods>
+    <primitive_getters>
+      <method>getInt()</method>
+      <method>getLong()</method>
+    </primitive_getters>
+  </methods>
+
+  <example>
+    <raw_bytes>[0x01, 0x02, 0x03, 0x04, 0x41, 0x42, 0x43, 0x44]</raw_bytes>
+    <code language="java">
+      public static void fuzzerTestOneInput(byte[] data) {
+          if (data.length < 4) return; // Ensure we have enough data
+
+          ByteBuffer buf = ByteBuffer.wrap(data);
+
+          // BIG-ENDIAN reading (default)
+          int value = buf.getInt();  // Reads [0x01, 0x02, 0x03, 0x04] → 0x01020304
+
+          // Use value to drive test
+          if (value > 0) {
+              processData(value);
+          }
+      }
+    </code>
+  </example>
+</ByteBuffer>
+```
+
+This guidance enables proper payload construction for methods like `getInt()` and `getLong()`, ensuring agents generate payloads with correct byte ordering.
+
+#### Application-Specific Data Structures
+
+These include domain-specific formats like ServletFileUpload for multipart-based file upload processing. Due to AIxCC limitations on leveraging existing vulnerability information, we only checked the possibility of data structure summaries conservatively - preparing just one example (ServletFileUpload) to avoid violating competition rules. 
+
+Despite this minimal testing, the approach proved particularly promising. As shown in our results table, even without actual source code, providing this single data structure summary improved File Path Traversal success from 2/10 to 9/10. This suggests a future research direction: systematically preparing summaries of all relevant data structures could provide significant benefits for vulnerability exploitation across different target applications.
 
 ```xml
 <ServletFileUpload>
@@ -369,103 +490,101 @@ def create_payload() -> bytes:
 
 ### Adaptive Context Selection
 
-Rather than overwhelming LLMs with exhaustive domain knowledge, we employ adaptive knowledge integration through context-aware prompt generation strategies. This operates through two complementary principles:
+The BGA framework employs adaptive knowledge integration to balance comprehensive domain expertise with computational efficiency through context-aware prompt generation strategies. Rather than overwhelming LLMs with exhaustive domain knowledge, the system selectively integrates vulnerability patterns and data structure insights based on target-specific analysis and detected patterns.
 
-- **Contextual Relevance**: Domain knowledge selection aligns with specific vulnerability context and target characteristics
-- **Selective Application**: Prevents information overload by focusing on detected patterns rather than applying comprehensive knowledge bases
+The integration strategy operates through two complementary principles: **contextual relevance** ensures that domain knowledge selection aligns with the specific vulnerability context and target characteristics, while **selective application** prevents information overload by focusing on detected patterns rather than applying comprehensive knowledge bases.
 
-The system generates targeted prompts incorporating only the most pertinent vulnerability patterns and structural constraints, ensuring LLMs receive focused guidance without exceeding context limitations.
+This adaptive approach enables dynamic knowledge integration based on analysis results: vulnerability categorization from BCDA guides the selection of appropriate exploit patterns, while detected data structures trigger relevant handling strategies for BlobGen, Generator, and Mutator agents. The system generates targeted prompts that incorporate only the most pertinent vulnerability patterns and structural constraints, ensuring that LLMs receive focused guidance without exceeding context limitations.
 
-## Technique 5: Multi-Agent Context Coordination
 
-### Context Transformation Across Agents
+## Proof of Impact
 
-Different agents need different views of the same vulnerability. Our Orchestrator manages these transformations systematically.
+To demonstrate the effectiveness of our context engineering techniques, we conducted systematic evaluation on **JenkinsThree** (tested 05/29/2025) - our benchmark containing Jenkins repositories tailored for each vulnerability type that Jazzer can detect.
 
-**Starting Point - BCDA Output (Bug Inducing Thing)**:
-```python
-{
-    "vulnerability_type": "OSCommandInjection",
-    "location": {"file": "GzipCompressorInputStream.java", "line": 399},
-    "trigger_conditions": [
-        "modTime == 1731695077L",
-        "fname != null", 
-        "FNAME flag set in header"
-    ],
-    "call_path": ["fuzzerTestOneInput", "GzipCompressorInputStream.<init>", "init"],
-    "priority": "HIGH"
-}
-```
+**Methodology**: For each vulnerability type, we ran 10 test cases (110 total per model). Each test case used iterative refinement with up to 4 rounds, so the "Total Requests" varies based on how many iterations were needed to achieve success. These results were obtained exclusively using the [BlobGen Agent](https://team-atlanta.github.io/blog/post-mlla-bga/#-blobgen-agent-the-precision-sniper) - our precision-focused agent that combines systematic payload generation with coverage feedback loops.
 
-**Transformation for BlobGen** (needs complete context for iterative refinement):
-```xml
-<vulnerability_context>
-  <type>OSCommandInjection</type>
-  <target_function>init</target_function>
-  <full_call_path>fuzzerTestOneInput → GzipCompressorInputStream.<init> → init</full_call_path>
-  <trigger_requirements>
-    <requirement>Set FNAME flag (0x08) in GZIP header</requirement>
-    <requirement>Include modification time == 1731695077</requirement>
-    <requirement>Provide filename "jazze" in FNAME field</requirement>
-  </trigger_requirements>
-</vulnerability_context>
-```
+**Domain Knowledge Integration Evaluation**: The results primarily demonstrate the effectiveness of our Domain Knowledge Integration technique by comparing two context versions:
+- **Final (R4)**: Complete vulnerability templates with exploit patterns and triggering mechanisms ([JazzerSanitizer_with_exploit.yaml](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/sanitizer_info/JazzerSanitizer_with_exploit.yaml))
+- **R2.5 (baseline)**: Minimal context without domain knowledge ([JazzerSanitizer_with_exploit.yaml.backup_r2.5](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/sanitizer_info/JazzerSanitizer_with_exploit.yaml.backup_r2.5))
 
-**Transformation for Generator** (needs source/destination for probabilistic exploration):
-```xml
-<generation_context>
-  <source_function>fuzzerTestOneInput</source_function>
-  <destination_function>init</destination_function>
-  <vulnerability_location>line 399</vulnerability_location>
-  <variation_hints>
-    <hint>Try different GZIP compression methods</hint>
-    <hint>Vary extra field contents</hint>
-    <hint>Test with/without CRC validation</hint>
-  </variation_hints>
-</generation_context>
-```
+**Context Refinement Journey**: Our domain knowledge integration evolved through systematic refinement:
 
-**Transformation for Mutator** (needs focused transition analysis):
-```xml
-<mutation_context>
-  <transition>GzipCompressorInputStream.<init> → init</transition>
-  <focus_area>GZIP header bytes 0-10</focus_area>
-  <critical_values>
-    <value offset="4">1731695077 (little-endian)</value>
-    <value offset="3">0x08 (FNAME flag)</value>
-  </critical_values>
-</mutation_context>
-```
+- **R1**: Basic approach requiring careful sentinel consideration ('jazze'), categorizing vulnerabilities using sanitizers, and describing how sanitizers detect vulnerabilities
+- **R2.5**: Enhanced with direct vulnerability descriptions and examples, separate exploit guides with concrete examples, sentinel descriptions, and timeout/infinite vulnerability handling for complex targets like Zookeeper  
+- **R4 (Final)**: Mature approach categorizing vulnerabilities based on human expertise rather than just sanitizer output, with concise yet comprehensive descriptions and exploit guides optimized for LLM understanding
 
-Each transformation emphasizes what that specific agent needs to succeed, filtering and structuring information for maximum effectiveness.
+This comparison (R2.5 → Final) isolates the impact of systematic domain knowledge refinement on LLM vulnerability exploitation capabilities.
 
-## Real-World Results: What Actually Worked
+### Context Engineering Impact: R2.5 → Final Refinement
 
-During the AIxCC competition, these context engineering techniques enabled concrete discoveries. Here's what we learned works consistently:
+| Vulnerability Type | Claude-4 (R2.5 → Final) | Claude-3.7 (R2.5 → Final) | Impact |
+|--------------------|--------------------------|---------------------------|--------|
+| **XPath Injection** | 10/10 → **10/10** | 4/10 → **5/10** | ✅ Maintained/Improved |
+| **OS Command Injection** | 0/10 → **10/10** | 0/10 → **10/10** | 🚀 Breakthrough |
+| **Server Side Request Forgery** | 6/10 → **8/10** | 10/10 → **6/10** | ✅ Mixed results |
+| **Regex Injection** | 3/10 → **10/10** | 7/10 → **10/10** | 🚀 Major improvement |
+| **Remote JNDI Lookup** | 0/10 → **10/10** | 0/10 → **10/10** | 🚀 Breakthrough |
+| **Reflective Call** | 0/10 → **10/10** | 0/10 → **10/10** | 🚀 Breakthrough |
+| **SQL Injection** | 0/10 → **10/10** | 0/10 → **3/10** | 🚀 Breakthrough/Major |
+| **Script Engine Injection** | 10/10 → **10/10** | 10/10 → **10/10** | ✅ Consistently high |
+| **LDAP Injection** | 3/10 → **4/10** | 7/10 → **10/10** | ✅ Improved |
+| **Remote Code Execution** | 0/10 → **10/10** | 0/10 → **10/10** | 🚀 Breakthrough |
+| **File Path Traversal** | 4/10 → **3/10** | 8/10 → **8/10** | 📈 With ServletFileUpload: **9/10** |
 
-### The Successes
+**Key Insights from Context Refinement:**
+- **🚀 Breakthrough vulnerabilities** (0/10 → 10/10): Context engineering enabled discovery of previously impossible-to-reach vulnerabilities, particularly command injection and reflection-based attacks
+- **📊 Consistency across models**: Both Claude-4 and Claude-3.7 achieved breakthroughs for the same vulnerability types, validating that improvements come from better context architecture, not model-specific tricks
+- **⚡ Efficiency gains**: Final contexts required fewer generation attempts per success, reducing computational costs while improving accuracy
+- **🎯 Precision targeting**: File Path Traversal improvements with ServletFileUpload demonstrate how domain-specific knowledge integration creates targeted breakthroughs
 
-**XML Structure Reliability**: XML parsing never failed us during the competition. The verbose tags provide unambiguous structure that LLMs parse correctly every time. This reliability was crucial under competitive pressure.
+### Model Performance with Final Context
 
-**@VISITED Markers**: Simple visual markers in source code made coverage feedback immediately understandable. LLMs grasp "you reached this line but not that one" instantly when shown with @VISITED annotations.
+| Vulnerability Type | Claude-4 | Claude-3.7 | Gemini-2.5-Pro | O4-Mini |
+|--------------------|----------|-------------|----------------|---------|
+| **XPath Injection** | 10/10 | 5/10 | 10/10 | 10/10 |
+| **OS Command Injection** | 10/10 | 10/10 | 10/10 | 10/10 |
+| **Server Side Request Forgery** | 8/10 | 6/10 | 10/10 | 10/10 |
+| **Regex Injection** | 10/10 | 10/10 | 10/10 | 8/10 |
+| **Remote JNDI Lookup** | 10/10 | 10/10 | 1/10 | 8/10 |
+| **Reflective Call** | 10/10 | 10/10 | 9/10 | 5/10 |
+| **SQL Injection** | 10/10 | 3/10 | 10/10 | 9/10 |
+| **Script Engine Injection** | 10/10 | 10/10 | 10/10 | 10/10 |
+| **LDAP Injection** | 4/10 | 10/10 | 6/10 | 6/10 |
+| **Remote Code Execution** | 10/10 | 10/10 | 10/10 | 9/10 |
+| **File Path Traversal** | 3/10 | 8/10 | 8/10 | 9/10 |
 
-**Hierarchical Context Organization**: Our systematic approach of role → expertise → objectives → context → annotations consistently improved output quality compared to unstructured prompts.
+**Model-Specific Findings:**
+- **Claude-4**: Most balanced performer - excelled at injection attacks (SQL, JNDI, Reflective Call) but struggled with File Path Traversal, suggesting strength in complex reasoning over path manipulation
+- **Claude-3.7**: Complementary strengths to Claude-4 - dominated path-based vulnerabilities (File Path, LDAP) and XPath but weaker on SQL injection, indicating different architectural biases
+- **Gemini-2.5-Pro**: Strong overall but with notable blind spot in Remote JNDI Lookup (1/10), demonstrating that even high-performing models can have specific vulnerability type weaknesses
+- **O4-Mini**: Consistently solid across categories with particular strength in File Path Traversal, but weaker on complex reflection-based attacks requiring deeper semantic understanding
 
-**Script-Based Generation**: Having LLMs generate Python scripts that create payloads (rather than payloads directly) provided the precision needed for byte-perfect exploitation requirements.
+### Model Performance & Usage Metrics (Final Context)
 
-### The Technical Insights
+| Model | Success Rate | Total Requests | Tokens | Cost | Time (s) | Efficiency Score* |
+|-------|--------------|----------------|--------|------|----------|-------------------|
+| **Claude-4** | **86.4%** (95/110) | 168 | 1.34M | $3.99 | 468 | ⭐⭐⭐ High |
+| **Claude-3.7** | **83.6%** (92/110) | 170 | 1.43M | $4.36 | 491 | ⭐⭐⭐ High |
+| **Gemini-2.5-Pro** | **85.5%** (94/110) | 158 | 2.53M | $14.23 | 2,232 | ⭐ Low |
+| **O4-Mini** | **85.5%** (94/110) | 180 | 2.31M | $4.68 | 1,228 | ⭐⭐ Medium |
 
-**Selective Context Beats Comprehensive**: Showing 50 annotated lines often outperformed showing 500 lines of complete context. LLMs get lost in noise just like humans do.
+*Efficiency combines cost, time, and token usage relative to success rate
 
-**Context-Before-Complexity**: Providing target binding (project name, sanitizer type) before introducing code complexity prevented focus dilution across irrelevant possibilities.
+**Practical Deployment Insights:**
+- **Claude models** offer the best cost-performance ratio for production deployment, achieving high success rates (~85%) with excellent efficiency metrics
+- **Gemini-2.5-Pro** provides highest raw performance (85.5%) but at 3.5x the cost and 5x the execution time - suitable for scenarios where accuracy trumps efficiency
+- **Token efficiency** varies significantly: Claude models consume ~1.4M tokens vs 2.3-2.5M for others, suggesting our context engineering techniques are better optimized for Claude's architecture
+- **Request efficiency**: Lower "Total Requests" indicates fewer iterations needed per success, showing that effective context engineering reduces the need for multiple refinement rounds
 
-**Annotation Clarity**: The `@` prefix system avoided confusion with developer comments while providing clear, unambiguous markers that LLMs could reliably reference.
+These results validate that our systematic approach to context engineering - XML structuring, annotation systems, coverage feedback, and domain knowledge integration - delivers measurable improvements in both effectiveness and efficiency.
 
 ## Implementation Guide: Building Context Engineering Systems
 
+Ready to build your own context engineering system? Here's the practical roadmap we've learned from our experience:
+
 ### Start with XML Structure
 
-Begin with this basic template for technical contexts:
+Begin with this basic template for any technical context:
 
 ```xml
 <role>Define the LLM's identity and mission</role>
@@ -475,9 +594,11 @@ Begin with this basic template for technical contexts:
 <methodology>Explain any annotation or marking systems</methodology>
 ```
 
+This structure gives LLMs clear guidance on what they're supposed to do and how to do it.
+
 ### Add Execution Feedback Loops
 
-The key breakthrough comes from closing the loop between generation and execution:
+Here's where the magic happens - closing the loop between generation and execution:
 
 1. **Generate**: LLM produces code based on structured context
 2. **Execute**: Run code in controlled environment with coverage collection
@@ -485,39 +606,65 @@ The key breakthrough comes from closing the loop between generation and executio
 4. **Refine**: Update context with @VISITED markers and failure information
 5. **Iterate**: Repeat until success or maximum iterations
 
+Without this feedback loop, you're essentially asking the LLM to solve problems blindfolded.
+
 ### Integrate Domain Knowledge Contextually
 
-Rather than dumping comprehensive knowledge, detect patterns and inject relevant templates:
+Don't dump comprehensive knowledge - be selective and pattern-driven:
 
 - Scan code for specific patterns (Runtime.exec, consumeString, etc.)
 - Load corresponding domain knowledge templates
 - Integrate only detected patterns into context
 - Focus on concrete examples over abstract descriptions
 
-## Future Directions
+Think of it as just-in-time learning rather than comprehensive training.
 
-Context engineering represents a fundamental shift in how we approach LLM-based technical problem solving. The techniques we've developed – XML structuring, annotation systems, coverage feedback, domain knowledge integration, and multi-agent coordination – enabled real vulnerability discoveries during AIxCC.
+## Limitations and Future Directions
 
-But this is just the beginning. Key opportunities for advancement include:
+### AIxCC Constraints and Missed Opportunities
 
-**Automatic Context Optimization**: Learning optimal context structures from execution results rather than hand-crafting them.
+During AIxCC, we faced a significant limitation: we couldn't leverage existing vulnerability databases like CVE or Metasploit repositories. The competition's purpose was discovering new vulnerabilities, not exploiting known ones, so historical vulnerability data was off-limits.
 
-**Cross-Domain Applications**: These techniques apply beyond security to any domain requiring precision and technical accuracy.
+But here's the exciting part - this constraint actually highlights a massive opportunity. **If we could build a system using RAG (Retrieval-Augmented Generation) or Graph-RAG to systematically incorporate vulnerability knowledge bases, we believe the results could be dramatically better**. Imagine a system that could:
 
-**Next-Generation LLM Integration**: As models become more sophisticated, context engineering will evolve to leverage new capabilities while maintaining the systematic approach to information delivery.
+- Retrieve relevant exploitation patterns from historical CVE data
+- Cross-reference similar vulnerability types and their successful exploitation techniques  
+- Build knowledge graphs connecting vulnerability patterns, attack vectors, and target applications
+- Dynamically inject the most relevant historical context for each new target
+
+This represents a promising direction for non-competitive security research where such knowledge integration would be both permitted and incredibly valuable.
+
+### Future Research Opportunities
+
+What we've built represents a fundamental shift in how we approach LLM-based technical problem solving. The techniques we've developed – XML structuring, annotation systems, coverage feedback, domain knowledge integration – enabled real vulnerability discoveries during AIxCC. But this is just the beginning.
+
+The most exciting opportunities ahead include:
+
+**Automatic Context Optimization**: Instead of hand-crafting contexts, imagine systems that learn optimal structures from execution results. The LLM could evolve its own context architecture based on what actually works.
+
+**RAG-Enhanced Context Engineering**: Integrating retrieval systems to dynamically pull in relevant vulnerability knowledge and exploitation patterns. Think of it as giving the AI access to a vast library of security expertise in real-time.
+
+**Security Domain Expansion**: These context engineering techniques could revolutionize vulnerability discovery across different security domains:
+
+- **Android App Security**: Adapting our annotation systems for APK analysis, Intent fuzzing, and permission bypass detection
+- **Web Application Security**: Extending coverage-driven refinement to browser-based vulnerability discovery and client-side exploitation
+- **IoT and Embedded Systems**: Applying domain knowledge integration to firmware analysis and hardware-specific attack vectors
+- **Cloud Security**: Developing context templates for container escapes, serverless vulnerabilities, and infrastructure misconfigurations
+- **Data Structures**: Grammar-based fuzzing contexts, symbolic constraints from concolic execution, and structured input generation
+- **Protocol Security**: Network protocol analysis, packet structure templates, and state machine-based vulnerability discovery
+
+**Next-Generation LLM Integration**: As models become more sophisticated, context engineering will evolve to leverage new capabilities while maintaining our systematic approach to information delivery.
 
 ## Resources & Deep Dives
 
 ### Implementation Examples
-- **[BGA Source Code](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents)** - Complete agent implementations
-- **System Prompts** - See `blobgen-system-prompt.txt` and `blobgen-source-code-prompt.txt` in our technical report
+- **[MLLA Source Code](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)** - Complete multi-agent system implementation
+- **[Domain Knowledge Structures](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/known_struct.py)** - Data structure handling guides
+- **[Vulnerability & Exploit Guides](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/sanitizer.py)** - Context templates for vulnerability types
+- **[Vulnerability Information Templates](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/sanitizer_info)** - R2.5 vs Final context evolution
 
 ### Related Posts
 - **[BGA: Self-Evolving Exploits Through Multi-Agent AI](https://team-atlanta.github.io/blog/post-mlla-bga/)** - Overview of the multi-agent system
 - **[MLLA: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)** - Full architecture details
 
 ---
-
-Context engineering transforms LLMs from sophisticated guessers into systematic technical problem solvers. The structured approaches in this post – XML organization, annotation systems, coverage feedback, and adaptive knowledge integration – represent a systematic methodology for building AI systems that work reliably with complex technical domains.
-
-The key insight: **Better information architecture creates better AI outcomes**. Start with structure, add execution feedback, iterate based on results.
