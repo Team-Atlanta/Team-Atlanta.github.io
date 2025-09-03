@@ -5,7 +5,7 @@ description: "Deep dive into the context engineering techniques that make BGA's 
 date: 2025-09-02T10:00:00Z
 image: "/images/blog/mlla/context_engineering.png"
 categories: ["Atlantis-Multilang"]
-author: "Dongkwan Kim"
+authors: ["Dongkwan Kim", "Joshua Wang"]
 tags: ["mlla", "llm", "exploit-generation", "context-engineering", "prompt-engineering", "coverage-feedback", "bga"]
 draft: false
 ---
@@ -14,18 +14,18 @@ draft: false
 
 Teaching an LLM to write working exploits is surprisingly tricky. Unlike most AI tasks where "close enough" gets you there, vulnerability exploitation is an all-or-nothing game. You can't approximate your way to success.
 
-Take this Java reflective call injection vulnerability:
+Take this seemingly simple Java reflective call injection vulnerability:
 
 ```java
 String className = request.getParameter("class");
 Class.forName(className); // BUG: arbitrary class loading
 ```
 
-Looks straightforward, right? But here's the catch: to exploit this vulnerability, the LLM must load the exact class name [`"jaz.Zer"`](https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25) to trigger [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer)'s detection. Not `"jaz.Zero"`, not `"java.Zer"`, not `"jaz.zer"`. One wrong character and the whole exploit fails.
+Looks straightforward, right? But here's the catch: to exploit this vulnerability, the LLM must load the exact class name [`"jaz.Zer"`](https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25) to trigger [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer)'s detection. Not `"jaz.Zero"`, not `"java.Zer"`, not `"jaz.zer"`. One character wrong and the entire exploit fails.
 
-This precision challenge led us to develop what we call **context engineering** – a way to structure information that transforms LLMs from educated guessers into reliable exploit generators. These techniques became the backbone of our [BGA framework](https://team-atlanta.github.io/blog/post-mlla-bga/) and delivered [impressive results](#proof-of-impact) during the AIxCC competition.
+This precision challenge led us to develop **context engineering** – a systematic approach to structuring information that transforms LLMs from educated guessers into reliable exploit generators. These techniques became the backbone of our [BGA framework](https://team-atlanta.github.io/blog/post-mlla-bga/) and delivered [impressive results](#proof-of-impact) during the AIxCC competition.
 
-**Here's what we learned**: LLMs don't need smarter algorithms – they need smarter information delivery. This post shows you exactly how we cracked this puzzle, with real examples from our work.
+**Here's what we learned**: LLMs don't need smarter algorithms – they need smarter information delivery. This post shows you exactly how we solved this challenge, with real examples from our research.
 
 ## Four Foundational Principles
 
