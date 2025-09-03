@@ -12,7 +12,7 @@ draft: false
 
 ## The Problem with Teaching AI to Hack
 
-Teaching an LLM to write working exploits is surprisingly tricky. Unlike most AI tasks where "close enough" gets you there, vulnerability exploitation is an all-or-nothing game. You can't approximate your way to success.
+Teaching an LLM to write working exploits is more challenging than typical AI tasks. Unlike most applications where "close enough" works, vulnerability exploitation requires precise execution. A single character error can make an entire exploit fail.
 
 Take this seemingly simple Java reflective call injection vulnerability:
 
@@ -21,7 +21,7 @@ String className = request.getParameter("class");
 Class.forName(className); // BUG: arbitrary class loading
 ```
 
-Looks straightforward, right? But here's the catch: to exploit this vulnerability, the LLM must load the exact class name [`"jaz.Zer"`](https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25) to trigger [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer)'s detection. Not `"jaz.Zero"`, not `"java.Zer"`, not `"jaz.zer"`. One character wrong and the entire exploit fails.
+This looks straightforward, but there's a catch: to exploit this vulnerability, the LLM must load the exact class name [`"jaz.Zer"`](https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25) to trigger [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer)'s detection. Not `"jaz.Zero"`, not `"java.Zer"`, not `"jaz.zer"`. One character wrong and the entire exploit fails.
 
 This precision challenge led us to develop **context engineering** – a systematic approach to structuring information that transforms LLMs from educated guessers into reliable exploit generators. These techniques became the backbone of our [BGA framework](https://team-atlanta.github.io/blog/post-mlla-bga/) and delivered [impressive results](#proof-of-impact) during the AIxCC competition.
 
@@ -79,7 +79,7 @@ Put it all together, and you get LLMs that can reliably generate working exploit
 
 ### Why XML Works for Technical Context
 
-Our approach employs XML organization to implement our **Structure & Clarity** principle, emphasizing hierarchical structure, context-before-complexity, annotation clarity, and clear organization. This approach aligns with [Anthropic's recommendations for using XML with Claude](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags), which highlights XML's advantages: **Clarity**, **Accuracy**, **Flexibility**, and **Parseability**.
+Our approach uses XML organization to implement our **Structure & Clarity** principle. We emphasize hierarchical structure, context-before-complexity, annotation clarity, and clear organization. This approach aligns with [Anthropic's recommendations for using XML with Claude](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags), which highlights XML's advantages: **Clarity**, **Accuracy**, **Flexibility**, and **Parseability**.
 
 XML excels at representing data hierarchy and relationships. The verbose tags provide unambiguous boundaries and semantic sections that help LLMs understand not just the data, but its purpose and nested structure:
 
