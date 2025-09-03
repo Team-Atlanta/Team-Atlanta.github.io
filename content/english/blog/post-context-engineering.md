@@ -496,6 +496,22 @@ The integration strategy operates through two complementary principles: **contex
 
 This adaptive approach enables dynamic knowledge integration based on analysis results: vulnerability categorization from BCDA guides the selection of appropriate exploit patterns, while detected data structures trigger relevant handling strategies for BlobGen, Generator, and Mutator agents. The system generates targeted prompts that incorporate only the most pertinent vulnerability patterns and structural constraints, ensuring that LLMs receive focused guidance without exceeding context limitations.
 
+## Technique 5: Selective Codebase Context Expansion
+*An experimental approach that didn't pan out*
+
+### The Gap We Found
+
+Here's something we discovered during competition: BGA sometimes failed on seemingly trivial vulnerabilities despite having perfect call graph coverage. Why? It was missing crucial context from methods that weren't "on the path" to the bug but were essential for understanding input structures - like configuration setters on completely different code paths.
+
+### Our Solution Attempt
+
+We thought we had a clever solution: use [tree-sitter](https://tree-sitter.github.io/tree-sitter/) to identify relevant classes from the vulnerability call graph, then search across *all* call graphs to find methods that could potentially operate on those classes. The [implementation](https://github.com/Team-Atlanta/aixcc-afc-atlantis/blob/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/class_understanding.py) worked - it successfully identified relevant classes and their methods.
+
+### Why It Didn't Deliver
+
+But here's the reality check: we couldn't make this approach work effectively for several reasons. First, most related data were already captured by our code discovery agents' comprehensive browsing (more on this in an upcoming post). Second, if information wasn't in the call graph, our filtering approach meant we couldn't search for it anyway - a classic catch-22. Third, we simply ran out of time during competition to properly test and integrate this feature.
+
+The concept remains interesting for future work. LSP tools or RAG systems with contextual embedding similarity could tackle this more effectively, though modern code browsing tools like Cursor or Claude Code probably already implement similar approaches.
 
 ## Proof of Impact
 
