@@ -2,12 +2,12 @@
 title: "Context Engineering: How BGA Teaches LLMs to Write Exploits"
 meta_title: ""
 description: "Deep dive into the context engineering techniques that make BGA's AI agents effective at vulnerability exploitation - from XML structuring to coverage feedback loops"
-date: 2025-12-31T10:00:00Z
+date: 2025-09-02T10:00:00Z
 image: "/images/blog/mlla/context_engineering.png"
 categories: ["Atlantis-Multilang"]
 author: "Dongkwan Kim"
 tags: ["mlla", "llm", "exploit-generation", "context-engineering", "prompt-engineering", "coverage-feedback", "bga"]
-draft: true
+draft: false
 ---
 
 ## The Problem with Teaching AI to Hack
@@ -666,5 +666,6 @@ The most exciting opportunities ahead include:
 ### Related Posts
 - **[BGA: Self-Evolving Exploits Through Multi-Agent AI](https://team-atlanta.github.io/blog/post-mlla-bga/)** - Overview of the multi-agent system
 - **[MLLA: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)** - Full architecture details
+- **Coming Soon: BCDA** - The AI Detective that identifies real vulnerabilities
 
 ---

@@ -282,10 +282,10 @@ This overview just scratches the surface. In our upcoming deep-dive posts, we'll
 **Ready to explore?**
 - [🌐 **Browse the complete MLLA source code**](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)
 - [📖 **Learn about UniAFL, MLLA's parent system**](https://team-atlanta.github.io/blog/post-crs-multilang/)
-- [🗺️ **Deep dive into CPUA, MCGA, CGPA's code understanding and navigation**](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)
-- [🔬 **BCDA: The AI Detective Separating Real Bugs from False Alarms**](https://team-atlanta.github.io/blog/post-mlla-bcda/)
 - [🛠️ **Deep dive into BGA's self-evolving exploits**](https://team-atlanta.github.io/blog/post-mlla-bga/)
 - [🧠 **Context Engineering: How BGA teaches LLMs to write exploits**](https://team-atlanta.github.io/blog/post-context-engineering/)
+- 🗺️ **Coming Soon: Deep dive into CPUA, MCGA, CGPA's code understanding and navigation**
+- 🔬 **Coming Soon: BCDA - The AI Detective Separating Real Bugs from False Alarms**
 
 ---
 
