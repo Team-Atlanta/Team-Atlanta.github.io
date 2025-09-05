@@ -467,7 +467,7 @@ Ready to explore BGA in detail? Here are your next steps:
 - [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)
 - [UniAFL: The Fuzzing Infrastructure](https://team-atlanta.github.io/blog/post-crs-multilang/)
 - [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
-- Coming Soon: Deep dive into CPUA, MCGA, CGPA's code understanding and navigation
+- [Deep dive into CPUA, MCGA, CGPA's code understanding and navigation](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)
 - Coming Soon: BCDA - The AI Detective Separating Real Bugs from False Alarms
 
 ---
