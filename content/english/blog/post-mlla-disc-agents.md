@@ -2,12 +2,12 @@
 title: "From Harness to Vulnerability: AI Agents for Code Comprehension and Bug Discovery"
 meta_title: ""
 description: ""
-date: 2025-12-31T21:00:00Z
+date: 2025-09-04T10:00:00Z
 image: "/images/blog/mlla/cpua_preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Soyeon Park"
 tags: ["mlla", "llm", "multi-agent"]
-draft: true
+draft: false
 ---
 
 ## **Beneath the Exploit: The Groundwork That Makes Bug Hunting Possible**
