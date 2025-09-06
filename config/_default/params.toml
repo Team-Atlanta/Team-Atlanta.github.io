@@ -57,7 +57,7 @@ show_categories = true
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
 keywords = ["DARPA AIxCC", "cybersecurity", "fuzzing", "LLM", "AIxCC"]
-description = "We are Team Atlanta, finalists in DARPA AIxCC."
+description = "We are Team Atlanta, the first-place winner of DARPA AIxCC."
 image = "images/logo.jpg"
 
 
