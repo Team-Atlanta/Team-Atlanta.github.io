@@ -680,9 +680,9 @@ The most exciting opportunities ahead include:
 - **[Vulnerability Information Templates](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/modules/sanitizer_info)** - R2.5 vs Final context evolution
 
 ### Related Posts
-- **[BGA: Self-Evolving Exploits Through Multi-Agent AI](https://team-atlanta.github.io/blog/post-mlla-bga/)** - Overview of the multi-agent system
-- **[MLLA: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)** - Full architecture details
-- **[CPUA, MCGA, CGPA: Code Understanding and Navigation](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)** - How MLLA discovers and maps vulnerabilities
-- **Coming Soon: BCDA** - The AI Detective that identifies real vulnerabilities
+- **[🛠️ BGA: Self-Evolving Exploits Through Multi-Agent AI](https://team-atlanta.github.io/blog/post-mlla-bga/)** - Overview of the multi-agent system
+- **[🏗️ MLLA: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)** - Full architecture details
+- **[🗺️ CPUA, MCGA, CGPA: Code Understanding and Navigation](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)** - How MLLA discovers and maps vulnerabilities
+- **[🔬 BCDA: The AI Detective Separating Real Bugs from False Alarms](https://team-atlanta.github.io/blog/post-mlla-bcda/)** - How BCDA identifies real vulnerabilities
 
 ---

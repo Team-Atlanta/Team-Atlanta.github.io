@@ -2,12 +2,12 @@
 title: "BCDA: The AI Detective Separating Real Bugs from False Alarms"
 meta_title: ""
 description: "A deep dive into BCDA, the AI agent that acts as a detective, analyzing potential vulnerability paths to distinguish genuine threats from false positives and creating detailed bug reports for exploitation."
-date: 2025-12-31T11:00:00Z
+date: 2025-09-07T11:00:00Z
 image: "/images/blog/mlla/bcda_preview.png"
 categories: ["Atlantis-Multilang"]
 author: "Sangwoo Ji"
 tags: ["mlla", "llm", "vulnerability-discovery", "static-analysis", "multi-agent", "bcda"]
-draft: true
+draft: false
 ---
 
 
@@ -98,9 +98,9 @@ This was a look into our AI detective, BCDA.
 To see how MLLA components work together, check out our other deep dives:
 
 - [🌐 **Browse the complete MLLA source code**](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent)
-- [MLLA Overview: Teaching LLMs to Hunt Bugs Like Security Researchers](https://team-atlanta.github.io/blog/post-mlla-overview/)
+- [🏗️ **MLLA Overview: Teaching LLMs to Hunt Bugs Like Security Researchers**](https://team-atlanta.github.io/blog/post-mlla-overview/)
 - [🗺️ Deep dive into CPUA, MCGA, CGPA's code understanding and navigation](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)
 - [🛠️ Deep dive into BGA's self-evolving exploits](https://team-atlanta.github.io/blog/post-mlla-bga/)
-- [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)
+- [🧠 **Context Engineering: How BGA Teaches LLMs to Write Exploits**](https://team-atlanta.github.io/blog/post-context-engineering/)
 
 ---

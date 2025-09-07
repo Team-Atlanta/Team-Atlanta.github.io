@@ -256,10 +256,10 @@ security landscape that used to feel unreachable.</span>
   - [MCGA](https://github.com/Team-Atlanta/aixcc-afc-atlantis/tree/main/example-crs-webservice/crs-multilang/blob-gen/multilang-llm-agent/mlla/agents/mcga.py)
 
 ### 🔗 **Related Deep Dives**
-- [MLLA Overview: The Complete System](https://team-atlanta.github.io/blog/post-mlla-overview/)
-- [UniAFL: The Fuzzing Infrastructure](https://team-atlanta.github.io/blog/post-crs-multilang/)
-- [BGA: Self-Evolving Exploits Through Multi-Agent AI](https://team-atlanta.github.io/blog/post-mlla-bga/)
-- [Context Engineering: How BGA Teaches LLMs to Write Exploits](https://team-atlanta.github.io/blog/post-context-engineering/)
-- Coming Soon: BCDA - The AI Detective Separating Real Bugs from False Alarms
+- [🏗️ **MLLA Overview: The Complete System**](https://team-atlanta.github.io/blog/post-mlla-overview/)
+- [📖 **UniAFL: The Fuzzing Infrastructure**](https://team-atlanta.github.io/blog/post-crs-multilang/)
+- [🛠️ **BGA: Self-Evolving Exploits Through Multi-Agent AI**](https://team-atlanta.github.io/blog/post-mlla-bga/)
+- [🧠 **Context Engineering: How BGA Teaches LLMs to Write Exploits**](https://team-atlanta.github.io/blog/post-context-engineering/)
+- [🔬 **BCDA: The AI Detective Separating Real Bugs from False Alarms**](https://team-atlanta.github.io/blog/post-mlla-bcda/)
 
 ---
