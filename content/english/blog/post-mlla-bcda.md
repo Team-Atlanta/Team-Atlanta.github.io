@@ -5,9 +5,9 @@ description: "A deep dive into BCDA, the AI agent that acts as a detective, anal
 date: 2025-09-07T11:00:00Z
 image: "/images/blog/mlla/bcda_preview.png"
 categories: ["Atlantis-Multilang"]
-author: "Sangwoo Ji"
+authors: ["Sangwoo Ji", "Dongkwan Kim"]
 tags: ["mlla", "llm", "vulnerability-discovery", "static-analysis", "multi-agent", "bcda"]
-draft: false
+draft: true
 ---
 
 
