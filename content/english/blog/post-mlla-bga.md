@@ -10,6 +10,20 @@ tags: ["mlla", "llm", "exploit-generation", "multi-agent", "bga"]
 draft: false
 ---
 
+## 🔄 Where BGA Fits in the MLLA Pipeline
+
+Before we dive into BGA's self-evolving exploits, here's how it fits into the broader MLLA vulnerability discovery pipeline:
+
+**Discovery Agents** ([CPUA, MCGA, CGPA](https://team-atlanta.github.io/blog/post-mlla-disc-agents/)) → **Detective** ([BCDA](https://team-atlanta.github.io/blog/post-mlla-bcda/)) → **Exploit Generation** (**BGA**)
+
+1. **Discovery agents** map the codebase and identify potential vulnerability paths
+2. **BCDA** investigates these paths, filtering false positives and creating Bug Inducing Things (BITs) with precise trigger conditions  
+3. **BGA** receives these confirmed vulnerabilities and generates self-evolving exploits to trigger them
+
+Now BGA takes the stage, armed with BCDA's detailed intelligence about exactly what conditions must be satisfied to reach each vulnerability.
+
+---
+
 ## Why Programs Beat Payloads
 
 Here's the problem that changed everything: you need an exploit with exactly 1000 'A' characters followed by shellcode. Ask an LLM to generate it directly, and you might get 847 A's, maybe 1203 A's – never quite right. But ask it to write `payload = "A" * 1000 + shellcode`, and you get perfection every time.
