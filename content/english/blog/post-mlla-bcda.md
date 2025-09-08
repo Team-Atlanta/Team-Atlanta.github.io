@@ -13,7 +13,7 @@ draft: false
 
 ## 🎯 From Potential Sink to Actionable Intelligence
 
-BCDA(Bug Candidate Detection Agent)'s core mission is to address the fundamental challenge of lightweight sink analysis: distinguishing real vulnerabilities from false-positive noise.
+BCDA (Bug Candidate Detection Agent)'s core mission is to address the fundamental challenge of lightweight sink analysis: distinguishing real vulnerabilities from false-positive noise.
 When MCGA, our cartographer, flags a function containing a potentially vulnerable "sink" (such as a function that executes system commands), BCDA takes over.
 
 Its job isn't just to say "yes" or "no."
@@ -39,7 +39,7 @@ But more data isn't always better.
 To avoid analyzing irrelevant code, BCDA immediately applies **LLM-powered pruning**.
 Since MCGA already hints at the *type of vulnerability* (e.g., Command Injection, XXE, Path Traversal), BCDA asks the LLM: “Of all these functions, which ones are truly relevant to this *vulnerability type*?”
 
-The LLM responds with only the necessary functions, leaving BCDA with a rich but focused context for its investigation—much like a detective interviewing dozens of people but quickly narrowing in on the key witnesses.
+The LLM responds with only the necessary functions, leaving BCDA with a rich but focused context for its investigation.
 
 ### Step 2: 🕵️ Vulnerability Classification (The Interrogation)
 
@@ -50,7 +50,28 @@ This isn't a generic question; it's a highly detailed briefing that includes:
 * Common coding patterns and anti-patterns associated with that vulnerability.
 * Effective strategies for detecting it in source code.
 
-Armed with this domain knowledge and the expanded-and-pruned code path, the LLM analyzes the code path and makes a definitive judgment: does this path contain the suspected vulnerability, or is it a false alarm?
+For example, when analyzing LDAP injection, BCDA provides this specific guidance:
+
+```
+LDAPInjection:
+  description: |-
+    LDAP queries constructed by concatenating unescaped user input.
+
+    Find: String concatenation building LDAP DN or filters, including multi-valued RDNs.
+    ```java
+    String username = request.getParameter("user");
+    String dn = "cn=" + username + ",dc=example,dc=com";  // BUG: unescaped
+    dirContext.search(dn, attrs);
+
+    // Filter context
+    String filter = "(uid=" + username + ")";  // BUG: unescaped filter
+    dirContext.search(baseDN, filter, controls);
+    ```
+```
+
+Armed with this [vulnerability domain knowledge](https://team-atlanta.github.io/blog/post-context-engineering/#technique-4-domain-knowledge-integration) and the expanded-and-pruned code path, the LLM analyzes the code path and makes a definitive judgment: does this path contain the suspected vulnerability, or is it a false alarm?
+
+For more details on how we prepare and implement context engineering for vulnerability detection, check out our [Domain Knowledge Integration technique](https://team-atlanta.github.io/blog/post-context-engineering/).
 
 ### Step 3: 🔑 Key Condition and Trigger Path Extraction (Reconstructing the Crime)
 
@@ -81,6 +102,109 @@ Armed with a BIT, BGA and our fuzzers receive a confirmed, detailed blueprint fo
 
 ---
 
+## 📋 What BCDA Actually Analyzes: A Real Example
+
+Here's the actual source code BCDA analyzes when investigating an LDAP injection vulnerability in Jenkins from our benchmark. We use the same annotation system described in our [context engineering source code annotations](https://team-atlanta.github.io/blog/post-context-engineering/#technique-2-source-code-annotation-systems):
+
+- `/* @KEY_CONDITION */` marks conditions that must be satisfied to reach the vulnerability
+- `/* @BUG_HERE */` identifies the exact location of the vulnerable code
+
+**Entry Point (Harness):**
+```java
+// fuzzerTestOneInput - where the fuzz data enters
+public static void fuzzerTestOneInput(byte[] data) throws Exception {
+    BugDetectors.allowNetworkConnections((host, port) -> host.equals("localhost"));
+    new JenkinsThree().fuzz(data);
+}
+```
+
+**Routing Logic with Key Conditions:**
+```java
+public void fuzz(byte[] data) throws Exception {
+    ByteBuffer buf = ByteBuffer.wrap(data);
+    if (buf.remaining() < 4) { /* @KEY_CONDITION */
+        return;
+    }
+    
+    int picker = buf.getInt();
+    switch (picker) { /* @KEY_CONDITION */
+        case 190: /* @KEY_CONDITION */
+            testAuthAction(buf);
+            break;
+        // ... other cases
+    }
+}
+```
+
+**Input Processing:**
+```java
+void testAuthAction(ByteBuffer buf) {
+    String[] parts = getRemainingAsString(buf).split("\0");
+    if (parts.length != 4) { /* @KEY_CONDITION */
+        return;
+    }
+    // Mock request with user-controlled parameters
+    when(innerReq.getParameter(parts[0])).thenReturn(parts[1]);
+    when(innerReq.getParameter(parts[2])).thenReturn(parts[3]);
+    // ...
+    action.authenticateAsAdmin(req, rsp);
+}
+```
+
+**The Vulnerable Sink:**
+```java
+public void authenticateAsAdmin(StaplerRequest request, StaplerResponse response) 
+        throws IOException, NamingException {
+    if (!request.hasParameter("username") || !request.hasParameter("key")) { /* @KEY_CONDITION */
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+        return;
+    }
+    
+    String username = request.getParameter("username");
+    String key = request.getParameter("key");
+    
+    if (!isAdmin(dirContext, controls, username)) { /* @KEY_CONDITION */
+        writer.print("{\"status\": \"failure\"}");
+        return;
+    }
+    
+    // THE VULNERABILITY: Unsanitized user input in LDAP filter
+    String searchFilter = "(&(objectClass=inetOrgPerson)(cn=" + username + ")(userPassword=" + key + "))"; /* @BUG_HERE */
+    NamingEnumeration<SearchResult> results = dirContext.search("ou=users,dc=example,dc=com", searchFilter, controls);
+}
+```
+
+### BCDA Goes Deeper: Analyzing the `isAdmin` Gate
+
+But BCDA doesn't stop at identifying `isAdmin()` as a key condition. It follows the execution path deeper to understand what conditions must be satisfied *inside* that function:
+
+```java
+private boolean isAdmin(DirContext dirContext, SearchControls controls, String name) throws NamingException {
+    String searchFilter = "(&(objectClass=inetOrgPerson)(description=admin))";
+    try {
+        NamingEnumeration<SearchResult> results = dirContext.search("ou=users,dc=example,dc=com", searchFilter, controls);
+        while (results.hasMore()) {
+            SearchResult result = results.next();
+            if (result.getAttributes().get("cn").get().equals(name)) { /* @KEY_CONDITION */
+                return true;
+            }
+        }
+    } catch (Exception e) {
+    }
+    return false;
+}
+```
+
+BCDA discovers that for `isAdmin()` to return true, two nested conditions must be met:
+1. The LDAP search must return at least one admin user (`results.hasMore()`)
+2. One of those admin users must have a `cn` attribute matching the input username
+
+This depth of analysis is crucial. Many vulnerability detection tools would stop at the high-level `isAdmin()` check, missing the specific LDAP query conditions needed to bypass it.
+
+This is exactly the kind of complex, multi-condition vulnerability path that BCDA excels at analyzing. Notice how the bug is buried behind multiple conditional checks, switch statements, and function calls. Traditional static analysis tools would struggle to map this complete execution path and identify the precise conditions needed to reach the vulnerability.
+
+---
+
 ## ✨ The BCDA Difference: From Guesswork to Certainty
 
 BCDA transforms the system from a heavy, resource-draining carpet-bombing approach into a 'strategic vulnerability discovery platform' that precisely targets high-probability vectors and concentrates resources where they matter most.
@@ -90,7 +214,26 @@ BCDA transforms the system from a heavy, resource-draining carpet-bombing approa
 By filtering out false positives and enriching real vulnerabilities with precise trigger conditions, BCDA ensures that our most powerful and computationally expensive agent, BGA, focuses its efforts only on confirmed, high-value targets.
 It is the crucial link that turns MCGA's broad surveillance into BGA's surgical strike, saving time and improving the quality of discovered bugs.
 
-BCDA demonstrates that in automated security analysis, the goal isn't just to find more potential bugs—it's to find the *right* ones, armed with the intelligence needed to act on them.
+BCDA demonstrates that in automated security analysis, the goal isn't just to find more potential bugs. It's to find the *right* ones, armed with the intelligence needed to act on them.
+
+## 🔄 Forward vs. Backward Analysis: A Design Choice
+
+BCDA currently employs a **forward analysis** approach, following the software analyst's mindset: starting from the entry point (harness code), following the call trace, and then finding the buggy point. This mirrors how traditional program analysis works: trace execution paths from known entry points to discover what might go wrong.
+
+But there's another perspective: the **hacker's approach**. Security researchers often work backward. They first identify potentially vulnerable sinks (like `system()` calls, SQL query construction, or memory corrupting `memcpy()` or `strcpy()`), then trace backward through references to find if these sinks are reachable from user-controlled entry points.
+
+This backward analysis has compelling advantages:
+- **Efficiency**: Focus immediately on high-risk code patterns
+- **Coverage**: Find vulnerabilities that might not be reachable through obvious execution paths
+- **Hacker mindset**: Mirror how real attackers analyze code for weaknesses
+
+We experimented with implementing this backward tracing approach during the competition, starting from vulnerable sinks and following references back to entry points. However, we couldn't complete this implementation within the competition timeframe.
+
+The backward analysis remains an interesting direction for future research. Combining both forward and backward approaches could provide more comprehensive vulnerability coverage while maintaining BCDA's precision in identifying exploitable conditions.
+
+---
+
+Now, interested to see how BCDA's results are used for self-evolving exploits? Check out [🛠️ **BGA: Self-Evolving Exploits Through Multi-Agent AI**](https://team-atlanta.github.io/blog/post-mlla-bga/).
 
 ## Dive Deeper
 
