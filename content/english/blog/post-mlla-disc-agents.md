@@ -263,3 +263,7 @@ security landscape that used to feel unreachable.</span>
 - [🔬 **BCDA: The AI Detective Separating Real Bugs from False Alarms**](https://team-atlanta.github.io/blog/post-mlla-bcda/)
 
 ---
+
+Now, curious about what happens when MCGA finds a potential vulnerability? See how [🔬 **BCDA acts as an AI detective**](https://team-atlanta.github.io/blog/post-mlla-bcda/) to separate real bugs from false alarms.
+
+---
