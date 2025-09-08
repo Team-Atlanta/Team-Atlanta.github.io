@@ -21,6 +21,30 @@
  
 
 
-&gt;Jazzer&lt;/a&gt;&amp;rsquo;s detection. Not &lt;code&gt;&amp;quot;jaz.Zero&amp;quot;&lt;/code&gt;, not &lt;code&gt;&amp;quot;java.Zer&amp;quot;&lt;/code&gt;, not &lt;code&gt;&amp;quot;jaz.zer&amp;quot;&lt;/code&gt;. One character wrong and the entire exploit fails.&lt;/p&gt;</description></item><item><title>BGA: Self-Evolving Exploits Through Multi-Agent AI</title><link>https://team-atlanta.github.io/blog/post-mlla-bga/</link><pubDate>Fri, 29 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-bga/</guid><description>&lt;h2 id="why-programs-beat-payloads"&gt;Why Programs Beat Payloads&lt;/h2&gt;
-&lt;p&gt;Here&amp;rsquo;s the problem that changed everything: you need an exploit with exactly 1000 &amp;lsquo;A&amp;rsquo; characters followed by shellcode. Ask an LLM to generate it directly, and you might get 847 A&amp;rsquo;s, maybe 1203 A&amp;rsquo;s – never quite right. But ask it to write &lt;code&gt;payload = &amp;quot;A&amp;quot; * 1000 + shellcode&lt;/code&gt;, and you get perfection every time.&lt;/p&gt;
-&lt;p&gt;This insight sparked our breakthrough during the AIxCC competition. Instead of hoping AI could guess the right attack data, we taught it to write programs that create that data. The result? &lt;strong&gt;Seven unique vulnerabilities discovered&lt;/strong&gt; - exploits that evolved and adapted until they found their targets.&lt;/p&gt;</description></item></channel></rss>
+&gt;Jazzer&lt;/a&gt;&amp;rsquo;s detection. Not &lt;code&gt;&amp;quot;jaz.Zero&amp;quot;&lt;/code&gt;, not &lt;code&gt;&amp;quot;java.Zer&amp;quot;&lt;/code&gt;, not &lt;code&gt;&amp;quot;jaz.zer&amp;quot;&lt;/code&gt;. One character wrong and the entire exploit fails.&lt;/p&gt;</description></item><item><title>BGA: Self-Evolving Exploits Through Multi-Agent AI</title><link>https://team-atlanta.github.io/blog/post-mlla-bga/</link><pubDate>Fri, 29 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-bga/</guid><description>&lt;h2 id="-where-bga-fits-in-the-mlla-pipeline"&gt;🔄 Where BGA Fits in the MLLA Pipeline&lt;/h2&gt;
+&lt;p&gt;Before we dive into BGA&amp;rsquo;s self-evolving exploits, here&amp;rsquo;s how it fits into the broader MLLA vulnerability discovery pipeline:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Discovery Agents&lt;/strong&gt; (&lt;a href="https://team-atlanta.github.io/blog/post-mlla-disc-agents/"
+
+
+
+
+ target="_blank"
+ 
+
+
+&gt;CPUA, MCGA, CGPA&lt;/a&gt;) → &lt;strong&gt;Detective&lt;/strong&gt; (&lt;a href="https://team-atlanta.github.io/blog/post-mlla-bcda/"
+
+
+
+
+ target="_blank"
+ 
+
+
+&gt;BCDA&lt;/a&gt;) → &lt;strong&gt;Exploit Generation&lt;/strong&gt; (&lt;strong&gt;BGA&lt;/strong&gt;)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Discovery agents&lt;/strong&gt; map the codebase and identify potential vulnerability paths&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BCDA&lt;/strong&gt; investigates these paths, filtering false positives and creating Bug Inducing Things (BITs) with precise trigger conditions&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BGA&lt;/strong&gt; receives these confirmed vulnerabilities and generates self-evolving exploits to trigger them&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now BGA takes the stage, armed with BCDA&amp;rsquo;s detailed intelligence about exactly what conditions must be satisfied to reach each vulnerability.&lt;/p&gt;</description></item></channel></rss>
