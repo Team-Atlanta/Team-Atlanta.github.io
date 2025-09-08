@@ -7,7 +7,7 @@ image: "/images/blog/mlla/bcda_preview.png"
 categories: ["Atlantis-Multilang"]
 authors: ["Sangwoo Ji", "Dongkwan Kim"]
 tags: ["mlla", "llm", "vulnerability-discovery", "static-analysis", "multi-agent", "bcda"]
-draft: true
+draft: false
 ---
 
 
@@ -52,9 +52,10 @@ This isn't a generic question; it's a highly detailed briefing that includes:
 
 For example, when analyzing LDAP injection, BCDA provides this specific guidance:
 
-```
-LDAPInjection:
-  description: |-
+```xml
+<sanitizer>
+  <type>LDAPInjection</type>
+  <description>
     LDAP queries constructed by concatenating unescaped user input.
 
     Find: String concatenation building LDAP DN or filters, including multi-valued RDNs.
@@ -67,6 +68,8 @@ LDAPInjection:
     String filter = "(uid=" + username + ")";  // BUG: unescaped filter
     dirContext.search(baseDN, filter, controls);
     ```
+  </description>
+</sanitizer>
 ```
 
 Armed with this [vulnerability domain knowledge](https://team-atlanta.github.io/blog/post-context-engineering/#technique-4-domain-knowledge-integration) and the expanded-and-pruned code path, the LLM analyzes the code path and makes a definitive judgment: does this path contain the suspected vulnerability, or is it a false alarm?
