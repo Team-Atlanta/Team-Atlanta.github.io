@@ -1,3 +1,17 @@
+---
+title: "Research & Code"
+meta_title: "Research Publications and Source Code"
+description: "Team Atlanta's research publications, source code, and tools from the DARPA AIxCC competition"
+---
+
+## 📚 Publications
+
+<div class="glass-card p-8 mb-12 border border-gray-200/20 dark:border-gray-700/30">
+  <p class="text-gray-600 dark:text-gray-300 text-center italic">
+    Our research papers and publications will be available here soon. Stay tuned for updates on our latest findings and contributions to the field.
+  </p>
+</div>
+
 ## 💻 Source Code & Repositories
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

@@ -13,7 +13,7 @@ weight = 2
 hasChildren = true
 
 [[main]]
-name = "Artifacts"
+name = "Research & Code"
 url = "artifacts/"
 weight = 3
 
@@ -112,7 +112,7 @@ url = "authors/"
 weight = 2
 
 [[footer]]
-name = "Artifacts"
+name = "Research & Code"
 url = "artifacts/"
 weight = 3
 
