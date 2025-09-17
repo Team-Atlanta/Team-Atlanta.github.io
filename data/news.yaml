@@ -1,5 +1,11 @@
 articles:
   # 2025 Articles
+  - title: "[ARPA-H Official] AI Cyber Challenge showcases AI's Power to secure America's hospitals and protect patient data"
+    url: "https://arpa-h.gov/news-and-events/arpa-h-darpa-challenge-showcases-ais-power-secure-americas-health-care"
+    source: "ARPA-H"
+    date: "2025-09-04"
+    favicon: ""
+
   - title: "DARPA AI Cyber Challenge Winners Impress With Quick, Scalable Patching"
     url: "https://securityboulevard.com/2025/08/darpa-ai-cyber-challenge-winners-impress-with-quick-scalable-patching/"
     source: "Security Boulevard"
@@ -29,6 +35,12 @@ articles:
     source: "MeriTalk"
     date: "2025-08-12"
     favicon: "/images/favicons/meritalk.ico"
+
+  - title: "Pentagon Contest Develops AI Tools to Find and Patch Dangerous IT Flaws"
+    url: "https://www.airandspaceforces.com/pentagon-contest-ai-tools-find-patch-it-flaws/"
+    source: "Air & Space Forces Magazine"
+    date: "2025-08-12"
+    favicon: ""
 
   - title: "[GT Official] Georgia Tech Makes History, Wins DARPA Challenge"
     url: "https://www.cc.gatech.edu/news/georgia-tech-makes-history-wins-darpa-challenge"
@@ -77,6 +89,12 @@ articles:
     source: "OpenTools"
     date: "2025-08-09"
     favicon: "/images/favicons/opentools.ico"
+
+  - title: "Team Atlanta Wins AI Cybersecurity Challenge at DEFCON 33"
+    url: "https://news.ssbcrack.com/team-atlanta-wins-ai-cybersecurity-challenge-at-defcon-33/"
+    source: "SSBCrack"
+    date: "2025-08-09"
+    favicon: ""
 
   - title: "DARPA unveils winners of AI challenge to boost critical infrastructure cybersecurity"
     url: "https://www.nextgov.com/cybersecurity/2025/08/darpa-unveils-winners-ai-challenge-boost-critical-infrastructure-cybersecurity/407337/"
