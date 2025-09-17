@@ -6,7 +6,56 @@
           {{ if .Params.image }}
             {{ partial "image" (dict "Src" .Params.image "Context" .Page "Alt" .Title "Class" "mx-auto mb-6" "Size" "200x200") }}
           {{ end }}
-          <div class="content">{{ .Content }}</div>
+
+          <!-- Static content from _index.md -->
+          <div class="content">
+            {{ .Content }}
+          </div>
+
+          <!-- Dynamic timeline from data/news.yaml -->
+          {{ $articles := sort .Site.Data.news.articles "date" "desc" }}
+          {{ $currentYear := "" }}
+          {{ $isLeft := true }}
+
+          <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            {{ range $index, $article := $articles }}
+              {{ $articleYear := dateFormat "2006" (time $article.date) }}
+
+              <!-- Year separator -->
+              {{ if ne $articleYear $currentYear }}
+                {{ if eq $index 0 }}
+                  <div class="timeline-top-separator">{{ $articleYear }}</div>
+                {{ else }}
+                  <div class="timeline-period-marker timeline-year-change">{{ $articleYear }}</div>
+                {{ end }}
+                {{ $currentYear = $articleYear }}
+              {{ end }}
+
+              <!-- Article content -->
+              <div class="timeline-content-{{ if $isLeft }}left{{ else }}right{{ end }} mb-8">
+                <div class="timeline-article-dot timeline-{{ if $isLeft }}left{{ else }}right{{ end }}-dot"></div>
+                <div class="timeline-card">
+                  <div class="flex items-center mb-4">
+                    {{ if $article.favicon }}
+                      <img src="{{ $article.favicon }}" alt="{{ $article.source }}" class="w-6 h-6 mr-3">
+                    {{ end }}
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+                      <a href="{{ $article.url }}" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+                        {{ $article.title }}
+                      </a>
+                    </h3>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 mb-2 text-sm">{{ $article.source }} • {{ dateFormat "January 2, 2006" (time $article.date) }}</p>
+                </div>
+              </div>
+
+              <!-- Alternate left/right positioning -->
+              {{ $isLeft = not $isLeft }}
+            {{ end }}
+          </div>
+
         </div>
       </div>
     </div>
