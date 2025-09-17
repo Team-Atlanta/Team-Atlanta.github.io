@@ -6,7 +6,58 @@
           {{ if .Params.image }}
             {{ partial "image" (dict "Src" .Params.image "Context" .Page "Alt" .Title "Class" "mx-auto mb-6" "Size" "200x200") }}
           {{ end }}
-          <div class="content">{{ .Content }}</div>
+
+          <!-- Page title and description from _index.md -->
+          <h1 class="mb-4">{{ .Title }}</h1>
+
+          <!-- Publications Section -->
+          <h2 class="text-2xl font-bold mb-6">📚 Publications</h2>
+          {{ if .Site.Data.artifacts.publications }}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              {{ range .Site.Data.artifacts.publications }}
+                <div class="glass-card p-6 border border-gray-200/20 dark:border-gray-700/30">
+                  <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    <a href="{{ .url }}" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-blue-400">
+                      {{ .title }}
+                    </a>
+                  </h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ .authors }}</p>
+                  <p class="text-sm text-gray-500 dark:text-gray-500">{{ .venue }} ({{ .year }})</p>
+                  {{ if .pdf }}
+                    <a href="{{ .pdf }}" target="_blank" rel="noopener" class="text-blue-600 hover:underline text-sm">
+                      <i class="fas fa-file-pdf mr-1"></i> PDF
+                    </a>
+                  {{ end }}
+                </div>
+              {{ end }}
+            </div>
+          {{ else }}
+            <div class="glass-card p-8 mb-12 border border-gray-200/20 dark:border-gray-700/30">
+              <p class="text-gray-600 dark:text-gray-300 text-center italic">
+                Our research papers and publications will be available here soon. Stay tuned for updates on our latest findings and contributions to the field.
+              </p>
+            </div>
+          {{ end }}
+
+          <!-- Source Code & Repositories Section -->
+          <h2 class="text-2xl font-bold mb-6">💻 Source Code & Repositories</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {{ range .Site.Data.artifacts.repositories }}
+              <div class="glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30 flex flex-col h-full">
+                <div class="flex items-center mb-4">
+                  <i class="{{ .icon }} text-2xl {{ .iconColor }} mr-3"></i>
+                  <h3 class="text-lg font-bold text-gray-900 dark:text-white">{{ .title }}</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{{ .description }}</p>
+                <div class="mt-auto">
+                  <a href="{{ .url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
+                    View Repository
+                    <i class="fa fa-external-link ml-2 text-xs"></i>
+                  </a>
+                </div>
+              </div>
+            {{ end }}
+          </div>
         </div>
       </div>
     </div>

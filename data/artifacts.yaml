@@ -1,0 +1,35 @@
+# Research & Code data structure
+publications:
+  # Add publications here when available
+  # Example structure:
+  # - title: "Paper Title"
+  #   authors: "Author1, Author2"
+  #   venue: "Conference/Journal Name"
+  #   year: 2025
+  #   url: "https://link-to-paper"
+  #   pdf: "/papers/paper.pdf"
+
+repositories:
+  - title: "Final Source Code"
+    description: "Atlantis: complete award-winning CRS system that secured our DARPA AIxCC victory."
+    url: "https://github.com/Team-Atlanta/aixcc-afc-atlantis"
+    icon: "fa-solid fa-trophy"
+    iconColor: "text-amber-500"
+
+  - title: "Atlantis Benchmark"
+    description: "Foundational benchmark framework for evaluating Atlantis."
+    url: "https://github.com/Team-Atlanta/aixcc-afc-benchmark"
+    icon: "fa-solid fa-database"
+    iconColor: "text-indigo-500"
+
+  - title: "Custom Patch Module"
+    description: "P4: advanced semantic patching system with AI-driven correctness validation."
+    url: "https://github.com/Team-Atlanta/aixcc-afc-p4"
+    icon: "fa-solid fa-wrench"
+    iconColor: "text-purple-500"
+
+  - title: "Semi Final Source Code"
+    description: "Early-stage Atlantis CRS development and foundational research code."
+    url: "https://github.com/Team-Atlanta/aixcc-asc-atlantis"
+    icon: "fa-solid fa-medal"
+    iconColor: "text-gold-500"
