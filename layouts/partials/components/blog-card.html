@@ -25,45 +25,40 @@
       </h4>
       
       <!-- Meta Information -->
-      <ul class="blog-card-meta mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
-        <!-- <li class="flex items-center">
-          <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-            <i class="fa-regular fa-circle-user mr-2 text-primary"></i>{{ .Params.author }}
-          </a>
-        </li> -->
-        {{ $authors := .Params.authors }}
-        {{ if $authors }}
-          <li class="flex inline-block items-center">
-            <i class="fa-regular fa-user-group mr-2 text-primary"></i>
-            {{ range $i,$p:= $authors }}
-              <a href="{{ `authors/` | relLangURL }}{{ . | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-                {{ . }}{{ if ne $i (sub (len $authors) 1) }},&nbsp;{{ end }}
-              </a>
-            {{ end }}
-          </li>
-        {{ else }}
-          <li class="flex items-center">
-            <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+      <div class="blog-card-meta mb-4 text-sm text-gray-600 dark:text-gray-300 space-y-1">
+        <!-- Authors -->
+        <div class="flex items-center min-h-[20px]">
+          {{ $authors := .Params.authors }}
+          {{ if $authors }}
+            <i class="fa-regular fa-user-group mr-2 text-primary flex-shrink-0"></i>
+            <div class="flex flex-wrap items-center gap-x-1">
+              {{ range $i,$p:= $authors }}
+                <a href="{{ `authors/` | relLangURL }}{{ . | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">{{ . }}</a>{{ if ne $i (sub (len $authors) 1) }},{{ end }}
+              {{ end }}
+            </div>
+          {{ else }}
+            <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 flex items-center">
               <i class="fa-regular fa-circle-user mr-2 text-primary"></i>{{ .Params.author }}
             </a>
-          </li>
-        {{ end }}
+          {{ end }}
+        </div>
 
+        <!-- Categories -->
         {{ $categories:= .Params.categories }}
         {{ if $categories }}
-          <li class="flex items-center">
-            <i class="fa-regular fa-folder mr-2 text-primary"></i>
-            {{ range $i,$p:= $categories }}
-              <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-                {{ . | humanize }}{{ if ne $i (sub (len $categories) 1) }}{{ ", " }}{{ end }}
-              </a>
-            {{ end }}
-          </li>
+          <div class="flex items-center min-h-[20px]">
+            <i class="fa-regular fa-folder mr-2 text-primary flex-shrink-0"></i>
+            <div class="flex flex-wrap items-center gap-x-1">
+              {{ range $i,$p:= $categories }}
+                <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">{{ . | humanize }}</a>{{ if ne $i (sub (len $categories) 1) }},{{ end }}
+              {{ end }}
+            </div>
+          </div>
         {{ end }}
-      </ul>
+      </div>
       
       <!-- Summary -->
-      <p class="blog-card-summary mb-6 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-5 flex-grow">
+      <p class="blog-card-summary mb-4 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-4 flex-grow">
         {{ .Summary | plainify }}
       </p>
     </div>
