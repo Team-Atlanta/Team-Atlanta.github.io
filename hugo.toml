@@ -9,7 +9,7 @@ theme = "hugoplate"
 timeZone = "America/New_York"
 # post pagination
 [pagination]
-pagerSize = 2 # see https://gohugo.io/extras/pagination/
+pagerSize = 6 # see https://gohugo.io/extras/pagination/
 # post excerpt
 summaryLength = 10 # see https://gohugo.io/content-management/excerpts/
 # google analytics
