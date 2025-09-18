@@ -1,0 +1,144 @@
+{{ define "main" }}
+  <section class="section-sm pb-0">
+    <div class="container">
+      <div
+        class="row border-border dark:border-darkmode-border justify-center border-b pb-14">
+        <div class="lg:col-4 text-center">
+          {{ if .Params.team }}
+            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" }}
+            {{ $teamNames := dict "multilang" "MULTILANG" "c" "C" "java" "JAVA" "patch" "PATCH" "sarif" "SARIF" "leader" "LEADER" }}
+            {{ $color := index $teamColors .Params.team }}
+            {{ $teamName := index $teamNames .Params.team }}
+            <div class="mb-6">
+              <div class="bg-{{ $color }}-100 dark:bg-{{ $color }}-900/30 text-{{ $color }}-600 dark:text-{{ $color }}-400 px-3 py-1 rounded-full text-xs font-bold inline-block">
+                {{ if eq .Params.team "leader" }}
+                  <i class="fa-solid fa-crown mr-1"></i>{{ $teamName }}
+                {{ else }}
+                  {{ $teamName }}
+                {{ end }}
+              </div>
+            </div>
+          {{ end }}
+
+          {{ $image:= .Params.image }}
+          {{ if $image }}
+            {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mx-auto" "Size" "200x200") }}
+          {{ else if .Params.Email }}
+            <img
+              class="mx-auto"
+              alt="{{ .Title }}"
+              height="200"
+              width="200"
+              src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=128&pg&d=identicon" />
+          {{ end }}
+          <h1 class="h3 mt-10">{{ .Title }}</h1>
+
+          {{ if .Params.team_memberships }}
+            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" "infra" "indigo" }}
+            <div class="mt-4 space-y-4">
+              {{ range .Params.team_memberships }}
+                {{ $color := index $teamColors .team }}
+                {{ if $color }}
+                  <div class="text-center">
+                    <div class="bg-{{ $color }}-100 dark:bg-{{ $color }}-900/30 text-{{ $color }}-600 dark:text-{{ $color }}-400 px-3 py-1 rounded-full text-xs font-bold inline-block mb-2">
+                      {{ if eq .team "leader" }}
+                        <i class="fa-solid fa-crown mr-1"></i>{{ upper .team }}
+                      {{ else }}
+                        {{ upper .team }}
+                      {{ end }}
+                    </div>
+                    <p class="text-{{ $color }}-400 dark:text-{{ $color }}-300 text-lg font-semibold mb-1">{{ .role }}</p>
+                    {{ if .description }}
+                      <p class="text-sm text-gray-600 dark:text-gray-400">{{ .description }}</p>
+                    {{ end }}
+                  </div>
+                {{ else }}
+                  <div class="text-center">
+                    <p class="text-lg font-semibold mb-1">{{ .role }}</p>
+                    {{ if .description }}
+                      <p class="text-sm text-gray-600 dark:text-gray-400">{{ .description }}</p>
+                    {{ end }}
+                  </div>
+                {{ end }}
+              {{ end }}
+            </div>
+          {{ else if .Params.role }}
+            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" "infra" "indigo" }}
+            {{ $color := "" }}
+            {{ if .Params.teams }}
+              {{ $color = index $teamColors (index .Params.teams 0) }}
+            {{ else if .Params.team }}
+              {{ $color = index $teamColors .Params.team }}
+            {{ end }}
+            {{ if $color }}
+              <p class="text-{{ $color }}-400 dark:text-{{ $color }}-300 text-lg font-semibold mt-4">{{ .Params.role }}</p>
+            {{ else }}
+              <p class="text-white text-lg font-semibold mt-4">{{ .Params.role }}</p>
+            {{ end }}
+          {{ end }}
+
+          {{ if .Params.affiliation }}
+            <p class="text-gray-600 dark:text-gray-400 text-base mt-2">{{ .Params.affiliation }}</p>
+          {{ end }}
+          {{ if .Params.description }}
+          <div class="content mt-6">
+            <p>
+            {{ .Params.description }}
+            </p>
+          </div>
+          {{ end }}
+          <div class="content mt-6">
+            {{ .Content }}
+          </div>
+          <ul class="social-icons ml-4 mt-10 text-center">
+            {{ range .Params.social }}
+              <li>
+                <a
+                  href="{{ .link | safeURL }}"
+                  target="_blank"
+                  rel="noopener nofollow">
+                  <span class="sr-only">{{ .title }}</span>
+                  <i class="{{ .icon }}"></i>
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+
+      <div class="row pb-16 pt-14">
+        {{ $authorName := .Title }}
+        {{ $allPosts := site.RegularPages }}
+        {{ $authorPosts := slice }}
+
+        {{ range $allPosts }}
+          {{ $include := false }}
+
+          <!-- Check single author field -->
+          {{ if eq .Params.author $authorName }}
+            {{ $include = true }}
+          {{ end }}
+
+          <!-- Check multiple authors field -->
+          {{ if .Params.authors }}
+            {{ range .Params.authors }}
+              {{ if eq . $authorName }}
+                {{ $include = true }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+
+          {{ if $include }}
+            {{ $authorPosts = $authorPosts | append . }}
+          {{ end }}
+        {{ end }}
+
+        {{ range $authorPosts }}
+          <div class="md:col-6 lg:col-4 mb-12">
+            {{ partial "components/blog-card" . }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

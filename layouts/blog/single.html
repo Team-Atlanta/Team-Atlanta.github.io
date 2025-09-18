@@ -25,9 +25,7 @@
               <li class="mr-4 inline-block">
                 <i class="fa-regular fa-user-group mr-2 text-primary"></i>
             {{ range $i,$p:= $authors }}
-                <a href="{{ `authors/` | relLangURL }}{{ . | urlize }}/">
-                  {{ . }}{{ if ne $i (sub (len $authors) 1) }}{{ ", " }}{{ end }}
-                </a>
+                <a href="{{ `authors/` | relLangURL }}{{ . | urlize }}/">{{ . }}</a>{{ if ne $i (sub (len $authors) 1) }}, {{ end }}
             {{ end }}
               </li>
             {{ else }}
