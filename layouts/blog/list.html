@@ -6,8 +6,22 @@
       <div class="row gx-5">
         <!-- blog posts -->
         <div class="lg:col-8">
-          <div class="row gy-6">
-            {{ $paginator:= .Paginate .RegularPages }}
+          {{ $paginator:= .Paginate .RegularPages }}
+
+          <!-- Toggle View Buttons -->
+          <div class="flex justify-end mb-6">
+            <div class="inline-flex rounded-lg border border-gray-300 dark:border-gray-600">
+              <button onclick="toggleView('grid')" id="grid-view-btn" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 rounded-l-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10">
+                <i class="fa fa-th mr-2"></i>Grid
+              </button>
+              <button onclick="toggleView('list')" id="list-view-btn" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-r-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10">
+                <i class="fa fa-list mr-2"></i>List
+              </button>
+            </div>
+          </div>
+
+          <!-- Grid View -->
+          <div id="grid-view" class="row gy-6" style="display: none;">
             {{ range $paginator.Pages }}
               <div class="md:col-6 mb-8">
                 <div class="h-full">
@@ -16,6 +30,14 @@
               </div>
             {{ end }}
           </div>
+
+          <!-- List View -->
+          <div id="list-view" class="space-y-6">
+            {{ range $paginator.Pages }}
+              {{ partial "components/blog-list-item" . }}
+            {{ end }}
+          </div>
+
           {{ partial "components/pagination.html" . }}
         </div>
         <!-- sidebar -->
@@ -27,4 +49,37 @@
       </div>
     </div>
   </section>
+
+  <script>
+    function toggleView(view) {
+      const gridView = document.getElementById('grid-view');
+      const listView = document.getElementById('list-view');
+      const gridBtn = document.getElementById('grid-view-btn');
+      const listBtn = document.getElementById('list-view-btn');
+
+      if (view === 'grid') {
+        gridView.style.display = 'flex';
+        listView.style.display = 'none';
+        gridBtn.classList.remove('bg-gray-100', 'dark:bg-gray-700');
+        gridBtn.classList.add('bg-white', 'dark:bg-gray-800');
+        listBtn.classList.remove('bg-white', 'dark:bg-gray-800');
+        listBtn.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        localStorage.setItem('blogView', 'grid');
+      } else {
+        gridView.style.display = 'none';
+        listView.style.display = 'block';
+        listBtn.classList.remove('bg-gray-100', 'dark:bg-gray-700');
+        listBtn.classList.add('bg-white', 'dark:bg-gray-800');
+        gridBtn.classList.remove('bg-white', 'dark:bg-gray-800');
+        gridBtn.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        localStorage.setItem('blogView', 'list');
+      }
+    }
+
+    // Load saved preference or default to list view
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedView = localStorage.getItem('blogView') || 'list';
+      toggleView(savedView);
+    });
+  </script>
 {{ end }}

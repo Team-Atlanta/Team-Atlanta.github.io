@@ -1,0 +1,68 @@
+<article class="blog-list-item glass-card p-6 border border-gray-200/20 dark:border-gray-700/30">
+  <div class="flex gap-6">
+    <!-- Thumbnail -->
+    {{ if .Params.image }}
+      <div class="flex-shrink-0 hidden sm:block">
+        <a href="{{ .RelPermalink }}">
+          {{ partial "image" (dict "Src" .Params.image "Alt" .Title "Class" "w-32 h-32 object-cover rounded-lg") }}
+        </a>
+      </div>
+    {{ end }}
+
+    <!-- Content -->
+    <div class="flex-grow">
+      <!-- Title -->
+      <h3 class="text-xl font-bold mb-2">
+        <a href="{{ .RelPermalink }}" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          {{ .Title }}
+        </a>
+      </h3>
+
+      <!-- Meta -->
+      <div class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
+        <!-- Authors -->
+        {{ $authors := .Params.authors }}
+        {{ if $authors }}
+          <span class="flex items-center">
+            <i class="fa-regular fa-user-group mr-1"></i>
+            {{ range $i,$p:= $authors }}
+              <a href="{{ `authors/` | relLangURL }}{{ . | urlize }}/" class="hover:text-blue-600">{{ . }}</a>{{ if ne $i (sub (len $authors) 1) }},&nbsp;{{ end }}
+            {{ end }}
+          </span>
+        {{ else if .Params.author }}
+          <span>
+            <i class="fa-regular fa-user mr-1"></i>
+            <a href="{{ `authors/` | relLangURL }}{{ .Params.author | urlize }}/" class="hover:text-blue-600">{{ .Params.author }}</a>
+          </span>
+        {{ end }}
+
+        <!-- Date -->
+        <span>
+          <i class="fa-regular fa-calendar mr-1"></i>
+          {{ time.Format "Jan 2, 2006" .PublishDate }}
+        </span>
+
+        <!-- Category -->
+        {{ $categories := .Params.categories }}
+        {{ if $categories }}
+          <span>
+            <i class="fa-regular fa-folder mr-1"></i>
+            {{ range $i,$p:= $categories }}
+              <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/" class="hover:text-blue-600">{{ . }}</a>{{ if ne $i (sub (len $categories) 1) }}, {{ end }}
+            {{ end }}
+          </span>
+        {{ end }}
+      </div>
+
+      <!-- Summary -->
+      <p class="text-gray-700 dark:text-gray-300 line-clamp-2 mb-3">
+        {{ .Summary | plainify | truncate 200 }}
+      </p>
+
+      <!-- Read More -->
+      <a href="{{ .RelPermalink }}" class="text-primary hover:text-blue-700 font-medium text-sm inline-flex items-center">
+        Read more <i class="fa fa-arrow-right ml-1"></i>
+      </a>
+    </div>
+  </div>
+</article>
