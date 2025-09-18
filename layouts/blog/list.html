@@ -11,10 +11,10 @@
           <!-- Toggle View Buttons -->
           <div class="flex justify-end mb-6">
             <div class="inline-flex rounded-lg border border-gray-300 dark:border-gray-600">
-              <button onclick="toggleView('grid')" id="grid-view-btn" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 rounded-l-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10">
+              <button onclick="toggleView('grid')" id="grid-view-btn" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 rounded-l-lg hover:bg-gray-50 dark:hover:bg-gray-600 focus:z-10">
                 <i class="fa fa-th mr-2"></i>Grid
               </button>
-              <button onclick="toggleView('list')" id="list-view-btn" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-r-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10">
+              <button onclick="toggleView('list')" id="list-view-btn" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-r-lg hover:bg-gray-50 dark:hover:bg-gray-600 focus:z-10">
                 <i class="fa fa-list mr-2"></i>List
               </button>
             </div>
@@ -60,18 +60,18 @@
       if (view === 'grid') {
         gridView.style.display = 'flex';
         listView.style.display = 'none';
-        gridBtn.classList.remove('bg-gray-100', 'dark:bg-gray-700');
-        gridBtn.classList.add('bg-white', 'dark:bg-gray-800');
-        listBtn.classList.remove('bg-white', 'dark:bg-gray-800');
-        listBtn.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        gridBtn.classList.remove('bg-gray-100', 'dark:bg-gray-900');
+        gridBtn.classList.add('bg-white', 'dark:bg-gray-700');
+        listBtn.classList.remove('bg-white', 'dark:bg-gray-700');
+        listBtn.classList.add('bg-gray-100', 'dark:bg-gray-900');
         localStorage.setItem('blogView', 'grid');
       } else {
         gridView.style.display = 'none';
         listView.style.display = 'block';
-        listBtn.classList.remove('bg-gray-100', 'dark:bg-gray-700');
-        listBtn.classList.add('bg-white', 'dark:bg-gray-800');
-        gridBtn.classList.remove('bg-white', 'dark:bg-gray-800');
-        gridBtn.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        listBtn.classList.remove('bg-gray-100', 'dark:bg-gray-900');
+        listBtn.classList.add('bg-white', 'dark:bg-gray-700');
+        gridBtn.classList.remove('bg-white', 'dark:bg-gray-700');
+        gridBtn.classList.add('bg-gray-100', 'dark:bg-gray-900');
         localStorage.setItem('blogView', 'list');
       }
     }
