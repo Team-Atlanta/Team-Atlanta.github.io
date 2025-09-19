@@ -11,17 +11,16 @@ publications:
     bibtex: "atlantis"
 
 repositories:
+  - title: "CRS Benchmark"
+    description: "Foundational benchmark framework for evaluating cyber reasoning systems."
+    icon: "fa-solid fa-database"
+    iconColor: "text-indigo-500"
+
   - title: "Final Source Code"
     description: "Atlantis: complete award-winning CRS system that secured our DARPA AIxCC victory."
     url: "https://github.com/Team-Atlanta/aixcc-afc-atlantis"
     icon: "fa-solid fa-trophy"
     iconColor: "text-amber-500"
-
-  - title: "Atlantis Benchmark"
-    description: "Foundational benchmark framework for evaluating Atlantis."
-    url: "https://github.com/Team-Atlanta/aixcc-afc-benchmark"
-    icon: "fa-solid fa-database"
-    iconColor: "text-indigo-500"
 
   - title: "Custom Patch Module"
     description: "P4: advanced semantic patching system with AI-driven correctness validation."

@@ -59,10 +59,17 @@
                 </div>
                 <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{{ .description }}</p>
                 <div class="mt-auto">
-                  <a href="{{ .url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
-                    View Repository
-                    <i class="fa fa-external-link ml-2 text-xs"></i>
-                  </a>
+                  {{ if .url }}
+                    <a href="{{ .url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
+                      View Repository
+                      <i class="fa fa-external-link ml-2 text-xs"></i>
+                    </a>
+                  {{ else }}
+                    <button disabled class="btn btn-outline-primary btn-sm opacity-50 cursor-not-allowed inline-flex items-center">
+                      Coming Soon
+                      <i class="fa fa-clock ml-2 text-xs"></i>
+                    </button>
+                  {{ end }}
                 </div>
               </div>
             {{ end }}
