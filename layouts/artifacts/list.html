@@ -23,18 +23,20 @@
                   </h3>
                   <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ .authors }}</p>
                   <p class="text-sm text-gray-500 dark:text-gray-500 mb-4">{{ .venue }} ({{ .year }})</p>
-                  {{ if .pdf }}
-                    <a href="{{ .pdf }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
-                      PDF
-                      <i class="fa fa-external-link ml-2 text-xs"></i>
-                    </a>
-                  {{ end }}
-                  {{ if .bibtex }}
-                    <button onclick="showBibtex('{{ .bibtex }}')" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
-                      Bibtex
-                      <i class="fa fa-copy ml-2 text-xs"></i>
-                    </button>
-                  {{ end }}
+                  <div class="flex gap-2">
+                    {{ if .pdf }}
+                      <a href="{{ .pdf }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
+                        PDF
+                        <i class="fa fa-external-link ml-2 text-xs"></i>
+                      </a>
+                    {{ end }}
+                    {{ if .bibtex }}
+                      <button onclick="showBibtex('{{ .bibtex }}')" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
+                        Bibtex
+                        <i class="fa fa-copy ml-2 text-xs"></i>
+                      </button>
+                    {{ end }}
+                  </div>
                 </div>
               {{ end }}
             </div>
