@@ -2,12 +2,13 @@
 publications:
   # Add publications here when available
   # Example structure:
-  # - title: "Paper Title"
-  #   authors: "Author1, Author2"
-  #   venue: "Conference/Journal Name"
-  #   year: 2025
-  #   url: "https://link-to-paper"
-  #   pdf: "/papers/paper.pdf"
+  - title: "ATLANTIS: AI-driven Threat Localization, Analysis, and Triage Intelligence System"
+    authors: "Taesoo Kim, HyungSeok Han, Soyeon Park, Dae R. Jeong, Dohyeok Kim, Dongkwan Kim, Eunsoo Kim, Jiho Kim, Joshua Wang, Kangsu Kim, Sangwoo Ji, Woosun Song, Hanqing Zhao, Andrew Chin, Gyejin Lee, Kevin Stevens, Mansour Alharthi, Yizhuo Zhai, Cen Zhang, Joonun Jang, Yeongjin Jang, Ammar Askar, Dongju Kim, Fabian Fleischer, Jeongin Cho, Junsik Kim, Kyungjoon Ko, Insu Yun, Sangdon Park, Dowoo Baik, Haein Lee, Hyeon Heo, Minjae Gwon, Minjae Lee, Minwoo Baek, Seunggi Min, Wonyoung Kim, Yonghwi Jin, Younggi Park, Yunjae Choi, Jinho Jung, Gwanhyun Lee, Junyoung Jang, Kyuheon Kim, Yeonghyeon Cha, Youngjoon Kim"
+    venue: "arXiv"
+    year: 2025
+    url: "/papers/TR-Team-Atlanta.pdf"
+    pdf: "/papers/TR-Team-Atlanta.pdf"
+    bibtex: "atlantis"
 
 repositories:
   - title: "Final Source Code"
