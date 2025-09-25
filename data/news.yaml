@@ -1,5 +1,11 @@
 articles:
   # 2025 Articles
+  - title: "Can AI Solve the Vulnerability Problem in Critical Infrastructure?"
+    url: "https://www.infosecurity-magazine.com/podcasts/can-ai-solve-vulnerability-problem/"
+    source: "Infosecurity Magazine"
+    date: "2025-09-25"
+    favicon: "/images/favicons/infosecurity-magazine.ico"
+
   - title: "[ARPA-H Official] AI Cyber Challenge showcases AI's Power to secure America's hospitals and protect patient data"
     url: "https://arpa-h.gov/news-and-events/arpa-h-darpa-challenge-showcases-ais-power-secure-americas-health-care"
     source: "ARPA-H"
