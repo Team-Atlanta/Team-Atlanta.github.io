@@ -13,6 +13,8 @@ acknowledgments:
     affiliation: "GTRI"
   - name: "Shelby Allen"
     affiliation: "GTRI"
+  - name: "Daniel Barker"
+    affiliation: "GTRI"
   - name: "Brendan Dolan-Gavitt"
     affiliation: "Xbow"
   - name: "Elijah Manstinu"
