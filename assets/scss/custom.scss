@@ -1328,5 +1328,219 @@ pre {
   }
 }
 
+// Timeline multimedia content styles
+.timeline-card-video {
+  border-left: 4px solid #ef4444;
+  background: linear-gradient(135deg, rgba(254, 242, 242, 0.5), rgba(255, 255, 255, 0.9));
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(239, 68, 68, 0.15), var(--shadow-large);
+    border-left-color: #dc2626;
+  }
+}
+
+.dark .timeline-card-video {
+  background: linear-gradient(135deg, rgba(127, 29, 29, 0.1), rgba(26, 37, 47, 0.8));
+}
+
+.timeline-card-podcast {
+  border-left: 4px solid #8b5cf6;
+  background: linear-gradient(135deg, rgba(243, 232, 255, 0.5), rgba(255, 255, 255, 0.9));
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15), var(--shadow-large);
+    border-left-color: #7c3aed;
+  }
+}
+
+.dark .timeline-card-podcast {
+  background: linear-gradient(135deg, rgba(76, 29, 149, 0.1), rgba(26, 37, 47, 0.8));
+}
+
+.timeline-card-article {
+  border-left: 4px solid #3b82f6;
+
+  &:hover {
+    border-left-color: #2563eb;
+  }
+}
+
+// YouTube embed styling for timeline
+.timeline-youtube-embed-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; // 16:9 aspect ratio
+  height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.timeline-youtube-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+// Podcast visual for timeline
+.timeline-podcast-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.dark .timeline-podcast-visual {
+  background: linear-gradient(135deg, #374151, #4b5563);
+}
+
+.timeline-podcast-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.podcast-icon {
+  font-size: 2.5rem;
+  opacity: 0.7;
+}
+
+.podcast-waves {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.podcast-waves span {
+  display: block;
+  width: 3px;
+  background: #8b5cf6;
+  border-radius: 2px;
+  animation: audioWave 1.2s ease-in-out infinite;
+}
+
+.podcast-waves span:nth-child(1) {
+  height: 15px;
+  animation-delay: 0s;
+}
+
+.podcast-waves span:nth-child(2) {
+  height: 25px;
+  animation-delay: 0.2s;
+}
+
+.podcast-waves span:nth-child(3) {
+  height: 20px;
+  animation-delay: 0.4s;
+}
+
+.podcast-waves span:nth-child(4) {
+  height: 30px;
+  animation-delay: 0.6s;
+}
+
+@keyframes audioWave {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleY(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+// Small buttons for timeline cards
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+// Podcast-specific button styling
+.btn-podcast {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+
+  &:hover {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  }
+}
+
+// Timeline content type indicators for enhanced timeline cards
+.timeline-content-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-content-video {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.timeline-content-podcast {
+  background: rgba(139, 92, 246, 0.1);
+  color: #7c3aed;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.timeline-content-article {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+// Dark mode adjustments
+.dark {
+  .timeline-content-video {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+  }
+
+  .timeline-content-podcast {
+    background: rgba(139, 92, 246, 0.2);
+    color: #c084fc;
+  }
+
+  .timeline-content-article {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .featured-multimedia-section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .podcast-visual {
+    height: 150px;
+  }
+
+  .podcast-icon {
+    font-size: 2.5rem;
+  }
+}
+
 // Import optimized authors page styles
 @import 'authors-optimized';
