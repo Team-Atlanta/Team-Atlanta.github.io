@@ -36,12 +36,12 @@
               <!-- Article content -->
               <div class="timeline-content-{{ if $isLeft }}left{{ else }}right{{ end }} mb-8">
                 <div class="timeline-article-dot timeline-{{ if $isLeft }}left{{ else }}right{{ end }}-dot"></div>
-                <div class="timeline-card timeline-card-{{ $contentType := "article" }}{{ $isYouTube := or (findRE "youtube\\.com/watch" $article.url) (findRE "youtu\\.be/" $article.url) }}{{ $isPodcast := or (findRE "podcast" $article.url) (findRE "spotify\\.com" $article.url) (findRE "apple\\.com/.*podcast" $article.url) (eq $article.type "podcast") }}{{ if $isYouTube }}{{ $contentType = "video" }}{{ else if $isPodcast }}{{ $contentType = "podcast" }}{{ end }}{{ $contentType }}">
-                  <!-- Content type detection and styling -->
-                  {{ $isYouTube := or (findRE "youtube\\.com/watch" $article.url) (findRE "youtu\\.be/" $article.url) }}
-                  {{ $isPodcast := or (findRE "podcast" $article.url) (findRE "spotify\\.com" $article.url) (findRE "apple\\.com/.*podcast" $article.url) (eq $article.type "podcast") }}
-                  {{ $contentType := "article" }}
-                  {{ if $isYouTube }}{{ $contentType = "video" }}{{ else if $isPodcast }}{{ $contentType = "podcast" }}{{ end }}
+                <!-- Content type detection and styling -->
+                {{ $isYouTube := or (findRE "youtube\\.com/watch" $article.url) (findRE "youtu\\.be/" $article.url) }}
+                {{ $isPodcast := or (findRE "podcast" $article.url) (findRE "spotify\\.com" $article.url) (findRE "apple\\.com/.*podcast" $article.url) (eq $article.type "podcast") }}
+                {{ $contentType := "article" }}
+                {{ if $isYouTube }}{{ $contentType = "video" }}{{ else if $isPodcast }}{{ $contentType = "podcast" }}{{ end }}
+                <div class="timeline-card timeline-card-{{ $contentType }}">
 
                   <!-- Content type badge for timeline cards -->
                   <div class="timeline-content-badge timeline-content-{{ $contentType }}">
@@ -73,20 +73,51 @@
                     {{ end }}
                   {{ end }}
 
-                  <!-- Podcast visual for podcast content -->
-                  <!-- {{ if $isPodcast }}
-                    <div class="timeline-podcast-visual mb-4">
-                      <div class="timeline-podcast-placeholder">
-                        <div class="podcast-icon">🎙️</div>
-                        <div class="podcast-waves">
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
+                  <!-- Podcast embed/visual for podcast content -->
+                  {{ if $isPodcast }}
+                    {{ $isSoundCloud := findRE "soundcloud\\.com" $article.url }}
+                    {{ if or $isSoundCloud $article.soundcloud_embed }}
+                      <!-- SoundCloud embed -->
+                      <div class="timeline-podcast-embed mb-4">
+                        {{ if $article.soundcloud_embed }}
+                          <!-- Use provided embed URL -->
+                          <iframe
+                            width="100%"
+                            height="166"
+                            scrolling="no"
+                            frameborder="no"
+                            allow="autoplay"
+                            src="{{ $article.soundcloud_embed }}"
+                            class="timeline-podcast-player">
+                          </iframe>
+                        {{ else }}
+                          <!-- Generic SoundCloud player (would need track ID extraction) -->
+                          <div class="timeline-podcast-visual mb-4">
+                            <div class="timeline-podcast-placeholder">
+                              <div class="podcast-icon">🎵</div>
+                              <div class="text-center">
+                                <p class="text-sm text-gray-600 dark:text-gray-400">SoundCloud Podcast</p>
+                                <p class="text-xs text-gray-500">Click to listen</p>
+                              </div>
+                            </div>
+                          </div>
+                        {{ end }}
+                      </div>
+                    {{ else }}
+                      <!-- Default podcast visual for non-SoundCloud podcasts -->
+                      <div class="timeline-podcast-visual mb-4">
+                        <div class="timeline-podcast-placeholder">
+                          <div class="podcast-icon">🎙️</div>
+                          <div class="podcast-waves">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  {{ end }} -->
+                    {{ end }}
+                  {{ end }}
 
                   <!-- Title and source info -->
                   <div class="flex items-center mb-4">

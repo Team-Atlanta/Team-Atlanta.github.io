@@ -6,6 +6,7 @@ articles:
     date: "2025-09-25"
     favicon: "/images/favicons/infosecurity-magazine.ico"
     type: "podcast"
+    soundcloud_embed: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2176297638&color=b50005"
 
   - title: "Team Atlanta - DARPA AI Cyber Challenge"
     url: "https://www.youtube.com/watch?v=j7sagucU4HM"
