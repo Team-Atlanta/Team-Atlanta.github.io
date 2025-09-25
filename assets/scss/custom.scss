@@ -1114,6 +1114,23 @@ pre {
   margin-top: -2rem; // Reduce gap between consecutive articles
 }
 
+// Special spacing based on first card type - only applies to multimedia content
+// If first card is video, second multimedia card gets -18rem margin-top
+.timeline-content-left:has(.timeline-card-video) + .timeline-content-right:has(.timeline-card-video),
+.timeline-content-right:has(.timeline-card-video) + .timeline-content-left:has(.timeline-card-video),
+.timeline-content-left:has(.timeline-card-video) + .timeline-content-right:has(.timeline-card-podcast),
+.timeline-content-right:has(.timeline-card-video) + .timeline-content-left:has(.timeline-card-podcast) {
+  margin-top: -18rem; // Tight spacing after video cards
+}
+
+// If first card is podcast, second multimedia card gets -12rem margin-top
+.timeline-content-left:has(.timeline-card-podcast) + .timeline-content-right:has(.timeline-card-video),
+.timeline-content-right:has(.timeline-card-podcast) + .timeline-content-left:has(.timeline-card-video),
+.timeline-content-left:has(.timeline-card-podcast) + .timeline-content-right:has(.timeline-card-podcast),
+.timeline-content-right:has(.timeline-card-podcast) + .timeline-content-left:has(.timeline-card-podcast) {
+  margin-top: -12rem; // Tight spacing after podcast cards
+}
+
 // Connector lines removed - cleaner timeline design
 
 // Article cards with timeline-specific styling
@@ -1317,6 +1334,18 @@ pre {
     margin-top: 0; // Remove negative spacing on mobile
   }
 
+  // Override desktop multimedia spacing rules for mobile to prevent overlap
+  .timeline-content-left:has(.timeline-card-video) + .timeline-content-right:has(.timeline-card-video),
+  .timeline-content-right:has(.timeline-card-video) + .timeline-content-left:has(.timeline-card-video),
+  .timeline-content-left:has(.timeline-card-video) + .timeline-content-right:has(.timeline-card-podcast),
+  .timeline-content-right:has(.timeline-card-video) + .timeline-content-left:has(.timeline-card-podcast),
+  .timeline-content-left:has(.timeline-card-podcast) + .timeline-content-right:has(.timeline-card-video),
+  .timeline-content-right:has(.timeline-card-podcast) + .timeline-content-left:has(.timeline-card-video),
+  .timeline-content-left:has(.timeline-card-podcast) + .timeline-content-right:has(.timeline-card-podcast),
+  .timeline-content-right:has(.timeline-card-podcast) + .timeline-content-left:has(.timeline-card-podcast) {
+    margin-top: 0; // Remove all multimedia spacing on mobile to prevent overlap
+  }
+
   .timeline-content-left,
   .timeline-content-right {
     animation: timelineSlideInRight 0.8s ease-out forwards;
@@ -1388,7 +1417,19 @@ pre {
   border-radius: 8px;
 }
 
-// Podcast visual for timeline
+// Podcast embed for timeline
+.timeline-podcast-embed {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.timeline-podcast-player {
+  border-radius: 8px;
+}
+
+// Podcast visual for timeline (fallback for non-SoundCloud)
 .timeline-podcast-visual {
   display: flex;
   align-items: center;
