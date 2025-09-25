@@ -5,6 +5,21 @@ articles:
     source: "Infosecurity Magazine"
     date: "2025-09-25"
     favicon: "/images/favicons/infosecurity-magazine.ico"
+    type: "podcast"
+
+  - title: "Team Atlanta - DARPA AI Cyber Challenge"
+    url: "https://www.youtube.com/watch?v=j7sagucU4HM"
+    source: "DARPAtv"
+    date: "2025-08-06"
+    favicon: "/images/favicons/youtube.ico"
+    type: "video"
+
+  - title: "Team Atlanta's AIxCC Final Submission | 01D CTF Radiooo"
+    url: "https://www.youtube.com/watch?v=w-HZtwUXByg&t=2624s"
+    source: "CTF Radiooo"
+    date: "2025-07-22"
+    favicon: "/images/favicons/youtube.ico"
+    type: "video"
 
   - title: "[ARPA-H Official] AI Cyber Challenge showcases AI's Power to secure America's hospitals and protect patient data"
     url: "https://arpa-h.gov/news-and-events/arpa-h-darpa-challenge-showcases-ais-power-secure-americas-health-care"
