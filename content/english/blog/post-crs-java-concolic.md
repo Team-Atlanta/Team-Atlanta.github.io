@@ -40,7 +40,7 @@ one aimed at being robust, compatible, and performant enough for the demands of 
 
 {{< figure src="images/blog/crs-java/concolic/concolic-executor.png" class="img-fluid text-center" width="70%" caption="Fig.1 High-level overview of our Concolic Executor" >}}
 
-Toovercome the critical issues of bytecode instrumentation,
+To overcome the critical issues of bytecode instrumentation,
 we built our engine on GraalVM Espresso, a high-performance, JIT-compiled bytecode interpreter.
 This interpreter-level approach gave us several key advantages:
 
@@ -59,7 +59,7 @@ or satisfy the precise conditions needed to trigger a vulnerability (exploitatio
 
 ### For Exploration: Reaching the Unreachable
 
-In mature fuzzing campaigns, fuzzers can get "stuck,"
+In mature fuzzing campaigns, fuzzers can get "stuck"
 repeatedly exploring the same regions of code without making new discoveries.
 Our concolic executor addresses this by recording the path constraints that lead to these stuck points,
 negating them, and using the Z3 solver to generate new inputs that bypass the roadblock.
