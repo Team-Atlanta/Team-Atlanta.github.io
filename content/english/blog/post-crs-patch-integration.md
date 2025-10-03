@@ -2,8 +2,8 @@
 title: "Patch Team: Ensembling Multiple Agents for Efficient Automated Patching"
 meta_title: ""
 description: "A deep dive into the Patch Team's architecture: how multiple agents are orchestrated through a Main–Sub ensemble system, supported by a custom development framework and performance optimizations to automatically patch vulnerabilities."
-date: 2025-10-03T11:00:00Z
-image: "/images/blog/patch/ensemble_architecture.png"
+date: 2025-10-05T11:00:00Z
+image: "/images/blog/crs-patch/integration.png"
 categories: ["Atlantis-Patch"]
 authors: ["Wonyoung Kim", "Insu Yun"]
 tags: ["patch", "ensemble", "multi-agent"]
