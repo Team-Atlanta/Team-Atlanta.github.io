@@ -7,7 +7,7 @@ image: "/images/blog/crs-java/concolic/icon.png"
 categories: ["Atlantis-Java"]
 author: "Dongju Kim, Kyungjoon Ko, Yeongjin Jang"
 tags: ["java", "concolic execution", "graalvm", "espresso", "jazzer"]
-draft: true
+draft: false
 ---
 
 In the AIxCC competition,
