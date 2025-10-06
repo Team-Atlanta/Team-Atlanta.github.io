@@ -10,7 +10,7 @@ tags: ["patch", "ensemble", "multi-agent"]
 draft: true
 ---
 
-## Patching is Important!
+## Why Ensemble for Patching?
 In the AIxCC competition, finding vulnerabilities is only half the battle. Once a vulnerability is discovered, it must be patched to prevent exploitation. This is where the Atlantis-Patching system comes into play. As the AIxCC's ultimate mission is to make software secure, it awards more points for patching vulnerabilities than for finding them. In particular, the competition rewards **6 points** for patching a vulnerability, compared to just 2 points for discovering it. As a result, to win the competition, it is crucial to have a robust and efficient patching system that can quickly generate effective patches for discovered vulnerabilities. 
 
 ### Early Challenges with a Single Agent
@@ -19,7 +19,7 @@ In the early stages of development, we attempted to create a single all-encompas
 ### Our Solution: Ensemble of Specialized Agents
 To address this, we adopted an ensemble approach, where multiple specialized agents work together to tackle the patching task. Each agent is designed to focus on a specific type of vulnerability or employ a particular patching strategy. This modular approach allows us to develop and maintain each agent independently, making it easier to adapt and improve them over time. 
 
-Ensembling is good for patching thanks to its partial verifiability. Even though we cannot fully verify the correctness of a patch, we can at least check whether it is plausible; that is, whether it compiles, passes tests, and successfully patches the vulnerability that it aims to fix.
+Ensembling can be effective in patching thanks to its partial verifiability. Even though we cannot fully verify a patch's correctness, we can check its plausibility; that is, whether it compiles, passes tests, and successfully patches the vulnerability that it aims to fix. This property helps generate patches with consistent quality and allows direct evaluation of their validity. This is particularly helpful in patching, where we cannot use techniques like majority voting to combine outputs from multiple agents, as they can produce syntactically different yet semantically equivalent patches.
 
 One of the biggest advantages of this strategy is **fault tolerance**. If one agent behaves unexpectedly, it doesn’t bring down the entire system. Since the competition does not allow any intervention after submission, this design helps to ensure that we can still generate patches even if one agent fails.
 
@@ -42,7 +42,7 @@ For ensemble patching, we built a distributed architecture that coordinates mult
 
 
 ``` 
-The Main Node serves as the central controller of the system. When a proof of vulnerability (PoV) is received, it distributes the task **in parallel** to multiple Sub Nodes, each operating as an independent execution unit that runs several agents simultaneously. Once a patch is returned, the Main Node validates it to ensure that it complies with policy requirements and that the vulnerability can no longer be triggered.
+The Main Node serves as the central controller of the system. When PoV is received, it distributes the task **in parallel** to multiple Sub Nodes, each operating as an independent execution unit that runs several agents simultaneously. Once a patch is returned, the Main Node validates it to ensure that it complies with policy requirements and that the vulnerability can no longer be triggered.
 
 Each Sub Node, in contrast, processes its assigned vulnerability **sequentially**. It runs multiple agents one after another, with each agent attempting to generate a valid patch using different algorithms or heuristics. As soon as any agent successfully produces a working patch, that patch is immediately adopted, and the Sub Node stops further execution for that specific vulnerability.
 
@@ -50,19 +50,19 @@ Each Sub Node, in contrast, processes its assigned vulnerability **sequentially*
 
 In the AIxCC final round, we built an ensemble of ten instances using eight agents — two open-source and six internally developed ones. Among these agents, we use two instances of `multi_retrieval` (based on `claude 3.7` and `o4-mini`) and two instances of `aider` (based on `gemini 2.5 pro` and `gpt-4o`). The full configuration details can be found in [configs.json](https://github.com/Team-Atlanta/crete/blob/main/packages/crs_patch/configs.json).
 
-It is also important to decide how to order agents within each Sub Node. Through our empirical testing, we order them based on two main factors:
+It is also important to decide how to order agents within each Sub Node. Through our empirical testing, we order them based on three creteria:
 
 - **LLM resource:** We placed agents that use LLMs from the same provider (e.g., Anthropic) in the same Sub Node to minimize the risk of hitting rate limits or throughput constraints. In particular, we experienced that with Anthropic models, running several agents simultaneously can easily hit TPM limits, leading to delays or failures. By being aware of these limits, the system avoids overloading the model and maintains stable throughput.
 
-- **High-Performance Agents First**: We also attempted to place agents that have historically performed well in our internal benchmark. In the AIxCC final round, we can get a higher score if we generate a valid patch quickly due to the time multiplier. Moreover, one of the biggest risks is producing plausible but incorrect patches. During our internal testing, we observed that some agents occasionally produced incorrect patches even though they are classified as plausible. Thus, we placed well-performing agents earlier in the sequence to improve the overall stability and precision of patch generation.
+- **High-Performance Agents First**: We also attempted to place agents that have historically performed well in our internal benchmark. In the AIxCC final round, we can get a higher score if we can generate a valid patch quickly. So, it is reasonable to prioritize agents that are more likely to produce a valid patch early in the sequence. Moreover, one of the biggest risks is producing plausible but incorrect patches. During our internal testing, we observed that some agents occasionally produced incorrect patches even though they are classified as plausible. Thus, we placed agents that are less likely to produce such patches earlier to minimize these risks.
 
-- **Execution time:** We arranged agents based on their expected execution time, placing fast agents with slow ones to balance the overall execution time of each Sub Node. This helps to minimize the total time taken for patching, as faster agents can quickly generate patches for simpler vulnerabilities, while slower agents can focus on more complex cases.
+- **Execution time:** We arranged agents based on their expected execution time, placing fast agents with slow ones to balance the overall execution time of each Sub Node. This helps to minimize the total time taken for patching, making the system more efficient.
 
 ### Deduplicate PoVs and Patches
 In patching, we need two types of deduplication: **PoV deduplication** and **patch deduplication**.
-First of all, we need to deduplicate PoVs for efficient resource usage. If we process the same PoV multiple times, it wastes computational resources and time that could be better spent on unique vulnerabilities. Even though AIxCC organizers attempt to filter out duplicate PoVs, we still observed many duplicates. This is understandable as PoV deduplication is inherently challenging. For that, we implemented a simple patch-based deduplication mechanism. When a PoV is received, we check if its corresponding patch has already been processed. If it has, we skip processing that PoV to avoid redundant work.
+First of all, we need to deduplicate PoVs for efficient resource usage. If we process the same PoV multiple times, it wastes computational resources and time that could be better spent on unique vulnerabilities. Even though AIxCC organizers attempt to filter out duplicate PoVs, we still observed many duplicates. This is understandable as PoV deduplication is inherently challenging. For that, we implemented a simple patch-based deduplication mechanism. When a PoV is received, we check if previously submitted patches have already addressed the same vulnerability. If then, we skip that PoV to avoid redundant work.
 
-Second, we also need to deduplicate patches. In the ensemble approach, multiple agents may generate the (semantically) same patch for a given vulnerability. To avoid submitting duplicate patches, we implemented a patch deduplication mechanism. When a patch is generated, we check if it has already been submitted for that vulnerability. If it has, we discard the duplicate patch and only keep unique ones. This ensures that we maximize the diversity of patches submitted and increase our chances of successfully patching vulnerabilities.
+Second, we also need to deduplicate patches. In the ensemble approach, multiple agents may generate the (semantically) same patch for a given vulnerability. To avoid submitting duplicate patches, we implemented a patch deduplication mechanism. When a patch is generated, we check whether another patch has already been submitted for that vulnerability. If it has, we discard the duplicate patch and only keep unique ones. 
 
 ### Mitigate Plausible but Incorrect Patches
 One of the biggest challenges in automated patching is dealing with **plausible but incorrect patches**. This is particularly problematic in the AIxCC competition, where submitting an incorrect patch can lead to penalties. To mitigate this risk, we use the following strategies:
@@ -97,9 +97,9 @@ These are some of the key features that Crete offers:
 
 - **Repository Code Search:** Crete also includes built-in code search capabilities. As patching often requires understanding the context of the codebase, Crete provides tools to quickly search and navigate repository code, helping developers locate vulnerable areas and apply patches more effectively.
 
-- **Prompt Context Extraction:** Crete also offers utilities for automatically extracting relevant information to be included in prompts. This includes collecting crash logs, debugging traces, and commit history, among other data sources. By standardizing how this information is gathered and formatted, agents can focus on reasoning and patch generation rather than data wrangling.
+- **Context Extraction:** Crete also offers utilities for automatically extracting relevant information to be included in prompts. This includes collecting crash logs, debugging traces, and commit history, among other data sources. By standardizing how this information is gathered and formatted, agents can focus on reasoning and patch generation rather than data wrangling.
 
-- **Optimizations for Performance:** Crete incorporates several optimizations to enhance performance. For instance, it caches build artifacts to avoid redundant compilations, which can be time-consuming. It also provides caching mechanisms for frequently accessed data (e.g., crash logs) to reduce latency. These optimizations help to speed up the patching process, allowing agents to iterate more quickly and efficiently.
+- **Optimizations:** Crete incorporates several optimizations to enhance performance. For instance, it caches build artifacts to avoid redundant compilations, which can be time-consuming. It also provides caching mechanisms for frequently accessed data (e.g., crash logs) to reduce latency. These optimizations help to speed up the patching process, allowing agents to iterate more quickly and efficiently.
 
 ## Conclusion
 In this blog post, we discussed the challenges of automated patching in the AIxCC competition and how we addressed them using an ensemble of specialized agents. By adopting this approach, we were able to build a robust and effective patching system that can handle a wide variety of vulnerabilities. 
