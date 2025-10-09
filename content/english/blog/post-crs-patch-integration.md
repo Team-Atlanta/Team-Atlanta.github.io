@@ -7,7 +7,6 @@ image: "/images/blog/crs-patch/integration.png"
 categories: ["Atlantis-Patch"]
 authors: ["Wonyoung Kim", "Insu Yun"]
 tags: ["patch", "ensemble", "multi-agent"]
-draft: true
 ---
 
 ## Why Ensemble for Patching?
