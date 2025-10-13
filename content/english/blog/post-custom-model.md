@@ -38,6 +38,8 @@ How do we find that sweet spot? We treat it as a learning problem.
 
 ## Code Context Learning: The Setup
 
+{{< image src="images/blog/custom-model/overview.png" position="center" class="img-fluid" caption="Overview of custom model for code context learning" >}}
+
 We formulated code context learning as a reinforcement learning (RL) problem. Here's the intuition:
 
 - **The Environment**: A codebase with a vulnerability and a crash log
@@ -88,6 +90,8 @@ After $H$ turns of retrieval, we feed the final context to a powerful general-pu
 The key insight: **smaller specialized models can learn effective retrieval strategies through task-specific training, reducing the need for expensive general-purpose models to do everything.**
 
 ## Multi-Turn GRPO: Learning from Success
+
+{{< image src="images/blog/custom-model/multi-turn-grpo.png" position="center" class="img-fluid" caption="Adapted and re-colored from the original Hugging Face diagram" >}}
 
 We train our retrieval policy using Group Relative Policy Optimization (GRPO), adapted for multi-turn retrieval. The training process involves:
 
