@@ -95,6 +95,13 @@ maxAge = "720h"
 [markup.goldmark.renderer]
 unsafe = true
 
+[markup.goldmark.extensions.passthrough]
+enable = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)'], ['$', '$']]
+
 [markup.highlight]
 style = 'monokai' # see https://xyproto.github.io/splash/docs/all.html
 
@@ -141,6 +148,10 @@ lazy = true
 [[params.plugins.css]]
 link = "plugins/font-awesome/v6/icons.css"
 lazy = true
+[[params.plugins.css]]
+link = "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+attributes = 'integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"'
+lazy = true
 
 # JS Plugins
 [[params.plugins.js]]
@@ -172,4 +183,15 @@ link = "plugins/youtube-lite.js"
 lazy = true
 [[params.plugins.js]]
 link = "js/authors-optimized.js"
+lazy = false
+[[params.plugins.js]]
+link = "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+attributes = 'integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"'
+lazy = false
+[[params.plugins.js]]
+link = "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+attributes = 'integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"'
+lazy = false
+[[params.plugins.js]]
+link = "js/katex-init.js"
 lazy = false
