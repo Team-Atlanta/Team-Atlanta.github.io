@@ -8,6 +8,13 @@ articles:
     type: "podcast"
     soundcloud_embed: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2176297638&color=b50005"
 
+  - title: '"Voices from DARPA" Episode 89 - AIxCC: AI Cyber Challenge'
+    url: "https://www.darpa.mil/news/podcast/aixcc-challenge-89"
+    source: "DARPA Official"
+    date: "2025-09-22"
+    favicon: ""
+    type: "podcast"
+
   - title: "Team Atlanta - DARPA AI Cyber Challenge"
     url: "https://www.youtube.com/watch?v=j7sagucU4HM"
     source: "DARPAtv"
