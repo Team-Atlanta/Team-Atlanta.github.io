@@ -3,7 +3,7 @@ title: "Every Patch Agent has its Own Story (2) - Multi-Retrieval: Iterative Aug
 meta_title: ""
 description: "Description of Multi-Retrieval Agent"
 date: 2025-10-16T11:00:00Z
-image: "/images/blog/crs-patch/integration.png"
+image: "/images/blog/crs-patch/multi-retrieval.png"
 categories: ["Atlantis-Patch"]
 authors: ["Yunjae Choi", "Insu Yun"]
 tags: ["patch", "patch-agent"]
