@@ -1,21 +1,37 @@
 ---
-title: "Martian Agent: How We Tackle Bugs with AI"
-meta_title: ""
-description: "Martian agent description"
-date: 2025-10-10T11:00:00Z
+title: "Every Agent has its Own Story (1) - Martian: Exploring the Unknown with Sophisticated Tools"
+meta_title: ""  
+description: "Description of patch agents"
+date: 2025-10-15T00:00:00Z
 image: "/images/blog/crs-patch/martian.png"
 categories: ["Atlantis-Patch"]
-authors: ["Haein Lee"]
-tags: ["patch", "AI agent"]
-draft: true
+authors: ["Insu Yun", "Haein Lee"]
+tags: ["patch"]
+draft: false
 ---
 
-In the previous post, we introduced the overall architecture of the **Atlantis-Patch** system and how it ensembles multiple AI agents to generate and submit plausible patches.
-In the final competition, our system deployed a total of 8 agents.
-This post focuses on one of them - the ***Martian Agent***.
+As we mentioned in our previous blog post, we enhanced the patching capabilities of Atlantis by ensembling multiple patch agents. In this series of blog posts, we will introduce each of our patch agents in detail and explain the rationale behind their designs. 
 
+## Diversity for Good
+To maximize the effectiveness of ensembling, it is crucial to have diverse agents. If all agents are similar, the ensemble will not perform significantly better than any individual agent. Therefore, we intentionally designed our patch agents to be diverse in their approaches, methodologies, and also models used. We newly developed six patch agents, each with its own unique architecture and motivation, as summarized in the table below.
+```
++---------------+----------------+----------------------------------------------+------------------------------+
+| Agent         | Architecture   | Motivation                                   | Used Models                  |
++---------------+----------------+----------------------------------------------+------------------------------+
+| Martian       | Workflow       | Simple workflow yet complex tools            | o4-mini, claude-4-sonnet     |
+| MultiRetrieval| Agent          | Iterative retrieval and patching             | claude-3.7-sonnet, o4-mini   |
+| Prism         | Multi-agent    | Multi-agent system for long-context handling | o4-mini                      |
+| Vincent       | Workflow       | Property-based approach for guided patching  | gemini-2.5-pro               |
+| Claudelike    | Agent          | Patch generation inspired by Claude code     | claude-3.7-sonnet            |
+| Eraser        | Workflow       | Use of custom model for specialized tasks    | Custom model                 |
++---------------+----------------+----------------------------------------------+------------------------------+
 
-## Dawn on Mars: The Birth of Martian Agent
+```
+
+## Martian: Into the Unknown, Armed with Sophisticated Tools
+We first introduce Martian, a patch agent that employs a straightforward workflow but leverages sophisticated tools. The name "Martian" reflects its approach of exploring the unknown, much like a Martian would, by utilizing advanced tools to navigate and understand unfamiliar terrain. 
+
+### Dawn on Mars: The Birth of Martian Agent
 
 In the beginning, our focus was on prompt engineering — how to craft the right prompts to give open-source AI agents like *Aider* and *SWE-agent* the best possible guidance.
 Our earliest approach was quite simple: providing crash logs such as an ASAN report directly to the agents.
@@ -27,65 +43,81 @@ We now had to consider tool usage, conversational flow, long-term memory, and st
 In this transition **from prompt engineering to context engineering**, we decided to build our own agent to experiment with flexible architectures and richer contextual reasoning — and thus, ***Martian Agent*** was born.
 
 *Martian Agent* was built upon two key design principles.
-First, we separated **Fault Localization** and **Patch Generation** to optimize context management.
-Since the LLM's context window is limited, providing precisely the right information at each stage is crucial.
-Fault Localization and Patch Generation each pose significant but distinct challenges, so we found it more effective to handle them independently, each with its own tailored context.
-Second, we needed an environment that allowed us to easily test and integrate different tools.
-To achieve this, we developed a ReAct-based agent framework on top of LangChain, enabling flexible experimentation by attaching and detaching various tools as needed.
-This structure allowed us to iterate rapidly and fine-tune the agent's capabilities through the competition testing.
+First, we separated **fault localization** and **patch generation** to optimize
+context management.  Since the LLM's context window is limited, providing
+precisely the right information at each stage is crucial.  fault localization
+and patch generation each pose significant but distinct challenges, so we found
+it more effective to handle them independently, each with its own tailored
+context.  Second, we need an environment that allows us to easily test and
+integrate different tools.  To achieve this, we developed a ReAct-based agent
+framework on top of LangChain, flexibly incorporating various tools.  This helps
+us to rapidly prototype and tune the agent's capabilities through the
+competition testing.
 
-## Inside the Martian Agent
+### Inside the Martian Agent
 
 The overall structure of *Martian Agent* is as follows:
 
 {{< figure src="images/blog/crs-patch/martian_overview.png" class="img-fluid text-center" width="70%" caption="Fig.1 High-level overview of *Martian Agent*" >}}
 
-The process begins with Fault Localization, where the agent takes a crash log as input and identifies both the root cause and the function that needs to be fixed.
-The crash log must include an ASAN report or, at minimum, a stack trace describing the crash.
-The Fault Localization module is implemented using the ReAct approach, allowing the agent to iteratively analyze the code through tool calls designed for source code exploration.
+The process begins with fault localization, where the agent takes a crash log as
+input and identifies both the root cause and the function that needs to be
+fixed.  The crash log must include an ASAN report or, at minimum, a stack trace
+describing the crash.  The fault localization module is implemented using the
+ReAct approach, allowing the agent to iteratively analyze the code through tool
+calls designed for source code exploration.
 
-Once the faulty code region is identified, the Patch Generation module takes over to produce an actual fix.
-The Patch Generation module is also built on the ReAct framework, enabling the agent to modify source code through tool interactions and extract the final patch using the `git diff` command.
-The generated patch is then validated through a sequence of steps: project build, functionality testing, and crash reproduction testing.
-If the patch fails any of these validation stages, the agent uses the feedback to re-run the process and refine the patch until a stable fix is achieved.
+Once the faulty code region is identified, the patch generation module takes
+over to produce an actual fix.  The patch generation module is also built on the
+ReAct framework, enabling the agent to modify source code through tool
+interactions and extract the final patch using the `git diff` command.  The
+generated patch is then validated through a sequence of steps: project build,
+functionality testing, and crash reproduction testing.  If the patch fails any
+of these validation stages, the agent uses the feedback to re-run the process
+and refine the patch until a stable fix is achieved.
 
-### Fault Localization
+### ReAct-based Fault Localization
 
-*Martian Agent*'s Fault Localization module is inspired by [*CodeRover-S*](https://arxiv.org/html/2411.03346v1).
-Since *CodeRover-S* demonstrated great performance on real-world bugs (OSS-Fuzz dataset), we developed our Fault Localization module based on its approach.
+*Martian Agent*'s fault localization module is inspired by [*CodeRover-S*](https://arxiv.org/html/2411.03346v1).
+Since *CodeRover-S* demonstrated great performance on real-world bugs (OSS-Fuzz dataset), we developed our fault localization module based on its approach.
 We developed following code search APIs to help the agent explore the codebase effectively:
 
-- **search_symbol(symbol_name, file_or_directory_path)**: Given a symbol name, it finds a symbol definition in a given path and return the source code of the symbol definition.
-- **search_string(string, file_or_directory_path)**: Given a string, it returns the file name and line number(s) where the string appears in the codebase.
-- **view_file(file_path, offset, limit)**: Given a file path, it returns the source code of the file from the offset line to the limit line.
+```
+- search_symbol(symbol_name, file_or_directory_path): Given a symbol name, it finds a symbol definition in a given path and return the source code of the symbol definition.
+- search_string(string, file_or_directory_path): Given a string, it returns the file name and line number(s) where the string appears in the codebase.
+- view_file(file_path, offset, limit): Given a file path, it returns the source code of the file from the offset line to the limit line.
+```
 
 With these tools, the ReAct agent can iteratively explore the codebase to identify the root cause of the crash.
 Similar to the human debugging process, it supports a back-and-forth interaction between understanding the crash log and examining the codebase.
 
-### Patch Generation
+### Patch Generation Inspired by Claude Code
 
 Generating a patch is far more complex than simply producing code snippets.
 Unlike isolated code generation, a valid patch must integrate seamlessly into the existing codebase.
 This means it must adhere to strict structural and formatting requirements — including correct line offsets, contextual consistency with surrounding code, and compatibility with the project's build system.
 
-To meet these requirements, we designed the Patch Generation module to use a search/replace approach, implemented through specialized tool calls and powered by Anthropic claude models.
+To meet these requirements, we designed the patch generation module to use a search/replace approach, implemented through specialized tool calls and powered by Anthropic claude models.
 Through extensive experiments, we found that this method consistently produced patches that were both syntactically correct and directly applicable to the source code.
 Inspired by the *Claude Code* methodology, we further refined our design by constraining the patch scope to a single function, which reduces context size and allows the model to focus more precisely on the relevant logic.
 Narrowing the scope could be seemed risky, but in AIxCC competition we observed that lots of the example bugs which shown before the competition were fixed within a single function and thanks to our ensemble system, we could expect other agents to cover multi-function patches.
 
-The Patch Generation module operates with the following tools:
+The patch generation module operates with the following tools:
 
-- **view_function(function_name)** — Returns the source code of a given function.
+```
+- view_function(function_name) — Returns the source code of a given function.
+- edit_function(function_name, old_string, new_string) — Replaces a specific code segment (old_string) with new content (new_string) within the target function.
+- add_import_module(module_name, file_path) — Adds an import statement to the specified file (used only for Java projects).
+```
 
-- **edit_function(function_name, old_string, new_string)** — Replaces a specific code segment (old_string) with new content (new_string) within the target function.
+### Dealing with Stack Overflow and Timeout bugs
 
-- **add_import_module(module_name, file_path)** — Adds an import statement to the specified file (used only for Java projects).
-
-## Dealing with Stack Overflow and Timeout bugs
-
-Beyond general patch-generation strategies, we also developed specialized techniques to handle specific classes of bugs.
-In the AIxCC competition, certain challenges involved stack overflow and timeout errors.
-These categories, especially in Java, posed unique difficulties because their Jazzer crash logs often contained little to no information about the actual root cause — unlike conventional Jazzer sanitized logs.
+Beyond general patch-generation strategies, we also developed specialized
+techniques to handle specific classes of bugs.  In the AIxCC competition,
+certain challenges involved stack overflow and timeout errors.  These
+categories, especially in Java, posed unique difficulties because their Jazzer
+crash logs often contained little to no information about the actual root cause
+— unlike conventional Jazzer sanitized logs.
 
 **Example of Jazzer timeout log:**
 
@@ -162,13 +194,16 @@ For stack overflow errors, the situation was similarly problematic: stack traces
 In both cases, the patch agent had no reliable entry point for debugging, making it virtually impossible to localize the fault using crash logs alone.
 
 To overcome this limitation, we introduced a runtime stack tracing mechanism.
-Our system periodically captured the stack trace of the JVM's main thread every second during the bug reproduction.
-When a crash finally occurred, the agent used the last recorded stack trace as a more informative snapshot of the program's execution state.
-This supplementary trace provided a meaningful starting point for fault localization and enabled the agent to generate plausible patches even for these otherwise opaque bug types.
+Our system periodically captured the stack trace of the JVM's main thread every
+second during the bug reproduction.  When a crash finally occurred, the agent
+used the last recorded stack trace as a more informative snapshot of the
+program's execution state.  This supplementary trace provided a meaningful
+starting point for fault localization and enabled the agent to generate
+plausible patches even for these otherwise opaque bug types.
 
 ## Conclusion
 
 *Martian Agent* demonstrates a practical approach to AI-assisted patch generation by combining structured context management, modular tool usage, and iterative reasoning.
-By separating Fault Localization and Patch Generation, and using ReAct-based workflows, the agent can analyze crash reports, explore codebases, and generate patches in a systematic way.
+By separating fault localization and patch generation, and using ReAct-based workflows, the agent can analyze crash reports, explore codebases, and generate patches in a systematic way.
 Its additional strategies for handling stack overflow and timeout errors show how supplementing standard crash logs with runtime traces can make fault localization more reliable.
 Overall, *Martian Agent* provides a useful example of how AI agents can assist in automated debugging and patch generation without overcomplicating the process.

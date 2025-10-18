@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Milestone on Team Atlanta</title><link>https://team-atlanta.github.io/categories/milestone/</link><description>Recent content in Milestone on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 12 Aug 2025 12:15:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/categories/milestone/index.xml" rel="self" type="application/rss+xml"/><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p&gt;Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Milestone on Team Atlanta</title><link>https://team-atlanta.github.io/categories/milestone/</link><description>Recent content in Milestone on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 12 Aug 2025 12:15:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/categories/milestone/index.xml" rel="self" type="application/rss+xml"/><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p>Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
 
 
 
@@ -7,10 +7,10 @@
  
 
 
-&gt;DEF CON 31&lt;/a&gt;,
+>DEF CON 31&lt;/a>,
 our team stood on stage as the winners of the AIxCC Final—a moment we had been working toward
-since the competition began.&lt;/p&gt;
-&lt;p&gt;Yet when we heard we placed 1st, relief overshadowed excitement.
+since the competition began.&lt;/p>
+&lt;p>Yet when we heard we placed 1st, relief overshadowed excitement.
 Why? While competing head-to-head with world-class teams like &lt;a href="https://theori.io/blog/aixcc-and-roboduck-63447"
 
 
@@ -20,9 +20,9 @@ Why? While competing head-to-head with world-class teams like &lt;a href="https:
  
 
 
-&gt;Theori&lt;/a&gt;
+>Theori&lt;/a>
 was a privilege, the real-time, long-running nature of this competition
-demanded extreme engineering reliability alongside novel approaches to succeed.&lt;/p&gt;</description></item><item><title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title><link>https://team-atlanta.github.io/blog/post-tkctf-2024/</link><pubDate>Tue, 03 Dec 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-tkctf-2024/</guid><description>&lt;p&gt;For the first time, we deployed our hybrid system,
+demanded extreme engineering reliability alongside novel approaches to succeed.&lt;/p></description></item><item><title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title><link>https://team-atlanta.github.io/blog/post-tkctf-2024/</link><pubDate>Tue, 03 Dec 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-tkctf-2024/</guid><description>&lt;p>For the first time, we deployed our hybrid system,
 powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl"
 
 
@@ -30,7 +30,7 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
-&gt;Atlantis&lt;/a&gt;—to compete in &lt;a href="https://www.gatech.edu/"
+>Atlantis&lt;/a>—to compete in &lt;a href="https://www.gatech.edu/"
 
 
 
@@ -39,7 +39,7 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
-&gt;Georgia Tech’s&lt;/a&gt; flagship CTF event,
+>Georgia Tech’s&lt;/a> flagship CTF event,
 &lt;a href="https://tc.gts3.org/cs6265/2024-fall/ctf.html"
 
 
@@ -49,11 +49,11 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
-&gt;TKCTF 2024&lt;/a&gt;.
+>TKCTF 2024&lt;/a>.
 During the competition, Atlantis concentrated on two pivotal areas:
 vulnerability analysis and automatic vulnerability remediation.
-Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;,
-showcasing the practicality and promise of our approach in a real-world hacking competition.&lt;/p&gt;
-&lt;p&gt;In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
+Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>,
+showcasing the practicality and promise of our approach in a real-world hacking competition.&lt;/p>
+&lt;p>In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
 As we prepare to open-source the full details of our system following AIxCC competition rules,
-this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.&lt;/p&gt;</description></item></channel></rss>
+this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.&lt;/p></description></item></channel></rss>
