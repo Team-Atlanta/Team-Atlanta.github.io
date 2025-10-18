@@ -7,7 +7,7 @@ image: "/images/blog/crs-patch/integration.png"
 categories: ["Atlantis-Patch"]
 authors: ["Hyeon Heo"]
 tags: ["patch", "AI agent"]
-draft: true
+draft: false
 ---
 
 Claude Code is an LLM agent specialized in general-purpose programming tasks and remains one of the most powerful LLM agents to date. Inspired by Claude Code's strategy, we developed ClaudeLike, an agent dedicated to patch generation. In this post, we introduce the motivation and key features behind the development of ClaudeLike.

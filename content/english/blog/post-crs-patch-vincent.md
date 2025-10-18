@@ -7,7 +7,7 @@ image: "/images/blog/crs-patch/integration.png"
 categories: ["Atlantis-Patch"]
 authors: ["Younggi Park", "Insu Yun"]
 tags: ["patch", "ensemble", "multi-agent"]
-draft: true
+draft: false
 ---
 
 As mentioned in the previous post, our strategy for patching is to prepare multiple agents to ensure both the robustness and correctness of the system.
