@@ -1,12 +1,12 @@
 ---
-title: "Every Agent has its Own Story (1) - Martian: Exploring the Unknown with Sophisticated Tools"
+title: "Every Patch Agent has its Own Story (1) - Martian: Exploring the Unknown with Sophisticated Tools"
 meta_title: ""  
 description: "Description of patch agents"
 date: 2025-10-15T00:00:00Z
 image: "/images/blog/crs-patch/martian.png"
 categories: ["Atlantis-Patch"]
-authors: ["Insu Yun", "Haein Lee"]
-tags: ["patch"]
+authors: ["Haein Lee", "Insu Yun"]
+tags: ["patch", "patch-agent"]
 draft: false
 ---
 
