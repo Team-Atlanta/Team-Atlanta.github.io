@@ -13,7 +13,7 @@ draft: false
 As mentioned in the previous post, our strategy for patching is to prepare multiple agents to ensure both the robustness and correctness of the system.
 To this end, we developed various patch agents, each specialized for different LLM models and tools. 
 
-In this post, we would like to introduce the challenge that our patch team has struggle with and Vincent agent, one of the patch agents running under our ensemble-based patching system that addresses the challenge.
+In this post, we would like to introduce Vincent agent, one of the patch agents running under our ensemble-based patching system.
 
 
 ## Right Root cause, Wrong Patches
@@ -169,6 +169,43 @@ By considering this property, Vincent agent managed to produce the following sou
      }
 ```
 
+
+## Workflow of Vincent Agent
+
+The overall workflow of *Vincent Agent* consists of three analysis steps as follows.
+
+{{< figure src="images/blog/crs-patch/vincent_overview.png" class="img-fluid text-center" width="70%" caption="Fig.1 High-level overview of *Vincent Agent*" >}}
+
+The initial step is the root cause analysis (RCA) step—a process that identifies the reason why the bug occurs. Given the sanitizer report and the PoC (Proof-of-Concept) input binary, Vincent lets the LLMs explore the codebase autonomously.
+The next step is property analysis. Using the RCA report from the previous step, Vincent extracts relevant program properties with the help of the LLMs.
+To infer more precise properties, the LLMs are allowed to further explore the codebase.
+Finally, with the RCA and property analysis reports retained in the message context, Vincent instructs the LLMs to generate a security patch in diff format.
+
+For each generated patch, Vincent applies it to the given project and validates whether the patch is sound. To do this, Vincent utilizes the OSS-Fuzz–based building and testing interfaces of Crete, our framework for developing patch agents.
+
+As a result of patch validation, there are four possible outcomes: (i) sound, (ii) vulnerable, (iii) uncompilable, and (iv) test failure.
+Except in the case of a sound patch, Vincent collects the related logs (e.g., sanitizer report, build error log, etc.) and delivers the information to the LLM to generate a new patch. Vincent repeats the patch generation–validation-feedback cycle until a sound patch is produced.
+
+
+## Code Retrieval of Vincent Agent
+
+One of the core components that each patch agent should support is the code retrieval feature, which enables the LLMs to understand the codebase.
+Based on our experience in internal evaluations, the precision of code retrieval and the performance of LLMs are highly correlated.
+In Crete, we adopt various code retrieval strategies to ensure the robustness and responsiveness of our system.
+In the case of Vincent Agent, we provide the LLMs with code information by combining the `ctags` utility and the `tree-sitter` library.
+
+`ctags` is a command-line utility that generates an index (or "tags" file) of symbols found in source code files—like functions, classes, variables, macros, etc.
+`tree-sitter` is a modern parsing library designed to build incremental parsers for programming languages, primarily to provide fast, precise, and robust syntax analysis for code editors and tools.
+
+Instead of providing entire source files, Vincent Agent pinpoints code snippets essential to the LLM's request.
+Specifically, given a target symbol name, such as a function or variable, Vincent first locates where the requested code snippet exists using `ctags`.
+Then, it extracts the actual code, including the surrounding context (e.g., the full implementation of a function, struct, enum, etc.), using `tree-sitter`.
+
+Beyond this basic strategy, we observed occasional failures of `tree-sitter`'s parser when dealing with complex codebases.
+For example, if the target source code contains complex compile directives or macros, `tree-sitter` may fail to parse the intended snippets properly.
+To handle such potential errors from external libraries, Vincent allows LLMs to request additional code lines when the initial query result is insufficient.
+
 ## Conclusion
 In this blog post, we discussed one of the challenges our team struggled with and how the Vincent agent successfully solved it.
-By adding a property-analysis layer before generating patches, we were able to produce a sound patch that considers program context and conventions.
+While LLMs can often fix surface-level bugs, they struggle with project-specific rules and invariants. By introducing a property analysis layer, Vincent guides LLMs to reason about deeper program semantics, resulting in sounder patches.
+Integrated within the Crete framework, Vincent autonomously retrieves, analyzes, and validates patches in an iterative loop, improving both correctness and robustness.
