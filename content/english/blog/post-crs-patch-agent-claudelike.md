@@ -58,7 +58,56 @@ Each tool's description explicitly defines when it should be used, its constrain
 
 ### AgentTool: Helping the Agent Stay Focused
 
-To analyze a file's role or locate files related to specific functionality, the agent often needs to read multiple files or repeatedly traverse directories. Such operations are frequent in patch generation and result in numerous tool calls, which lengthen the context and may distract the agent from its primary objective—patching.
+In the libxml2 project from Round 3, a double-free vulnerability was discovered. The following is a portion of the ASAN crash log output when this vulnerability is triggered:
+
+```
+==ERROR: AddressSanitizer: attempting double-free on 0x5020000008b0 in thread T0:
+SCARINESS: 42 (double-free)
+    #0 0x563555fc1f66 in free /src/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:52:3
+    #1 0x5635560b54b4 in xmlParseAttribute2 /src/libxml2/parser.c:9028:13
+    #2 0x5635560ad714 in xmlParseStartTag2 /src/libxml2/parser.c:9233:13
+    #3 0x56355607b6d0 in xmlParseElementStart /src/libxml2/parser.c:10136:16
+    #4 0x56355607a997 in xmlParseElement /src/libxml2/parser.c:10071:9
+    #5 0x5635560864f1 in xmlParseDocument /src/libxml2/parser.c:10902:2
+    #6 0x56355609bb88 in xmlCtxtParseDocument /src/libxml2/parser.c:13988:5
+    #7 0x56355609f024 in xmlCtxtReadMemory /src/libxml2/parser.c:14314:12
+    #8 0x563556001bd4 in LLVMFuzzerTestOneInput /src/libxml2/fuzz/xml.c:68:15
+    #9 0x563555eb6430 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:614:13
+    #10 0x563555ea16a5 in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:327:6
+    #11 0x563555ea713f in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:862:9
+    #12 0x563555ed23e2 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #13 0x7fec0f842082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 5792732f783158c66fb4f3756458ca24e46e827d)
+    #14 0x563555e9988d in _start (/out/xml+0x18388d)
+
+DEDUP_TOKEN: __interceptor_free--xmlParseAttribute2--xmlParseStartTag2
+0x5020000008b0 is located 0 bytes inside of 9-byte region [0x5020000008b0,0x5020000008b9)
+freed by thread T0 here:
+    #0 0x563555fc1f66 in free /src/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:52:3
+    #1 0x5635560b541f in xmlParseAttribute2 /src/libxml2/parser.c:9024:17
+    #2 0x5635560ad714 in xmlParseStartTag2 /src/libxml2/parser.c:9233:13
+...
+```
+
+To patch this vulnerability, the agent must first identify its root cause.
+For this purpose, the agent examines the point where the double free occurs—specifically, the implementation of the `xmlParseAttribute2` function in `libxml2/parser.c`.
+
+Benchmark results show that the process of locating and reviewing this function's implementation involves a series of file editor tool calls as follows.
+(The `xmlParseAttribute2` function is implemented between line 8823 and line 8927 in `parser.c`.)
+
+1. Use `GlobTool` to search for the file matching the pattern `**/parser.c` to locate its exact path.
+1. Use `ViewTool` to read 100 lines starting from line 9000 of `parser.c`.
+1. Use `GrepTool` to check whether the string `xmlParseAttribute2` exists in `parser.c`.
+1. Use `ViewTool` again to view 100 lines from line 8800.
+1. Use `ViewTool` once more to view 200 lines starting from line 8900.
+
+As seen above, even to inspect the contents of a single suspected function, the agent needs to make five separate file editor tool calls.
+If the target function is not located where expected or spans more lines than anticipated, the number of tool calls required will increase.
+In fact, the Apache Commons Compress project in the Round 2, identifying the file containing a specific method required 23 file editor tool calls in total.
+
+Tasks such as examining function implementations or reviewing files are essential for patch generation and may occur multiple times during the patch process. However, each tool call adds to the agent's context length.
+As a result, the agent may lose focus on its primary task—patch generation.
+Furthermore, since the agent retains the parameters and results of all previous tool calls in its context, a large number of tool invocations significantly increases the number of input tokens per completion.
+This, in turn, leads to frequent issues such as rate limit exceedances or context window size exceedances.
 
 To address this, ClaudeLike adopts AgentTool, similar to Claude Code.
 The main agent can invoke the AgentTool to delegate specific tasks to a sub-agent. Sub-agent operates independently of the main agent, makes its own tool calls, and returns results to the main agent.
