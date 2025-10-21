@@ -115,6 +115,30 @@ This design allows the main agent to offload repetitive or verbose tasks (e.g., 
 
 To prevent uncontrolled recursion, a sub-agent is not allowed to use AgentTool itself. Additionally, to avoid unintended code modifications, a sub-agent is restricted from using EditTool and ReplaceTool.
 
+### Ensuring Robustness under Unstable LLM Server Conditions
+
+Tool calls are executed through model invocations. In other words, if a model invocation fails, the corresponding tool call cannot be made, which in turn results in the failure of the entire agent system.
+
+Throughout the Rounds, we observed that both the LiteLLM server and Claude API were not always stable. Since not only the patch system but also other components of the overall Atlantis system send LLM requests, issues such as limited TPM or system overload occasionally prevented LLM model invocations from completing successfully.
+
+To address these issues, ClaudeLike repeatedly performs model invocations until they succeed. Furthermore, to prevent its LLM requests from causing congestion across the entire system, ClaudeLike implements exponential backoff as a form of congestion control.
+
+### Differences from Claude Code
+
+While the core idea of ClaudeLike originates from Claude Code, there are several key differences between the two.
+
+The most significant distinction lies in the tool configuration. ClaudeLike excludes tools that are unrelated to patch generation or may cause side effects—for instance, tools designed for Jupyter notebooks such as `ReadNotebook` and `NotebookEditCell`, tools that require an online environment such as `WebFetchTool`, and command-execution tools like `Bash`.
+
+In addition, as mentioned in the previous section, ClaudeLike carefully handles exceptions that may occur during API calls or tool invocations to prevent system-wide failures. Furthermore, to reduce common mistakes made by the agent during patch generation, we added a set of explicit instructions to the system prompt.
+
+## Limitations
+
+ClaudeLike demonstrated quite strong performance in the benchmarks conducted during its development. However, there are several areas where further improvement is needed.
+
+Our initial goal in developing ClaudeLike was to explore how applying custom tools (e.g., gdb interface), expected to be effective for patching, on a SOTA agent like Claude Code, would impact performance. Due to limited development and stabilization time, this goal could not be fully realized.
+
+Another limitation is that certain tools from Claude Code, which were anticipated to be useful for patch generation—such as Bash and BatchTool—were excluded. Bash was omitted from ClaudeLike due to potential side effects, although with proper sandboxing, it could have been quite valuable. BatchTool, which allows multiple tools in Claude Code to be executed simultaneously, was also deprioritized and ultimately not incorporated into ClaudeLike. Its inclusion could have helped reduce context length and improve the efficiency of tool calls.
+
 ## Conclusion
 
 In this post, we discussed ClaudeLike, an agent inspired by Claude Code's design principles.
