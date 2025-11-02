@@ -16,7 +16,7 @@ Picture this: you're asking an LLM to patch a security vulnerability in Nginx, a
 
 We discovered this the hard way during the AIxCC Semifinals. Challenge `challenge-004-nginx-cp/cpv15` became our wake-up call. When we ran our baseline patching agent Aider 20 times without the typedef definitions, only 5 patches compiled successfully. But when we included those typedefs? 18 out of 20 compiled successfully. **That 5/20 → 18/20 leap wasn't about smarter LLMs or better prompts. It was about giving the right context.**
 
-This insight inspired the design of our agents (e.g., the Multi-turn Retrieval Agent) and a deeper question: instead of hand-crafting context, could we teach an LLM to **learn** what context really matters on its own?
+This insight inspired the design of an our agent (i.e., the Multi-turn Retrieval Agent) and a deeper question: instead of hand-crafting context, could we teach an LLM to **learn** what context really matters on its own?
 
 ## From Engineering to Learning
 
