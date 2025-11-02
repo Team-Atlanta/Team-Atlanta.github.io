@@ -2,12 +2,12 @@
 title: "Teaching LLMs to Retrieve: Custom Models for Security Patch Generation"
 meta_title: ""
 description: "How we trained specialized LLMs to learn what code context matters for vulnerability patching - moving from manual context engineering to adaptive code context learning through reinforcement learning"
-date: 2025-10-09T10:00:00Z
+date: 2025-11-02T00:00:00Z
 image: "/images/blog/custom-model/preview.png"
 categories: ["Atlantis-Patch"]
 authors: ["Minjae Gwon", "Sangdon Park"]
 tags: ["custom-model", "llm", "reinforcement-learning", "patch-generation", "context-learning"]
-draft: true
+draft: false
 ---
 
 ## The Typedef That Changed Everything
@@ -16,7 +16,7 @@ Picture this: you're asking an LLM to patch a security vulnerability in Nginx, a
 
 We discovered this the hard way during the AIxCC Semifinals. Challenge `challenge-004-nginx-cp/cpv15` became our wake-up call. When we ran our baseline patching agent Aider 20 times without the typedef definitions, only 5 patches compiled successfully. But when we included those typedefs? 18 out of 20 compiled successfully. **That 5/20 → 18/20 leap wasn't about smarter LLMs or better prompts. It was about giving the right context.**
 
-This observation sparked a fundamental question: what if instead of manually engineering context, we could teach an LLM to **learn** what context matters?
+This insight inspired the design of our agents (e.g., the Multi-turn Retrieval Agent) and a deeper question: instead of hand-crafting context, could we teach an LLM to **learn** what context really matters on its own?
 
 ## From Engineering to Learning
 
