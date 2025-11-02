@@ -12664,6 +12664,23 @@ if (hasSearchWrapper) {
   }
 })();
 ;
+// Initialize KaTeX auto-render
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof renderMathInElement !== 'undefined') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\[', right: '\\]', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false}
+      ],
+      throwOnError: false,
+      strict: false
+    });
+  }
+});
+
+;
 // main script
 (function () {
   "use strict";
