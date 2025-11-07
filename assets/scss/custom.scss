@@ -1115,12 +1115,12 @@ pre {
 }
 
 // Special spacing based on first card type - only applies to multimedia content
-// If first card is video, second multimedia card gets -18rem margin-top
+// If first card is video, second multimedia card gets -12rem margin-top
 .timeline-content-left:has(.timeline-card-video) + .timeline-content-right:has(.timeline-card-video),
 .timeline-content-right:has(.timeline-card-video) + .timeline-content-left:has(.timeline-card-video),
 .timeline-content-left:has(.timeline-card-video) + .timeline-content-right:has(.timeline-card-podcast),
 .timeline-content-right:has(.timeline-card-video) + .timeline-content-left:has(.timeline-card-podcast) {
-  margin-top: -18rem; // Tight spacing after video cards
+  margin-top: -12rem; // Tight spacing after video cards
 }
 
 // If first card is podcast, second multimedia card gets -12rem margin-top
@@ -1516,6 +1516,28 @@ pre {
   &:hover {
     background: linear-gradient(135deg, #7c3aed, #6d28d9);
     box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  }
+}
+
+// Secondary button styling (for additional links)
+.btn-secondary {
+  background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+  border: none;
+  color: #f8f9fa !important;
+
+  &:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+  }
+}
+
+.dark .btn-secondary {
+  background: linear-gradient(135deg, #60a5fa, #1e40af);
+  color: #f8f9fa !important;
+
+  &:hover {
+    background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
   }
 }
 
