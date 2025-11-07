@@ -1,5 +1,14 @@
 articles:
   # 2025 Articles
+  - title: "Frontier AI in Cybersecurity: Risks and Opportunities"
+    url: "https://www.youtube.com/live/BRytIn_fBqI?t=577s"
+    source: "UC Berkeley RDI"
+    date: "2025-11-06"
+    favicon: ""
+    type: "video"
+    link: "https://rdi.berkeley.edu/frontier-ai-impact-on-cybersecurity/workshop.html"
+    thumbnail: "/images/workshop-thumbnail-optimized.png"
+
   - title: "Can AI Solve the Vulnerability Problem in Critical Infrastructure?"
     url: "https://www.infosecurity-magazine.com/podcasts/can-ai-solve-vulnerability-problem/"
     source: "Infosecurity Magazine"

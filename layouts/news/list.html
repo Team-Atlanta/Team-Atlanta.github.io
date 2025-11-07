@@ -37,7 +37,7 @@
               <div class="timeline-content-{{ if $isLeft }}left{{ else }}right{{ end }} mb-8">
                 <div class="timeline-article-dot timeline-{{ if $isLeft }}left{{ else }}right{{ end }}-dot"></div>
                 <!-- Content type detection and styling -->
-                {{ $isYouTube := or (findRE "youtube\\.com/watch" $article.url) (findRE "youtu\\.be/" $article.url) }}
+                {{ $isYouTube := or (findRE "youtube\\.com/watch" $article.url) (findRE "youtube\\.com/live" $article.url) (findRE "youtu\\.be/" $article.url) (eq $article.type "video") }}
                 {{ $isPodcast := or (findRE "podcast" $article.url) (findRE "spotify\\.com" $article.url) (findRE "apple\\.com/.*podcast" $article.url) (eq $article.type "podcast") }}
                 {{ $contentType := "article" }}
                 {{ if $isYouTube }}{{ $contentType = "video" }}{{ else if $isPodcast }}{{ $contentType = "podcast" }}{{ end }}
@@ -55,21 +55,43 @@
                     {{ $youtubeID := "" }}
                     {{ if findRE "youtube\\.com/watch\\?v=([a-zA-Z0-9_-]+)" $article.url }}
                       {{ $youtubeID = replaceRE ".*youtube\\.com/watch\\?v=([a-zA-Z0-9_-]+).*" "$1" $article.url }}
+                    {{ else if findRE "youtube\\.com/live/([a-zA-Z0-9_-]+)" $article.url }}
+                      {{ $youtubeID = replaceRE ".*youtube\\.com/live/([a-zA-Z0-9_-]+).*" "$1" $article.url }}
                     {{ else if findRE "youtu\\.be/([a-zA-Z0-9_-]+)" $article.url }}
                       {{ $youtubeID = replaceRE ".*youtu\\.be/([a-zA-Z0-9_-]+).*" "$1" $article.url }}
                     {{ end }}
 
                     {{ if $youtubeID }}
-                      <div class="timeline-youtube-embed-container mb-4">
-                        <iframe
-                          src="https://www.youtube.com/embed/{{ $youtubeID }}"
-                          frameborder="0"
-                          allowfullscreen
-                          loading="lazy"
-                          title="{{ $article.title }}"
-                          class="timeline-youtube-embed">
-                        </iframe>
-                      </div>
+                      {{ $timestamp := "" }}
+                      {{ if findRE "[?&]t=([0-9]+)s?" $article.url }}
+                        {{ $timestamp = replaceRE ".*[?&]t=([0-9]+)s?.*" "$1" $article.url }}
+                      {{ end }}
+
+                      {{ if $article.thumbnail }}
+                        <!-- Custom thumbnail with play button -->
+                        <div class="timeline-youtube-embed-container mb-4" style="padding-bottom: 56.25%; position: relative;">
+                          <a href="{{ $article.url }}" target="_blank" rel="noopener" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block;">
+                            <img src="{{ $article.thumbnail }}" alt="{{ $article.title }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(255, 0, 0, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                              <svg style="width: 40px; height: 40px; fill: white; margin-left: 5px;" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                              </svg>
+                            </div>
+                          </a>
+                        </div>
+                      {{ else }}
+                        <!-- Standard YouTube embed -->
+                        <div class="timeline-youtube-embed-container mb-4">
+                          <iframe
+                            src="https://www.youtube.com/embed/{{ $youtubeID }}{{ if $timestamp }}?start={{ $timestamp }}{{ end }}"
+                            frameborder="0"
+                            allowfullscreen
+                            loading="lazy"
+                            title="{{ $article.title }}"
+                            class="timeline-youtube-embed">
+                          </iframe>
+                        </div>
+                      {{ end }}
                     {{ end }}
                   {{ end }}
 
@@ -119,6 +141,13 @@
                     {{ end }}
                   {{ end }}
 
+                  <!-- Article thumbnail (if present and not video/podcast type) -->
+                  {{ if and (ne $contentType "video") (ne $contentType "podcast") $article.thumbnail }}
+                    <div class="mb-4">
+                      <img src="{{ $article.thumbnail }}" alt="{{ $article.title }}" class="w-full h-auto rounded-lg shadow-md" style="max-height: 400px; object-fit: cover;">
+                    </div>
+                  {{ end }}
+
                   <!-- Title and source info -->
                   <div class="flex items-center mb-4">
                     {{ if $article.favicon }}
@@ -139,21 +168,49 @@
                   </p>
 
                   <!-- Call to action buttons -->
-                  {{ if eq $contentType "video" }}
-                    <a href="{{ $article.url }}" target="_blank" rel="noopener" class="btn-modern btn-small inline-flex items-center mt-3">
-                      <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
-                      </svg>
-                      Watch on YouTube
-                    </a>
-                  {{ else if eq $contentType "podcast" }}
-                    <a href="{{ $article.url }}" target="_blank" rel="noopener" class="btn-modern btn-podcast btn-small inline-flex items-center mt-3">
-                      <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"/>
-                      </svg>
-                      Listen to Podcast
-                    </a>
-                  {{ end }}
+                  <div class="flex flex-wrap gap-2 mt-3">
+                    {{ if eq $contentType "video" }}
+                      <a href="{{ $article.url }}" target="_blank" rel="noopener" class="btn-modern btn-small inline-flex items-center">
+                        <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Watch on YouTube
+                      </a>
+                      {{ if $article.link }}
+                        <a href="{{ $article.link }}" target="_blank" rel="noopener" class="btn-modern btn-small btn-secondary inline-flex items-center">
+                          <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/>
+                          </svg>
+                          More Info
+                        </a>
+                      {{ end }}
+                    {{ else if eq $contentType "podcast" }}
+                      <a href="{{ $article.url }}" target="_blank" rel="noopener" class="btn-modern btn-podcast btn-small inline-flex items-center">
+                        <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"/>
+                        </svg>
+                        Listen to Podcast
+                      </a>
+                      {{ if $article.link }}
+                        <a href="{{ $article.link }}" target="_blank" rel="noopener" class="btn-modern btn-small btn-secondary inline-flex items-center">
+                          <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/>
+                          </svg>
+                          More Info
+                        </a>
+                      {{ end }}
+                    {{ else }}
+                      <!-- Article type - show video button if video_url exists -->
+                      {{ if $article.video_url }}
+                        <a href="{{ $article.video_url }}" target="_blank" rel="noopener" class="btn-modern btn-small inline-flex items-center">
+                          <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                          </svg>
+                          Watch on YouTube
+                        </a>
+                      {{ end }}
+                    {{ end }}
+                  </div>
                 </div>
               </div>
 
