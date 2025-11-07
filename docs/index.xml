@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Team Atlanta</title><link>https://team-atlanta.github.io/</link><description>Recent content on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 02 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Teaching LLMs to Retrieve: Custom Models for Security Patch Generation</title><link>https://team-atlanta.github.io/blog/post-custom-model/</link><pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-custom-model/</guid><description>&lt;h2 id="the-typedef-that-changed-everything">The Typedef That Changed Everything&lt;/h2>
-&lt;p>Picture this: you&amp;rsquo;re asking an LLM to patch a security vulnerability in Nginx, a codebase with millions of lines. The bug is clear, the fix location is obvious, but your patch won&amp;rsquo;t compile. Why? Because buried somewhere in the headers are two critical &lt;code>typedef&lt;/code> definitions that the LLM never saw.&lt;/p>
-&lt;p>We discovered this the hard way during the AIxCC Semifinals. Challenge &lt;code>challenge-004-nginx-cp/cpv15&lt;/code> became our wake-up call. When we ran our baseline patching agent Aider 20 times without the typedef definitions, only 5 patches compiled successfully. But when we included those typedefs? 18 out of 20 compiled successfully. &lt;strong>That 5/20 → 18/20 leap wasn&amp;rsquo;t about smarter LLMs or better prompts. It was about giving the right context.&lt;/strong>&lt;/p></description></item><item><title>Every Patch Agent has its Own Story (1) - Martian: Exploring the Unknown with Sophisticated Tools</title><link>https://team-atlanta.github.io/blog/post-crs-patch-agent-martian/</link><pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-patch-agent-martian/</guid><description>&lt;p>As we mentioned in our previous blog post, we enhanced the patching capabilities of Atlantis by ensembling multiple patch agents. In this series of blog posts, we will introduce each of our patch agents in detail and explain the rationale behind their designs.&lt;/p>
-&lt;h2 id="diversity-for-good">Diversity for Good&lt;/h2>
-&lt;p>To maximize the effectiveness of ensembling, it is crucial to have diverse agents. If all agents are similar, the ensemble will not perform significantly better than any individual agent. Therefore, we intentionally designed our patch agents to be diverse in their approaches, methodologies, and also models used. We newly developed six patch agents, each with its own unique architecture and motivation, as summarized in the table below.&lt;/p></description></item><item><title>ClaudeLike: How to Apply a Tool-Based Agent to Patch Generation</title><link>https://team-atlanta.github.io/blog/post-crs-patch-agent-claudelike/</link><pubDate>Fri, 10 Oct 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-patch-agent-claudelike/</guid><description>&lt;p>Claude Code is an LLM agent specialized in general-purpose programming tasks and remains one of the most powerful LLM agents to date. Inspired by Claude Code&amp;rsquo;s strategy, we developed ClaudeLike, an agent dedicated to patch generation. In this post, we introduce the motivation and key features behind the development of ClaudeLike.&lt;/p>
-&lt;h2 id="motivation-applying-a-sota-llm-agent-to-patch-generation">Motivation: Applying a SOTA LLM Agent to Patch Generation&lt;/h2>
-&lt;h3 id="why-did-we-need-to-develop-a-new-agent">Why Did We Need to Develop a New Agent?&lt;/h3>
-&lt;p>When Claude Code was released, we experimented to see whether it could generate patches effectively, as we had previously done with tools like Aider and SWE-Agent. We found that Claude Code performed reasonably well when provided with contextual information such as crash logs. However, we determined that directly integrating Claude Code into Crete would be difficult.&lt;/p></description></item><item><title>Vincent, One Puzzle for Our Ensemble Toward High-quality Patches</title><link>https://team-atlanta.github.io/blog/post-crs-patch-agent-vincent/</link><pubDate>Fri, 10 Oct 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-patch-agent-vincent/</guid><description>&lt;p>As mentioned in the previous post, our strategy for patching is to prepare multiple agents to ensure both the robustness and correctness of the system.
-To this end, we developed various patch agents, each specialized for different LLM models and tools.&lt;/p>
-&lt;p>In this post, we would like to introduce Vincent agent, one of the patch agents running under our ensemble-based patching system.&lt;/p>
-&lt;h2 id="right-root-cause-wrong-patches">Right Root cause, Wrong Patches&lt;/h2>
-&lt;p>What surprised us during the competition was that LLMs alone are already quite doing well at generating proper patches.
-Given a sanitizer report, LLMs could freely explore the codebase by itself and reason correctly about the given bug—especially when the problematic code appeared near the call stacks in the report.&lt;/p></description></item><item><title>Ensembles of Agents for Robust and Effective Automated Patching</title><link>https://team-atlanta.github.io/blog/post-crs-patch-integration/</link><pubDate>Sun, 05 Oct 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-patch-integration/</guid><description>&lt;h2 id="why-ensemble-for-patching">Why Ensemble for Patching?&lt;/h2>
-&lt;p>In the AIxCC competition, finding vulnerabilities is only half the battle. Once a vulnerability is discovered, it must be patched to prevent exploitation. This is where the Atlantis-Patching system comes into play. As the AIxCC&amp;rsquo;s ultimate mission is to make software secure, it awards more points for patching vulnerabilities than for finding them. In particular, the competition rewards &lt;strong>6 points&lt;/strong> for patching a vulnerability, compared to just 2 points for discovering it. As a result, to win the competition, it is crucial to have a robust and efficient patching system that can quickly generate effective patches for discovered vulnerabilities.&lt;/p></description></item><item><title>Our GraalVM Executor: How We Achieved Compatibility, Scale, and Speed</title><link>https://team-atlanta.github.io/blog/post-crs-java-concolic/</link><pubDate>Mon, 29 Sep 2025 23:00:00 +0900</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-concolic/</guid><description>&lt;p>In the AIxCC competition,
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Team Atlanta</title><link>https://team-atlanta.github.io/</link><description>Recent content on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 02 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Teaching LLMs to Retrieve: Custom Models for Security Patch Generation</title><link>https://team-atlanta.github.io/blog/post-custom-model/</link><pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-custom-model/</guid><description>&lt;h2 id="the-typedef-that-changed-everything"&gt;The Typedef That Changed Everything&lt;/h2&gt;
+&lt;p&gt;Picture this: you&amp;rsquo;re asking an LLM to patch a security vulnerability in Nginx, a codebase with millions of lines. The bug is clear, the fix location is obvious, but your patch won&amp;rsquo;t compile. Why? Because buried somewhere in the headers are two critical &lt;code&gt;typedef&lt;/code&gt; definitions that the LLM never saw.&lt;/p&gt;
+&lt;p&gt;We discovered this the hard way during the AIxCC Semifinals. Challenge &lt;code&gt;challenge-004-nginx-cp/cpv15&lt;/code&gt; became our wake-up call. When we ran our baseline patching agent Aider 20 times without the typedef definitions, only 5 patches compiled successfully. But when we included those typedefs? 18 out of 20 compiled successfully. &lt;strong&gt;That 5/20 → 18/20 leap wasn&amp;rsquo;t about smarter LLMs or better prompts. It was about giving the right context.&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Every Patch Agent has its Own Story (1) - Martian: Exploring the Unknown with Sophisticated Tools</title><link>https://team-atlanta.github.io/blog/post-crs-patch-agent-martian/</link><pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-patch-agent-martian/</guid><description>&lt;p&gt;As we mentioned in our previous blog post, we enhanced the patching capabilities of Atlantis by ensembling multiple patch agents. In this series of blog posts, we will introduce each of our patch agents in detail and explain the rationale behind their designs.&lt;/p&gt;
+&lt;h2 id="diversity-for-good"&gt;Diversity for Good&lt;/h2&gt;
+&lt;p&gt;To maximize the effectiveness of ensembling, it is crucial to have diverse agents. If all agents are similar, the ensemble will not perform significantly better than any individual agent. Therefore, we intentionally designed our patch agents to be diverse in their approaches, methodologies, and also models used. We newly developed six patch agents, each with its own unique architecture and motivation, as summarized in the table below.&lt;/p&gt;</description></item><item><title>ClaudeLike: How to Apply a Tool-Based Agent to Patch Generation</title><link>https://team-atlanta.github.io/blog/post-crs-patch-agent-claudelike/</link><pubDate>Fri, 10 Oct 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-patch-agent-claudelike/</guid><description>&lt;p&gt;Claude Code is an LLM agent specialized in general-purpose programming tasks and remains one of the most powerful LLM agents to date. Inspired by Claude Code&amp;rsquo;s strategy, we developed ClaudeLike, an agent dedicated to patch generation. In this post, we introduce the motivation and key features behind the development of ClaudeLike.&lt;/p&gt;
+&lt;h2 id="motivation-applying-a-sota-llm-agent-to-patch-generation"&gt;Motivation: Applying a SOTA LLM Agent to Patch Generation&lt;/h2&gt;
+&lt;h3 id="why-did-we-need-to-develop-a-new-agent"&gt;Why Did We Need to Develop a New Agent?&lt;/h3&gt;
+&lt;p&gt;When Claude Code was released, we experimented to see whether it could generate patches effectively, as we had previously done with tools like Aider and SWE-Agent. We found that Claude Code performed reasonably well when provided with contextual information such as crash logs. However, we determined that directly integrating Claude Code into Crete would be difficult.&lt;/p&gt;</description></item><item><title>Vincent, One Puzzle for Our Ensemble Toward High-quality Patches</title><link>https://team-atlanta.github.io/blog/post-crs-patch-agent-vincent/</link><pubDate>Fri, 10 Oct 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-patch-agent-vincent/</guid><description>&lt;p&gt;As mentioned in the previous post, our strategy for patching is to prepare multiple agents to ensure both the robustness and correctness of the system.
+To this end, we developed various patch agents, each specialized for different LLM models and tools.&lt;/p&gt;
+&lt;p&gt;In this post, we would like to introduce Vincent agent, one of the patch agents running under our ensemble-based patching system.&lt;/p&gt;
+&lt;h2 id="right-root-cause-wrong-patches"&gt;Right Root cause, Wrong Patches&lt;/h2&gt;
+&lt;p&gt;What surprised us during the competition was that LLMs alone are already quite doing well at generating proper patches.
+Given a sanitizer report, LLMs could freely explore the codebase by itself and reason correctly about the given bug—especially when the problematic code appeared near the call stacks in the report.&lt;/p&gt;</description></item><item><title>Ensembles of Agents for Robust and Effective Automated Patching</title><link>https://team-atlanta.github.io/blog/post-crs-patch-integration/</link><pubDate>Sun, 05 Oct 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-patch-integration/</guid><description>&lt;h2 id="why-ensemble-for-patching"&gt;Why Ensemble for Patching?&lt;/h2&gt;
+&lt;p&gt;In the AIxCC competition, finding vulnerabilities is only half the battle. Once a vulnerability is discovered, it must be patched to prevent exploitation. This is where the Atlantis-Patching system comes into play. As the AIxCC&amp;rsquo;s ultimate mission is to make software secure, it awards more points for patching vulnerabilities than for finding them. In particular, the competition rewards &lt;strong&gt;6 points&lt;/strong&gt; for patching a vulnerability, compared to just 2 points for discovering it. As a result, to win the competition, it is crucial to have a robust and efficient patching system that can quickly generate effective patches for discovered vulnerabilities.&lt;/p&gt;</description></item><item><title>Our GraalVM Executor: How We Achieved Compatibility, Scale, and Speed</title><link>https://team-atlanta.github.io/blog/post-crs-java-concolic/</link><pubDate>Mon, 29 Sep 2025 23:00:00 +0900</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-concolic/</guid><description>&lt;p&gt;In the AIxCC competition,
 while fully committing to the challenge of leveraging Large Language Models (LLMs),
-we also integrated traditional techniques to create a more robust bug-finding system with fewer blind spots.&lt;/p>
-&lt;p>The competition provided a baseline fuzzer (Jazzer for Java projects),
+we also integrated traditional techniques to create a more robust bug-finding system with fewer blind spots.&lt;/p&gt;
+&lt;p&gt;The competition provided a baseline fuzzer (Jazzer for Java projects),
 but coverage-guided fuzzing in general often struggles with the complex validation logic that guards deep code paths.
 To address this, concolic execution is a well-known solution for exploring these paths by solving their input conditions.
-Our main challenge, therefore, was how to effectively leverage this powerful technique for the competition&amp;rsquo;s bug-finding goals.&lt;/p></description></item><item><title>BCDA: The AI Detective Separating Real Bugs from False Alarms</title><link>https://team-atlanta.github.io/blog/post-mlla-bcda/</link><pubDate>Sun, 07 Sep 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-bcda/</guid><description>&lt;h2 id="-from-potential-sink-to-actionable-intelligence">🎯 From Potential Sink to Actionable Intelligence&lt;/h2>
-&lt;p>BCDA (Bug Candidate Detection Agent)&amp;rsquo;s core mission is to address the fundamental challenge of lightweight sink analysis: distinguishing real vulnerabilities from false-positive noise.
-When MCGA, our cartographer, flags a function containing a potentially vulnerable &amp;ldquo;sink&amp;rdquo; (such as a function that executes system commands), BCDA takes over.&lt;/p>
-&lt;p>Its job isn&amp;rsquo;t just to say &amp;ldquo;yes&amp;rdquo; or &amp;ldquo;no.&amp;rdquo;
-BCDA performs a deep, multi-stage investigation powered by LLMs to produce a &lt;strong>Bug Inducing Thing (BIT)&lt;/strong>.
+Our main challenge, therefore, was how to effectively leverage this powerful technique for the competition&amp;rsquo;s bug-finding goals.&lt;/p&gt;</description></item><item><title>BCDA: The AI Detective Separating Real Bugs from False Alarms</title><link>https://team-atlanta.github.io/blog/post-mlla-bcda/</link><pubDate>Sun, 07 Sep 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-bcda/</guid><description>&lt;h2 id="-from-potential-sink-to-actionable-intelligence"&gt;🎯 From Potential Sink to Actionable Intelligence&lt;/h2&gt;
+&lt;p&gt;BCDA (Bug Candidate Detection Agent)&amp;rsquo;s core mission is to address the fundamental challenge of lightweight sink analysis: distinguishing real vulnerabilities from false-positive noise.
+When MCGA, our cartographer, flags a function containing a potentially vulnerable &amp;ldquo;sink&amp;rdquo; (such as a function that executes system commands), BCDA takes over.&lt;/p&gt;
+&lt;p&gt;Its job isn&amp;rsquo;t just to say &amp;ldquo;yes&amp;rdquo; or &amp;ldquo;no.&amp;rdquo;
+BCDA performs a deep, multi-stage investigation powered by LLMs to produce a &lt;strong&gt;Bug Inducing Thing (BIT)&lt;/strong&gt;.
 A BIT is a high-fidelity, structured report detailing a confirmed vulnerability candidate.
-It includes the exact location, the specific trigger conditions (like &lt;code>if-else&lt;/code> branches), and a detailed analysis generated by LLMs.
-This report becomes a detailed guide for our demolition expert, BGA, and the fuzzing stages.&lt;/p></description></item><item><title>From Harness to Vulnerability: AI Agents for Code Comprehension and Bug Discovery</title><link>https://team-atlanta.github.io/blog/post-mlla-disc-agents/</link><pubDate>Thu, 04 Sep 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-disc-agents/</guid><description>&lt;h2 id="beneath-the-exploit-the-groundwork-that-makes-bug-hunting-possible">&lt;strong>Beneath the Exploit: The Groundwork That Makes Bug Hunting Possible&lt;/strong>&lt;/h2>
-&lt;p>When people hear about &lt;strong>AI agents finding vulnerabilities&lt;/strong>, they often imagine the spectacular finale: an exploit payload triggering a crash, or a carefully crafted generator slipping past validation layers.&lt;/p>
-&lt;p>But here’s the truth: &lt;strong>none of that would have been possible without groundwork laid by three quieter agents.&lt;/strong>&lt;/p>
-&lt;p>Before any exploit can be created, the system must answer harder, subtler questions:&lt;/p></description></item><item><title>Context Engineering: How BGA Teaches LLMs to Write Exploits</title><link>https://team-atlanta.github.io/blog/post-context-engineering/</link><pubDate>Tue, 02 Sep 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-context-engineering/</guid><description>&lt;h2 id="the-problem-with-teaching-ai-to-hack">The Problem with Teaching AI to Hack&lt;/h2>
-&lt;p>Teaching an LLM to write working exploits is more challenging than typical AI tasks. Unlike most applications where &amp;ldquo;close enough&amp;rdquo; works, vulnerability exploitation requires precise execution. A single character error can make an entire exploit fail.&lt;/p>
-&lt;p>Take this seemingly simple Java reflective call injection vulnerability:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>String className &lt;span style="color:#f92672">=&lt;/span> request.&lt;span style="color:#a6e22e">getParameter&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;class&amp;#34;&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Class.&lt;span style="color:#a6e22e">forName&lt;/span>(className); &lt;span style="color:#75715e">// BUG: arbitrary class loading&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This looks straightforward, but there&amp;rsquo;s a catch: to exploit this vulnerability, the LLM must load the exact class name &lt;a href="https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25"
+It includes the exact location, the specific trigger conditions (like &lt;code&gt;if-else&lt;/code&gt; branches), and a detailed analysis generated by LLMs.
+This report becomes a detailed guide for our demolition expert, BGA, and the fuzzing stages.&lt;/p&gt;</description></item><item><title>From Harness to Vulnerability: AI Agents for Code Comprehension and Bug Discovery</title><link>https://team-atlanta.github.io/blog/post-mlla-disc-agents/</link><pubDate>Thu, 04 Sep 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-disc-agents/</guid><description>&lt;h2 id="beneath-the-exploit-the-groundwork-that-makes-bug-hunting-possible"&gt;&lt;strong&gt;Beneath the Exploit: The Groundwork That Makes Bug Hunting Possible&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;When people hear about &lt;strong&gt;AI agents finding vulnerabilities&lt;/strong&gt;, they often imagine the spectacular finale: an exploit payload triggering a crash, or a carefully crafted generator slipping past validation layers.&lt;/p&gt;
+&lt;p&gt;But here’s the truth: &lt;strong&gt;none of that would have been possible without groundwork laid by three quieter agents.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Before any exploit can be created, the system must answer harder, subtler questions:&lt;/p&gt;</description></item><item><title>Context Engineering: How BGA Teaches LLMs to Write Exploits</title><link>https://team-atlanta.github.io/blog/post-context-engineering/</link><pubDate>Tue, 02 Sep 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-context-engineering/</guid><description>&lt;h2 id="the-problem-with-teaching-ai-to-hack"&gt;The Problem with Teaching AI to Hack&lt;/h2&gt;
+&lt;p&gt;Teaching an LLM to write working exploits is more challenging than typical AI tasks. Unlike most applications where &amp;ldquo;close enough&amp;rdquo; works, vulnerability exploitation requires precise execution. A single character error can make an entire exploit fail.&lt;/p&gt;
+&lt;p&gt;Take this seemingly simple Java reflective call injection vulnerability:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;String className &lt;span style="color:#f92672"&gt;=&lt;/span&gt; request.&lt;span style="color:#a6e22e"&gt;getParameter&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;class&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Class.&lt;span style="color:#a6e22e"&gt;forName&lt;/span&gt;(className); &lt;span style="color:#75715e"&gt;// BUG: arbitrary class loading&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This looks straightforward, but there&amp;rsquo;s a catch: to exploit this vulnerability, the LLM must load the exact class name &lt;a href="https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25"
 
 
 
@@ -41,7 +41,7 @@ This report becomes a detailed guide for our demolition expert, BGA, and the fuz
  
 
 
->&lt;code>&amp;quot;jaz.Zer&amp;quot;&lt;/code>&lt;/a> to trigger &lt;a href="https://github.com/CodeIntelligenceTesting/jazzer"
+&gt;&lt;code&gt;&amp;quot;jaz.Zer&amp;quot;&lt;/code&gt;&lt;/a&gt; to trigger &lt;a href="https://github.com/CodeIntelligenceTesting/jazzer"
 
 
 
@@ -50,9 +50,9 @@ This report becomes a detailed guide for our demolition expert, BGA, and the fuz
  
 
 
->Jazzer&lt;/a>&amp;rsquo;s detection. Not &lt;code>&amp;quot;jaz.Zero&amp;quot;&lt;/code>, not &lt;code>&amp;quot;java.Zer&amp;quot;&lt;/code>, not &lt;code>&amp;quot;jaz.zer&amp;quot;&lt;/code>. One character wrong and the entire exploit fails.&lt;/p></description></item><item><title>BGA: Self-Evolving Exploits Through Multi-Agent AI</title><link>https://team-atlanta.github.io/blog/post-mlla-bga/</link><pubDate>Fri, 29 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-bga/</guid><description>&lt;h2 id="-where-bga-fits-in-the-mlla-pipeline">🔄 Where BGA Fits in the MLLA Pipeline&lt;/h2>
-&lt;p>Before we dive into BGA&amp;rsquo;s self-evolving exploits, here&amp;rsquo;s how it fits into the broader MLLA vulnerability discovery pipeline:&lt;/p>
-&lt;p>&lt;strong>Discovery Agents&lt;/strong> (&lt;a href="https://team-atlanta.github.io/blog/post-mlla-disc-agents/"
+&gt;Jazzer&lt;/a&gt;&amp;rsquo;s detection. Not &lt;code&gt;&amp;quot;jaz.Zero&amp;quot;&lt;/code&gt;, not &lt;code&gt;&amp;quot;java.Zer&amp;quot;&lt;/code&gt;, not &lt;code&gt;&amp;quot;jaz.zer&amp;quot;&lt;/code&gt;. One character wrong and the entire exploit fails.&lt;/p&gt;</description></item><item><title>BGA: Self-Evolving Exploits Through Multi-Agent AI</title><link>https://team-atlanta.github.io/blog/post-mlla-bga/</link><pubDate>Fri, 29 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-bga/</guid><description>&lt;h2 id="-where-bga-fits-in-the-mlla-pipeline"&gt;🔄 Where BGA Fits in the MLLA Pipeline&lt;/h2&gt;
+&lt;p&gt;Before we dive into BGA&amp;rsquo;s self-evolving exploits, here&amp;rsquo;s how it fits into the broader MLLA vulnerability discovery pipeline:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Discovery Agents&lt;/strong&gt; (&lt;a href="https://team-atlanta.github.io/blog/post-mlla-disc-agents/"
 
 
 
@@ -61,7 +61,7 @@ This report becomes a detailed guide for our demolition expert, BGA, and the fuz
  
 
 
->CPUA, MCGA, CGPA&lt;/a>) → &lt;strong>Detective&lt;/strong> (&lt;a href="https://team-atlanta.github.io/blog/post-mlla-bcda/"
+&gt;CPUA, MCGA, CGPA&lt;/a&gt;) → &lt;strong&gt;Detective&lt;/strong&gt; (&lt;a href="https://team-atlanta.github.io/blog/post-mlla-bcda/"
 
 
 
@@ -70,27 +70,27 @@ This report becomes a detailed guide for our demolition expert, BGA, and the fuz
  
 
 
->BCDA&lt;/a>) → &lt;strong>Exploit Generation&lt;/strong> (&lt;strong>BGA&lt;/strong>)&lt;/p>
-&lt;ol>
-&lt;li>&lt;strong>Discovery agents&lt;/strong> map the codebase and identify potential vulnerability paths&lt;/li>
-&lt;li>&lt;strong>BCDA&lt;/strong> investigates these paths, filtering false positives and creating Bug Inducing Things (BITs) with precise trigger conditions&lt;/li>
-&lt;li>&lt;strong>BGA&lt;/strong> receives these confirmed vulnerabilities and generates self-evolving exploits to trigger them&lt;/li>
-&lt;/ol>
-&lt;p>Now BGA takes the stage, armed with BCDA&amp;rsquo;s detailed intelligence about exactly what conditions must be satisfied to reach each vulnerability.&lt;/p></description></item><item><title>MLLA: Teaching LLMs to Hunt Bugs Like Security Researchers</title><link>https://team-atlanta.github.io/blog/post-mlla-overview/</link><pubDate>Thu, 28 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-overview/</guid><description>&lt;h2 id="when-fuzzing-meets-intelligence">When Fuzzing Meets Intelligence&lt;/h2>
-&lt;p>Picture this: you&amp;rsquo;re a security researcher staring at 20 million lines of code, hunting for vulnerabilities that could compromise everything from your smartphone to critical infrastructure. Traditional fuzzers approach this challenge with brute force – throwing millions of random inputs at the program like a toddler mashing keyboard keys. Sometimes it works. Often, it doesn&amp;rsquo;t.&lt;/p>
-&lt;p>But what if we could change the game entirely?&lt;/p>
-&lt;p>&lt;span style="background-color:lightgray;color:green">Meet MLLA (Multi-Language LLM Agent) – the most ambitious experiment in AI-assisted vulnerability discovery we&amp;rsquo;ve ever built. Instead of random chaos, MLLA thinks, plans, and hunts bugs like an experienced security researcher, but at machine scale.&lt;/span>&lt;/p></description></item><item><title>Atlantis-Multilang (UniAFL): LLM-powered &amp; Lauguage-agonistic Automatic Bug Finding</title><link>https://team-atlanta.github.io/blog/post-crs-multilang/</link><pubDate>Wed, 20 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-multilang/</guid><description>&lt;h2 id="atlantis-multilang--uniafl">Atlantis-Multilang == UniAFL&lt;/h2>
-&lt;p>Atlantis-Multilang is a fuzzing framework called UniAFL, designed to LLMs for fuzzing across multiple programming languages.
+&gt;BCDA&lt;/a&gt;) → &lt;strong&gt;Exploit Generation&lt;/strong&gt; (&lt;strong&gt;BGA&lt;/strong&gt;)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Discovery agents&lt;/strong&gt; map the codebase and identify potential vulnerability paths&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BCDA&lt;/strong&gt; investigates these paths, filtering false positives and creating Bug Inducing Things (BITs) with precise trigger conditions&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BGA&lt;/strong&gt; receives these confirmed vulnerabilities and generates self-evolving exploits to trigger them&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now BGA takes the stage, armed with BCDA&amp;rsquo;s detailed intelligence about exactly what conditions must be satisfied to reach each vulnerability.&lt;/p&gt;</description></item><item><title>MLLA: Teaching LLMs to Hunt Bugs Like Security Researchers</title><link>https://team-atlanta.github.io/blog/post-mlla-overview/</link><pubDate>Thu, 28 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-mlla-overview/</guid><description>&lt;h2 id="when-fuzzing-meets-intelligence"&gt;When Fuzzing Meets Intelligence&lt;/h2&gt;
+&lt;p&gt;Picture this: you&amp;rsquo;re a security researcher staring at 20 million lines of code, hunting for vulnerabilities that could compromise everything from your smartphone to critical infrastructure. Traditional fuzzers approach this challenge with brute force – throwing millions of random inputs at the program like a toddler mashing keyboard keys. Sometimes it works. Often, it doesn&amp;rsquo;t.&lt;/p&gt;
+&lt;p&gt;But what if we could change the game entirely?&lt;/p&gt;
+&lt;p&gt;&lt;span style="background-color:lightgray;color:green"&gt;Meet MLLA (Multi-Language LLM Agent) – the most ambitious experiment in AI-assisted vulnerability discovery we&amp;rsquo;ve ever built. Instead of random chaos, MLLA thinks, plans, and hunts bugs like an experienced security researcher, but at machine scale.&lt;/span&gt;&lt;/p&gt;</description></item><item><title>Atlantis-Multilang (UniAFL): LLM-powered &amp; Lauguage-agonistic Automatic Bug Finding</title><link>https://team-atlanta.github.io/blog/post-crs-multilang/</link><pubDate>Wed, 20 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-multilang/</guid><description>&lt;h2 id="atlantis-multilang--uniafl"&gt;Atlantis-Multilang == UniAFL&lt;/h2&gt;
+&lt;p&gt;Atlantis-Multilang is a fuzzing framework called UniAFL, designed to LLMs for fuzzing across multiple programming languages.
 Unlike Atlantis-C and Atlantis-Java, it avoids language-specific instrumentation and is intentionally built to be as language-agnostic as possible — both in design and execution.
-&lt;span style="background-color:lightgray;color:green">Despite this broad and general approach, UniAFL proved to be highly effective in the AIxCC finals, contributing to 69.2% of all POV (Proof-of-Vulnerability) submissions.&lt;/span>
+&lt;span style="background-color:lightgray;color:green"&gt;Despite this broad and general approach, UniAFL proved to be highly effective in the AIxCC finals, contributing to 69.2% of all POV (Proof-of-Vulnerability) submissions.&lt;/span&gt;
 This result highlights not only the flexibility of its design but also its strong performance in practice.
-In this post, we’ll walk you through how we pulled it off, why we made these design choices, and what made UniAFL so effective in practice.&lt;/p></description></item><item><title>Sinkpoint-focused Directed Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</link><pubDate>Tue, 19 Aug 2025 12:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</guid><description>&lt;p>Traditional coverage-based fuzzers excel at code exploration.
-When testing Java code, however, most vulnerabilities require the invocation of a certain Java API, such as creating an SQL statement (&lt;code>java.sql.Statement&lt;/code>) for an SQL injection bug.
+In this post, we’ll walk you through how we pulled it off, why we made these design choices, and what made UniAFL so effective in practice.&lt;/p&gt;</description></item><item><title>Sinkpoint-focused Directed Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</link><pubDate>Tue, 19 Aug 2025 12:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</guid><description>&lt;p&gt;Traditional coverage-based fuzzers excel at code exploration.
+When testing Java code, however, most vulnerabilities require the invocation of a certain Java API, such as creating an SQL statement (&lt;code&gt;java.sql.Statement&lt;/code&gt;) for an SQL injection bug.
 Thus, we target such security-critical APIs with our modified, directed Jazzer to reach and exploit critical code locations faster.
-This blog post gives an overview over our directed fuzzing setup for Java challenge problems.&lt;/p>
-&lt;p>Calculating a distance metric for directed fuzzing requires static analysis to identify critical code locations (aka sinkpoints) and compute distances.
+This blog post gives an overview over our directed fuzzing setup for Java challenge problems.&lt;/p&gt;
+&lt;p&gt;Calculating a distance metric for directed fuzzing requires static analysis to identify critical code locations (aka sinkpoints) and compute distances.
 This static analysis happens mostly offline, independent of the modified Jazzer, to reduce the computational overhead in the fuzzer.
-However, we still compute the CFG (and, thus, basic block-level distances) in Jazzer to maintain a precise distance metric and allow the update of seed distances during fuzzing.&lt;/p></description></item><item><title>Jazzer+LibAFL: Insights into Java Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</link><pubDate>Tue, 19 Aug 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</guid><description>&lt;p>AIxCC involved finding bugs in software written in two languages: C++ and &lt;em>Java&lt;/em>.
+However, we still compute the CFG (and, thus, basic block-level distances) in Jazzer to maintain a precise distance metric and allow the update of seed distances during fuzzing.&lt;/p&gt;</description></item><item><title>Jazzer+LibAFL: Insights into Java Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</link><pubDate>Tue, 19 Aug 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</guid><description>&lt;p&gt;AIxCC involved finding bugs in software written in two languages: C++ and &lt;em&gt;Java&lt;/em&gt;.
 The focus of the competition was on the use of LLMs and AI, however, our teams
 approach was to balance ambitious strategies alongside proven traditional
 bug-finding techniques like fuzzing.
@@ -107,9 +107,9 @@ LibAFL as the fuzzing backend and it is available as
  
 
 
->part of our open source release&lt;/a>.
+&gt;part of our open source release&lt;/a&gt;.
 This post details some of the lessons we learned about Java fuzzing and the
-creation of this fork.&lt;/p></description></item><item><title>Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection</title><link>https://team-atlanta.github.io/blog/post-crs-java-overview/</link><pubDate>Tue, 19 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-overview/</guid><description>&lt;p>Atlantis-Java is a specialized bug-finding subsystem within the &lt;a href="https://team-atlanta.github.io/blog/post-atl-infra/"
+creation of this fork.&lt;/p&gt;</description></item><item><title>Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection</title><link>https://team-atlanta.github.io/blog/post-crs-java-overview/</link><pubDate>Tue, 19 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-overview/</guid><description>&lt;p&gt;Atlantis-Java is a specialized bug-finding subsystem within the &lt;a href="https://team-atlanta.github.io/blog/post-atl-infra/"
 
 
 
@@ -118,17 +118,17 @@ creation of this fork.&lt;/p></description></item><item><title>Atlantis-Java: A 
  
 
 
->Atlantis CRS framework&lt;/a>, specifically designed for Java CPV detection in the AIxCC competition.
-It integrates fuzzing, program analysis, and LLM capabilities, with a particular focus on security-sensitive APIs (also known as sinks).&lt;/p>
-&lt;h2 id="many-java-vulnerabilities-are-sink-centered">Many Java Vulnerabilities Are Sink-Centered&lt;/h2>
-&lt;figure class="img-fluid text-center">&lt;img src="https://team-atlanta.github.io/images/blog/crs-java/overview/motivation-example.png"
- alt="Fig.1 Example CPV from AIxCC Semifinal Jenkins CP" width="80%">&lt;figcaption>
- &lt;p>Fig.1 Example CPV from AIxCC Semifinal Jenkins CP&lt;/p>
- &lt;/figcaption>
-&lt;/figure>
+&gt;Atlantis CRS framework&lt;/a&gt;, specifically designed for Java CPV detection in the AIxCC competition.
+It integrates fuzzing, program analysis, and LLM capabilities, with a particular focus on security-sensitive APIs (also known as sinks).&lt;/p&gt;
+&lt;h2 id="many-java-vulnerabilities-are-sink-centered"&gt;Many Java Vulnerabilities Are Sink-Centered&lt;/h2&gt;
+&lt;figure class="img-fluid text-center"&gt;&lt;img src="https://team-atlanta.github.io/images/blog/crs-java/overview/motivation-example.png"
+ alt="Fig.1 Example CPV from AIxCC Semifinal Jenkins CP" width="80%"&gt;&lt;figcaption&gt;
+ &lt;p&gt;Fig.1 Example CPV from AIxCC Semifinal Jenkins CP&lt;/p&gt;
+ &lt;/figcaption&gt;
+&lt;/figure&gt;
 
-&lt;p>This vulnerability contains a backdoor that enables OS command injection when specific conditions are met.
-The &lt;code>ProcessBuilder&lt;/code> constructor serves as a &lt;a href="https://github.com/github/codeql/blob/963e02864515b3f09fbd1c53e04ab0c4499c0351/java/ql/lib/ext/java.lang.model.yml#L15"
+&lt;p&gt;This vulnerability contains a backdoor that enables OS command injection when specific conditions are met.
+The &lt;code&gt;ProcessBuilder&lt;/code&gt; constructor serves as a &lt;a href="https://github.com/github/codeql/blob/963e02864515b3f09fbd1c53e04ab0c4499c0351/java/ql/lib/ext/java.lang.model.yml#L15"
 
 
 
@@ -137,17 +137,17 @@ The &lt;code>ProcessBuilder&lt;/code> constructor serves as a &lt;a href="https:
  
 
 
->sink API&lt;/a>, where an attacker-controllable first argument can lead to arbitrary command execution.
-The sinkpoint (line 20) refers to the location in the target CP where this sink API is called.&lt;/p></description></item><item><title>Atlantis Infrastructure</title><link>https://team-atlanta.github.io/blog/post-atl-infra/</link><pubDate>Wed, 13 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl-infra/</guid><description>&lt;p>The AIxCC competition is not just about creating automated bug-finding and patching techniques
-&amp;ndash; it is about building a &lt;strong>cyber reasoning system&lt;/strong> (CRS) that can do both without any human assistance.
-To succeed, a CRS must excel in four critical infrastructure areas:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Reliability:&lt;/strong> Run continuously for weeks without intervention.&lt;/li>
-&lt;li>&lt;strong>Scalability:&lt;/strong> Handle many challenge projects concurrently.&lt;/li>
-&lt;li>&lt;strong>Budget Utilization:&lt;/strong> Maximize Azure cloud and LLM credit usage.&lt;/li>
-&lt;li>&lt;strong>Submission Management:&lt;/strong> Consistently deliver valid proof-of-vulnerability blobs (POVs), Patches, SARIF assessments, and Bundles.&lt;/li>
-&lt;/ul>
-&lt;p>In this post, we will share how we designed the infrastructure of our CRS, &lt;strong>Atlantis&lt;/strong>, to meet these keys and make it as robust as possible.
+&gt;sink API&lt;/a&gt;, where an attacker-controllable first argument can lead to arbitrary command execution.
+The sinkpoint (line 20) refers to the location in the target CP where this sink API is called.&lt;/p&gt;</description></item><item><title>Atlantis Infrastructure</title><link>https://team-atlanta.github.io/blog/post-atl-infra/</link><pubDate>Wed, 13 Aug 2025 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl-infra/</guid><description>&lt;p&gt;The AIxCC competition is not just about creating automated bug-finding and patching techniques
+&amp;ndash; it is about building a &lt;strong&gt;cyber reasoning system&lt;/strong&gt; (CRS) that can do both without any human assistance.
+To succeed, a CRS must excel in four critical infrastructure areas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reliability:&lt;/strong&gt; Run continuously for weeks without intervention.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability:&lt;/strong&gt; Handle many challenge projects concurrently.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Budget Utilization:&lt;/strong&gt; Maximize Azure cloud and LLM credit usage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Submission Management:&lt;/strong&gt; Consistently deliver valid proof-of-vulnerability blobs (POVs), Patches, SARIF assessments, and Bundles.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this post, we will share how we designed the infrastructure of our CRS, &lt;strong&gt;Atlantis&lt;/strong&gt;, to meet these keys and make it as robust as possible.
 We could not have won AIxCC without the exceptional work of &lt;a href="https://team-atlanta.github.io/authors/#team-infra"
 
 
@@ -155,7 +155,7 @@ We could not have won AIxCC without the exceptional work of &lt;a href="https://
  
 
 
->our infrastructure team&lt;/a>.&lt;/p></description></item><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p>Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
+&gt;our infrastructure team&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>AIxCC Final and Team Atlanta</title><link>https://team-atlanta.github.io/blog/post-afc/</link><pubDate>Tue, 12 Aug 2025 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-afc/</guid><description>&lt;p&gt;Two years after its first announcement at &lt;a href="https://aicyberchallenge.com/"
 
 
 
@@ -164,10 +164,10 @@ We could not have won AIxCC without the exceptional work of &lt;a href="https://
  
 
 
->DEF CON 31&lt;/a>,
+&gt;DEF CON 31&lt;/a&gt;,
 our team stood on stage as the winners of the AIxCC Final—a moment we had been working toward
-since the competition began.&lt;/p>
-&lt;p>Yet when we heard we placed 1st, relief overshadowed excitement.
+since the competition began.&lt;/p&gt;
+&lt;p&gt;Yet when we heard we placed 1st, relief overshadowed excitement.
 Why? While competing head-to-head with world-class teams like &lt;a href="https://theori.io/blog/aixcc-and-roboduck-63447"
 
 
@@ -177,9 +177,9 @@ Why? While competing head-to-head with world-class teams like &lt;a href="https:
  
 
 
->Theori&lt;/a>
+&gt;Theori&lt;/a&gt;
 was a privilege, the real-time, long-running nature of this competition
-demanded extreme engineering reliability alongside novel approaches to succeed.&lt;/p></description></item><item><title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title><link>https://team-atlanta.github.io/blog/post-tkctf-2024/</link><pubDate>Tue, 03 Dec 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-tkctf-2024/</guid><description>&lt;p>For the first time, we deployed our hybrid system,
+demanded extreme engineering reliability alongside novel approaches to succeed.&lt;/p&gt;</description></item><item><title>Hacking Redefined: How LLM Agents Took on University Hacking Competition</title><link>https://team-atlanta.github.io/blog/post-tkctf-2024/</link><pubDate>Tue, 03 Dec 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-tkctf-2024/</guid><description>&lt;p&gt;For the first time, we deployed our hybrid system,
 powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl"
 
 
@@ -187,7 +187,7 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
->Atlantis&lt;/a>—to compete in &lt;a href="https://www.gatech.edu/"
+&gt;Atlantis&lt;/a&gt;—to compete in &lt;a href="https://www.gatech.edu/"
 
 
 
@@ -196,7 +196,7 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
->Georgia Tech’s&lt;/a> flagship CTF event,
+&gt;Georgia Tech’s&lt;/a&gt; flagship CTF event,
 &lt;a href="https://tc.gts3.org/cs6265/2024-fall/ctf.html"
 
 
@@ -206,14 +206,14 @@ powered by LLM agents—&lt;a href="https://team-atlanta.github.io/blog/post-atl
  
 
 
->TKCTF 2024&lt;/a>.
+&gt;TKCTF 2024&lt;/a&gt;.
 During the competition, Atlantis concentrated on two pivotal areas:
 vulnerability analysis and automatic vulnerability remediation.
-Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>,
-showcasing the practicality and promise of our approach in a real-world hacking competition.&lt;/p>
-&lt;p>In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
+Remarkably, the system uncovered 10 vulnerabilities and produced 7 robust patches&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;,
+showcasing the practicality and promise of our approach in a real-world hacking competition.&lt;/p&gt;
+&lt;p&gt;In this blog, I’ll delve into some fascinating insights and essential lessons from the CTF experience.
 As we prepare to open-source the full details of our system following AIxCC competition rules,
-this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.&lt;/p></description></item><item><title>Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System</title><link>https://team-atlanta.github.io/blog/post-asc-sqlite/</link><pubDate>Wed, 28 Aug 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-asc-sqlite/</guid><description>&lt;p>Without knowing beforehand that the challenge project involved SQLite3,
+this milestone reflects more than just a technical achievement—it embodies our commitment to advancing LLM-driven security research.&lt;/p&gt;</description></item><item><title>Autonomously Uncovering and Fixing a Hidden Vulnerability in SQLite3 with an LLM-Based System</title><link>https://team-atlanta.github.io/blog/post-asc-sqlite/</link><pubDate>Wed, 28 Aug 2024 12:15:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-asc-sqlite/</guid><description>&lt;p&gt;Without knowing beforehand that the challenge project involved SQLite3,
 our team, &lt;a href="https://team-atlanta.github.io/authors"
 
 
@@ -221,7 +221,7 @@ our team, &lt;a href="https://team-atlanta.github.io/authors"
  
 
 
->Team Atlanta&lt;/a>, entered our Cyber Reasoning System (CRS),
+&gt;Team Atlanta&lt;/a&gt;, entered our Cyber Reasoning System (CRS),
 named Atlantis,
 into the &lt;a href="https://aicyberchallenge.com/"
 
@@ -232,7 +232,7 @@ into the &lt;a href="https://aicyberchallenge.com/"
  
 
 
->AI Cyber Challenge&lt;/a>
+&gt;AI Cyber Challenge&lt;/a&gt;
 organized by ARPA-H, DARPA, and the
 &lt;a href="https://www.whitehouse.gov/briefing-room/statements-releases/2023/08/09/biden-harris-administration-launches-artificial-intelligence-cyber-challenge-to-protect-americas-critical-software/"
 
@@ -243,10 +243,10 @@ organized by ARPA-H, DARPA, and the
  
 
 
->White House&lt;/a>.&lt;/p>
-&lt;p>Remarkably,
+&gt;White House&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Remarkably,
 Atlantis secured six first-bloods and
-autonomously identified and patched a real bug in SQLite3&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>,
+autonomously identified and patched a real bug in SQLite3&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;,
 earning us a $2 million prize and a place in the grand finals of AIxCC.
 For more details, check out our &lt;a href="https://team-atlanta.github.io/blog/post-atl"
 
@@ -255,7 +255,7 @@ For more details, check out our &lt;a href="https://team-atlanta.github.io/blog/
  
 
 
->team&amp;rsquo;s announcement blog&lt;/a>.&lt;/p></description></item><item><title>Announcing Team Atlanta!</title><link>https://team-atlanta.github.io/blog/post-atl/</link><pubDate>Tue, 13 Aug 2024 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl/</guid><description>&lt;p>Hello, world! We are &lt;em>Team Atlanta&lt;/em>, the minds behind Atlantis, our innovative
+&gt;team&amp;rsquo;s announcement blog&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Announcing Team Atlanta!</title><link>https://team-atlanta.github.io/blog/post-atl/</link><pubDate>Tue, 13 Aug 2024 05:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-atl/</guid><description>&lt;p&gt;Hello, world! We are &lt;em&gt;Team Atlanta&lt;/em&gt;, the minds behind Atlantis, our innovative
 AI-driven cybersecurity solution competing in the prestigious
 &lt;a href="https://aicyberchallenge.com/"
 
@@ -266,15 +266,15 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->DARPA AIxCC&lt;/a>.&lt;/p>
-&lt;p>&lt;a href="https://team-atlanta.github.io/authors/"
+&gt;DARPA AIxCC&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://team-atlanta.github.io/authors/"
 
 
 
  
 
 
->Our team&lt;/a> is a collaborative powerhouse made up of six leading institutions:
+&gt;Our team&lt;/a&gt; is a collaborative powerhouse made up of six leading institutions:
 &lt;a href="https://www.gatech.edu/"
 
 
@@ -284,7 +284,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->Georgia Tech&lt;/a>,
+&gt;Georgia Tech&lt;/a&gt;,
 &lt;a href="https://www.gtri.gatech.edu/"
 
 
@@ -294,7 +294,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->GTRI&lt;/a>,
+&gt;GTRI&lt;/a&gt;,
 &lt;a href="https://research.samsung.com/"
 
 
@@ -304,7 +304,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->Samsung Research&lt;/a>,
+&gt;Samsung Research&lt;/a&gt;,
 &lt;a href="https://sra.samsung.com/"
 
 
@@ -314,7 +314,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->Samsung Research America&lt;/a>,
+&gt;Samsung Research America&lt;/a&gt;,
 &lt;a href="https://www.kaist.ac.kr/en/"
 
 
@@ -324,7 +324,7 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->KAIST&lt;/a>, and
+&gt;KAIST&lt;/a&gt;, and
 &lt;a href="https://www.postech.ac.kr/"
 
 
@@ -334,67 +334,67 @@ AI-driven cybersecurity solution competing in the prestigious
  
 
 
->POSTECH&lt;/a>.
+&gt;POSTECH&lt;/a&gt;.
 Each of these organizations is led by Georgia Tech alumni,
 and includes past winners of prestigious hacking competitions
-such as DEF CON CTF, Pwn2Own and kernelCTF.&lt;/p></description></item><item><title>Acknowledgments</title><link>https://team-atlanta.github.io/authors/ack/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/ack/</guid><description>&lt;p>We extend our gratitude to the following individuals for their contributions, support, and collaboration in making this project possible.&lt;/p></description></item><item><title>Ammar Askar</title><link>https://team-atlanta.github.io/authors/ammar-askar/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/ammar-askar/</guid><description/></item><item><title>Andrew Chin</title><link>https://team-atlanta.github.io/authors/andrew-chin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/andrew-chin/</guid><description>&lt;ul>
-&lt;li>LLM-Based Challenge Analysis&lt;/li>
-&lt;li>Lightweight Code Browser&lt;/li>
-&lt;li>Fuzzing Engines integration&lt;/li>
-&lt;li>Harness Reachability Analysis&lt;/li>
-&lt;li>Directed Fuzzing Coordination&lt;/li>
-&lt;li>Evaluation&lt;/li>
-&lt;/ul></description></item><item><title>Cen Zhang</title><link>https://team-atlanta.github.io/authors/cen-zhang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/cen-zhang/</guid><description/></item><item><title>Dae R. Jeong</title><link>https://team-atlanta.github.io/authors/dae-jeong/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dae-jeong/</guid><description/></item><item><title>Dohyeok Kim</title><link>https://team-atlanta.github.io/authors/dohyeok-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dohyeok-kim/</guid><description/></item><item><title>Dongju Kim</title><link>https://team-atlanta.github.io/authors/dongju-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dongju-kim/</guid><description/></item><item><title>Dongkwan Kim</title><link>https://team-atlanta.github.io/authors/dongkwan-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dongkwan-kim/</guid><description/></item><item><title>Dowoo Baik</title><link>https://team-atlanta.github.io/authors/dowoo-baik/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dowoo-baik/</guid><description/></item><item><title>Elements</title><link>https://team-atlanta.github.io/elements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/elements/</guid><description>&lt;details class="table-of-content ">
- &lt;summary>
+such as DEF CON CTF, Pwn2Own and kernelCTF.&lt;/p&gt;</description></item><item><title>Acknowledgments</title><link>https://team-atlanta.github.io/authors/ack/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/ack/</guid><description>&lt;p&gt;We extend our gratitude to the following individuals for their contributions, support, and collaboration in making this project possible.&lt;/p&gt;</description></item><item><title>Ammar Askar</title><link>https://team-atlanta.github.io/authors/ammar-askar/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/ammar-askar/</guid><description/></item><item><title>Andrew Chin</title><link>https://team-atlanta.github.io/authors/andrew-chin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/andrew-chin/</guid><description>&lt;ul&gt;
+&lt;li&gt;LLM-Based Challenge Analysis&lt;/li&gt;
+&lt;li&gt;Lightweight Code Browser&lt;/li&gt;
+&lt;li&gt;Fuzzing Engines integration&lt;/li&gt;
+&lt;li&gt;Harness Reachability Analysis&lt;/li&gt;
+&lt;li&gt;Directed Fuzzing Coordination&lt;/li&gt;
+&lt;li&gt;Evaluation&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Cen Zhang</title><link>https://team-atlanta.github.io/authors/cen-zhang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/cen-zhang/</guid><description/></item><item><title>Dae R. Jeong</title><link>https://team-atlanta.github.io/authors/dae-jeong/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dae-jeong/</guid><description/></item><item><title>Dohyeok Kim</title><link>https://team-atlanta.github.io/authors/dohyeok-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dohyeok-kim/</guid><description/></item><item><title>Dongju Kim</title><link>https://team-atlanta.github.io/authors/dongju-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dongju-kim/</guid><description/></item><item><title>Dongkwan Kim</title><link>https://team-atlanta.github.io/authors/dongkwan-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dongkwan-kim/</guid><description/></item><item><title>Dowoo Baik</title><link>https://team-atlanta.github.io/authors/dowoo-baik/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/dowoo-baik/</guid><description/></item><item><title>Elements</title><link>https://team-atlanta.github.io/elements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/elements/</guid><description>&lt;details class="table-of-content "&gt;
+ &lt;summary&gt;
  
  Table of Contents
  
- &lt;/summary>
- &lt;nav id="TableOfContents">
- &lt;ol>
- &lt;li>&lt;a href="#heading-2">Heading 2&lt;/a>
- &lt;ol>
- &lt;li>&lt;a href="#heading-3">Heading 3&lt;/a>
- &lt;ol>
- &lt;li>&lt;a href="#heading-4">Heading 4&lt;/a>
- &lt;ol>
- &lt;li>&lt;a href="#heading-5">Heading 5&lt;/a>&lt;/li>
- &lt;/ol>
- &lt;/li>
- &lt;/ol>
- &lt;/li>
- &lt;li>&lt;a href="#emphasis">Emphasis&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#button">Button&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#link">Link&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#paragraph">Paragraph&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#ordered-list">Ordered List&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#unordered-list">Unordered List&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#notice">Notice&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#tab">Tab&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#accordions">Accordions&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#code-and-syntax-highlighting">Code and Syntax Highlighting&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#blockquote">Blockquote&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#tables">Tables&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#image">Image&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#gallery">Gallery&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#slider">Slider&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#youtube-video">Youtube video&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#custom-video">Custom video&lt;/a>&lt;/li>
- &lt;/ol>
- &lt;/li>
- &lt;/ol>
-&lt;/nav>
-&lt;/details>
+ &lt;/summary&gt;
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ol&gt;
+ &lt;li&gt;&lt;a href="#heading-2"&gt;Heading 2&lt;/a&gt;
+ &lt;ol&gt;
+ &lt;li&gt;&lt;a href="#heading-3"&gt;Heading 3&lt;/a&gt;
+ &lt;ol&gt;
+ &lt;li&gt;&lt;a href="#heading-4"&gt;Heading 4&lt;/a&gt;
+ &lt;ol&gt;
+ &lt;li&gt;&lt;a href="#heading-5"&gt;Heading 5&lt;/a&gt;&lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;/li&gt;
+ &lt;li&gt;&lt;a href="#emphasis"&gt;Emphasis&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#button"&gt;Button&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#link"&gt;Link&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#paragraph"&gt;Paragraph&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#ordered-list"&gt;Ordered List&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#unordered-list"&gt;Unordered List&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#notice"&gt;Notice&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#tab"&gt;Tab&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#accordions"&gt;Accordions&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#code-and-syntax-highlighting"&gt;Code and Syntax Highlighting&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#blockquote"&gt;Blockquote&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#tables"&gt;Tables&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#image"&gt;Image&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#gallery"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#slider"&gt;Slider&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#youtube-video"&gt;Youtube video&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#custom-video"&gt;Custom video&lt;/a&gt;&lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;/li&gt;
+ &lt;/ol&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
 
-&lt;p>Here is an example of headings. You can use this heading by the following markdown rules. For example: use &lt;code>#&lt;/code> for heading 1 and use &lt;code>######&lt;/code> for heading 6.&lt;/p>
-&lt;h1 id="heading-1">Heading 1&lt;/h1>
-&lt;h2 id="heading-2">Heading 2&lt;/h2>
-&lt;h3 id="heading-3">Heading 3&lt;/h3>
-&lt;h4 id="heading-4">Heading 4&lt;/h4>
-&lt;h5 id="heading-5">Heading 5&lt;/h5>
-&lt;h6 id="heading-6">Heading 6&lt;/h6>
-&lt;hr>
-&lt;h3 id="emphasis">Emphasis&lt;/h3>
-&lt;p>The emphasis, aka italics, with &lt;em>asterisks&lt;/em> or &lt;em>underscores&lt;/em>.&lt;/p></description></item><item><title>Eunsoo Kim</title><link>https://team-atlanta.github.io/authors/eunsoo-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/eunsoo-kim/</guid><description/></item><item><title>Fabian Fleischer</title><link>https://team-atlanta.github.io/authors/fabian-fleischer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/fabian-fleischer/</guid><description/></item><item><title>Gwanhyun Lee</title><link>https://team-atlanta.github.io/authors/gwanhyun-lee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/gwanhyun-lee/</guid><description/></item><item><title>Gyejin Lee</title><link>https://team-atlanta.github.io/authors/gyejin-lee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/gyejin-lee/</guid><description/></item><item><title>Haein Lee</title><link>https://team-atlanta.github.io/authors/haein-lee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/haein-lee/</guid><description/></item><item><title>Hanqing Zhao</title><link>https://team-atlanta.github.io/authors/hanqing-zhao/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/hanqing-zhao/</guid><description/></item><item><title>Hyeon Heo</title><link>https://team-atlanta.github.io/authors/hyeon-heo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/hyeon-heo/</guid><description/></item><item><title>HyungSeok Han</title><link>https://team-atlanta.github.io/authors/hyungseok-han/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/hyungseok-han/</guid><description/></item><item><title>Insu Yun</title><link>https://team-atlanta.github.io/authors/insu-yun/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/insu-yun/</guid><description/></item><item><title>Jeongin Cho</title><link>https://team-atlanta.github.io/authors/jeongin-cho/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/jeongin-cho/</guid><description/></item><item><title>Jiho Kim</title><link>https://team-atlanta.github.io/authors/jiho-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/jiho-kim/</guid><description/></item><item><title>Jinho Jung</title><link>https://team-atlanta.github.io/authors/jinho-jung/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/jinho-jung/</guid><description/></item><item><title>Joonun Jang</title><link>https://team-atlanta.github.io/authors/joonun-jang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/joonun-jang/</guid><description/></item><item><title>Joshua Wang</title><link>https://team-atlanta.github.io/authors/joshua-wang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/joshua-wang/</guid><description/></item><item><title>Junsik Kim</title><link>https://team-atlanta.github.io/authors/junsik-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/junsik-kim/</guid><description/></item><item><title>Junyoung Jang</title><link>https://team-atlanta.github.io/authors/junyoung/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/junyoung/</guid><description/></item><item><title>Kangsu Kim</title><link>https://team-atlanta.github.io/authors/kangsu-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/kangsu-kim/</guid><description/></item><item><title>Kevin Stevens</title><link>https://team-atlanta.github.io/authors/kevin-stevens/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/kevin-stevens/</guid><description/></item><item><title>Kyuheon Kim</title><link>https://team-atlanta.github.io/authors/kyuheon-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/kyuheon-kim/</guid><description/></item><item><title>Kyungjoon Ko</title><link>https://team-atlanta.github.io/authors/kyungjoon-ko/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/kyungjoon-ko/</guid><description/></item><item><title>Mansour Alharthi</title><link>https://team-atlanta.github.io/authors/mansour-alharthi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/mansour-alharthi/</guid><description/></item><item><title>Minjae Gwon</title><link>https://team-atlanta.github.io/authors/minjae-gwon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/minjae-gwon/</guid><description/></item><item><title>Minjae Lee</title><link>https://team-atlanta.github.io/authors/minjae-lee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/minjae-lee/</guid><description/></item><item><title>Minwoo Baek</title><link>https://team-atlanta.github.io/authors/minwoo-baek/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/minwoo-baek/</guid><description/></item><item><title>Privacy</title><link>https://team-atlanta.github.io/privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/privacy-policy/</guid><description>&lt;h4 id="responsibility-of-contributors">Responsibility of Contributors&lt;/h4>
-&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed&lt;/p>
-&lt;p>pretium, aliquam sit. Praesent elementum magna amet, tincidunt eros, nibh in leo. Malesuada purus, lacus, at aliquam suspendisse tempus. Quis tempus amet, velit nascetur sollicitudin. At sollicitudin eget amet in. Eu velit nascetur sollicitudin erhdfvssfvrgss eget viverra nec elementum. Lacus, facilisis tristique lectus in.&lt;/p></description></item><item><title>Ready to build your next project with Hugo?</title><link/><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid/><description/></item><item><title>Sangdon Park</title><link>https://team-atlanta.github.io/authors/sangdon-park/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/sangdon-park/</guid><description/></item><item><title>Sangwoo Ji</title><link>https://team-atlanta.github.io/authors/sangwoo-ji/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/sangwoo-ji/</guid><description/></item><item><title>Seunggi Min</title><link>https://team-atlanta.github.io/authors/seunggi-min/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/seunggi-min/</guid><description/></item><item><title>Soyeon Park</title><link>https://team-atlanta.github.io/authors/soyeon-park/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/soyeon-park/</guid><description/></item><item><title>Taesoo Kim</title><link>https://team-atlanta.github.io/authors/taesoo-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/taesoo-kim/</guid><description/></item><item><title>What Users Are Saying About Hugoplate</title><link/><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid/><description/></item><item><title>Wonyoung Kim</title><link>https://team-atlanta.github.io/authors/wonyoung-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/wonyoung-kim/</guid><description/></item><item><title>Woosun Song</title><link>https://team-atlanta.github.io/authors/woosun-song/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/woosun-song/</guid><description/></item><item><title>Yeonghyeon Cha</title><link>https://team-atlanta.github.io/authors/yeonghyeon-cha/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yeonghyeon-cha/</guid><description/></item><item><title>Yeongjin Jang</title><link>https://team-atlanta.github.io/authors/yeongjin-jang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yeongjin-jang/</guid><description/></item><item><title>Yizhuo Zhai</title><link>https://team-atlanta.github.io/authors/yizhuo-zhai/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yizhuo-zhai/</guid><description/></item><item><title>Yonghwi Jin</title><link>https://team-atlanta.github.io/authors/yonghwi-jin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yonghwi-jin/</guid><description/></item><item><title>Younggi Park</title><link>https://team-atlanta.github.io/authors/younggi-park/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/younggi-park/</guid><description/></item><item><title>Youngjoon Kim</title><link>https://team-atlanta.github.io/authors/youngjoon-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/youngjoon-kim/</guid><description/></item><item><title>Yunjae Choi</title><link>https://team-atlanta.github.io/authors/yunjae-choi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yunjae-choi/</guid><description/></item></channel></rss>
+&lt;p&gt;Here is an example of headings. You can use this heading by the following markdown rules. For example: use &lt;code&gt;#&lt;/code&gt; for heading 1 and use &lt;code&gt;######&lt;/code&gt; for heading 6.&lt;/p&gt;
+&lt;h1 id="heading-1"&gt;Heading 1&lt;/h1&gt;
+&lt;h2 id="heading-2"&gt;Heading 2&lt;/h2&gt;
+&lt;h3 id="heading-3"&gt;Heading 3&lt;/h3&gt;
+&lt;h4 id="heading-4"&gt;Heading 4&lt;/h4&gt;
+&lt;h5 id="heading-5"&gt;Heading 5&lt;/h5&gt;
+&lt;h6 id="heading-6"&gt;Heading 6&lt;/h6&gt;
+&lt;hr&gt;
+&lt;h3 id="emphasis"&gt;Emphasis&lt;/h3&gt;
+&lt;p&gt;The emphasis, aka italics, with &lt;em&gt;asterisks&lt;/em&gt; or &lt;em&gt;underscores&lt;/em&gt;.&lt;/p&gt;</description></item><item><title>Eunsoo Kim</title><link>https://team-atlanta.github.io/authors/eunsoo-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/eunsoo-kim/</guid><description/></item><item><title>Fabian Fleischer</title><link>https://team-atlanta.github.io/authors/fabian-fleischer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/fabian-fleischer/</guid><description/></item><item><title>Gwanhyun Lee</title><link>https://team-atlanta.github.io/authors/gwanhyun-lee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/gwanhyun-lee/</guid><description/></item><item><title>Gyejin Lee</title><link>https://team-atlanta.github.io/authors/gyejin-lee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/gyejin-lee/</guid><description/></item><item><title>Haein Lee</title><link>https://team-atlanta.github.io/authors/haein-lee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/haein-lee/</guid><description/></item><item><title>Hanqing Zhao</title><link>https://team-atlanta.github.io/authors/hanqing-zhao/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/hanqing-zhao/</guid><description/></item><item><title>Hyeon Heo</title><link>https://team-atlanta.github.io/authors/hyeon-heo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/hyeon-heo/</guid><description/></item><item><title>HyungSeok Han</title><link>https://team-atlanta.github.io/authors/hyungseok-han/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/hyungseok-han/</guid><description/></item><item><title>Insu Yun</title><link>https://team-atlanta.github.io/authors/insu-yun/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/insu-yun/</guid><description/></item><item><title>Jeongin Cho</title><link>https://team-atlanta.github.io/authors/jeongin-cho/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/jeongin-cho/</guid><description/></item><item><title>Jiho Kim</title><link>https://team-atlanta.github.io/authors/jiho-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/jiho-kim/</guid><description/></item><item><title>Jinho Jung</title><link>https://team-atlanta.github.io/authors/jinho-jung/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/jinho-jung/</guid><description/></item><item><title>Joonun Jang</title><link>https://team-atlanta.github.io/authors/joonun-jang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/joonun-jang/</guid><description/></item><item><title>Joshua Wang</title><link>https://team-atlanta.github.io/authors/joshua-wang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/joshua-wang/</guid><description/></item><item><title>Junsik Kim</title><link>https://team-atlanta.github.io/authors/junsik-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/junsik-kim/</guid><description/></item><item><title>Junyoung Jang</title><link>https://team-atlanta.github.io/authors/junyoung/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/junyoung/</guid><description/></item><item><title>Kangsu Kim</title><link>https://team-atlanta.github.io/authors/kangsu-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/kangsu-kim/</guid><description/></item><item><title>Kevin Stevens</title><link>https://team-atlanta.github.io/authors/kevin-stevens/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/kevin-stevens/</guid><description/></item><item><title>Kyuheon Kim</title><link>https://team-atlanta.github.io/authors/kyuheon-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/kyuheon-kim/</guid><description/></item><item><title>Kyungjoon Ko</title><link>https://team-atlanta.github.io/authors/kyungjoon-ko/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/kyungjoon-ko/</guid><description/></item><item><title>Mansour Alharthi</title><link>https://team-atlanta.github.io/authors/mansour-alharthi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/mansour-alharthi/</guid><description/></item><item><title>Minjae Gwon</title><link>https://team-atlanta.github.io/authors/minjae-gwon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/minjae-gwon/</guid><description/></item><item><title>Minjae Lee</title><link>https://team-atlanta.github.io/authors/minjae-lee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/minjae-lee/</guid><description/></item><item><title>Minwoo Baek</title><link>https://team-atlanta.github.io/authors/minwoo-baek/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/minwoo-baek/</guid><description/></item><item><title>Privacy</title><link>https://team-atlanta.github.io/privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/privacy-policy/</guid><description>&lt;h4 id="responsibility-of-contributors"&gt;Responsibility of Contributors&lt;/h4&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed&lt;/p&gt;
+&lt;p&gt;pretium, aliquam sit. Praesent elementum magna amet, tincidunt eros, nibh in leo. Malesuada purus, lacus, at aliquam suspendisse tempus. Quis tempus amet, velit nascetur sollicitudin. At sollicitudin eget amet in. Eu velit nascetur sollicitudin erhdfvssfvrgss eget viverra nec elementum. Lacus, facilisis tristique lectus in.&lt;/p&gt;</description></item><item><title>Ready to build your next project with Hugo?</title><link/><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid/><description/></item><item><title>Sangdon Park</title><link>https://team-atlanta.github.io/authors/sangdon-park/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/sangdon-park/</guid><description/></item><item><title>Sangwoo Ji</title><link>https://team-atlanta.github.io/authors/sangwoo-ji/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/sangwoo-ji/</guid><description/></item><item><title>Seunggi Min</title><link>https://team-atlanta.github.io/authors/seunggi-min/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/seunggi-min/</guid><description/></item><item><title>Soyeon Park</title><link>https://team-atlanta.github.io/authors/soyeon-park/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/soyeon-park/</guid><description/></item><item><title>Taesoo Kim</title><link>https://team-atlanta.github.io/authors/taesoo-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/taesoo-kim/</guid><description/></item><item><title>What Users Are Saying About Hugoplate</title><link/><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid/><description/></item><item><title>Wonyoung Kim</title><link>https://team-atlanta.github.io/authors/wonyoung-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/wonyoung-kim/</guid><description/></item><item><title>Woosun Song</title><link>https://team-atlanta.github.io/authors/woosun-song/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/woosun-song/</guid><description/></item><item><title>Yeonghyeon Cha</title><link>https://team-atlanta.github.io/authors/yeonghyeon-cha/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yeonghyeon-cha/</guid><description/></item><item><title>Yeongjin Jang</title><link>https://team-atlanta.github.io/authors/yeongjin-jang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yeongjin-jang/</guid><description/></item><item><title>Yizhuo Zhai</title><link>https://team-atlanta.github.io/authors/yizhuo-zhai/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yizhuo-zhai/</guid><description/></item><item><title>Yonghwi Jin</title><link>https://team-atlanta.github.io/authors/yonghwi-jin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yonghwi-jin/</guid><description/></item><item><title>Younggi Park</title><link>https://team-atlanta.github.io/authors/younggi-park/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/younggi-park/</guid><description/></item><item><title>Youngjoon Kim</title><link>https://team-atlanta.github.io/authors/youngjoon-kim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/youngjoon-kim/</guid><description/></item><item><title>Yunjae Choi</title><link>https://team-atlanta.github.io/authors/yunjae-choi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/authors/yunjae-choi/</guid><description/></item></channel></rss>
