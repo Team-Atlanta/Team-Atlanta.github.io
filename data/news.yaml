@@ -1,5 +1,12 @@
 articles:
   # 2025 Articles
+  - title: "Hyperscale Bug Finding and Fixing: DARPA AIxCC"
+    url: "https://conf.researchr.org/details/ase-2025/ase-2025-keynote/4/Hyperscale-Bug-Finding-and-Fixing-DAPRA-AIxCC"
+    source: "ASE 2025 Keynote"
+    date: "2025-11-19"
+    favicon: ""
+    thumbnail: "/images/taesoo_ase25.jpg"
+
   - title: "Frontier AI in Cybersecurity: Risks and Opportunities"
     url: "https://www.youtube.com/live/BRytIn_fBqI?t=577s"
     source: "UC Berkeley RDI"
