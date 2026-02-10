@@ -1,0 +1,12 @@
+entry: |
+  @article{zhang:sok,
+    title         = {SoK: DARPA's AI Cyber Challenge (AIxCC): Competition Design, Architectures, and Lessons Learned},
+    author        = {Cen Zhang and Younggi Park and Fabian Fleischer and Yu-Fu Fu and Jiho Kim and Dongkwan Kim and Youngjoon Kim and Qingxiao Xu and Andrew Chin and Ze Sheng and Hanqing Zhao and Brian J. Lee and Joshua Wang and Michael Pelican and David J. Musliner and Jeff Huang and Jon Silliman and Mikel Mcdaniel and Jefferson Casavant and Isaac Goldthwaite and Nicholas Vidovich and Matthew Lehman and Taesoo Kim},
+    year          = {2026},
+    eprint        = {2602.07666},
+    archivePrefix = {arXiv},
+    primaryClass  = {cs.CR},
+    note          = {Cross-listed in cs.AI},
+    url           = {https://arxiv.org/abs/2602.07666},
+    doi           = {10.48550/arXiv.2602.07666}
+  }

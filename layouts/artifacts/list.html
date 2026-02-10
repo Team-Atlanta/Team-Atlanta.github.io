@@ -103,7 +103,7 @@
   <!-- Define bibtex data -->
   <script>
     const bibtexData = {
-      "atlantis": `{{ with .Site.Data.bibtex.atlantis }}{{ .entry }}{{ else }}{{ end }}`
+      {{ range .Site.Data.artifacts.publications }}{{ if .bibtex }}{{ $key := .bibtex }}{{ with index $.Site.Data.bibtex $key }}"{{ $key }}": `{{ .entry }}`,{{ end }}{{ end }}{{ end }}
     };
 
     function showBibtex(key) {

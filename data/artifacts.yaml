@@ -2,11 +2,19 @@
 publications:
   # Add publications here when available
   # Example structure:
+  - title: "SoK: DARPA's AI Cyber Challenge (AIxCC): Competition Design, Architectures, and Lessons Learned"
+    authors: "Cen Zhang, Younggi Park, Fabian Fleischer, Yu-Fu Fu, Jiho Kim, Dongkwan Kim, Youngjoon Kim, Qingxiao Xu, Andrew Chin, Ze Sheng, Hanqing Zhao, Brian J. Lee, Joshua Wang, Michael Pelican, David J. Musliner, Jeff Huang, Jon Silliman, Mikel Mcdaniel, Jefferson Casavant, Isaac Goldthwaite, Nicholas Vidovich, Matthew Lehman, Taesoo Kim"
+    venue: "arXiv"
+    year: 2026
+    url: "https://arxiv.org/abs/2602.07666"
+    pdf: "https://arxiv.org/abs/2602.07666"
+    bibtex: "sok"
+
   - title: "ATLANTIS: AI-driven Threat Localization, Analysis, and Triage Intelligence System"
     authors: "Taesoo Kim, HyungSeok Han, Soyeon Park, Dae R. Jeong, Dohyeok Kim, Dongkwan Kim, Eunsoo Kim, Jiho Kim, Joshua Wang, Kangsu Kim, Sangwoo Ji, Woosun Song, Hanqing Zhao, Andrew Chin, Gyejin Lee, Kevin Stevens, Mansour Alharthi, Yizhuo Zhai, Cen Zhang, Joonun Jang, Yeongjin Jang, Ammar Askar, Dongju Kim, Fabian Fleischer, Jeongin Cho, Junsik Kim, Kyungjoon Ko, Insu Yun, Sangdon Park, Dowoo Baik, Haein Lee, Hyeon Heo, Minjae Gwon, Minjae Lee, Minwoo Baek, Seunggi Min, Wonyoung Kim, Yonghwi Jin, Younggi Park, Yunjae Choi, Jinho Jung, Gwanhyun Lee, Junyoung Jang, Kyuheon Kim, Yeonghyeon Cha, Youngjoon Kim"
     venue: "arXiv"
     year: 2025
-    url: "/papers/TR-Team-Atlanta.pdf"
+    url: "https://arxiv.org/abs/2509.14589"
     pdf: "/papers/TR-Team-Atlanta.pdf"
     bibtex: "atlantis"
 
