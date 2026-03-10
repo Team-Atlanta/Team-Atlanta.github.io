@@ -32,6 +32,12 @@ repositories:
     icon: "fa-solid fa-database"
     iconColor: "text-indigo-500"
 
+  - title: "OSS-CRS"
+    description: "Standardized framework for integrating and deploying cyber reasoning systems."
+    url: "https://github.com/sslab-gatech/oss-crs"
+    icon: "fa-solid fa-sitemap"
+    iconColor: "text-emerald-500"
+
   - title: "Final Source Code"
     description: "Atlantis: complete award-winning CRS system that secured our DARPA AIxCC victory."
     url: "https://github.com/Team-Atlanta/aixcc-afc-atlantis"
