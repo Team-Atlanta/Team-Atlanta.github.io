@@ -1,0 +1,12 @@
+entry: |
+  @article{chin:oss-crs,
+    title         = {OSS-CRS: Liberating AIxCC Cyber Reasoning Systems for Real-World Open-Source Security},
+    author        = {Andrew Chin and Dongkwan Kim and Yu-Fu Fu and Fabian Fleischer and Youngjoon Kim and HyungSeok Han and Cen Zhang and Brian Junekyu Lee and Hanqing Zhao and Taesoo Kim},
+    year          = {2026},
+    eprint        = {2603.08566},
+    archivePrefix = {arXiv},
+    primaryClass  = {cs.CR},
+    note          = {Cross-listed in cs.AI},
+    url           = {https://arxiv.org/abs/2603.08566},
+    doi           = {10.48550/arXiv.2603.08566},
+  }

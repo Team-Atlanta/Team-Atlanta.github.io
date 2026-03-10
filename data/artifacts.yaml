@@ -2,6 +2,14 @@
 publications:
   # Add publications here when available
   # Example structure:
+  - title: "OSS-CRS: Liberating AIxCC Cyber Reasoning Systems for Real-World Open-Source Security"
+    authors: "Andrew Chin and Dongkwan Kim and Yu-Fu Fu and Fabian Fleischer and Youngjoon Kim and HyungSeok Han and Cen Zhang and Brian Junekyu Lee and Hanqing Zhao and Taesoo Kim"
+    venue: "arXiv"
+    year: 2026
+    url: "https://arxiv.org/abs/2603.08566"
+    pdf: "https://arxiv.org/abs/2603.08566"
+    bibtex: "oss-crs"
+
   - title: "SoK: DARPA's AI Cyber Challenge (AIxCC): Competition Design, Architectures, and Lessons Learned"
     authors: "Cen Zhang, Younggi Park, Fabian Fleischer, Yu-Fu Fu, Jiho Kim, Dongkwan Kim, Youngjoon Kim, Qingxiao Xu, Andrew Chin, Ze Sheng, Hanqing Zhao, Brian J. Lee, Joshua Wang, Michael Pelican, David J. Musliner, Jeff Huang, Jon Silliman, Mikel Mcdaniel, Jefferson Casavant, Isaac Goldthwaite, Nicholas Vidovich, Matthew Lehman, Taesoo Kim"
     venue: "arXiv"
