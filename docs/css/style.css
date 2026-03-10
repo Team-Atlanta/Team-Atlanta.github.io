@@ -3264,6 +3264,10 @@ input#nav-toggle:checked ~ #nav-menu{
   --tw-text-opacity: 1;
   color: rgb(26 37 47 / var(--tw-text-opacity, 1));
 }
+.text-emerald-500{
+  --tw-text-opacity: 1;
+  color: rgb(16 185 129 / var(--tw-text-opacity, 1));
+}
 .text-gray-400{
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
