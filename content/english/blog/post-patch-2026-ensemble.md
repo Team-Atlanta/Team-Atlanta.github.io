@@ -133,7 +133,7 @@ Beyond this evaluation, we have also implemented all the patch agents and the en
 This work is a joint effort by Team Atlanta members at Georgia Tech.
 
 - **Experiment design:** Taesoo Kim, Cen Zhang
-- **Implementation & execution:** Cen Zhang, Andrew Chin, Youngjoon Kim, Brian Lee
+- **Experiment implementation & execution:** Cen Zhang, Andrew Chin, Youngjoon Kim, Dongkwan Kim, Brian Lee
 - **Manual & cross validation:** Andrew Chin, Fabian Fleischer, Brian Lee, Jiho Kim, Cen Zhang, Dongkwan Kim, Youngjoon Kim
 - **Analysis & writing:** Cen Zhang
-- **OSS-CRS implementation:** Dongkwan Kim, Cen Zhang
+- **OSS-CRS integration:** Dongkwan Kim, Cen Zhang, Andrew Chin
