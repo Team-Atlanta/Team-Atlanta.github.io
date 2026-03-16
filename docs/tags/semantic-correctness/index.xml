@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Semantic Correctness on Team Atlanta</title><link>https://team-atlanta.github.io/tags/semantic-correctness/</link><description>Recent content in Semantic Correctness on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 11 Mar 2026 11:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/tags/semantic-correctness/index.xml" rel="self" type="application/rss+xml"/><item><title>Patching Vulnerabilities with Coding Agents in 2026</title><link>https://team-atlanta.github.io/blog/post-patch-2026-ensemble/</link><pubDate>Wed, 11 Mar 2026 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-patch-2026-ensemble/</guid><description>&lt;p>LLM-based patch generation has become a practical approach to fixing software vulnerabilities. Tools like Codex, Claude Code, and Gemini can read code, reason about bugs, and produce patches — often in seconds. But how well do they actually perform, in 2026?&lt;/p>
+&lt;p>To find out, we (&lt;a href="#contributors"
+
+
+
+ 
+
+
+>Team Atlanta folks at Georgia Tech&lt;/a>) tested 10 agent configurations — combining four agent frameworks with five frontier models — on 63 real crashes from the DARPA AIxCC final competition.&lt;/p></description></item></channel></rss>

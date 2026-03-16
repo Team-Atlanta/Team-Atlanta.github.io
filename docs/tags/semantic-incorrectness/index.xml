@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Semantic-Incorrectness on Team Atlanta</title>
+    <link>http://localhost:1313/tags/semantic-incorrectness/</link>
+    <description>Recent content in Semantic-Incorrectness on Team Atlanta</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Mar 2026 11:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/semantic-incorrectness/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Patch Generation in 2026: Evaluating Coding Agents on AIxCC Final Competition Challenges</title>
+      <link>http://localhost:1313/blog/post-patch-semantic-inaccuracy/</link>
+      <pubDate>Wed, 11 Mar 2026 11:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/post-patch-semantic-inaccuracy/</guid>
+      <description>&lt;p&gt;LLM-based patch generation has become a practical approach to fixing software vulnerabilities. Tools like Codex, Claude Code, and Gemini can read code, reason about bugs, and produce patches — often in seconds. But how good are they, really?&lt;/p&gt;&#xA;&lt;p&gt;In this post, we evaluate ten coding agent configurations on their ability to autonomously generate security patches for real-world vulnerabilities from the DARPA AIxCC final competition. We present the overall results, and then focus on the most subtle and dangerous failure mode: &lt;strong&gt;semantic incorrectness&lt;/strong&gt; — patches that look plausible, compile, and pass tests, but do not actually fix the vulnerability.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
