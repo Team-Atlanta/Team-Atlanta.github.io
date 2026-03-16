@@ -7,7 +7,7 @@ image: "/images/blog/patch-2026-ensemble/patch-semantic-correctness.png"
 categories: ["post-aixcc"]
 authors: ["Cen Zhang", "Andrew Chin", "Brian Lee", "Dongkwan Kim", "Fabian Fleischer", "Youngjoon Kim", "Jiho Kim", "Taesoo Kim"]
 tags: ["patch", "semantic correctness", "ensemble", "evaluation"]
-draft: true
+draft: false
 ---
 
 LLM-based patch generation has become a practical approach to fixing software vulnerabilities. Tools like Codex, Claude Code, and Gemini can read code, reason about bugs, and produce patches — often in seconds. But how well do they actually perform, in 2026?
