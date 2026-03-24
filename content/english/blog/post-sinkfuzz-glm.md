@@ -2,12 +2,12 @@
 title: "More CPUs Won't Find More Bugs: Lessons from LLM-Assisted Java Fuzzing"
 meta_title: ""
 description: "We built Gondar, an LLM-guided Java fuzzer that finds 5x as many vulnerabilities as state-of-the-art fuzzing, at lower cost. Here's what we learned."
-date: 2026-03-23T11:00:00Z
+date: 2026-03-27T11:00:00Z
 image: "/images/blog/sinkfuzz-glm/cover.png"
 categories: ["post-aixcc"]
 authors: ["Fabian Fleischer", "Cen Zhang"]
 tags: ["fuzzing", "java", "llm", "vulnerability discovery", "gondar"]
-draft: false
+draft: true
 ---
 
 As part of [Team Atlanta's](https://team-atlanta.github.io/) winning entry in the DARPA AIxCC competition, we built Gondar, a system that combines LLM agents with coverage-guided fuzzing to find security vulnerabilities in Java applications. Gondar served as part of the Java vulnerability discovery component of our Cyber Reasoning System (CRS). We wrote a [paper](https://example.com/TODO-preprint-link) about Gondar. This post isn't a summary of that paper. Instead, we want to share the three most surprising things we learned along the way.
@@ -79,7 +79,7 @@ GLM-5 (open-source) exploits 35 vulnerabilities at <span>$</span>373 total, more
 
 These results go beyond our benchmark. Static analysis tools like CodeQL and SpotBugs miss 63-74% of the vulnerabilities we tested, not because they're bad tools, but because they're solving a different problem. And during AIxCC, Gondar discovered 7 zero days in real-world projects, which were disclosed to the software maintainers.
 
-What stuck with us: a well-designed system with a cheap model consistently beats an expensive brute-force approach with no intelligence. We're now working to make this available more broadly: Gondar is being integrated into [OSS-CRS](https://github.com/TODO/oss-crs), an OpenSSF Sandbox Project, for continuous open-source security protection. The [paper](https://example.com/TODO-preprint-link) has the full methodology, and the implementation will be available in OSS-CRS soon.
+What stuck with us: a well-designed system with a cheap model consistently beats an expensive brute-force approach with no intelligence. We're now working to make this available more broadly: Gondar is being integrated into [OSS-CRS](https://github.com/ossf/oss-crs), an OpenSSF Sandbox Project, for continuous open-source security protection. The [paper](https://example.com/TODO-preprint-link) has the full methodology, and the implementation will be available in OSS-CRS soon.
 
 ## References
 
@@ -87,4 +87,4 @@ What stuck with us: a well-designed system with a cheap model consistently beats
 - [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer) - Coverage-guided fuzzer for Java
 - [CodeQL](https://codeql.github.com/) - Semantic code analysis engine
 - [DARPA AIxCC](https://aicyberchallenge.com/) - AI Cyber Challenge competition
-- [OSS-CRS](https://github.com/TODO/oss-crs) - Open-source Cyber Reasoning System platform
+- [OSS-CRS](https://github.com/ossf/oss-crs) - Open-source Cyber Reasoning System platform
