@@ -34,7 +34,7 @@ repositories:
 
   - title: "OSS-CRS"
     description: "Standardized framework for integrating and deploying cyber reasoning systems."
-    url: "https://github.com/sslab-gatech/oss-crs"
+    url: "https://github.com/ossf/oss-crs"
     icon: "fa-solid fa-sitemap"
     iconColor: "text-emerald-500"
 
