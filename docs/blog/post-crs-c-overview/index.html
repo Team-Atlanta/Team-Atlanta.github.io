@@ -203,22 +203,6 @@
 
 
 
-  
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-SKJZ8R4CQM"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-SKJZ8R4CQM');
-        }
-      </script>
-
 
 
 
@@ -318,15 +302,6 @@
     
       
     
-  
-
-  
-    <link
-      crossorigin="anonymous"
-      media="all"
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous" />
   
 
 
@@ -596,7 +571,7 @@
               class="nav-link relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-theme-light dark:hover:bg-darkmode-theme-light focus-modern"
               
               href="/artifacts/"
-              >Research &amp; Code</a
+              >Artifacts</a
             >
           </li>
         
@@ -839,7 +814,7 @@
 
     <main>
       
-  <section class="section py-10 blog-single">
+  <section class="section pt-7 blog-single">
     <div class="container">
       <div class="row justify-center">
         <article class="lg:col-10">
@@ -967,9 +942,6 @@
             Atlantis-C: A 
           </h1>
           <ul class="mb-4">
-            
-            
-            
             <li class="mr-4 inline-block">
               <a
                 href="/authors/gyejin-lee/">
@@ -977,21 +949,20 @@
                 >Gyejin Lee
               </a>
             </li>
-            
             <li class="mr-4 inline-block">
               <i class="fa-regular fa-folder mr-2"></i>
               
               
                 <a
-                  href="/categories/atlantis-c/"
+                  href="/categories/atlantis/"
                   class="ms-1"
-                  >Atlantis c
+                  >Atlantis
                 </a>
               
             </li>
             <li class="mr-4 inline-block">
               <i class="fa-regular fa-clock mr-2"></i>
-              December 31, 2025
+              August 19, 2025
             </li>
           </ul>
           
@@ -1009,6 +980,7 @@
     <li><a href="#overview-of-atlantis-c">Overview of <strong>Atlantis-C</strong></a>
       <ol>
         <li><a href="#an-orchestra-of-fuzzers">An Orchestra of Fuzzers</a></li>
+        <li><a href="#dispatching-instrumentation">Dispatching Instrumentation</a></li>
         <li><a href="#seed-synchronization-across-space-and-time">Seed Synchronization Across Space and Time</a></li>
         <li><a href="#fuzzers-on-llm-steroids">Fuzzers on LLM Steroids</a></li>
       </ol>
@@ -1113,9 +1085,9 @@ multiple fuzzing instances running different fuzzing engines.</p>
     </figcaption>
 </figure>
 
-<p><strong>Atlantis-C</strong> is consisted of multiple microservices that communicate via Kafka.
-The microservices can be grouped into two modules, the controller and worker modules.
-For each challenge project, one instance of the controller module and multiple instances of the worker module
+<p><strong>Atlantis-C</strong> consists of multiple microservices that communicate via Kafka.
+The microservices can be grouped into two categories, the controller and worker modules.
+For each challenge project, one instance of the controller modules and multiple instances of the worker modules
 are deployed across the Kubernetes nodes allocated to <strong>Atlantis-C</strong>.</p>
 <h3 id="an-orchestra-of-fuzzers">An Orchestra of Fuzzers</h3>
 <p>The controller manages multiple fuzzing tasks distributed among the workers using epoch-based scheduling.
@@ -1137,6 +1109,9 @@ These would be the tasks that are connected to the &ldquo;hints&rdquo;
 If LibAFL performs poorly on a certain harness, the system seamlessly falls back to AFL++, then to libFuzzer if needed.</p>
 </li>
 </ol>
+<h3 id="dispatching-instrumentation">Dispatching Instrumentation</h3>
+<!-- TODO proofread and beautify -->
+<p>Because Atlantis-C requires multiple build modes, we have to</p>
 <h3 id="seed-synchronization-across-space-and-time">Seed Synchronization Across Space and Time</h3>
 <p>Seeds (test inputs that trigger interesting behaviors) need to flow efficiently between all-related components.
 <strong>Atlantis-C</strong> implements a pipeline to ensure discoveries by any component benefits the entire system.</p>
@@ -1661,372 +1636,6 @@ Reach out to <a href="https://www.linkedin.com/company/team-atlanta/"
         <picture>
           <source
             
-              srcset="/images/blog/crs-java/overview/icon_hu_cba45d92e675516b.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/blog/crs-java/overview/icon_hu_ba7e1021c7d3ed46.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/blog/crs-java/overview/icon_hu_96fa6e80459d7dc2.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/blog/crs-java/overview/icon_hu_642f822375e68259.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/blog/crs-java/overview/icon_hu_c61fd8d447e4289e.png"
-            class=" w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img"
-            alt="Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection"
-            width="1536"
-            height="1024" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
-      
-    </div>
-    
-    
-    <div class="blog-card-body flex-grow flex flex-col">
-      
-      <h4 class="blog-card-title mb-3 line-clamp-3 group-hover:text-primary transition-colors duration-300">
-        <a href="/blog/post-crs-java-overview/" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-semibold text-lg leading-tight" title="Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection">
-          Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection
-        </a>
-      </h4>
-      
-      
-      <div class="blog-card-meta mb-4 text-sm text-gray-600 dark:text-gray-300 space-y-1">
-        
-        <div class="flex items-center min-h-[20px]">
-          
-          
-            <a href="/authors/cen-zhang/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 flex items-center">
-              <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Cen Zhang
-            </a>
-          
-        </div>
-
-        
-        
-        
-          <div class="flex items-center min-h-[20px]">
-            <i class="fa-regular fa-folder mr-2 text-primary flex-shrink-0"></i>
-            <div class="flex flex-wrap items-center gap-x-1">
-              
-                <a href="/categories/atlantis-java/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Atlantis java</a>
-              
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      <p class="blog-card-summary mb-4 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-4 flex-grow">
-        Atlantis-Java is a specialized bug-finding subsystem within the Atlantis CRS framework, specifically designed for Java CPV detection in the AIxCC competition. It integrates fuzzing, program analysis, and LLM capabilities, with a particular focus on security-sensitive APIs (also known as sinks).
-Many Java Vulnerabilities Are Sink-Centered Fig.1 Example CPV from AIxCC Semifinal Jenkins CP
-This vulnerability contains a backdoor that enables OS command injection when specific conditions are met. The ProcessBuilder constructor serves as a sink API, where an attacker-controllable first argument can lead to arbitrary command execution. The sinkpoint (line 20) refers to the location in the target CP where this sink API is called.
-
-      </p>
-    </div>
-    
-    
-    <div class="blog-card-footer mt-auto">
-      <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center w-full justify-center" href="/blog/post-crs-java-overview/">
-        Read More
-        <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-      </a>
-    </div>
-  </div>
-</div>
-              </div>
-            
-              <div class="lg:col-4">
-                <div class="blog-card-uniform glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30 h-full">
-  <div class="blog-card-content flex flex-col h-full">
-    
-    <div class="blog-card-image mb-4">
-      
-      
-        <div class="relative overflow-hidden rounded-xl aspect-video">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/blog/mlla/bga_preview_hu_34d12e0386fbf1a2.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/blog/mlla/bga_preview_hu_51c2a47c3f64610d.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/blog/mlla/bga_preview_hu_7902929012d40492.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/blog/mlla/bga_preview_hu_42e0281797ebdced.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/blog/mlla/bga_preview_hu_501b4a6b39d25dea.png"
-            class=" w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img"
-            alt="BGA: Self-Evolving Exploits Through Multi-Agent AI"
-            width="1024"
-            height="1024" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
-      
-    </div>
-    
-    
-    <div class="blog-card-body flex-grow flex flex-col">
-      
-      <h4 class="blog-card-title mb-3 line-clamp-3 group-hover:text-primary transition-colors duration-300">
-        <a href="/blog/post-mlla-bga/" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-semibold text-lg leading-tight" title="BGA: Self-Evolving Exploits Through Multi-Agent AI">
-          BGA: Self-Evolving Exploits Through Multi-Agent AI
-        </a>
-      </h4>
-      
-      
-      <div class="blog-card-meta mb-4 text-sm text-gray-600 dark:text-gray-300 space-y-1">
-        
-        <div class="flex items-center min-h-[20px]">
-          
-          
-            <a href="/authors/dongkwan-kim/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 flex items-center">
-              <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Dongkwan Kim
-            </a>
-          
-        </div>
-
-        
-        
-        
-          <div class="flex items-center min-h-[20px]">
-            <i class="fa-regular fa-folder mr-2 text-primary flex-shrink-0"></i>
-            <div class="flex flex-wrap items-center gap-x-1">
-              
-                <a href="/categories/atlantis-multilang/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Atlantis multilang</a>
-              
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      <p class="blog-card-summary mb-4 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-4 flex-grow">
-        🔄 Where BGA Fits in the MLLA Pipeline Before we dive into BGA&rsquo;s self-evolving exploits, here&rsquo;s how it fits into the broader MLLA vulnerability discovery pipeline:
-Discovery Agents (CPUA, MCGA, CGPA) → Detective (BCDA) → Exploit Generation (BGA)
-Discovery agents map the codebase and identify potential vulnerability paths BCDA investigates these paths, filtering false positives and creating Bug Inducing Things (BITs) with precise trigger conditions BGA receives these confirmed vulnerabilities and generates self-evolving exploits to trigger them Now BGA takes the stage, armed with BCDA&rsquo;s detailed intelligence about exactly what conditions must be satisfied to reach each vulnerability.
-
-      </p>
-    </div>
-    
-    
-    <div class="blog-card-footer mt-auto">
-      <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center w-full justify-center" href="/blog/post-mlla-bga/">
-        Read More
-        <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-      </a>
-    </div>
-  </div>
-</div>
-              </div>
-            
-              <div class="lg:col-4">
-                <div class="blog-card-uniform glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30 h-full">
-  <div class="blog-card-content flex flex-col h-full">
-    
-    <div class="blog-card-image mb-4">
-      
-      
-        <div class="relative overflow-hidden rounded-xl aspect-video">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
               srcset="/images/blog/atl/team_hu_9d406ba3d2797d9b.webp"
             
             media="(max-width: 575px)" />
@@ -2078,33 +1687,27 @@ Discovery agents map the codebase and identify potential vulnerability paths BCD
       </h4>
       
       
-      <div class="blog-card-meta mb-4 text-sm text-gray-600 dark:text-gray-300 space-y-1">
-        
-        <div class="flex items-center min-h-[20px]">
-          
-          
-            <a href="/authors/taesoo-kim/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 flex items-center">
-              <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Taesoo Kim
-            </a>
-          
-        </div>
-
+      <ul class="blog-card-meta mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
+        <li class="flex items-center">
+          <a href="/authors/taesoo-kim/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+            <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Taesoo Kim
+          </a>
+        </li>
         
         
+          <li class="flex items-center">
+            <i class="fa-regular fa-folder mr-2 text-primary"></i>
+            
+              <a href="/categories/announcement/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                Announcement
+              </a>
+            
+          </li>
         
-          <div class="flex items-center min-h-[20px]">
-            <i class="fa-regular fa-folder mr-2 text-primary flex-shrink-0"></i>
-            <div class="flex flex-wrap items-center gap-x-1">
-              
-                <a href="/categories/announcement/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Announcement</a>
-              
-            </div>
-          </div>
-        
-      </div>
+      </ul>
       
       
-      <p class="blog-card-summary mb-4 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-4 flex-grow">
+      <p class="blog-card-summary mb-6 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-5 flex-grow">
         Hello, world! We are Team Atlanta, the minds behind Atlantis, our innovative AI-driven cybersecurity solution competing in the prestigious DARPA AIxCC.
 Our team is a collaborative powerhouse made up of six leading institutions: Georgia Tech, GTRI, Samsung Research, Samsung Research America, KAIST, and POSTECH. Each of these organizations is led by Georgia Tech alumni, and includes past winners of prestigious hacking competitions such as DEF CON CTF, Pwn2Own and kernelCTF.
 
@@ -2114,6 +1717,357 @@ Our team is a collaborative powerhouse made up of six leading institutions: Geor
     
     <div class="blog-card-footer mt-auto">
       <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center w-full justify-center" href="/blog/post-atl/">
+        Read More
+        <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+      </a>
+    </div>
+  </div>
+</div>
+              </div>
+            
+              <div class="lg:col-4">
+                <div class="blog-card-uniform glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30 h-full">
+  <div class="blog-card-content flex flex-col h-full">
+    
+    <div class="blog-card-image mb-4">
+      
+      
+        <div class="relative overflow-hidden rounded-xl aspect-video">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  
+    
+      
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+    
+    
+    
+
+
+    
+    
+      
+      
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+        
+
+
+        <picture>
+          <source
+            
+              srcset="/images/blog/crs-java/directed/featured_hu_a26045471d00959f.webp"
+            
+            media="(max-width: 575px)" />
+          <source
+            
+              srcset="/images/blog/crs-java/directed/featured_hu_5bd25b0da00a6aa1.webp"
+            
+            media="(max-width: 767px)" />
+          <source
+            
+              srcset="/images/blog/crs-java/directed/featured_hu_50160f6e904110aa.webp"
+            
+            media="(max-width: 991px)" />
+          <source
+            
+              srcset="/images/blog/crs-java/directed/featured_hu_46d7ca35a719d5b8.webp"
+             />
+          <img
+            
+              loading="lazy" decoding="async"
+              src="/images/blog/crs-java/directed/featured_hu_cd7cb5b2c2970206.png"
+            class=" w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img"
+            alt="Sinkpoint-focused Directed Fuzzing"
+            width="1536"
+            height="1024" />
+        </picture>
+      
+      
+    
+    
+  
+
+
+  
+
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+      
+    </div>
+    
+    
+    <div class="blog-card-body flex-grow flex flex-col">
+      
+      <h4 class="blog-card-title mb-3 line-clamp-3 group-hover:text-primary transition-colors duration-300">
+        <a href="/blog/post-crs-java-directed-jazzer/" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-semibold text-lg leading-tight" title="Sinkpoint-focused Directed Fuzzing">
+          Sinkpoint-focused Directed Fuzzing
+        </a>
+      </h4>
+      
+      
+      <ul class="blog-card-meta mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
+        <li class="flex items-center">
+          <a href="/authors/fabian-fleischer/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+            <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Fabian Fleischer
+          </a>
+        </li>
+        
+        
+          <li class="flex items-center">
+            <i class="fa-regular fa-folder mr-2 text-primary"></i>
+            
+              <a href="/categories/atlantis/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                Atlantis
+              </a>
+            
+          </li>
+        
+      </ul>
+      
+      
+      <p class="blog-card-summary mb-6 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-5 flex-grow">
+        Traditional coverage-based fuzzers excel at code exploration. When testing Java code, however, most vulnerabilities require the invocation of a certain Java API, such as creating an SQL statement (java.sql.Statement) for an SQL injection bug. Thus, we target such security-critical APIs with our modified, directed Jazzer to reach and exploit critical code locations faster. This blog post gives an overview over our directed fuzzing setup for Java challenge problems.
+Calculating a distance metric for directed fuzzing requires static analysis to identify critical code locations (aka sinkpoints) and compute distances. This static analysis happens mostly offline, independent of the modified Jazzer, to reduce the computational overhead in the fuzzer. However, we still compute the CFG (and, thus, basic block-level distances) in Jazzer to maintain a precise distance metric and allow the update of seed distances during fuzzing.
+
+      </p>
+    </div>
+    
+    
+    <div class="blog-card-footer mt-auto">
+      <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center w-full justify-center" href="/blog/post-crs-java-directed-jazzer/">
+        Read More
+        <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+      </a>
+    </div>
+  </div>
+</div>
+              </div>
+            
+              <div class="lg:col-4">
+                <div class="blog-card-uniform glass-card p-6 group border border-gray-200/20 dark:border-gray-700/30 h-full">
+  <div class="blog-card-content flex flex-col h-full">
+    
+    <div class="blog-card-image mb-4">
+      
+      
+        <div class="relative overflow-hidden rounded-xl aspect-video">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  
+    
+      
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+    
+    
+    
+
+
+    
+    
+      
+      
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+        
+
+
+        <picture>
+          <source
+            
+              srcset="/images/blog/crs-java/libafl-jazzer/jazzer_plus_libafl_hu_382ebbbf5f489429.webp"
+            
+            media="(max-width: 575px)" />
+          <source
+            
+              srcset="/images/blog/crs-java/libafl-jazzer/jazzer_plus_libafl_hu_d6be100e3efb493b.webp"
+            
+            media="(max-width: 767px)" />
+          <source
+            
+              srcset="/images/blog/crs-java/libafl-jazzer/jazzer_plus_libafl_hu_85d33c2872aa7d6d.webp"
+            
+            media="(max-width: 991px)" />
+          <source
+            
+              srcset="/images/blog/crs-java/libafl-jazzer/jazzer_plus_libafl_hu_9a86debab8eacf42.webp"
+             />
+          <img
+            
+              loading="lazy" decoding="async"
+              src="/images/blog/crs-java/libafl-jazzer/jazzer_plus_libafl_hu_af41ab2119729508.png"
+            class=" w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img"
+            alt="Jazzer&#43;LibAFL: Insights into Java Fuzzing"
+            width="1100"
+            height="700" />
+        </picture>
+      
+      
+    
+    
+  
+
+
+  
+
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+      
+    </div>
+    
+    
+    <div class="blog-card-body flex-grow flex flex-col">
+      
+      <h4 class="blog-card-title mb-3 line-clamp-3 group-hover:text-primary transition-colors duration-300">
+        <a href="/blog/post-crs-java-libafl-jazzer/" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-semibold text-lg leading-tight" title="Jazzer&#43;LibAFL: Insights into Java Fuzzing">
+          Jazzer&#43;LibAFL: Insights into Java Fuzzing
+        </a>
+      </h4>
+      
+      
+      <ul class="blog-card-meta mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
+        <li class="flex items-center">
+          <a href="/authors/ammar-askar/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+            <i class="fa-regular fa-circle-user mr-2 text-primary"></i>Ammar Askar
+          </a>
+        </li>
+        
+        
+          <li class="flex items-center">
+            <i class="fa-regular fa-folder mr-2 text-primary"></i>
+            
+              <a href="/categories/atlantis/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                Atlantis
+              </a>
+            
+          </li>
+        
+      </ul>
+      
+      
+      <p class="blog-card-summary mb-6 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-5 flex-grow">
+        AIxCC involved finding bugs in software written in two languages: C++ and Java. The focus of the competition was on the use of LLMs and AI, however, our teams approach was to balance ambitious strategies alongside proven traditional bug-finding techniques like fuzzing. While our team was deeply familiar with fuzzing C++ from decades of academic research and industry work, Java was uncharted territory for us. In part of our Java fuzzing development we created a fork of Jazzer that uses LibAFL as the fuzzing backend and it is available as part of our open source release. This post details some of the lessons we learned about Java fuzzing and the creation of this fork.
+
+      </p>
+    </div>
+    
+    
+    <div class="blog-card-footer mt-auto">
+      <a class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center w-full justify-center" href="/blog/post-crs-java-libafl-jazzer/">
         Read More
         <i class="fa fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
       </a>
@@ -2198,7 +2152,7 @@ Our team is a collaborative powerhouse made up of six leading institutions: Geor
                 href="
                   /artifacts/
                 "
-                >Research &amp; Code</a
+                >Artifacts</a
               >
             </li>
           
@@ -2336,26 +2290,6 @@ Our team is a collaborative powerhouse made up of six leading institutions: Geor
     
       
     
-  
-
-  
-    
-      
-    
-  
-
-  
-    <script
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
-      type="application/javascript"
-      integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-  
-
-  
-    <script
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-      type="application/javascript"
-      integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
   
 
   

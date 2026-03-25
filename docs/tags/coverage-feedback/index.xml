@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Coverage-Feedback on Team Atlanta</title><link>https://team-atlanta.github.io/tags/coverage-feedback/</link><description>Recent content in Coverage-Feedback on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 02 Sep 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/tags/coverage-feedback/index.xml" rel="self" type="application/rss+xml"/><item><title>Context Engineering: How BGA Teaches LLMs to Write Exploits</title><link>https://team-atlanta.github.io/blog/post-context-engineering/</link><pubDate>Tue, 02 Sep 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-context-engineering/</guid><description>&lt;h2 id="the-problem-with-teaching-ai-to-hack">The Problem with Teaching AI to Hack&lt;/h2>
-&lt;p>Teaching an LLM to write working exploits is more challenging than typical AI tasks. Unlike most applications where &amp;ldquo;close enough&amp;rdquo; works, vulnerability exploitation requires precise execution. A single character error can make an entire exploit fail.&lt;/p>
-&lt;p>Take this seemingly simple Java reflective call injection vulnerability:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>String className &lt;span style="color:#f92672">=&lt;/span> request.&lt;span style="color:#a6e22e">getParameter&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;class&amp;#34;&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Class.&lt;span style="color:#a6e22e">forName&lt;/span>(className); &lt;span style="color:#75715e">// BUG: arbitrary class loading&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This looks straightforward, but there&amp;rsquo;s a catch: to exploit this vulnerability, the LLM must load the exact class name &lt;a href="https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Coverage-Feedback on Team Atlanta</title><link>https://team-atlanta.github.io/tags/coverage-feedback/</link><description>Recent content in Coverage-Feedback on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 02 Sep 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/tags/coverage-feedback/index.xml" rel="self" type="application/rss+xml"/><item><title>Context Engineering: How BGA Teaches LLMs to Write Exploits</title><link>https://team-atlanta.github.io/blog/post-context-engineering/</link><pubDate>Tue, 02 Sep 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-context-engineering/</guid><description>&lt;h2 id="the-problem-with-teaching-ai-to-hack"&gt;The Problem with Teaching AI to Hack&lt;/h2&gt;
+&lt;p&gt;Teaching an LLM to write working exploits is more challenging than typical AI tasks. Unlike most applications where &amp;ldquo;close enough&amp;rdquo; works, vulnerability exploitation requires precise execution. A single character error can make an entire exploit fail.&lt;/p&gt;
+&lt;p&gt;Take this seemingly simple Java reflective call injection vulnerability:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;String className &lt;span style="color:#f92672"&gt;=&lt;/span&gt; request.&lt;span style="color:#a6e22e"&gt;getParameter&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;class&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Class.&lt;span style="color:#a6e22e"&gt;forName&lt;/span&gt;(className); &lt;span style="color:#75715e"&gt;// BUG: arbitrary class loading&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This looks straightforward, but there&amp;rsquo;s a catch: to exploit this vulnerability, the LLM must load the exact class name &lt;a href="https://github.com/CodeIntelligenceTesting/jazzer/blob/527fe858f700382f9207cf7c7bc6b95cf59de936/sanitizers/src/main/java/com/code_intelligence/jazzer/sanitizers/Utils.kt#L25"
 
 
 
@@ -12,7 +12,7 @@
  
 
 
->&lt;code>&amp;quot;jaz.Zer&amp;quot;&lt;/code>&lt;/a> to trigger &lt;a href="https://github.com/CodeIntelligenceTesting/jazzer"
+&gt;&lt;code&gt;&amp;quot;jaz.Zer&amp;quot;&lt;/code&gt;&lt;/a&gt; to trigger &lt;a href="https://github.com/CodeIntelligenceTesting/jazzer"
 
 
 
@@ -21,4 +21,4 @@
  
 
 
->Jazzer&lt;/a>&amp;rsquo;s detection. Not &lt;code>&amp;quot;jaz.Zero&amp;quot;&lt;/code>, not &lt;code>&amp;quot;java.Zer&amp;quot;&lt;/code>, not &lt;code>&amp;quot;jaz.zer&amp;quot;&lt;/code>. One character wrong and the entire exploit fails.&lt;/p></description></item></channel></rss>
+&gt;Jazzer&lt;/a&gt;&amp;rsquo;s detection. Not &lt;code&gt;&amp;quot;jaz.Zero&amp;quot;&lt;/code&gt;, not &lt;code&gt;&amp;quot;java.Zer&amp;quot;&lt;/code&gt;, not &lt;code&gt;&amp;quot;jaz.zer&amp;quot;&lt;/code&gt;. One character wrong and the entire exploit fails.&lt;/p&gt;</description></item></channel></rss>
