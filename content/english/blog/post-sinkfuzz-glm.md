@@ -49,9 +49,7 @@ Critically, these agents don't run in isolation. They operate concurrently with 
 
 *Figure 2: Gondar's architecture. LLM agents and the fuzzer run concurrently, exchanging artifacts bidirectionally. Exploration seeds enrich the fuzzer's corpus; discovered beep seeds ground the exploitation agent's reasoning.*
 
-## Evaluation
-
-### Overall Results
+## Overall Results
 
 Figure 3 shows vulnerabilities reached (x-axis) versus exploited (y-axis) across all 15 configurations: 7 Gondar model variants, 3 ablations, and 5 baselines. Upper-right is better.
 
@@ -63,9 +61,11 @@ Figure 3 shows vulnerabilities reached (x-axis) versus exploited (y-axis) across
 
 The headline: **Gondar exploits 41 of 54 vulnerabilities with its best configuration (Gemini-2.5-Pro), compared to Jazzer's 8**. That's over 5x as many on the same benchmark, at comparable or lower cost. Even the cheapest Gondar configuration (GPT-5-nano at <span>$</span>182 total) exploits 27 vulnerabilities, still over 3x the baseline.
 
-The ablations tell a clear story too: removing the exploration agent (XO) drops reached vulnerabilities from 42 to 29; removing the exploitation agent (RO) drops exploited from 37 to 18. Both components are critical. But two findings stood out to us in particular.
+The ablations tell a clear story too: removing the exploration agent (XO) drops reached vulnerabilities from 42 to 29; removing the exploitation agent (RO) drops exploited from 37 to 18. Both components are critical.
 
-### Finding 1: LLMs and Fuzzers Are Complementary, Not Interchangeable
+Our [paper](https://example.com/TODO-preprint-link) digs deeper into each stage: how sink filtering balances precision and recall, how iterative refinement drives exploitation success, and what happens when we compare against static analysis tools like CodeQL and SpotBugs. For example, Gondar exploits 35 of the 46 vulnerabilities that Jazzer misses entirely, by leveraging LLM reasoning to satisfy constraints that mutation alone cannot. But two takeaways stood out to us in particular.
+
+## Takeaway 1: LLMs and Fuzzers Are Complementary, Not Interchangeable
 
 It's tempting to think of LLMs as a replacement for fuzzers, or vice versa. Our results show the opposite: they have fundamentally different strengths, and the combination is greater than the sum of its parts.
 
@@ -77,7 +77,7 @@ The strongest evidence: **7 vulnerabilities** in our benchmark are **found *only
 7 vulnerabilities are discovered only through agent-fuzzer collaboration. Neither component finds them independently; the combination outperforms the sum of its parts.
 {{< /finding >}}
 
-### Finding 2: Open-Source Models Deliver Near-Flagship Performance
+## Takeaway 2: Open-Source Models Deliver Near-Flagship Performance
 
 After validating Gondar's design with flagship models (GPT-5, Gemini-2.5-Pro, and Claude Sonnet 4.5, which exploit 37-41 vulnerabilities at ~<span>$</span>2,400-<span>$</span>3,100 total), we asked the natural follow-up: how much does the model actually matter?
 
@@ -96,11 +96,11 @@ GLM-5 (open-source) exploits 35 vulnerabilities at <span>$</span>392 total, more
 
 *Figure 4: Cost versus vulnerabilities exploited across all configurations. GLM-5 sits in the sweet spot: near-flagship effectiveness at a fraction of the cost. Large-scale fuzzing (Baseline-LS) costs the most while finding the fewest vulnerabilities.*
 
-## Beyond the Benchmark
+## Closing Thoughts
 
-These results go beyond our benchmark. Static analysis tools like CodeQL and SpotBugs miss 63-74% of the vulnerabilities we tested, not because they're bad tools, but because they're solving a different problem. And during AIxCC, Gondar discovered 3 zero days in real-world projects, which were disclosed to the software maintainers.
+These results come from our controlled benchmark, but Gondar has found real bugs too. During AIxCC, it discovered 3 zero-day vulnerabilities in real-world projects (Hertzbeat, Healthcare-Data-Harmonization, and PDFBox), all responsibly disclosed. It's now part of [OSS-CRS](https://github.com/ossf/oss-crs), an OpenSSF Sandbox Project for continuous open-source security protection, where it has already found another zero-day path traversal in a widely used Java database.
 
-What stuck with us: a well-designed system with a cheap model consistently beats an expensive brute-force approach with no intelligence. Gondar is available as part of [OSS-CRS](https://github.com/ossf/oss-crs), an OpenSSF Sandbox Project for continuous open-source security protection. We spent 7.2 CPU-years proving that CPU-years aren't the answer. Check our [paper](https://example.com/TODO-preprint-link) for the details.
+Turns out, you don't need flagship models or massive compute to get there. For the full methodology and evaluation details, see the [paper](https://example.com/TODO-preprint-link).
 
 ## References
 
