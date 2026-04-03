@@ -12,7 +12,7 @@ draft: false
 
 As part of our winning entry in the DARPA AI Cyber Challenge, we built Gondar, a system that combines LLM agents with coverage-guided fuzzing to find security vulnerabilities in Java applications. Gondar served as part of the Java vulnerability discovery component of our CRS.
 
-After AIxCC, we set out to evaluate Gondar rigorously under controlled, reproducible conditions. We wrote a [paper](https://example.com/TODO-preprint-link) about the results. This post covers the most interesting things we learned.
+After AIxCC, we set out to evaluate Gondar rigorously under controlled, reproducible conditions. We wrote a [paper](https://arxiv.org/abs/2604.01645) about the results. This post covers the most interesting things we learned.
 
 ## Scaling Fuzzing Doesn't Solve the Problem
 
@@ -63,7 +63,7 @@ The headline: **Gondar exploits 41 of 54 vulnerabilities with its best configura
 
 The ablations tell a clear story too: removing the exploration agent (XO) drops reached vulnerabilities from 42 to 29; removing the exploitation agent (RO) drops exploited from 37 to 18. Both components are critical.
 
-Our [paper](https://example.com/TODO-preprint-link) digs deeper into each stage: how sink filtering balances precision and recall, how iterative refinement drives exploitation success, and what happens when we compare against static analysis tools like CodeQL and SpotBugs. For example, Gondar exploits 35 of the 46 vulnerabilities that Jazzer misses entirely, by leveraging LLM reasoning to satisfy constraints that mutation alone cannot. But two takeaways stood out to us in particular.
+Our [paper](https://arxiv.org/abs/2604.01645) digs deeper into each stage: how sink filtering balances precision and recall, how iterative refinement drives exploitation success, and what happens when we compare against static analysis tools like CodeQL and SpotBugs. For example, Gondar exploits 35 of the 46 vulnerabilities that Jazzer misses entirely, by leveraging LLM reasoning to satisfy constraints that mutation alone cannot. But two takeaways stood out to us in particular.
 
 ## Takeaway 1: LLMs and Fuzzers Are Complementary, Not Interchangeable
 
@@ -100,11 +100,11 @@ GLM-5 (open-source) exploits 35 vulnerabilities at <span>$</span>392 total, more
 
 These results come from our controlled benchmark, but Gondar has found real bugs too. During AIxCC, it discovered 3 zero-day vulnerabilities in real-world projects (Hertzbeat, Healthcare-Data-Harmonization, and PDFBox), all responsibly disclosed. It's now part of [OSS-CRS](https://github.com/ossf/oss-crs), an OpenSSF Sandbox Project for continuous open-source security protection, where it has already found another zero-day path traversal in a widely used Java database.
 
-Turns out, you don't need flagship models or massive compute to get there. For the full methodology and evaluation details, see the [paper](https://example.com/TODO-preprint-link).
+Turns out, you don't need flagship models or massive compute to get there. For the full methodology and evaluation details, see the [paper](https://arxiv.org/abs/2604.01645).
 
 ## References
 
-- [Gondar paper](https://example.com/TODO-preprint-link) - Full paper with detailed methodology and evaluation
+- [Gondar paper](https://arxiv.org/abs/2604.01645) - Full paper with detailed methodology and evaluation
 - [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer) - Coverage-guided fuzzer for Java
 - [CodeQL](https://codeql.github.com/) - Semantic code analysis engine
 - [DARPA AIxCC](https://aicyberchallenge.com/) - AI Cyber Challenge competition
