@@ -2,7 +2,7 @@
 title: "More CPUs Won't Find More Bugs: Lessons from LLM-Assisted Java Fuzzing"
 meta_title: ""
 description: "We threw 7.2 CPU-years at Java fuzzing and got nowhere. Then we added LLM agents. Here's what happened."
-date: 2026-03-27T11:00:00Z
+date: 2026-03-10T13:00:00Z
 image: "/images/blog/sinkfuzz-glm/cover.png"
 categories: ["post-aixcc"]
 authors: ["Fabian Fleischer", "Cen Zhang"]
@@ -12,7 +12,9 @@ draft: false
 
 When we were designing our CRS for the DARPA AI Cyber Challenge, we quickly realized that scaling Jazzer alone wouldn't be enough for Java vulnerability discovery. The hard vulnerabilities required structured, semantically meaningful inputs that random mutation couldn't produce. So we built Gondar, a system that combines LLM agents with coverage-guided fuzzing, and it helped us win.
 
-After AIxCC, we wanted to put this to the test: how well does the approach hold up under rigorous, controlled evaluation? We wrote a [paper](https://arxiv.org/abs/2604.01645) about the results. This post is about our journey and what we found along the way.
+After AIxCC, we wanted to put this to the test: how well does the approach hold up under rigorous, controlled evaluation?
+The resulting [paper](https://arxiv.org/abs/2604.01645) will be published at IEEE S&P '26.
+This post is about our journey and what we found along the way.
 
 ## We Started by Throwing Compute at the Problem
 
@@ -40,7 +42,7 @@ Since more compute wasn't the answer, we needed something that could reason abou
 
 Part of the sink-centered design are three agents assisting in vulnerability detection (see Figure 2). First, **sink detection** uses CodeQL to identify potential sinks. However, CodeQL's built-in queries filter based on predefined source definitions, which are too restrictive for our use case: attacker-controlled input comes from fuzzing harnesses, not the sources CodeQL expects. So we strip CodeQL's filters and use only its sink definitions, extracting all call sites directly. This gives us thousands of candidates, most of which are false positives. To reduce these, we apply our own filtering pipeline (constant-value removal, call graph reachability, and LLM-based exploitability assessment), which brings the set down to a few hundred actionable sinks while retaining over 96% of the truly exploitable ones.
 
-Second, an **exploration agent** analyzes call paths from the program entry point to each sink, reads the source code along the path, and generates inputs designed to satisfy the constraints needed to reach it. Third, an [**exploitation agent**](/blog/post-crs-java-expkit) receives inputs that successfully reach sinks (we call these "beep seeds") and iteratively develops proof-of-concept exploits by reasoning about the vulnerability-specific conditions needed to trigger Jazzer's sanitizers.
+Second, an **exploration agent** analyzes call paths from the program entry point to each sink, reads the source code along the path, and generates inputs designed to satisfy the constraints needed to reach it. Third, an **exploitation agent** receives inputs that successfully reach sinks (we call these "beep seeds") and iteratively develops proof-of-concept exploits by reasoning about the vulnerability-specific conditions needed to trigger Jazzer's sanitizers.
 
 Critically, these agents don't run in isolation. They operate concurrently with Jazzer and exchange artifacts in both directions: exploration seeds flow into the fuzzer's corpus for further mutation, while discovered beep seeds flow to the exploitation agent as concrete starting points. All exploitation outputs, even failed attempts, are fed back to the fuzzer, which may mutate a near-miss into a working exploit.
 
@@ -48,7 +50,7 @@ Critically, these agents don't run in isolation. They operate concurrently with 
 
 *Figure 2: Gondar's architecture. LLM agents and the fuzzer run concurrently, exchanging artifacts bidirectionally. Exploration seeds enrich the fuzzer's corpus; discovered beep seeds ground the exploitation agent's reasoning.*
 
-## What Happened
+## Putting Gondar to the Test
 
 We ran Gondar on the same 54 vulnerabilities. Figure 3 shows vulnerabilities reached versus exploited across all 15 configurations: 7 Gondar model variants, 3 ablations, and 5 baselines. Upper-right is better.
 
@@ -68,9 +70,9 @@ The [paper](https://arxiv.org/abs/2604.01645) digs deeper into each stage: how s
 
 It's tempting to think of LLMs as a replacement for fuzzers, or vice versa. Our results show the opposite: they have fundamentally different strengths, and the combination is greater than the sum of its parts.
 
-LLMs excel at structure and intent. They can generate a well-formed ZIP archive containing a crafted payload, reason about path constraints from source code, or construct an XML document that satisfies a parser's type system. Fuzzers excel at fast mutation, exploring millions of input variations per second. Neither capability substitutes for the other.
+LLMs excel at structure and intent. They can generate a well-formed ZIP archive containing a crafted payload, reason about path constraints from source code, or construct an XML document that satisfies a parser's type system. Fuzzers excel at fast mutation, exploring millions of input variations per second. Neither capability substitutes for the other, and our data confirms it: **7 vulnerabilities** in our benchmark are **found *only* through the agent-fuzzer collaboration**. Neither the agents alone nor the fuzzer alone discovers them.
 
-The strongest evidence: **7 vulnerabilities** in our benchmark are **found *only* through the agent-fuzzer collaboration**. Neither the agents alone nor the fuzzer alone discovers them. Take a zip-slip vulnerability in Apache ZooKeeper: the exploitation agent understands the vulnerability pattern and generates archive inputs that are structurally close to a working exploit, but not quite right. Jazzer picks up these seeds and mutates them, eventually producing an input that triggers the sanitizer. The agent provides the semantic scaffolding; the fuzzer provides the last-mile refinement.
+Take a zip-slip vulnerability in Apache ZooKeeper: the exploitation agent understands the vulnerability pattern and generates archive inputs that are structurally close to a working exploit, but not quite right. Jazzer picks up these seeds and mutates them, eventually producing an input that triggers the sanitizer. The agent provides the semantic scaffolding; the fuzzer provides the final refinement.
 
 {{< finding >}}
 7 vulnerabilities are discovered only through agent-fuzzer collaboration. Neither component finds them independently; the combination outperforms the sum of its parts.
@@ -97,9 +99,9 @@ GLM-5 (open-source) exploits 35 vulnerabilities at <span>$</span>392 total, more
 
 ## Closing Thoughts
 
-These results come from our controlled benchmark for a reproducible, scientific evaluation, but Gondar has found real bugs too. During AIxCC, it discovered 3 zero-day vulnerabilities in real-world projects (Hertzbeat, Healthcare-Data-Harmonization, and PDFBox), all responsibly disclosed. It's now part of [OSS-CRS](https://github.com/ossf/oss-crs), an OpenSSF Sandbox Project for continuous open-source security protection, where it has already found another zero-day path traversal in a widely used Java database.
+These results come from our controlled benchmark for a reproducible, scientific evaluation, but Gondar has found real bugs too. During AIxCC, it discovered 3 zero-day vulnerabilities in real-world projects (Hertzbeat, Healthcare-Data-Harmonization, and PDFBox), all responsibly disclosed. It's now part of [OSS-CRS](https://github.com/ossf/oss-crs/blob/main/registry/atlantis-java-main.yaml), an OpenSSF Sandbox Project for continuous open-source security protection, where it has already found another zero-day path traversal in a widely used Java database.
 
-When we started building Gondar for AIxCC, we knew fuzzing alone wasn't enough. Now we have the numbers to back that up: adding sink-focused agents finds at least 3x more bugs than spending multiples on raw fuzzing alone, even with a cheap open-source model. If you want to dig into the details, the [paper](https://arxiv.org/abs/2604.01645) has the full methodology and per-vulnerability breakdown.
+When we started building Gondar for AIxCC, we knew fuzzing alone wasn't enough. Now we have the numbers to back that up: adding sink-focused agents finds at least 3x more bugs than spending multiples on raw fuzzing alone, even with a cheap open-source model. Check the [paper](https://arxiv.org/abs/2604.01645) for full details.
 
 ## References
 
@@ -107,4 +109,4 @@ When we started building Gondar for AIxCC, we knew fuzzing alone wasn't enough. 
 - [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer) - Coverage-guided fuzzer for Java
 - [CodeQL](https://codeql.github.com/) - Semantic code analysis engine
 - [DARPA AIxCC](https://aicyberchallenge.com/) - AI Cyber Challenge competition
-- [OSS-CRS](https://github.com/ossf/oss-crs) - Open-source Cyber Reasoning System platform
+- [OSS-CRS](https://github.com/ossf/oss-crs/blob/main/registry/atlantis-java-main.yaml) - Open-source Cyber Reasoning System platform
