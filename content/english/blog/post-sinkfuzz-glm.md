@@ -106,6 +106,7 @@ When we started building Gondar for AIxCC, we knew fuzzing alone wasn't enough. 
 ## References
 
 - [Gondar paper](https://arxiv.org/abs/2604.01645) - Full paper with detailed methodology and evaluation
+- [Implementation](https://github.com/Team-Atlanta/atlantis-java-snapshot) - Source code of Gondar
 - [Jazzer](https://github.com/CodeIntelligenceTesting/jazzer) - Coverage-guided fuzzer for Java
 - [CodeQL](https://codeql.github.com/) - Semantic code analysis engine
 - [DARPA AIxCC](https://aicyberchallenge.com/) - AI Cyber Challenge competition
