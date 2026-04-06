@@ -95,7 +95,7 @@ GLM-5 (open-source) exploits 35 vulnerabilities at <span>$</span>392 total, more
 {{< image src="images/blog/sinkfuzz-glm/cost-vs-bugs.png" position="center" class="img-fluid" >}}
 </div>
 
-*Figure 4: Cost versus vulnerabilities exploited across all configurations. GLM-5 sits in the sweet spot: near-flagship effectiveness at a fraction of the cost. Large-scale fuzzing (Baseline-LS) costs the most while finding the fewest vulnerabilities.*
+*Figure 4: Cost versus vulnerabilities exploited across all configurations. GLM-5 sits in the sweet spot: near-flagship effectiveness at a fraction of the cost. Large-scale fuzzing (Baseline-LS) costs the most while finding the fewest vulnerabilities. The GLM experiment was supported by FriendliAI.*
 
 ## Closing Thoughts
 
