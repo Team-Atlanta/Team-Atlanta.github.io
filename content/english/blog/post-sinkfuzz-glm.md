@@ -2,7 +2,7 @@
 title: "More CPUs Won't Find More Bugs: Insights from Combining LLM Agents and Jazzer"
 meta_title: ""
 description: "We threw 7.2 CPU-years at Java fuzzing and didn't get far. Then we added LLM agents. Here's what happened."
-date: 2026-04-07T04:00:00Z
+date: 2026-04-07T06:00:00Z
 image: "/images/blog/sinkfuzz-glm/cover.png"
 categories: ["post-aixcc"]
 authors: ["Fabian Fleischer", "Cen Zhang"]
@@ -40,9 +40,13 @@ Jazzer exploits only 8 of 54 vulnerabilities regardless of whether it runs on 3 
 
 Since more compute wasn't the answer, we needed something that could reason about code structure. We set out to combine LLM-based agents with Jazzer, targeting *sinks*: security-sensitive API calls like `Runtime.exec()`, `ProcessBuilder`, or SQL query methods where vulnerabilities actually manifest. We've [written about this sink-centered approach before](/blog/post-crs-java-overview) in the context of Atlantis-Java.
 
-Part of the sink-centered design are three agents assisting in vulnerability detection (see Figure 2). First, **sink detection** uses CodeQL to identify potential sinks. However, CodeQL's built-in queries filter based on predefined source definitions, which are too restrictive for our use case: attacker-controlled input comes from fuzzing harnesses, not the sources CodeQL expects. So we strip CodeQL's filters and use only its sink definitions, extracting all call sites directly. This gives us thousands of candidates, most of which are false positives. To reduce these, we apply our own filtering pipeline (constant-value removal, call graph reachability, and LLM-based exploitability assessment), which brings the set down to a few hundred actionable sinks while retaining over 96% of the truly exploitable ones.
+Key to the sink-centered design are three agents assisting in vulnerability detection (see Figure 2), one during static analysis and two during dynamic testing.
 
-Second, an **exploration agent** analyzes call paths from the program entry point to each sink, reads the source code along the path, and generates inputs designed to satisfy the constraints needed to reach it. Third, an **exploitation agent** receives inputs that successfully reach sinks (we call these "beep seeds") and iteratively develops proof-of-concept exploits by reasoning about the vulnerability-specific conditions needed to trigger Jazzer's sanitizers.
+The first agent sits inside Gondar's static sink detection module, which applies CodeQL to identify potential sinks. However, CodeQL's built-in queries filter sinks based on predefined source definitions, which are too restrictive for our use case: attacker-controlled input comes from fuzzing harnesses, not the sources CodeQL expects. So we strip CodeQL's filters and use only its sink definitions, extracting all call sites directly. This gives us thousands of candidates, most of which are false positives.
+We reduce these with our own filtering pipeline including both traditional static analysis (constant value checks, reachability checks) as well as our **exploitability assessment agent**, which filters out sinks that it determines unexploitable based on concrete evidence in the source code.
+This allows Gondar to bring the number of sinkpoints down to a few hundred actionable sinks while retaining over 96% of the truly exploitable ones.
+
+Second, a **sink exploration agent** analyzes call paths from the program entry point to each sink, reads the source code along the path, and generates inputs designed to satisfy the constraints needed to reach it. Third, a **sink exploitation agent** receives inputs that successfully reach sinks (we call these "beep seeds") and iteratively develops proof-of-concept exploits by reasoning about the vulnerability-specific conditions needed to trigger Jazzer's sanitizers.
 
 Critically, these agents don't run in isolation. They operate concurrently with Jazzer and exchange artifacts in both directions: exploration seeds flow into the fuzzer's corpus for further mutation, while discovered beep seeds flow to the exploitation agent as concrete starting points. All exploitation outputs, even failed attempts, are fed back to the fuzzer, which may mutate a near-miss into a working exploit.
 
