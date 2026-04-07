@@ -1,5 +1,5 @@
 ---
-title: "More CPUs Won't Find More Bugs: Lessons from LLM-Assisted Java Fuzzing"
+title: "More CPUs Won't Find More Bugs: Insights from Combining LLM Agents and Jazzer"
 meta_title: ""
 description: "We threw 7.2 CPU-years at Java fuzzing and got nowhere. Then we added LLM agents. Here's what happened."
 date: 2026-03-10T13:00:00Z
