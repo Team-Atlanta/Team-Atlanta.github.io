@@ -1,7 +1,7 @@
 ---
 title: "More CPUs Won't Find More Bugs: Insights from Combining LLM Agents and Jazzer"
 meta_title: ""
-description: "We threw 7.2 CPU-years at Java fuzzing and got nowhere. Then we added LLM agents. Here's what happened."
+description: "We threw 7.2 CPU-years at Java fuzzing and didn't get far. Then we added LLM agents. Here's what happened."
 date: 2026-04-07T04:00:00Z
 image: "/images/blog/sinkfuzz-glm/cover.png"
 categories: ["post-aixcc"]
@@ -54,6 +54,7 @@ Critically, these agents don't run in isolation. They operate concurrently with 
 
 We ran Gondar on the same 54 vulnerabilities. Figure 3 shows vulnerabilities reached versus exploited across all 15 configurations: 7 Gondar model variants, 3 ablations, and 5 baselines. Upper-right is better.
 
+<style>.narrow-fig { margin: 0 auto; } @media (min-width: 768px) { .narrow-fig { max-width: 65%; } }</style>
 <div class="narrow-fig">
 {{< image src="images/blog/sinkfuzz-glm/tool-coords.png" position="center" class="img-fluid" >}}
 </div>
@@ -62,7 +63,7 @@ We ran Gondar on the same 54 vulnerabilities. Figure 3 shows vulnerabilities rea
 
 **Gondar exploits 41 of 54 vulnerabilities with its best configuration (Gemini-2.5-Pro), compared to Jazzer's 8.** That's over 5x as many on the same benchmark, at comparable or lower cost. Even the cheapest Gondar configuration (GPT-5-nano at <span>$</span>182 total) exploits 27 vulnerabilities, still over 3x the baseline.
 
-The ablations confirm that each component matters: removing the exploration agent (XO) drops reached vulnerabilities from 42 to 29; removing the exploitation agent (RO) drops exploited from 37 to 18. Gondar also exploits 35 of the 46 vulnerabilities that Jazzer misses entirely, by leveraging LLM reasoning to satisfy constraints that mutation alone cannot.
+The ablations confirm that each component matters: removing the exploration agent (XO) drops reached vulnerabilities from 42 to 29; removing the exploitation agent (RO) drops exploited from 37 to 18. Gondar also exploits 35 of the 46 vulnerabilities that Jazzer misses, by leveraging LLM reasoning to satisfy constraints that mutation alone cannot.
 
 The [paper](https://arxiv.org/abs/2604.01645) digs deeper into each stage: how sink filtering balances precision and recall, how iterative refinement drives exploitation success, and how Gondar compares against static analysis tools like CodeQL and SpotBugs. But two things surprised us most.
 
@@ -90,7 +91,6 @@ Put differently: GLM-5 at <span>$</span>392 finds more vulnerabilities than larg
 GLM-5 (open-source) exploits 35 vulnerabilities at <span>$</span>392 total, more than large-scale fuzzing at <span>$</span>3,264, and 85% of flagship performance at 13-16% of the cost.
 {{< /finding >}}
 
-<style>.narrow-fig { margin: 0 auto; } @media (min-width: 768px) { .narrow-fig { max-width: 65%; } }</style>
 <div class="narrow-fig">
 {{< image src="images/blog/sinkfuzz-glm/cost-vs-bugs.png" position="center" class="img-fluid" >}}
 </div>
