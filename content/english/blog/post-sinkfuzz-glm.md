@@ -2,7 +2,7 @@
 title: "More CPUs Won't Find More Bugs: Insights from Combining LLM Agents and Jazzer"
 meta_title: ""
 description: "We threw 7.2 CPU-years at Java fuzzing and got nowhere. Then we added LLM agents. Here's what happened."
-date: 2026-03-10T13:00:00Z
+date: 2026-04-07T04:00:00Z
 image: "/images/blog/sinkfuzz-glm/cover.png"
 categories: ["post-aixcc"]
 authors: ["Fabian Fleischer", "Cen Zhang"]
