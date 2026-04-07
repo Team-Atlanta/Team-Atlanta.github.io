@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Retrospective on Team Atlanta</title><link>https://team-atlanta.github.io/tags/retrospective/</link><description>Recent content in Retrospective on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 19 Aug 2025 11:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/tags/retrospective/index.xml" rel="self" type="application/rss+xml"/><item><title>Jazzer+LibAFL: Insights into Java Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</link><pubDate>Tue, 19 Aug 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</guid><description>&lt;p&gt;AIxCC involved finding bugs in software written in two languages: C++ and &lt;em&gt;Java&lt;/em&gt;.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Retrospective on Team Atlanta</title><link>https://team-atlanta.github.io/tags/retrospective/</link><description>Recent content in Retrospective on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 19 Aug 2025 11:00:00 +0000</lastBuildDate><atom:link href="https://team-atlanta.github.io/tags/retrospective/index.xml" rel="self" type="application/rss+xml"/><item><title>Jazzer+LibAFL: Insights into Java Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</link><pubDate>Tue, 19 Aug 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</guid><description>&lt;p>AIxCC involved finding bugs in software written in two languages: C++ and &lt;em>Java&lt;/em>.
 The focus of the competition was on the use of LLMs and AI, however, our teams
 approach was to balance ambitious strategies alongside proven traditional
 bug-finding techniques like fuzzing.
@@ -15,6 +15,6 @@ LibAFL as the fuzzing backend and it is available as
  
 
 
-&gt;part of our open source release&lt;/a&gt;.
+>part of our open source release&lt;/a>.
 This post details some of the lessons we learned about Java fuzzing and the
-creation of this fork.&lt;/p&gt;</description></item></channel></rss>
+creation of this fork.&lt;/p></description></item></channel></rss>
