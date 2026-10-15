@@ -7,6 +7,9 @@ team_memberships:
 - team: multilang
   role: Harness Reverser & Testlang
   priority: 10
+- team: benchmark
+  role: FDP Benchmarks
+  priority: 7
 social:
 - name: linkedin
   icon: fa-brands fa-linkedin

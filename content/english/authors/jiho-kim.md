@@ -5,8 +5,11 @@ image: /images/jiho-kim.png
 affiliation: PhD at Georgia Tech
 team_memberships:
 - team: multilang
-  role: Benchmark & Infra
+  role: Infra / AI Agents for Bug Discovery & Exploitation
   priority: 10
+- team: benchmark
+  role: Benchmark Lead
+  priority: 1
 social:
 - name: github
   icon: fa-brands fa-github

@@ -7,6 +7,9 @@ team_memberships:
 - team: sarif
   role: Sarif Team Member
   priority: 10
+- team: benchmark
+  role: SARIF Benchmarks
+  priority: 4
 social:
 - name: www
   icon: fa-solid fa-house

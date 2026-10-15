@@ -7,6 +7,9 @@ team_memberships:
 - team: patch
   role: Patch Team Member
   priority: 10
+- team: benchmark
+  role: Patch Benchmarks
+  priority: 6
 social:
 - name: www
   icon: fa-solid fa-house

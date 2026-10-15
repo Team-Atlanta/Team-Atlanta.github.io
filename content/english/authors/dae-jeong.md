@@ -7,6 +7,9 @@ team_memberships:
 - team: multilang
   role: Dictionary-based Fuzzing
   priority: 10
+- team: benchmark
+  role: C Benchmarks
+  priority: 3
 social:
 - name: www
   icon: fa-solid fa-house

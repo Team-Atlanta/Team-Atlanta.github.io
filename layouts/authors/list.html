@@ -2,11 +2,11 @@
 
   <section class="section py-16" id="team-page">
     <div class="container max-w-7xl mx-auto px-8">
-      {{ $teamOrder := slice "multilang" "c" "java" "patch" "sarif" "infra" }}
-      {{ $teamNames := dict "multilang" "Atlantis-Multilang" "c" "Atlantis-C" "java" "Atlantis-Java" "patch" "Atlantis-Patch" "sarif" "Atlantis-SARIF" "infra" "Atlantis-Infra" }}
-      {{ $teamDescriptions := dict "multilang" "Multi-language vulnerability analysis and cross-platform security research" "c" "C/C++ program analysis, memory safety, and low-level security vulnerabilities" "java" "Java bytecode analysis, JVM security, and enterprise application vulnerabilities" "patch" "Automated patch generation and vulnerability remediation systems" "sarif" "SARIF format integration and security tool interoperability" "infra" "Infrastructure security, DevOps automation, and cloud security architecture" }}
-      {{ $teamIcons := dict "multilang" "fa-solid fa-globe" "c" "fa-solid fa-code" "java" "fa-brands fa-java" "patch" "fa-solid fa-wrench" "sarif" "fa-solid fa-file-code" "infra" "fa-solid fa-server" }}
-      {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "infra" "indigo" }}
+      {{ $teamOrder := slice "multilang" "c" "java" "patch" "sarif" "infra" "benchmark" }}
+      {{ $teamNames := dict "multilang" "Atlantis-Multilang" "c" "Atlantis-C" "java" "Atlantis-Java" "patch" "Atlantis-Patch" "sarif" "Atlantis-SARIF" "infra" "Atlantis-Infra" "benchmark" "Atlantis-Benchmark" }}
+      {{ $teamDescriptions := dict "multilang" "Multi-language vulnerability analysis and cross-platform security research" "c" "C/C++ program analysis, memory safety, and low-level security vulnerabilities" "java" "Java bytecode analysis, JVM security, and enterprise application vulnerabilities" "patch" "Automated patch generation and vulnerability remediation systems" "sarif" "SARIF format integration and security tool interoperability" "infra" "Infrastructure security, DevOps automation, and cloud security architecture" "benchmark" "Benchmark development and evaluation for bug discovery, patching, and security analysis" }}
+      {{ $teamIcons := dict "multilang" "fa-solid fa-globe" "c" "fa-solid fa-code" "java" "fa-brands fa-java" "patch" "fa-solid fa-wrench" "sarif" "fa-solid fa-file-code" "infra" "fa-solid fa-server" "benchmark" "fa-solid fa-chart-simple" }}
+      {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "infra" "indigo" "benchmark" "blue" }}
       {{ $leader := slice }}
       {{ $noTeam := slice }}
       {{ $teamMembers := dict }}

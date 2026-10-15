@@ -7,6 +7,9 @@ team_memberships:
 - team: multilang
   role: Hybrid Fuzzing
   priority: 10
+- team: benchmark
+  role: Robustness Benchmarks (For system testing)
+  priority: 8
 social:
 - name: www
   icon: fa-solid fa-house

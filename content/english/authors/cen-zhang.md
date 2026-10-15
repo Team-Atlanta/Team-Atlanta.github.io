@@ -7,6 +7,9 @@ team_memberships:
 - team: java
   role: Java Team Lead
   priority: 3
+- team: benchmark
+  role: Java Benchmarks
+  priority: 2
 social:
 - name: www
   icon: fa-solid fa-house

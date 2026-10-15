@@ -10,6 +10,9 @@ team_memberships:
 - team: infra
   role: LLM Dev Infra
   priority: 15
+- team: benchmark
+  role: Java Benchmarks
+  priority: 5
 social:
 - name: www
   icon: fa-solid fa-house

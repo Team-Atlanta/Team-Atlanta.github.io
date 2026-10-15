@@ -89,6 +89,12 @@ name = "Atlantis-Infra"
 url = "authors/#team-infra"
 weight = 7
 
+[[main]]
+parent = "AIxCC Team"
+name = "Atlantis-Benchmark"
+url = "authors/#team-benchmark"
+weight = 8
+
 #[[main]]
 #parent = "Pages"
 #name = "Categories"

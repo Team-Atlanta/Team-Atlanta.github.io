@@ -34,7 +34,7 @@
           <h1 class="h3 mt-10">{{ .Title }}</h1>
 
           {{ if .Params.team_memberships }}
-            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" "infra" "indigo" }}
+            {{ $teamColors := dict "multilang" "blue" "c" "green" "java" "amber" "patch" "purple" "sarif" "pink" "leader" "amber" "infra" "indigo" "benchmark" "blue" }}
             <div class="mt-4 space-y-4">
               {{ range .Params.team_memberships }}
                 {{ $color := index $teamColors .team }}
