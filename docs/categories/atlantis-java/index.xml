@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Atlantis-Java on Team Atlanta</title><link>https://team-atlanta.github.io/categories/atlantis-java/</link><description>Recent content in Atlantis-Java on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 29 Sep 2025 23:00:00 +0900</lastBuildDate><atom:link href="https://team-atlanta.github.io/categories/atlantis-java/index.xml" rel="self" type="application/rss+xml"/><item><title>Our GraalVM Executor: How We Achieved Compatibility, Scale, and Speed</title><link>https://team-atlanta.github.io/blog/post-crs-java-concolic/</link><pubDate>Mon, 29 Sep 2025 23:00:00 +0900</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-concolic/</guid><description>&lt;p&gt;In the AIxCC competition,
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Atlantis-Java on Team Atlanta</title><link>https://team-atlanta.github.io/categories/atlantis-java/</link><description>Recent content in Atlantis-Java on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 29 Sep 2025 23:00:00 +0900</lastBuildDate><atom:link href="https://team-atlanta.github.io/categories/atlantis-java/index.xml" rel="self" type="application/rss+xml"/><item><title>Our GraalVM Executor: How We Achieved Compatibility, Scale, and Speed</title><link>https://team-atlanta.github.io/blog/post-crs-java-concolic/</link><pubDate>Mon, 29 Sep 2025 23:00:00 +0900</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-concolic/</guid><description>&lt;p>In the AIxCC competition,
 while fully committing to the challenge of leveraging Large Language Models (LLMs),
-we also integrated traditional techniques to create a more robust bug-finding system with fewer blind spots.&lt;/p&gt;
-&lt;p&gt;The competition provided a baseline fuzzer (Jazzer for Java projects),
+we also integrated traditional techniques to create a more robust bug-finding system with fewer blind spots.&lt;/p>
+&lt;p>The competition provided a baseline fuzzer (Jazzer for Java projects),
 but coverage-guided fuzzing in general often struggles with the complex validation logic that guards deep code paths.
 To address this, concolic execution is a well-known solution for exploring these paths by solving their input conditions.
-Our main challenge, therefore, was how to effectively leverage this powerful technique for the competition&amp;rsquo;s bug-finding goals.&lt;/p&gt;</description></item><item><title>Sinkpoint-focused Directed Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</link><pubDate>Tue, 19 Aug 2025 12:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</guid><description>&lt;p&gt;Traditional coverage-based fuzzers excel at code exploration.
-When testing Java code, however, most vulnerabilities require the invocation of a certain Java API, such as creating an SQL statement (&lt;code&gt;java.sql.Statement&lt;/code&gt;) for an SQL injection bug.
+Our main challenge, therefore, was how to effectively leverage this powerful technique for the competition&amp;rsquo;s bug-finding goals.&lt;/p></description></item><item><title>Sinkpoint-focused Directed Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</link><pubDate>Tue, 19 Aug 2025 12:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-directed-jazzer/</guid><description>&lt;p>Traditional coverage-based fuzzers excel at code exploration.
+When testing Java code, however, most vulnerabilities require the invocation of a certain Java API, such as creating an SQL statement (&lt;code>java.sql.Statement&lt;/code>) for an SQL injection bug.
 Thus, we target such security-critical APIs with our modified, directed Jazzer to reach and exploit critical code locations faster.
-This blog post gives an overview over our directed fuzzing setup for Java challenge problems.&lt;/p&gt;
-&lt;p&gt;Calculating a distance metric for directed fuzzing requires static analysis to identify critical code locations (aka sinkpoints) and compute distances.
+This blog post gives an overview over our directed fuzzing setup for Java challenge problems.&lt;/p>
+&lt;p>Calculating a distance metric for directed fuzzing requires static analysis to identify critical code locations (aka sinkpoints) and compute distances.
 This static analysis happens mostly offline, independent of the modified Jazzer, to reduce the computational overhead in the fuzzer.
-However, we still compute the CFG (and, thus, basic block-level distances) in Jazzer to maintain a precise distance metric and allow the update of seed distances during fuzzing.&lt;/p&gt;</description></item><item><title>Jazzer+LibAFL: Insights into Java Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</link><pubDate>Tue, 19 Aug 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</guid><description>&lt;p&gt;AIxCC involved finding bugs in software written in two languages: C++ and &lt;em&gt;Java&lt;/em&gt;.
+However, we still compute the CFG (and, thus, basic block-level distances) in Jazzer to maintain a precise distance metric and allow the update of seed distances during fuzzing.&lt;/p></description></item><item><title>Jazzer+LibAFL: Insights into Java Fuzzing</title><link>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</link><pubDate>Tue, 19 Aug 2025 11:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-libafl-jazzer/</guid><description>&lt;p>AIxCC involved finding bugs in software written in two languages: C++ and &lt;em>Java&lt;/em>.
 The focus of the competition was on the use of LLMs and AI, however, our teams
 approach was to balance ambitious strategies alongside proven traditional
 bug-finding techniques like fuzzing.
@@ -27,9 +27,9 @@ LibAFL as the fuzzing backend and it is available as
  
 
 
-&gt;part of our open source release&lt;/a&gt;.
+>part of our open source release&lt;/a>.
 This post details some of the lessons we learned about Java fuzzing and the
-creation of this fork.&lt;/p&gt;</description></item><item><title>Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection</title><link>https://team-atlanta.github.io/blog/post-crs-java-overview/</link><pubDate>Tue, 19 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-overview/</guid><description>&lt;p&gt;Atlantis-Java is a specialized bug-finding subsystem within the &lt;a href="https://team-atlanta.github.io/blog/post-atl-infra/"
+creation of this fork.&lt;/p></description></item><item><title>Atlantis-Java: A Sink-Centered Approach to Java Vulnerability Detection</title><link>https://team-atlanta.github.io/blog/post-crs-java-overview/</link><pubDate>Tue, 19 Aug 2025 10:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/blog/post-crs-java-overview/</guid><description>&lt;p>Atlantis-Java is a specialized bug-finding subsystem within the &lt;a href="https://team-atlanta.github.io/blog/post-atl-infra/"
 
 
 
@@ -38,17 +38,17 @@ creation of this fork.&lt;/p&gt;</description></item><item><title>Atlantis-Java:
  
 
 
-&gt;Atlantis CRS framework&lt;/a&gt;, specifically designed for Java CPV detection in the AIxCC competition.
-It integrates fuzzing, program analysis, and LLM capabilities, with a particular focus on security-sensitive APIs (also known as sinks).&lt;/p&gt;
-&lt;h2 id="many-java-vulnerabilities-are-sink-centered"&gt;Many Java Vulnerabilities Are Sink-Centered&lt;/h2&gt;
-&lt;figure class="img-fluid text-center"&gt;&lt;img src="https://team-atlanta.github.io/images/blog/crs-java/overview/motivation-example.png"
- alt="Fig.1 Example CPV from AIxCC Semifinal Jenkins CP" width="80%"&gt;&lt;figcaption&gt;
- &lt;p&gt;Fig.1 Example CPV from AIxCC Semifinal Jenkins CP&lt;/p&gt;
- &lt;/figcaption&gt;
-&lt;/figure&gt;
+>Atlantis CRS framework&lt;/a>, specifically designed for Java CPV detection in the AIxCC competition.
+It integrates fuzzing, program analysis, and LLM capabilities, with a particular focus on security-sensitive APIs (also known as sinks).&lt;/p>
+&lt;h2 id="many-java-vulnerabilities-are-sink-centered">Many Java Vulnerabilities Are Sink-Centered&lt;/h2>
+&lt;figure class="img-fluid text-center">&lt;img src="https://team-atlanta.github.io/images/blog/crs-java/overview/motivation-example.png"
+ alt="Fig.1 Example CPV from AIxCC Semifinal Jenkins CP" width="80%">&lt;figcaption>
+ &lt;p>Fig.1 Example CPV from AIxCC Semifinal Jenkins CP&lt;/p>
+ &lt;/figcaption>
+&lt;/figure>
 
-&lt;p&gt;This vulnerability contains a backdoor that enables OS command injection when specific conditions are met.
-The &lt;code&gt;ProcessBuilder&lt;/code&gt; constructor serves as a &lt;a href="https://github.com/github/codeql/blob/963e02864515b3f09fbd1c53e04ab0c4499c0351/java/ql/lib/ext/java.lang.model.yml#L15"
+&lt;p>This vulnerability contains a backdoor that enables OS command injection when specific conditions are met.
+The &lt;code>ProcessBuilder&lt;/code> constructor serves as a &lt;a href="https://github.com/github/codeql/blob/963e02864515b3f09fbd1c53e04ab0c4499c0351/java/ql/lib/ext/java.lang.model.yml#L15"
 
 
 
@@ -57,5 +57,5 @@ The &lt;code&gt;ProcessBuilder&lt;/code&gt; constructor serves as a &lt;a href="
  
 
 
-&gt;sink API&lt;/a&gt;, where an attacker-controllable first argument can lead to arbitrary command execution.
-The sinkpoint (line 20) refers to the location in the target CP where this sink API is called.&lt;/p&gt;</description></item></channel></rss>
+>sink API&lt;/a>, where an attacker-controllable first argument can lead to arbitrary command execution.
+The sinkpoint (line 20) refers to the location in the target CP where this sink API is called.&lt;/p></description></item></channel></rss>

@@ -1,54 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Team Atlanta</title><link>https://team-atlanta.github.io/pages/</link><description>Recent content in Pages on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://team-atlanta.github.io/pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Elements</title><link>https://team-atlanta.github.io/elements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/elements/</guid><description>&lt;details class="table-of-content "&gt;
- &lt;summary&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Team Atlanta</title><link>https://team-atlanta.github.io/pages/</link><description>Recent content in Pages on Team Atlanta</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://team-atlanta.github.io/pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Elements</title><link>https://team-atlanta.github.io/elements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/elements/</guid><description>&lt;details class="table-of-content ">
+ &lt;summary>
  
  Table of Contents
  
- &lt;/summary&gt;
- &lt;nav id="TableOfContents"&gt;
- &lt;ol&gt;
- &lt;li&gt;&lt;a href="#heading-2"&gt;Heading 2&lt;/a&gt;
- &lt;ol&gt;
- &lt;li&gt;&lt;a href="#heading-3"&gt;Heading 3&lt;/a&gt;
- &lt;ol&gt;
- &lt;li&gt;&lt;a href="#heading-4"&gt;Heading 4&lt;/a&gt;
- &lt;ol&gt;
- &lt;li&gt;&lt;a href="#heading-5"&gt;Heading 5&lt;/a&gt;&lt;/li&gt;
- &lt;/ol&gt;
- &lt;/li&gt;
- &lt;/ol&gt;
- &lt;/li&gt;
- &lt;li&gt;&lt;a href="#emphasis"&gt;Emphasis&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#button"&gt;Button&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#link"&gt;Link&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#paragraph"&gt;Paragraph&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#ordered-list"&gt;Ordered List&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#unordered-list"&gt;Unordered List&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#notice"&gt;Notice&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#tab"&gt;Tab&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#accordions"&gt;Accordions&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#code-and-syntax-highlighting"&gt;Code and Syntax Highlighting&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#blockquote"&gt;Blockquote&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#tables"&gt;Tables&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#image"&gt;Image&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#gallery"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#slider"&gt;Slider&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#youtube-video"&gt;Youtube video&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#custom-video"&gt;Custom video&lt;/a&gt;&lt;/li&gt;
- &lt;/ol&gt;
- &lt;/li&gt;
- &lt;/ol&gt;
-&lt;/nav&gt;
-&lt;/details&gt;
+ &lt;/summary>
+ &lt;nav id="TableOfContents">
+ &lt;ol>
+ &lt;li>&lt;a href="#heading-2">Heading 2&lt;/a>
+ &lt;ol>
+ &lt;li>&lt;a href="#heading-3">Heading 3&lt;/a>
+ &lt;ol>
+ &lt;li>&lt;a href="#heading-4">Heading 4&lt;/a>
+ &lt;ol>
+ &lt;li>&lt;a href="#heading-5">Heading 5&lt;/a>&lt;/li>
+ &lt;/ol>
+ &lt;/li>
+ &lt;/ol>
+ &lt;/li>
+ &lt;li>&lt;a href="#emphasis">Emphasis&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#button">Button&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#link">Link&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#paragraph">Paragraph&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#ordered-list">Ordered List&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#unordered-list">Unordered List&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#notice">Notice&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#tab">Tab&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#accordions">Accordions&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#code-and-syntax-highlighting">Code and Syntax Highlighting&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#blockquote">Blockquote&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#tables">Tables&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#image">Image&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#gallery">Gallery&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#slider">Slider&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#youtube-video">Youtube video&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#custom-video">Custom video&lt;/a>&lt;/li>
+ &lt;/ol>
+ &lt;/li>
+ &lt;/ol>
+&lt;/nav>
+&lt;/details>
 
-&lt;p&gt;Here is an example of headings. You can use this heading by the following markdown rules. For example: use &lt;code&gt;#&lt;/code&gt; for heading 1 and use &lt;code&gt;######&lt;/code&gt; for heading 6.&lt;/p&gt;
-&lt;h1 id="heading-1"&gt;Heading 1&lt;/h1&gt;
-&lt;h2 id="heading-2"&gt;Heading 2&lt;/h2&gt;
-&lt;h3 id="heading-3"&gt;Heading 3&lt;/h3&gt;
-&lt;h4 id="heading-4"&gt;Heading 4&lt;/h4&gt;
-&lt;h5 id="heading-5"&gt;Heading 5&lt;/h5&gt;
-&lt;h6 id="heading-6"&gt;Heading 6&lt;/h6&gt;
-&lt;hr&gt;
-&lt;h3 id="emphasis"&gt;Emphasis&lt;/h3&gt;
-&lt;p&gt;The emphasis, aka italics, with &lt;em&gt;asterisks&lt;/em&gt; or &lt;em&gt;underscores&lt;/em&gt;.&lt;/p&gt;</description></item><item><title>Privacy</title><link>https://team-atlanta.github.io/privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/privacy-policy/</guid><description>&lt;h4 id="responsibility-of-contributors"&gt;Responsibility of Contributors&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed&lt;/p&gt;
-&lt;p&gt;pretium, aliquam sit. Praesent elementum magna amet, tincidunt eros, nibh in leo. Malesuada purus, lacus, at aliquam suspendisse tempus. Quis tempus amet, velit nascetur sollicitudin. At sollicitudin eget amet in. Eu velit nascetur sollicitudin erhdfvssfvrgss eget viverra nec elementum. Lacus, facilisis tristique lectus in.&lt;/p&gt;</description></item></channel></rss>
+&lt;p>Here is an example of headings. You can use this heading by the following markdown rules. For example: use &lt;code>#&lt;/code> for heading 1 and use &lt;code>######&lt;/code> for heading 6.&lt;/p>
+&lt;h1 id="heading-1">Heading 1&lt;/h1>
+&lt;h2 id="heading-2">Heading 2&lt;/h2>
+&lt;h3 id="heading-3">Heading 3&lt;/h3>
+&lt;h4 id="heading-4">Heading 4&lt;/h4>
+&lt;h5 id="heading-5">Heading 5&lt;/h5>
+&lt;h6 id="heading-6">Heading 6&lt;/h6>
+&lt;hr>
+&lt;h3 id="emphasis">Emphasis&lt;/h3>
+&lt;p>The emphasis, aka italics, with &lt;em>asterisks&lt;/em> or &lt;em>underscores&lt;/em>.&lt;/p></description></item><item><title>Privacy</title><link>https://team-atlanta.github.io/privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://team-atlanta.github.io/privacy-policy/</guid><description>&lt;h4 id="responsibility-of-contributors">Responsibility of Contributors&lt;/h4>
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed&lt;/p>
+&lt;p>pretium, aliquam sit. Praesent elementum magna amet, tincidunt eros, nibh in leo. Malesuada purus, lacus, at aliquam suspendisse tempus. Quis tempus amet, velit nascetur sollicitudin. At sollicitudin eget amet in. Eu velit nascetur sollicitudin erhdfvssfvrgss eget viverra nec elementum. Lacus, facilisis tristique lectus in.&lt;/p></description></item></channel></rss>
