@@ -22,7 +22,7 @@
                     </a>
                   </h3>
                   <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ .authors }}</p>
-                  <p class="text-sm text-gray-500 dark:text-gray-500 mb-4">{{ .venue }} ({{ .year }})</p>
+                  <p class="text-sm text-gray-500 dark:text-gray-500 mb-4">{{ .venue }} {{ .year }}</p>
                   <div class="flex gap-2">
                     {{ if .pdf }}
                       <a href="{{ .pdf }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
@@ -58,13 +58,20 @@
                   <h3 class="text-lg font-bold text-gray-900 dark:text-white">{{ .title }}</h3>
                 </div>
                 <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{{ .description }}</p>
-                <div class="mt-auto">
+                <div class="mt-auto flex flex-wrap gap-2">
+                  {{ if .website }}
+                    <a href="{{ .website }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
+                      Website
+                      <i class="fa fa-globe ml-2 text-xs"></i>
+                    </a>
+                  {{ end }}
                   {{ if .url }}
                     <a href="{{ .url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm hover:bg-gradient-modern hover:text-white hover:border-transparent transition-all duration-300 inline-flex items-center">
                       View Repository
                       <i class="fa fa-external-link ml-2 text-xs"></i>
                     </a>
-                  {{ else }}
+                  {{ end }}
+                  {{ if not (or .website .url) }}
                     <button disabled class="btn btn-outline-primary btn-sm opacity-50 cursor-not-allowed inline-flex items-center">
                       Coming Soon
                       <i class="fa fa-clock ml-2 text-xs"></i>

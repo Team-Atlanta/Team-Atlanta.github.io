@@ -1,0 +1,16 @@
+entry: |
+  @inproceedings{kim:ctxfuzz,
+    title         = {{CtxFuzz}: Context-Aware Directed Fuzzing via Runtime Fuzzer-Agent Cooperation},
+    author        = {Jiho Kim and Dongkwan Kim and HyungSeok Han and Youngjoon Kim and Soyeon Park and Sangwoo Ji and Joshua Wang and Dae R. Jeong and Taesoo Kim},
+    booktitle     = {Proceedings of the 41st IEEE/ACM International Conference on Automated Software Engineering (ASE '26)},
+    year          = {2026},
+    month         = oct,
+    pages         = {437--448},
+    publisher     = {Association for Computing Machinery},
+    address       = {New York, NY, USA},
+    location      = {Munich, Germany},
+    series        = {ASE '26},
+    isbn          = {979-8-4007-2882-2},
+    url           = {https://doi.org/10.1145/3832783.3834365},
+    doi           = {10.1145/3832783.3834365}
+  }

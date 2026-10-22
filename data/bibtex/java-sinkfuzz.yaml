@@ -1,9 +1,13 @@
 entry: |
   @inproceedings{fleischer:java-sinkfuzz,
-    author={Fabian Fleischer and Cen Zhang and Joonun Jang and Jeongin Cho and Meng Xu and Taesoo Kim},
-    booktitle={2026 IEEE Symposium on Security and Privacy (SP)},
-    title={Contextualizing Sink Knowledge for Java Vulnerability Discovery},
-    year={2026},
-    volume={},
-    number={},
+    title         = {Contextualizing Sink Knowledge for {Java} Vulnerability Discovery},
+    author        = {Fabian Fleischer and Cen Zhang and Joonun Jang and Jeongin Cho and Meng Xu and Taesoo Kim},
+    booktitle     = {2026 IEEE Symposium on Security and Privacy (SP)},
+    year          = {2026},
+    month         = may,
+    pages         = {3776--3795},
+    publisher     = {IEEE},
+    address       = {San Francisco, CA, USA},
+    url           = {https://doi.org/10.1109/SP63933.2026.00223},
+    doi           = {10.1109/SP63933.2026.00223}
   }

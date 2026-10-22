@@ -2,28 +2,36 @@
 publications:
   # Add publications here when available
   # Example structure:
+  - title: "CtxFuzz: Context-Aware Directed Fuzzing via Runtime Fuzzer-Agent Cooperation"
+    authors: "Jiho Kim, Dongkwan Kim, HyungSeok Han, Youngjoon Kim, Soyeon Park, Sangwoo Ji, Joshua Wang, Dae R. Jeong, Taesoo Kim"
+    venue: "ASE"
+    year: 2026
+    url: "https://doi.org/10.1145/3832783.3834365"
+    pdf: "https://dl.acm.org/doi/epdf/10.1145/3832783.3834365"
+    bibtex: "ctxfuzz"
+
   - title: "OSS-CRS: Liberating AIxCC Cyber Reasoning Systems for Real-World Open-Source Security"
     authors: "Andrew Chin and Dongkwan Kim and Yu-Fu Fu and Fabian Fleischer and Youngjoon Kim and HyungSeok Han and Cen Zhang and Brian Junekyu Lee and Hanqing Zhao and Taesoo Kim"
-    venue: "arXiv"
+    venue: "WOOT"
     year: 2026
-    url: "https://arxiv.org/abs/2603.08566"
-    pdf: "https://arxiv.org/abs/2603.08566"
+    url: "https://www.usenix.org/conference/woot26/presentation/chin"
+    pdf: "https://www.usenix.org/system/files/woot26-chin.pdf"
     bibtex: "oss-crs"
 
   - title: "SoK: DARPA's AI Cyber Challenge (AIxCC): Competition Design, Architectures, and Lessons Learned"
     authors: "Cen Zhang, Younggi Park, Fabian Fleischer, Yu-Fu Fu, Jiho Kim, Dongkwan Kim, Youngjoon Kim, Qingxiao Xu, Andrew Chin, Ze Sheng, Hanqing Zhao, Michael Pelican, David J. Musliner, Jeff Huang, Jon Silliman, Mikel Mcdaniel, Jefferson Casavant, Isaac Goldthwaite, Nicholas Vidovich, Matthew Lehman, Taesoo Kim"
-    venue: "USENIX Security '26"
+    venue: "USENIX Security"
     year: 2026
-    url: "https://arxiv.org/abs/2602.07666"
-    pdf: "https://arxiv.org/abs/2602.07666"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/zhang-cen"
+    pdf: "https://www.usenix.org/system/files/usenixsecurity26-zhang-cen.pdf"
     bibtex: "sok"
 
   - title: "Contextualizing Sink Knowledge for Java Vulnerability Discovery"
     authors: "Fabian Fleischer, Cen Zhang, Joonun Jang, Jeongin Cho, Meng Xu, Taesoo Kim"
     venue: "IEEE S&P"
     year: 2026
-    url: "https://arxiv.org/abs/2604.01645"
-    pdf: "https://arxiv.org/abs/2604.01645"
+    url: "https://doi.org/10.1109/SP63933.2026.00223"
+    pdf: "https://arxiv.org/pdf/2604.01645"
     bibtex: "java-sinkfuzz"
 
   - title: "ATLANTIS: AI-driven Threat Localization, Analysis, and Triage Intelligence System"
@@ -37,12 +45,15 @@ publications:
 repositories:
   - title: "CRS Benchmark"
     description: "Foundational benchmark framework for evaluating cyber reasoning systems."
+    url: "https://huggingface.co/datasets/sslab-gatech/crsbench-dataset"
     icon: "fa-solid fa-database"
     iconColor: "text-indigo-500"
+    website: "https://oss-crs.openssf.org/crsbench"
 
   - title: "OSS-CRS"
     description: "Standardized framework for integrating and deploying cyber reasoning systems."
     url: "https://github.com/ossf/oss-crs"
+    website: "https://oss-crs.openssf.org/"
     icon: "fa-solid fa-sitemap"
     iconColor: "text-emerald-500"
 

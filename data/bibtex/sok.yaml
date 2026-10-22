@@ -1,7 +1,13 @@
 entry: |
   @inproceedings{zhang:sok,
-    title         = {SoK: DARPA's AI Cyber Challenge (AIxCC): Competition Design, Architectures, and Lessons Learned},
+    title         = {{SoK}: {DARPA}'s {AI} Cyber Challenge ({AIxCC}): Competition Design, Architectures, and Lessons Learned},
     author        = {Cen Zhang and Younggi Park and Fabian Fleischer and Yu-Fu Fu and Jiho Kim and Dongkwan Kim and Youngjoon Kim and Qingxiao Xu and Andrew Chin and Ze Sheng and Hanqing Zhao and Michael Pelican and David J. Musliner and Jeff Huang and Jon Silliman and Mikel Mcdaniel and Jefferson Casavant and Isaac Goldthwaite and Nicholas Vidovich and Matthew Lehman and Taesoo Kim},
-    booktitle     = {Proceedings of the 35th USENIX Security Symposium (USENIX Security '26)},
-    year          = {2026}
+    booktitle     = {35th USENIX Security Symposium (USENIX Security 26)},
+    year          = {2026},
+    month         = aug,
+    pages         = {2705--2724},
+    publisher     = {USENIX Association},
+    address       = {Baltimore, MD},
+    isbn          = {978-1-939133-58-8},
+    url           = {https://www.usenix.org/conference/usenixsecurity26/presentation/zhang-cen}
   }
