@@ -11,7 +11,7 @@ publications:
     bibtex: "ctxfuzz"
 
   - title: "OSS-CRS: Liberating AIxCC Cyber Reasoning Systems for Real-World Open-Source Security"
-    authors: "Andrew Chin and Dongkwan Kim and Yu-Fu Fu and Fabian Fleischer and Youngjoon Kim and HyungSeok Han and Cen Zhang and Brian Junekyu Lee and Hanqing Zhao and Taesoo Kim"
+    authors: "Andrew Chin, Dongkwan Kim, Yu-Fu Fu, Fabian Fleischer, Youngjoon Kim, HyungSeok Han, Cen Zhang, Brian Junekyu Lee, Hanqing Zhao, Taesoo Kim"
     venue: "WOOT"
     year: 2026
     url: "https://www.usenix.org/conference/woot26/presentation/chin"
